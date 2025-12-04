@@ -47,8 +47,8 @@ Since the LEC channel was not there, delete the the following channels form the 
 - 225 to 207 161 to 143
 - for anotlomical there is redundency so try to delete those too
 - for the dHPC
-- shang 1:  96 to 113
-- shange 2: 64 to 95
-- shange 3: 32 to 63
-- shange 4: 0 to 31
+- shank 1:  96 to 113
+- shank 2: 64 to 95
+- shank 3: 32 to 63
+- shank 4: 0 to 31
  
