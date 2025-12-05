@@ -1,15 +1,15 @@
-Concatenated
+#Concatenated
 -	We typically record multiple files a day
 o	Sleep – maze – sleep 
 -	During this step we concatenate each file recorded during the day.
 o	bz_ConcatenateDats;
 o	bz_ConcatenateDats_NP2_SpikeGLX(fileInfo);
 
-LFP
+#LFP
 -	Down sampling of concatenated .dat file.
 o	bz_LFPfromDat(basepath);
 
-Ripple detection
+#Ripple detection
 -	Open .lfp file using Neuroscope and select a ripple and noise channel
 o	ripple channel: channel in CA1 PYR with highest magnitude of ripple
 o	noise channel: outside of CA1 PYR
@@ -20,7 +20,7 @@ o	threshold_lvl = 5;
 o	'HilusChannel'
 o	'MolecularLayerChannel'
 
-Up-Down states detected
+#Up-Down states detected
 addpath(genpath('C:\Users\BuzsakiPC002_misi\Documents\MATLAB\Down_state_Rachel'))
 SWChan = 204;
 smoothwin = .03;
@@ -28,7 +28,7 @@ startbins = 40;
 refineDipEstimate = true;
 [SlowWaves] = DetectSlowWavesMUA(pwd,SWChan,'smoothwin',smoothwin,'startbins',startbins,'refineDipEstimate',refineDipEstimate);
 
-Statescoring
+#Statescoring
 -	Automatic brain state scoring
 o	sessionInfo = bz_getSessionInfo(basepath,'editGUI',true); %bad channels are marked as bad
 o	SleepScoreMaster(basepath);
@@ -48,11 +48,11 @@ Artifact removed
 -	if optogenetic or electrical stimulation is applied, we cut out some pieces
 o	RemoveArtefact_dat([basepath filesep basename '.dat'],artefact);
 
-Median subtraction
+#Median subtraction
 -	helps with spike sorting to remove movement artifacts
 o	removeNoiseFromDat(basepath,'method','substractMedian');   %remove muscle artifacts to get better spike sorting
 
-Spike_sorted
+#Spike_sorted
 -	KS2.5
 Manual_curation
 -	Using phy2 manual curation of clusters
@@ -60,7 +60,7 @@ CellExplorer
 -	session = sessionTemplate(basepath,'showGUI',true);
 -	cell_metrics = ProcessCellMetrics('session', session);
 
-Adjust monosynaptic connections
+#Adjust monosynaptic connections
 -	https://www.sciencedirect.com/science/article/pii/S0896627317309029?via%3Dihub
 -	I only keep textbook examples
 -	Spike transmission probability
