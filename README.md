@@ -77,7 +77,7 @@ https://github.com/MouseLand/Kilosort
 
 If you use Matlab with buzcode
 
-basepath = pwd;
+```basepath = pwd;
 cd(basepath)
 basename = bz_BasenameFromBasepath(basepath);
 bz_ConcatenateDats;
@@ -118,6 +118,7 @@ removeNoiseFromDat(basepath,'method','substractMedian','ch', channels);   %remov
 sessionInfo = bz_getSessionInfo(basepath,'editGUI',true); %ECG channel is moved to bad
 SleepScoreMaster(basepath);
 TheStateEditor
+```
 
 SPIKE SORT
 
