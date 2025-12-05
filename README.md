@@ -27,6 +27,9 @@ HPC Schematics: https://labs.gaidi.ca/mouse-brain-atlas/?ml=1.5&ap=-1.8&dv=3.2
 - **Pre-stimulation period:** 15 minutes  
 - **Post-stimulation period:** >15 minutes (extended wash-out period)
 
+- Mishi is going to send me the amplifier.dat
+- the rest I have them here: https://drive.google.com/drive/u/2/folders/1KCHj2yOEkNIjX9bO9ZMiSj2WCGB7mrga
+  
 ---
 
 ### 📅 December 3 — Same Mouse, One Shank Implanted
