@@ -9,6 +9,7 @@ Images from this experiment are available here:
 ---
 
 ### 📅 December 4 — One Mouse, Two Shanks Implanted
+The data collected is here (mishi shared with me): https://drive.google.com/drive/u/3/folders/11S4fJvwI5_ZltETXopUXOIprmO7udT9G
 **Implant locations:**  
 - Hippocampus (dHPC)
 - Lateral Entorhinal Cortex (LEC) which is a gateway to hippocampus.
