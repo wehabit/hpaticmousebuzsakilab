@@ -1,4 +1,8 @@
 # hpaticmousebuzsakilab
+## Workshop Mishi puttogether
+You might find it useful for data analysis: https://github.com/misiVoroslakos/Ephys_workshop
+
+
 ## 🧪 Experiment Setup Summary
 
 ### 📸 Study Images
