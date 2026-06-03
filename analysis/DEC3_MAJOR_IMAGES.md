@@ -8,6 +8,10 @@ Main dashboard:
 
 - `analysis/outputs/dec3/RESULTS_DASHBOARD.html`
 
+Supervisor-facing summary:
+
+- `analysis/DEC3_SUPERVISOR_SUMMARY.md`
+
 ## Core LFP Results
 
 1. `analysis/outputs/dec3/biological_summary/condition_fingerprint.png`

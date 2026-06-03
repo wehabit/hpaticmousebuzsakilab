@@ -4,6 +4,7 @@
 
 The current Dec 3 analysis summary and clickable result dashboard are here:
 
+- `analysis/DEC3_SUPERVISOR_SUMMARY.md`
 - `analysis/DEC3_RESULTS_SUMMARY.md`
 - `analysis/DEC3_MAJOR_IMAGES.md`
 - `analysis/outputs/dec3/RESULTS_DASHBOARD.html`

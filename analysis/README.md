@@ -6,6 +6,11 @@ randomized stimulus schedule before loading the large `amplifier.dat` trace.
 
 ## Dec 3 quick start
 
+For a supervisor-facing summary of findings, figures, tools, and pipeline, use:
+
+- `analysis/DEC3_SUPERVISOR_SUMMARY.md`
+- `analysis/outputs/dec3/RESULTS_DASHBOARD.html`
+
 From the repository root:
 
 ```bash
