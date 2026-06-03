@@ -1,0 +1,38 @@
+{
+  "trial_windows": "analysis/outputs/dec3/spike_sorting_prep/trial_windows.csv",
+  "output_dir": "analysis/outputs/dec3/pynapple_intervals",
+  "baseline_start_s": 0.0,
+  "baseline_end_s": 1540.0,
+  "n_trials": 1200,
+  "conditions": {
+    "amp100_freq26": {
+      "n_on_intervals": 200,
+      "n_off_intervals": 200
+    },
+    "amp100_freq5": {
+      "n_on_intervals": 200,
+      "n_off_intervals": 200
+    },
+    "amp180_freq26": {
+      "n_on_intervals": 200,
+      "n_off_intervals": 200
+    },
+    "amp180_freq5": {
+      "n_on_intervals": 200,
+      "n_off_intervals": 200
+    },
+    "amp250_freq26": {
+      "n_on_intervals": 200,
+      "n_off_intervals": 200
+    },
+    "amp250_freq5": {
+      "n_on_intervals": 200,
+      "n_off_intervals": 200
+    }
+  },
+  "pynapple_version": "0.11.3",
+  "notes": [
+    "OFF intervals are the within-trial 3 s control periods after stimulation.",
+    "Interval metadata are also kept in trial_interval_metadata.csv because Pynapple npz saves are best for interval times."
+  ]
+}

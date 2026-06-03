@@ -1,0 +1,9 @@
+{
+  "raw_binary": "/data/dec3/amplifier.dat",
+  "probe": "/data/dec3/spike_sorting_prep/kilosort_channel_map.mat",
+  "results_dir": "/data/dec3/kilosort4_results",
+  "elapsed_s": 3165.958429336548,
+  "n_spikes": 7370558,
+  "n_clusters": 194,
+  "cuda_device": "NVIDIA A10"
+}

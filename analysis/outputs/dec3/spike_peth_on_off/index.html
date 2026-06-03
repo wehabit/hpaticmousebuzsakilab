@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dec 3 Provisional Spike PETH / ON-OFF</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 32px; line-height: 1.45; }
+    img { max-width: 100%; border: 1px solid #ddd; margin: 12px 0 28px; }
+    code { background: #f2f2f2; padding: 2px 4px; }
+    table { border-collapse: collapse; }
+    td, th { border: 1px solid #ddd; padding: 6px 8px; }
+  </style>
+</head>
+<body>
+  <h1>Dec 3 Provisional Spike PETH / ON-OFF Analysis</h1>
+  <p>This is an uncurated first pass from Modal Kilosort4 output. The control is
+  the 3 s OFF interval immediately after each 3 s stimulation ON interval.</p>
+  <ul>
+    <li>Total clusters: <code>194</code></li>
+    <li>KS good clusters: <code>28</code></li>
+    <li>Trials: <code>1200</code></li>
+    <li>Spike count: <code>7311421</code></li>
+  </ul>
+  <h2>Condition Mean ON - OFF</h2>
+  <img src="condition_mean_on_minus_off.png">
+  <h2>KS Good Unit Heatmap</h2>
+  <img src="unit_condition_on_minus_off_heatmap_ks_good.png">
+  <h2>All Unit Heatmap</h2>
+  <img src="unit_condition_on_minus_off_heatmap_all_units.png">
+  <h2>Onset-Aligned PETH, KS Good Units</h2>
+  <img src="peth_onset_ks_good_units.png">
+  <h2>Offset-Aligned PETH, KS Good Units</h2>
+  <img src="peth_offset_ks_good_units.png">
+  <h2>Key Tables</h2>
+  <ul>
+    <li><a href="condition_summary_on_off.csv">condition_summary_on_off.csv</a></li>
+    <li><a href="unit_condition_on_off_stats.csv">unit_condition_on_off_stats.csv</a></li>
+    <li><a href="top_units_by_condition_delta.csv">top_units_by_condition_delta.csv</a></li>
+    <li><a href="run_summary.json">run_summary.json</a></li>
+  </ul>
+  <p>Caveat: use this for exploratory physiology only. Final spike claims need
+  Phy curation and corrected probe geometry/channel order.</p>
+</body>
+</html>

@@ -1,4 +1,18 @@
 # hpaticmousebuzsakilab
+
+## Dec 3 Analysis Results
+
+The current Dec 3 analysis summary and clickable result dashboard are here:
+
+- `analysis/DEC3_RESULTS_SUMMARY.md`
+- `analysis/DEC3_MAJOR_IMAGES.md`
+- `analysis/outputs/dec3/RESULTS_DASHBOARD.html`
+
+Short takeaway: Dec 3 shows clear stimulation-related LFP effects, strongest
+for broadband/recovery dynamics around `amp180_freq26`. The cleanest
+high-confidence spike subset does not show a corrected ON-period firing-rate
+increase, so spike claims remain provisional until Phy curation.
+
 ## Workshop Mishi puttogether
 You might find it useful for data analysis: https://github.com/misiVoroslakos/Ephys_workshop
 
@@ -55,10 +69,25 @@ Since the LEC channel was not there, delete the the following channels form the 
 - 225 to 207 161 to 143
 - for anotlomical there is redundency so try to delete those too
 - for the dHPC
-- shank 1:  96 to 113
+- shank 1:  96 to 127
 - shank 2: 64 to 95
 - shank 3: 32 to 63
 - shank 4: 0 to 31
+
+Correction note: The original note listed shank 1 as `96 to 113`, but Dec 3
+has 128 valid amplifier channels and the corrected XML has four 32-channel
+groups. The Cambridge NeuroTech ASSY-350 H12/L13 map indicates these are most
+likely two physical shanks split into upper/lower halves, not four independent
+physical shanks:
+
+- Shank A upper half: `0 to 31`
+- Shank A lower half: `32 to 63`
+- Shank B upper half: `64 to 95`
+- Shank B lower half: `96 to 127`
+
+The exact anatomical attribution of Shank A vs Shank B depends on implant
+orientation, so it should be confirmed from surgery notes/photos or the probe
+orientation marker.
 
 Nick's sugestions 
 https://www.frontiersin.org/journals/behavioral-neuroscience/articles/10.3389/fnbeh.2025.1685846/full
@@ -129,4 +158,3 @@ TheStateEditor
 ```
 
 SPIKE SORT
-

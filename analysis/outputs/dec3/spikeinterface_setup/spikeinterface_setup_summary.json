@@ -1,0 +1,35 @@
+{
+  "raw_dat": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat",
+  "n_channels_raw": 128,
+  "good_channel_count": 119,
+  "bad_channels": [
+    5,
+    6,
+    7,
+    32,
+    33,
+    34,
+    43,
+    66,
+    67
+  ],
+  "sample_rate_hz": 20000,
+  "dtype": "int16",
+  "recording_num_frames": 212888704,
+  "recording_duration_s": 10644.4352,
+  "channel_ids_first_10": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "channel_locations_status": "provisional_two_shank_geometry_from_spike_sorting_prep",
+  "recording_json": "analysis/outputs/dec3/spikeinterface_setup/recording_json/recording.json",
+  "sanity_plot": "analysis/outputs/dec3/spikeinterface_setup/spikeinterface_trace_sanity.png"
+}

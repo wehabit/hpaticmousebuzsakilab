@@ -1,0 +1,12 @@
+{
+  "output_dir": "analysis/outputs/dec3/time_frequency_lfp",
+  "summary_csv": "analysis/outputs/dec3/time_frequency_lfp/time_frequency_summary.csv",
+  "maps_npz": "analysis/outputs/dec3/time_frequency_lfp/time_frequency_group_maps.npz",
+  "pre_s": 1.0,
+  "post_s": 4.0,
+  "nperseg": 512,
+  "noverlap": 448,
+  "max_freq_hz": 80.0,
+  "max_trials_per_condition": 200,
+  "note": "Time-frequency maps are trial-averaged group mean LFP spectrograms, baseline normalized by pre-stim power."
+}

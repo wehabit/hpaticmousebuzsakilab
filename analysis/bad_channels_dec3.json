@@ -1,0 +1,12 @@
+{
+  "session": "Haptic_Stim_session1_251203_143031",
+  "status": "confirmed_for_current_analysis",
+  "notes": [
+    "User confirmed these exclusions are acceptable for the current Dec 3 analysis pass.",
+    "The original source was automated baseline QC/high-noise review candidates.",
+    "Anatomical labels remain conservative."
+  ],
+  "candidate_bad_channels": [5, 6, 7, 32, 33, 34, 43, 66, 67],
+  "definite_bad_channels": [5, 6, 7, 32, 33, 34, 43, 66, 67],
+  "phantom_channels_removed_by_xml_correction": "128-255"
+}

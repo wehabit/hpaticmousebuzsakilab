@@ -1,0 +1,77 @@
+{
+  "conclusion": "The 1201 TTL burst count is not one extra scheduled Dec 3 condition. It includes TTL activity outside the true Dec 3 main run, while several in-run haptic trials are merged/shifted by burst grouping.",
+  "recording_start_from_folder_name": "2025-12-03 14:30:31",
+  "controller_baseline_start_from_log": "2025-12-03 14:41:11",
+  "controller_baseline_start_recording_time_s": 640.0,
+  "first_main_stimulation_from_log": "2025-12-03 14:56:11",
+  "first_main_stimulation_recording_time_s": 1540.0,
+  "last_main_trial_start_recording_time_s": 8734.0,
+  "last_main_trial_end_recording_time_s": 8737.0,
+  "post_block_command_recording_time_s": 8740.0,
+  "scheduled_trials": 1200,
+  "raw_detected_ttl_bursts": 1201,
+  "pre_run_or_test_bursts_count": 10,
+  "in_main_window_detected_bursts_count": 1187,
+  "post_run_or_test_bursts_count": 4,
+  "pre_run_or_test_bursts": [
+    {
+      "burst_index": 0,
+      "start_time_s": 89.96825
+    },
+    {
+      "burst_index": 1,
+      "start_time_s": 107.6379
+    },
+    {
+      "burst_index": 2,
+      "start_time_s": 114.16845
+    },
+    {
+      "burst_index": 3,
+      "start_time_s": 351.6151
+    },
+    {
+      "burst_index": 4,
+      "start_time_s": 354.54805
+    },
+    {
+      "burst_index": 5,
+      "start_time_s": 675.80365
+    },
+    {
+      "burst_index": 6,
+      "start_time_s": 679.4106
+    },
+    {
+      "burst_index": 7,
+      "start_time_s": 1230.13255
+    },
+    {
+      "burst_index": 8,
+      "start_time_s": 1312.28445
+    },
+    {
+      "burst_index": 9,
+      "start_time_s": 1317.9705
+    }
+  ],
+  "post_run_or_test_bursts": [
+    {
+      "burst_index": 1197,
+      "start_time_s": 8978.10925
+    },
+    {
+      "burst_index": 1198,
+      "start_time_s": 9028.1754
+    },
+    {
+      "burst_index": 1199,
+      "start_time_s": 10098.7415
+    },
+    {
+      "burst_index": 1200,
+      "start_time_s": 10639.81175
+    }
+  ],
+  "recommended_trial_timing_source": "Use dec3_condition_sequence.csv recording_start_time_s / recording_end_time_s for trial labels; use TTLs as QC, not as the sole trial enumerator."
+}

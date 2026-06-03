@@ -1,0 +1,23 @@
+name: kilosort4-dec3
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - "numpy<2"
+  - scipy
+  - pandas
+  - matplotlib
+  - h5py
+  - ipython
+  - jupyter
+  - numba
+  - llvmlite
+  - scikit-learn
+  - tqdm
+  - pip:
+      - "kilosort[gui]"
+      - spikeinterface
+      - probeinterface
+      - phylib
+      - pynapple

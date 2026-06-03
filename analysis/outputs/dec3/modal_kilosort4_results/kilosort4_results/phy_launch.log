@@ -1,0 +1,4 @@
+[33m14:19:51.251 [W] model:668            Skipping spike waveforms that do not exist, they will be extracted on the fly from the raw data as needed.[0m
+[33m14:19:54.053 [W] base:948             Deleting /Users/paris/.phy/TemplateGUI/state.json.[0m
+[0m14:19:54.732 [I] state:180            Copied /opt/anaconda3/envs/phy-dec3-legacy/lib/python3.10/site-packages/phy/apps/template/static/state.json to /Users/paris/.phy/TemplateGUI/state.json.[0m
+[33m14:19:56.123 [W] gui:671              Could not create view TemplateFeatureView.[0m

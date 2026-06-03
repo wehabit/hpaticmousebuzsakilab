@@ -1,0 +1,10 @@
+{
+  "edges_csv": "analysis/outputs/dec3/digital_edges_ch7.csv",
+  "sequence": "analysis/outputs/dec3/dec3_condition_sequence.csv",
+  "output_dir": "analysis/outputs/dec3/ttl_on_off_audit",
+  "total_on_rising_edges": 7878,
+  "total_off_rising_edges": 1260,
+  "trials_with_on_edges": 1173,
+  "trials_with_off_edges": 791,
+  "interpretation": "TTL edges are audited against expected config ON/OFF windows. Use as QC because digital bursts include pre/post/test activity and do not cleanly enumerate all trials."
+}

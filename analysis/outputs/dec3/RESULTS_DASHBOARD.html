@@ -1,0 +1,569 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dec 3 Haptic LFP Results Dashboard</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1f2933;
+      --muted: #5b6773;
+      --line: #d9dee5;
+      --accent: #0f6b78;
+      --warn: #9a4b00;
+      --bg: #ffffff;
+      --soft: #f5f7f9;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.45;
+    }
+    header {
+      padding: 28px 36px 18px;
+      border-bottom: 1px solid var(--line);
+      background: var(--soft);
+    }
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 26px 28px 48px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 34px 0 12px;
+      font-size: 21px;
+      letter-spacing: 0;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+    }
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+    p {
+      max-width: 920px;
+      margin: 8px 0;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .summary div {
+      border: 1px solid var(--line);
+      background: white;
+      padding: 14px;
+      border-radius: 6px;
+    }
+    .summary strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 4px;
+    }
+    .links a {
+      display: inline-block;
+      border: 1px solid var(--line);
+      padding: 7px 10px;
+      border-radius: 4px;
+      background: white;
+      font-size: 14px;
+    }
+    figure {
+      margin: 18px 0 32px;
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    figure a {
+      display: block;
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: white;
+    }
+    figcaption {
+      padding: 11px 13px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+    table {
+      border-collapse: collapse;
+      min-width: 620px;
+      margin: 12px 0 22px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      text-align: right;
+    }
+    th:first-child, td:first-child {
+      text-align: left;
+    }
+    th {
+      background: var(--soft);
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    .caution {
+      border-left: 4px solid var(--warn);
+      background: #fff8ef;
+      padding: 10px 12px;
+      max-width: 920px;
+      margin: 14px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dec 3 Haptic LFP Results Dashboard</h1>
+    <p class="lede">Readable summary of the Dec 3 mouse haptic stimulation analysis. Click any image to open it directly.</p>
+    <div class="links">
+      <a href="../../DEC3_RESULTS_SUMMARY.md">Results summary markdown</a>
+      <a href="../../DEC3_MAJOR_IMAGES.md">Major images guide</a>
+      <a href="../../DEC3_ANALYSIS_LOG.md">Run log</a>
+      <a href="../../OPEN_QUESTIONS.md">Open questions</a>
+      <a href="provisional_final_pass/index.html">Provisional final pass</a>
+      <a href="condition_interpretation/index.html">Condition interpretation</a>
+      <a href="biological_summary/index.html">Biological summary figures</a>
+      <a href="trial_level_stats_equal_spectral_windows/index.html">Trial-level stats</a>
+      <a href="broadband_transition/index.html">Broadband transition</a>
+      <a href="off_control_broadband/index.html">3 s OFF control</a>
+      <a href="ttl_on_off_audit/index.html">TTL ON/OFF audit</a>
+      <a href="adaptation_analysis/index.html">Adaptation analysis</a>
+      <a href="spike_sorting_prep/README.md">Spike sorting prep</a>
+      <a href="cluster_quality/index.html">Cluster quality</a>
+      <a href="spike_peth_high_confidence/index.html">High-confidence spikes</a>
+      <a href="spikeinterface_setup/README.md">SpikeInterface setup</a>
+      <a href="spikeinterface_test_sort/README.md">Spike sort smoke test</a>
+      <a href="time_frequency_lfp/index.html">Time-frequency page</a>
+      <a href="frequency_lfp/index.html">Frequency page</a>
+      <a href="REFERENCE_SENSITIVITY_EXPLAINER.html">Plain-language reference explainer</a>
+      <a href="reference_sensitivity_lfp/index.html">Reference sensitivity</a>
+      <a href="phase_locking_lfp/index.html">Phase locking</a>
+      <a href="artifact_aware_lfp/index.html">Artifact-aware page</a>
+    </div>
+  </header>
+
+  <main>
+    <h2>Working Conclusion</h2>
+    <div class="summary">
+      <div>
+        <strong>Broadband LFP amplitude</strong>
+        `amp180_freq26` is the strongest sustained broadband condition after excluding the first/last 100 ms of stimulation.
+      </div>
+      <div>
+        <strong>Frequency-specific power</strong>
+        The cleanest full-window driven-frequency increase is `amp180_freq5`, not `amp180_freq26`.
+      </div>
+      <div>
+        <strong>26 Hz nuance</strong>
+        Among 26 Hz conditions, `amp100_freq26` has the largest positive 26 Hz-band power change under current preprocessing; `amp180_freq26` is more offset-heavy.
+      </div>
+      <div>
+        <strong>Reference sensitivity</strong>
+        Excluding candidate bad channels and median referencing does not flip the main driven-frequency result: `amp180_freq5` stays strongest.
+      </div>
+      <div>
+        <strong>Phase locking</strong>
+        First PLV pass does not show strong trial-to-trial entrainment; sustained-minus-pre PLV changes are tiny.
+      </div>
+      <div>
+        <strong>Trial-level confidence</strong>
+        Corrected bootstrap CIs support broadband effects for `amp180_freq26`; driven-frequency power CIs cross zero for all conditions.
+      </div>
+      <div>
+        <strong>Broadband transition story</strong>
+        `amp180_freq26` has reliable sustained, offset, and recovery broadband effects; `amp250_freq26` is specifically offset-heavy.
+      </div>
+      <div>
+        <strong>OFF control</strong>
+        The 3 s OFF period is also elevated for `amp180_freq26`, so the effect persists into recovery rather than being ON-only.
+      </div>
+      <div>
+        <strong>Adaptation</strong>
+        `amp250_freq26` declines strongly over repeats; late `amp180_freq26` trials become OFF-dominant.
+      </div>
+      <div>
+        <strong>Spike sorting</strong>
+        Prep metadata and SpikeInterface setup are ready: raw `.dat` opens lazily, 119 good channels, 30 s `tridesclous2` smoke test completed.
+      </div>
+      <div>
+        <strong>Cluster pre-curation</strong>
+        Kilosort produced 194 clusters: 28 KS-good, 19 high-confidence by conservative automated rules, and 142 likely noise/multiunit candidates.
+      </div>
+      <div>
+        <strong>High-confidence spikes</strong>
+        The 19 cleanest KS-good units still show no BH-corrected ON-vs-OFF unit/condition effects; mean deltas are near zero or negative.
+      </div>
+      <div>
+        <strong>Anatomy labels</strong>
+        Use channels/groups for now. Do not assign medial/lateral or CA1/DG labels until probe orientation is confirmed.
+      </div>
+    </div>
+
+    <p class="caution">
+      Current result status: strong exploratory evidence, not final claims. The next analyses should rerun these plots after bad-channel exclusion and LFP referencing are finalized.
+    </p>
+    <p class="caution">
+      Important distinction: broadband LFP asks whether the overall signal got bigger; entrainment asks whether it got bigger specifically at the stimulus frequency. This is why `amp180_freq26` can be broadband-strong but not cleanly 26 Hz-entrained.
+    </p>
+
+    <h2>Key Numbers</h2>
+    <h3>Artifact-aware sustained broadband LFP</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Condition</th><th>Sustained mean abs-LFP change</th></tr>
+        <tr><td>amp180_freq26</td><td>53.78</td></tr>
+        <tr><td>amp100_freq26</td><td>19.97</td></tr>
+        <tr><td>amp180_freq5</td><td>16.96</td></tr>
+        <tr><td>amp250_freq26</td><td>6.30</td></tr>
+        <tr><td>amp250_freq5</td><td>1.85</td></tr>
+        <tr><td>amp100_freq5</td><td>1.76</td></tr>
+      </table>
+    </div>
+
+    <h3>Time-frequency driven-band response</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Condition</th><th>Onset</th><th>Sustained</th><th>Offset</th></tr>
+        <tr><td>amp100_freq26</td><td>-0.003</td><td>0.091</td><td>0.265</td></tr>
+        <tr><td>amp180_freq5</td><td>-0.112</td><td>0.064</td><td>0.107</td></tr>
+        <tr><td>amp250_freq5</td><td>-0.128</td><td>0.044</td><td>0.056</td></tr>
+        <tr><td>amp180_freq26</td><td>-0.089</td><td>-0.043</td><td>0.142</td></tr>
+        <tr><td>amp100_freq5</td><td>-0.111</td><td>-0.046</td><td>-0.051</td></tr>
+        <tr><td>amp250_freq26</td><td>-0.349</td><td>-0.300</td><td>-0.110</td></tr>
+      </table>
+    </div>
+
+    <h3>Reference and candidate bad-channel sensitivity</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Condition</th><th>Raw</th><th>Physical-shank median</th><th>Analysis-group median</th></tr>
+        <tr><td>amp180_freq5</td><td>0.136</td><td>0.126</td><td>0.124</td></tr>
+        <tr><td>amp100_freq26</td><td>-0.013</td><td>0.033</td><td>0.043</td></tr>
+        <tr><td>amp250_freq5</td><td>-0.060</td><td>-0.026</td><td>-0.030</td></tr>
+        <tr><td>amp180_freq26</td><td>-0.062</td><td>-0.033</td><td>-0.014</td></tr>
+        <tr><td>amp100_freq5</td><td>-0.082</td><td>-0.100</td><td>-0.105</td></tr>
+        <tr><td>amp250_freq26</td><td>-0.144</td><td>-0.131</td><td>-0.133</td></tr>
+      </table>
+    </div>
+
+    <h3>Phase locking, sustained minus pre</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Condition</th><th>Sustained minus pre PLV</th></tr>
+        <tr><td>amp180_freq5</td><td>0.005</td></tr>
+        <tr><td>amp180_freq26</td><td>-0.001</td></tr>
+        <tr><td>amp250_freq5</td><td>-0.001</td></tr>
+        <tr><td>amp100_freq26</td><td>-0.004</td></tr>
+        <tr><td>amp250_freq26</td><td>-0.010</td></tr>
+        <tr><td>amp100_freq5</td><td>-0.013</td></tr>
+      </table>
+    </div>
+
+    <h2>Time-Frequency Results</h2>
+    <figure>
+      <a href="adaptation_analysis/adaptation_timecourses.png">
+        <img src="adaptation_analysis/adaptation_timecourses.png" alt="Adaptation rolling time courses">
+      </a>
+      <figcaption>
+        Trial-order adaptation using repeat index within each condition. `amp250_freq26` declines across repeats, while `amp180_freq26` shifts toward OFF-dominant late trials.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="adaptation_analysis/adaptation_epoch_summary.png">
+        <img src="adaptation_analysis/adaptation_epoch_summary.png" alt="Adaptation epoch summary">
+      </a>
+      <figcaption>
+        Early, middle, and late repeats. Late `amp180_freq26` trials are significantly OFF-dominant in ON-minus-OFF.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="adaptation_analysis/adaptation_slope_summary.png">
+        <img src="adaptation_analysis/adaptation_slope_summary.png" alt="Adaptation slope summary">
+      </a>
+      <figcaption>
+        Linear adaptation slopes per 100 repeats. `amp250_freq26` has strong downward ON and OFF slopes.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="off_control_broadband/off_control_condition_ci.png">
+        <img src="off_control_broadband/off_control_condition_ci.png" alt="3 second OFF control condition confidence intervals">
+      </a>
+      <figcaption>
+        Full 3-second OFF period as within-trial control. `amp180_freq26` is elevated during both ON and OFF; ON-minus-OFF confidence intervals cross zero for all conditions.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="off_control_broadband/off_control_group_heatmaps.png">
+        <img src="off_control_broadband/off_control_group_heatmaps.png" alt="OFF control analysis group heatmaps">
+      </a>
+      <figcaption>
+        ON, OFF, and ON-minus-OFF effects by 32-channel analysis group.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="ttl_on_off_audit/ttl_on_off_counts.png">
+        <img src="ttl_on_off_audit/ttl_on_off_counts.png" alt="TTL ON OFF audit counts">
+      </a>
+      <figcaption>
+        TTL audit from `digitalin.dat` bit 7. ON windows have many more TTL edges than OFF windows, but TTL is not clean one-edge-per-trial, so it is used as timing QC.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="broadband_transition/broadband_windows_condition_ci.png">
+        <img src="broadband_transition/broadband_windows_condition_ci.png" alt="Broadband transition window confidence intervals">
+      </a>
+      <figcaption>
+        Focused broadband window analysis. `amp180_freq26` has reliable sustained, offset, and recovery effects; `amp250_freq26` is offset-heavy.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="broadband_transition/transition_index_condition.png">
+        <img src="broadband_transition/transition_index_condition.png" alt="Transition index by condition">
+      </a>
+      <figcaption>
+        Transition index is offset minus sustained response. Positive values mean the effect is more offset-heavy than sustained. `amp250_freq26` is clearly offset-heavy.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="broadband_transition/broadband_window_group_heatmaps.png">
+        <img src="broadband_transition/broadband_window_group_heatmaps.png" alt="Broadband transition heatmaps by group">
+      </a>
+      <figcaption>
+        Broadband window effects by 32-channel analysis group, keeping anatomy labels conservative.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="trial_level_stats_equal_spectral_windows/sustained_broadband_ci.png">
+        <img src="trial_level_stats_equal_spectral_windows/sustained_broadband_ci.png" alt="Trial-level sustained broadband confidence intervals">
+      </a>
+      <figcaption>
+        Trial-level bootstrap confidence intervals for sustained broadband response. `amp180_freq26` is the clearest sustained broadband effect.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="trial_level_stats_equal_spectral_windows/offset_broadband_ci.png">
+        <img src="trial_level_stats_equal_spectral_windows/offset_broadband_ci.png" alt="Trial-level offset broadband confidence intervals">
+      </a>
+      <figcaption>
+        Trial-level bootstrap confidence intervals for offset broadband response. `amp180_freq26` and `amp250_freq26` show positive offset effects.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="trial_level_stats_equal_spectral_windows/driven_power_ci.png">
+        <img src="trial_level_stats_equal_spectral_windows/driven_power_ci.png" alt="Trial-level driven power confidence intervals">
+      </a>
+      <figcaption>
+        Trial-level driven-frequency power with equal-length spectral windows. Confidence intervals cross zero for all conditions, so power effects are currently suggestive rather than final.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="biological_summary/condition_fingerprint.png">
+        <img src="biological_summary/condition_fingerprint.png" alt="Condition fingerprint summary">
+      </a>
+      <figcaption>
+        Compact biological fingerprint across the major metrics. This is the easiest single figure for comparing broadband response, transition response, driven-frequency power, time-frequency power, and PLV.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="biological_summary/broadband_vs_driven_power.png">
+        <img src="biological_summary/broadband_vs_driven_power.png" alt="Broadband versus driven-frequency power">
+      </a>
+      <figcaption>
+        Broadband response versus driven-frequency power. This makes the key dissociation visible: `amp180_freq26` is high broadband but near-zero driven-frequency power, while `amp180_freq5` has the clearest driven-power increase.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="biological_summary/amplitude_frequency_matrix.png">
+        <img src="biological_summary/amplitude_frequency_matrix.png" alt="Amplitude by frequency summary matrix">
+      </a>
+      <figcaption>
+        Amplitude-by-frequency matrix across metrics. Useful for seeing the non-monotonic amplitude pattern.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="time_frequency_lfp/time_frequency_condition_grid.png">
+        <img src="time_frequency_lfp/time_frequency_condition_grid.png" alt="Time-frequency condition grid">
+      </a>
+      <figcaption>
+        Trial-averaged spectrograms by condition and 32-channel analysis group. This is the main figure for seeing whether responses are sustained, offset-locked, or broad across frequencies.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="time_frequency_lfp/driven_frequency_timecourses.png">
+        <img src="time_frequency_lfp/driven_frequency_timecourses.png" alt="Driven frequency time courses">
+      </a>
+      <figcaption>
+        Driven-frequency time courses. `amp100_freq26` has sustained and offset 26 Hz-band increases; `amp180_freq26` is more offset-heavy; `amp180_freq5` has a cleaner 5 Hz-band increase.
+      </figcaption>
+    </figure>
+
+    <h2>Frequency-Specific Power</h2>
+    <figure>
+      <a href="frequency_lfp/driven_power_change_by_analysis_group.png">
+        <img src="frequency_lfp/driven_power_change_by_analysis_group.png" alt="Driven power by analysis group">
+      </a>
+      <figcaption>
+        Full-window driven-frequency power change by 32-channel analysis group. This view highlights `amp180_freq5` as the clearest driven-frequency increase.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="frequency_lfp/driven_power_change_by_channel.png">
+        <img src="frequency_lfp/driven_power_change_by_channel.png" alt="Driven power by channel">
+      </a>
+      <figcaption>
+        Channel-level driven-frequency power change. Vertical lines mark the four 32-channel analysis groups.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="frequency_lfp/frequency_specificity_by_group.png">
+        <img src="frequency_lfp/frequency_specificity_by_group.png" alt="Frequency specificity by group">
+      </a>
+      <figcaption>
+        Same trials viewed at 5 Hz and 26 Hz. Useful for separating true driven-band changes from broadband LFP shifts.
+      </figcaption>
+    </figure>
+
+    <h2>Reference / Bad-Channel Sensitivity</h2>
+    <figure>
+      <a href="reference_sensitivity_lfp/reference_condition_summary.png">
+        <img src="reference_sensitivity_lfp/reference_condition_summary.png" alt="Reference condition sensitivity">
+      </a>
+      <figcaption>
+        Driven-frequency power after excluding current candidate bad channels and comparing raw, physical-shank median, and analysis-group median reference. `amp180_freq5` remains strongest across all reference choices.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="reference_sensitivity_lfp/reference_group_heatmaps.png">
+        <img src="reference_sensitivity_lfp/reference_group_heatmaps.png" alt="Reference group heatmaps">
+      </a>
+      <figcaption>
+        Group-level sensitivity heatmaps. `amp100_freq26` becomes positive with median referencing, while `amp180_freq26` and `amp250_freq26` remain weak/negative in driven-frequency power.
+      </figcaption>
+    </figure>
+
+    <h2>Phase-Locking / Entrainment</h2>
+    <figure>
+      <a href="phase_locking_lfp/plv_timecourses.png">
+        <img src="phase_locking_lfp/plv_timecourses.png" alt="PLV time courses">
+      </a>
+      <figcaption>
+        Trial-to-trial phase-locking value at the driven frequency. Values remain low and do not show a strong sustained increase during stimulation.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="phase_locking_lfp/plv_condition_summary.png">
+        <img src="phase_locking_lfp/plv_condition_summary.png" alt="PLV condition summary">
+      </a>
+      <figcaption>
+        Pre, sustained ON, and offset PLV by condition. The sustained values are close to pre-stim baseline.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="phase_locking_lfp/plv_sustained_minus_pre.png">
+        <img src="phase_locking_lfp/plv_sustained_minus_pre.png" alt="PLV sustained minus pre">
+      </a>
+      <figcaption>
+        Sustained-minus-pre PLV. All condition means are near zero, so this pass does not support strong trial-to-trial phase entrainment.
+      </figcaption>
+    </figure>
+
+    <h2>Artifact-Aware Broadband LFP</h2>
+    <figure>
+      <a href="artifact_aware_lfp/artifact_window_comparison.png">
+        <img src="artifact_aware_lfp/artifact_window_comparison.png" alt="Artifact window comparison">
+      </a>
+      <figcaption>
+        Onset, sustained, offset, and recovery windows. Offset responses are large for some 26 Hz conditions, so transition effects need to be modeled separately.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="artifact_aware_lfp/sustained_response_by_shank.png">
+        <img src="artifact_aware_lfp/sustained_response_by_shank.png" alt="Sustained response by group">
+      </a>
+      <figcaption>
+        Sustained broadband response after excluding 100 ms around onset and offset. This is where `amp180_freq26` looks strongest.
+      </figcaption>
+    </figure>
+
+    <h2>Earlier Exploratory Views</h2>
+    <figure>
+      <a href="event_aligned_lfp/condition_summary_plots/lfp_response_grouped_bars.png">
+        <img src="event_aligned_lfp/condition_summary_plots/lfp_response_grouped_bars.png" alt="Grouped event LFP bars">
+      </a>
+      <figcaption>
+        Earlier event-aligned broadband metric. Useful, but less artifact-aware than the later analyses.
+      </figcaption>
+    </figure>
+
+    <figure>
+      <a href="event_aligned_lfp/condition_summary_plots/lfp_condition_shank_heatmap_values.png">
+        <img src="event_aligned_lfp/condition_summary_plots/lfp_condition_shank_heatmap_values.png" alt="Condition group heatmap">
+      </a>
+      <figcaption>
+        Condition-by-group broadband heatmap from the first event-aligned analysis.
+      </figcaption>
+    </figure>
+
+    <h2>Next Steps</h2>
+    <p>
+      Finalize the visual bad-channel list, choose one LFP reference for final plots/statistics, rerun the key frequency and time-frequency analyses with those final settings, then consider more rigorous cycle-level stimulus modeling if exact actuator timing can be recovered. Keep anatomical labels at channel/group level until probe orientation is confirmed.
+    </p>
+  </main>
+</body>
+</html>

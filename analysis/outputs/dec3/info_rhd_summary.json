@@ -1,0 +1,1365 @@
+{
+  "path": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/info.rhd",
+  "magic": "0xc6912702",
+  "version": "3.4",
+  "sample_rate_hz": 20000.0,
+  "dsp_enabled": true,
+  "actual_dsp_cutoff_hz": 0.7772186398506165,
+  "actual_lower_bandwidth_hz": 0.09452909976243973,
+  "actual_upper_bandwidth_hz": 7603.76513671875,
+  "desired_dsp_cutoff_hz": 1.0,
+  "desired_lower_bandwidth_hz": 0.10000000149011612,
+  "desired_upper_bandwidth_hz": 7500.0,
+  "notch_filter_mode": 0,
+  "desired_impedance_test_frequency_hz": 1000.0,
+  "actual_impedance_test_frequency_hz": 1000.0,
+  "notes": [
+    "",
+    "",
+    ""
+  ],
+  "num_temp_sensor_channels": 0,
+  "eval_board_mode": 0,
+  "reference_channel": "n/a",
+  "groups": [
+    {
+      "name": "Port A",
+      "prefix": "A",
+      "enabled": true,
+      "num_channels": 136,
+      "num_amplifier_channels": 128
+    },
+    {
+      "name": "Port B",
+      "prefix": "B",
+      "enabled": false,
+      "num_channels": 0,
+      "num_amplifier_channels": 0
+    },
+    {
+      "name": "Port C",
+      "prefix": "C",
+      "enabled": false,
+      "num_channels": 0,
+      "num_amplifier_channels": 0
+    },
+    {
+      "name": "Port D",
+      "prefix": "D",
+      "enabled": false,
+      "num_channels": 0,
+      "num_amplifier_channels": 0
+    },
+    {
+      "name": "Analog In Ports",
+      "prefix": "ANALOG-IN",
+      "enabled": true,
+      "num_channels": 8,
+      "num_amplifier_channels": 0
+    },
+    {
+      "name": "Digital In Ports",
+      "prefix": "DIGITAL-IN",
+      "enabled": true,
+      "num_channels": 16,
+      "num_amplifier_channels": 0
+    },
+    {
+      "name": "Digital Out Ports",
+      "prefix": "DIGITAL-OUT",
+      "enabled": true,
+      "num_channels": 16,
+      "num_amplifier_channels": 0
+    }
+  ],
+  "enabled_counts_by_type": {
+    "amplifier": 128,
+    "aux_input": 6,
+    "board_dig_in": 1
+  },
+  "num_amplifier_channels": 128,
+  "amplifier_channels": [
+    {
+      "native_order": 0,
+      "custom_order": 0,
+      "native_name": "A-000",
+      "custom_name": "A-000",
+      "chip_channel": 0,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 1,
+      "custom_order": 1,
+      "native_name": "A-001",
+      "custom_name": "A-001",
+      "chip_channel": 1,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 2,
+      "custom_order": 2,
+      "native_name": "A-002",
+      "custom_name": "A-002",
+      "chip_channel": 2,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 3,
+      "custom_order": 3,
+      "native_name": "A-003",
+      "custom_name": "A-003",
+      "chip_channel": 3,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 4,
+      "custom_order": 4,
+      "native_name": "A-004",
+      "custom_name": "A-004",
+      "chip_channel": 4,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 5,
+      "custom_order": 5,
+      "native_name": "A-005",
+      "custom_name": "A-005",
+      "chip_channel": 5,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 6,
+      "custom_order": 6,
+      "native_name": "A-006",
+      "custom_name": "A-006",
+      "chip_channel": 6,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 7,
+      "custom_order": 7,
+      "native_name": "A-007",
+      "custom_name": "A-007",
+      "chip_channel": 7,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 8,
+      "custom_order": 8,
+      "native_name": "A-008",
+      "custom_name": "A-008",
+      "chip_channel": 8,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 9,
+      "custom_order": 9,
+      "native_name": "A-009",
+      "custom_name": "A-009",
+      "chip_channel": 9,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 10,
+      "custom_order": 10,
+      "native_name": "A-010",
+      "custom_name": "A-010",
+      "chip_channel": 10,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 11,
+      "custom_order": 11,
+      "native_name": "A-011",
+      "custom_name": "A-011",
+      "chip_channel": 11,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 12,
+      "custom_order": 12,
+      "native_name": "A-012",
+      "custom_name": "A-012",
+      "chip_channel": 12,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 13,
+      "custom_order": 13,
+      "native_name": "A-013",
+      "custom_name": "A-013",
+      "chip_channel": 13,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 14,
+      "custom_order": 14,
+      "native_name": "A-014",
+      "custom_name": "A-014",
+      "chip_channel": 14,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 15,
+      "custom_order": 15,
+      "native_name": "A-015",
+      "custom_name": "A-015",
+      "chip_channel": 15,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 16,
+      "custom_order": 16,
+      "native_name": "A-016",
+      "custom_name": "A-016",
+      "chip_channel": 16,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 17,
+      "custom_order": 17,
+      "native_name": "A-017",
+      "custom_name": "A-017",
+      "chip_channel": 17,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 18,
+      "custom_order": 18,
+      "native_name": "A-018",
+      "custom_name": "A-018",
+      "chip_channel": 18,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 19,
+      "custom_order": 19,
+      "native_name": "A-019",
+      "custom_name": "A-019",
+      "chip_channel": 19,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 20,
+      "custom_order": 20,
+      "native_name": "A-020",
+      "custom_name": "A-020",
+      "chip_channel": 20,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 21,
+      "custom_order": 21,
+      "native_name": "A-021",
+      "custom_name": "A-021",
+      "chip_channel": 21,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 22,
+      "custom_order": 22,
+      "native_name": "A-022",
+      "custom_name": "A-022",
+      "chip_channel": 22,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 23,
+      "custom_order": 23,
+      "native_name": "A-023",
+      "custom_name": "A-023",
+      "chip_channel": 23,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 24,
+      "custom_order": 24,
+      "native_name": "A-024",
+      "custom_name": "A-024",
+      "chip_channel": 24,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 25,
+      "custom_order": 25,
+      "native_name": "A-025",
+      "custom_name": "A-025",
+      "chip_channel": 25,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 26,
+      "custom_order": 26,
+      "native_name": "A-026",
+      "custom_name": "A-026",
+      "chip_channel": 26,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 27,
+      "custom_order": 27,
+      "native_name": "A-027",
+      "custom_name": "A-027",
+      "chip_channel": 27,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 28,
+      "custom_order": 28,
+      "native_name": "A-028",
+      "custom_name": "A-028",
+      "chip_channel": 28,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 29,
+      "custom_order": 29,
+      "native_name": "A-029",
+      "custom_name": "A-029",
+      "chip_channel": 29,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 30,
+      "custom_order": 30,
+      "native_name": "A-030",
+      "custom_name": "A-030",
+      "chip_channel": 30,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 31,
+      "custom_order": 31,
+      "native_name": "A-031",
+      "custom_name": "A-031",
+      "chip_channel": 31,
+      "board_stream": 0,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 32,
+      "custom_order": 32,
+      "native_name": "A-032",
+      "custom_name": "A-032",
+      "chip_channel": 0,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 33,
+      "custom_order": 33,
+      "native_name": "A-033",
+      "custom_name": "A-033",
+      "chip_channel": 1,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 34,
+      "custom_order": 34,
+      "native_name": "A-034",
+      "custom_name": "A-034",
+      "chip_channel": 2,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 35,
+      "custom_order": 35,
+      "native_name": "A-035",
+      "custom_name": "A-035",
+      "chip_channel": 3,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 36,
+      "custom_order": 36,
+      "native_name": "A-036",
+      "custom_name": "A-036",
+      "chip_channel": 4,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 37,
+      "custom_order": 37,
+      "native_name": "A-037",
+      "custom_name": "A-037",
+      "chip_channel": 5,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 38,
+      "custom_order": 38,
+      "native_name": "A-038",
+      "custom_name": "A-038",
+      "chip_channel": 6,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 39,
+      "custom_order": 39,
+      "native_name": "A-039",
+      "custom_name": "A-039",
+      "chip_channel": 7,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 40,
+      "custom_order": 40,
+      "native_name": "A-040",
+      "custom_name": "A-040",
+      "chip_channel": 8,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 41,
+      "custom_order": 41,
+      "native_name": "A-041",
+      "custom_name": "A-041",
+      "chip_channel": 9,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 42,
+      "custom_order": 42,
+      "native_name": "A-042",
+      "custom_name": "A-042",
+      "chip_channel": 10,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 43,
+      "custom_order": 43,
+      "native_name": "A-043",
+      "custom_name": "A-043",
+      "chip_channel": 11,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 44,
+      "custom_order": 44,
+      "native_name": "A-044",
+      "custom_name": "A-044",
+      "chip_channel": 12,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 45,
+      "custom_order": 45,
+      "native_name": "A-045",
+      "custom_name": "A-045",
+      "chip_channel": 13,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 46,
+      "custom_order": 46,
+      "native_name": "A-046",
+      "custom_name": "A-046",
+      "chip_channel": 14,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 47,
+      "custom_order": 47,
+      "native_name": "A-047",
+      "custom_name": "A-047",
+      "chip_channel": 15,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 48,
+      "custom_order": 48,
+      "native_name": "A-048",
+      "custom_name": "A-048",
+      "chip_channel": 16,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 49,
+      "custom_order": 49,
+      "native_name": "A-049",
+      "custom_name": "A-049",
+      "chip_channel": 17,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 50,
+      "custom_order": 50,
+      "native_name": "A-050",
+      "custom_name": "A-050",
+      "chip_channel": 18,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 51,
+      "custom_order": 51,
+      "native_name": "A-051",
+      "custom_name": "A-051",
+      "chip_channel": 19,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 52,
+      "custom_order": 52,
+      "native_name": "A-052",
+      "custom_name": "A-052",
+      "chip_channel": 20,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 53,
+      "custom_order": 53,
+      "native_name": "A-053",
+      "custom_name": "A-053",
+      "chip_channel": 21,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 54,
+      "custom_order": 54,
+      "native_name": "A-054",
+      "custom_name": "A-054",
+      "chip_channel": 22,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 55,
+      "custom_order": 55,
+      "native_name": "A-055",
+      "custom_name": "A-055",
+      "chip_channel": 23,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 56,
+      "custom_order": 56,
+      "native_name": "A-056",
+      "custom_name": "A-056",
+      "chip_channel": 24,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 57,
+      "custom_order": 57,
+      "native_name": "A-057",
+      "custom_name": "A-057",
+      "chip_channel": 25,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 58,
+      "custom_order": 58,
+      "native_name": "A-058",
+      "custom_name": "A-058",
+      "chip_channel": 26,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 59,
+      "custom_order": 59,
+      "native_name": "A-059",
+      "custom_name": "A-059",
+      "chip_channel": 27,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 60,
+      "custom_order": 60,
+      "native_name": "A-060",
+      "custom_name": "A-060",
+      "chip_channel": 28,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 61,
+      "custom_order": 61,
+      "native_name": "A-061",
+      "custom_name": "A-061",
+      "chip_channel": 29,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 62,
+      "custom_order": 62,
+      "native_name": "A-062",
+      "custom_name": "A-062",
+      "chip_channel": 30,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 63,
+      "custom_order": 63,
+      "native_name": "A-063",
+      "custom_name": "A-063",
+      "chip_channel": 31,
+      "board_stream": 1,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 64,
+      "custom_order": 64,
+      "native_name": "A-064",
+      "custom_name": "A-064",
+      "chip_channel": 0,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 65,
+      "custom_order": 65,
+      "native_name": "A-065",
+      "custom_name": "A-065",
+      "chip_channel": 1,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 66,
+      "custom_order": 66,
+      "native_name": "A-066",
+      "custom_name": "A-066",
+      "chip_channel": 2,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 67,
+      "custom_order": 67,
+      "native_name": "A-067",
+      "custom_name": "A-067",
+      "chip_channel": 3,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 68,
+      "custom_order": 68,
+      "native_name": "A-068",
+      "custom_name": "A-068",
+      "chip_channel": 4,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 69,
+      "custom_order": 69,
+      "native_name": "A-069",
+      "custom_name": "A-069",
+      "chip_channel": 5,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 70,
+      "custom_order": 70,
+      "native_name": "A-070",
+      "custom_name": "A-070",
+      "chip_channel": 6,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 71,
+      "custom_order": 71,
+      "native_name": "A-071",
+      "custom_name": "A-071",
+      "chip_channel": 7,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 72,
+      "custom_order": 72,
+      "native_name": "A-072",
+      "custom_name": "A-072",
+      "chip_channel": 8,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 73,
+      "custom_order": 73,
+      "native_name": "A-073",
+      "custom_name": "A-073",
+      "chip_channel": 9,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 74,
+      "custom_order": 74,
+      "native_name": "A-074",
+      "custom_name": "A-074",
+      "chip_channel": 10,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 75,
+      "custom_order": 75,
+      "native_name": "A-075",
+      "custom_name": "A-075",
+      "chip_channel": 11,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 76,
+      "custom_order": 76,
+      "native_name": "A-076",
+      "custom_name": "A-076",
+      "chip_channel": 12,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 77,
+      "custom_order": 77,
+      "native_name": "A-077",
+      "custom_name": "A-077",
+      "chip_channel": 13,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 78,
+      "custom_order": 78,
+      "native_name": "A-078",
+      "custom_name": "A-078",
+      "chip_channel": 14,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 79,
+      "custom_order": 79,
+      "native_name": "A-079",
+      "custom_name": "A-079",
+      "chip_channel": 15,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 80,
+      "custom_order": 80,
+      "native_name": "A-080",
+      "custom_name": "A-080",
+      "chip_channel": 16,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 81,
+      "custom_order": 81,
+      "native_name": "A-081",
+      "custom_name": "A-081",
+      "chip_channel": 17,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 82,
+      "custom_order": 82,
+      "native_name": "A-082",
+      "custom_name": "A-082",
+      "chip_channel": 18,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 83,
+      "custom_order": 83,
+      "native_name": "A-083",
+      "custom_name": "A-083",
+      "chip_channel": 19,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 84,
+      "custom_order": 84,
+      "native_name": "A-084",
+      "custom_name": "A-084",
+      "chip_channel": 20,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 85,
+      "custom_order": 85,
+      "native_name": "A-085",
+      "custom_name": "A-085",
+      "chip_channel": 21,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 86,
+      "custom_order": 86,
+      "native_name": "A-086",
+      "custom_name": "A-086",
+      "chip_channel": 22,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 87,
+      "custom_order": 87,
+      "native_name": "A-087",
+      "custom_name": "A-087",
+      "chip_channel": 23,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 88,
+      "custom_order": 88,
+      "native_name": "A-088",
+      "custom_name": "A-088",
+      "chip_channel": 24,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 89,
+      "custom_order": 89,
+      "native_name": "A-089",
+      "custom_name": "A-089",
+      "chip_channel": 25,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 90,
+      "custom_order": 90,
+      "native_name": "A-090",
+      "custom_name": "A-090",
+      "chip_channel": 26,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 91,
+      "custom_order": 91,
+      "native_name": "A-091",
+      "custom_name": "A-091",
+      "chip_channel": 27,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 92,
+      "custom_order": 92,
+      "native_name": "A-092",
+      "custom_name": "A-092",
+      "chip_channel": 28,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 93,
+      "custom_order": 93,
+      "native_name": "A-093",
+      "custom_name": "A-093",
+      "chip_channel": 29,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 94,
+      "custom_order": 94,
+      "native_name": "A-094",
+      "custom_name": "A-094",
+      "chip_channel": 30,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 95,
+      "custom_order": 95,
+      "native_name": "A-095",
+      "custom_name": "A-095",
+      "chip_channel": 31,
+      "board_stream": 2,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 96,
+      "custom_order": 96,
+      "native_name": "A-096",
+      "custom_name": "A-096",
+      "chip_channel": 0,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 97,
+      "custom_order": 97,
+      "native_name": "A-097",
+      "custom_name": "A-097",
+      "chip_channel": 1,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 98,
+      "custom_order": 98,
+      "native_name": "A-098",
+      "custom_name": "A-098",
+      "chip_channel": 2,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 99,
+      "custom_order": 99,
+      "native_name": "A-099",
+      "custom_name": "A-099",
+      "chip_channel": 3,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 100,
+      "custom_order": 100,
+      "native_name": "A-100",
+      "custom_name": "A-100",
+      "chip_channel": 4,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 101,
+      "custom_order": 101,
+      "native_name": "A-101",
+      "custom_name": "A-101",
+      "chip_channel": 5,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 102,
+      "custom_order": 102,
+      "native_name": "A-102",
+      "custom_name": "A-102",
+      "chip_channel": 6,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 103,
+      "custom_order": 103,
+      "native_name": "A-103",
+      "custom_name": "A-103",
+      "chip_channel": 7,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 104,
+      "custom_order": 104,
+      "native_name": "A-104",
+      "custom_name": "A-104",
+      "chip_channel": 8,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 105,
+      "custom_order": 105,
+      "native_name": "A-105",
+      "custom_name": "A-105",
+      "chip_channel": 9,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 106,
+      "custom_order": 106,
+      "native_name": "A-106",
+      "custom_name": "A-106",
+      "chip_channel": 10,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 107,
+      "custom_order": 107,
+      "native_name": "A-107",
+      "custom_name": "A-107",
+      "chip_channel": 11,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 108,
+      "custom_order": 108,
+      "native_name": "A-108",
+      "custom_name": "A-108",
+      "chip_channel": 12,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 109,
+      "custom_order": 109,
+      "native_name": "A-109",
+      "custom_name": "A-109",
+      "chip_channel": 13,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 110,
+      "custom_order": 110,
+      "native_name": "A-110",
+      "custom_name": "A-110",
+      "chip_channel": 14,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 111,
+      "custom_order": 111,
+      "native_name": "A-111",
+      "custom_name": "A-111",
+      "chip_channel": 15,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 112,
+      "custom_order": 112,
+      "native_name": "A-112",
+      "custom_name": "A-112",
+      "chip_channel": 16,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 113,
+      "custom_order": 113,
+      "native_name": "A-113",
+      "custom_name": "A-113",
+      "chip_channel": 17,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 114,
+      "custom_order": 114,
+      "native_name": "A-114",
+      "custom_name": "A-114",
+      "chip_channel": 18,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 115,
+      "custom_order": 115,
+      "native_name": "A-115",
+      "custom_name": "A-115",
+      "chip_channel": 19,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 116,
+      "custom_order": 116,
+      "native_name": "A-116",
+      "custom_name": "A-116",
+      "chip_channel": 20,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 117,
+      "custom_order": 117,
+      "native_name": "A-117",
+      "custom_name": "A-117",
+      "chip_channel": 21,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 118,
+      "custom_order": 118,
+      "native_name": "A-118",
+      "custom_name": "A-118",
+      "chip_channel": 22,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 119,
+      "custom_order": 119,
+      "native_name": "A-119",
+      "custom_name": "A-119",
+      "chip_channel": 23,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 120,
+      "custom_order": 120,
+      "native_name": "A-120",
+      "custom_name": "A-120",
+      "chip_channel": 24,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 121,
+      "custom_order": 121,
+      "native_name": "A-121",
+      "custom_name": "A-121",
+      "chip_channel": 25,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 122,
+      "custom_order": 122,
+      "native_name": "A-122",
+      "custom_name": "A-122",
+      "chip_channel": 26,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 123,
+      "custom_order": 123,
+      "native_name": "A-123",
+      "custom_name": "A-123",
+      "chip_channel": 27,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 124,
+      "custom_order": 124,
+      "native_name": "A-124",
+      "custom_name": "A-124",
+      "chip_channel": 28,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 125,
+      "custom_order": 125,
+      "native_name": "A-125",
+      "custom_name": "A-125",
+      "chip_channel": 29,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 126,
+      "custom_order": 126,
+      "native_name": "A-126",
+      "custom_name": "A-126",
+      "chip_channel": 30,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    },
+    {
+      "native_order": 127,
+      "custom_order": 127,
+      "native_name": "A-127",
+      "custom_name": "A-127",
+      "chip_channel": 31,
+      "board_stream": 3,
+      "impedance_magnitude_ohms": 0.0,
+      "impedance_phase": 0.0
+    }
+  ],
+  "bytes_parsed": 11586,
+  "file_size_bytes": 11586
+}

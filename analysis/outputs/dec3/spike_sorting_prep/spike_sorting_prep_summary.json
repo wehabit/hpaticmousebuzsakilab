@@ -1,0 +1,20 @@
+{
+  "output_dir": "analysis/outputs/dec3/spike_sorting_prep",
+  "raw_dat": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat",
+  "n_channels": 128,
+  "sample_rate_hz": 20000.0,
+  "bad_channels": [
+    5,
+    6,
+    7,
+    32,
+    33,
+    34,
+    43,
+    66,
+    67
+  ],
+  "good_channel_count": 119,
+  "channel_map": "analysis/outputs/dec3/spike_sorting_prep/kilosort_channel_map.mat",
+  "geometry_status": "provisional_placeholder_until_exact_H12_2_map_is_confirmed"
+}

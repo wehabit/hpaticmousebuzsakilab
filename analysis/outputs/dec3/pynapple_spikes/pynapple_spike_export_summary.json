@@ -1,0 +1,17 @@
+{
+  "kilosort_dir": "analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results",
+  "trial_windows": "analysis/outputs/dec3/spike_sorting_prep/trial_windows.csv",
+  "output_dir": "analysis/outputs/dec3/pynapple_spikes",
+  "fs_hz": 20000.0,
+  "recording_end_s": 10644.433,
+  "n_spikes": 7311421,
+  "n_clusters": 194,
+  "n_ks_good_clusters": 28,
+  "pynapple_version": "0.11.3",
+  "outputs": {
+    "all_units": "kilosort_all_units_tsgroup.npz",
+    "ks_good_units": "kilosort_ks_good_units_tsgroup.npz",
+    "metadata": "cluster_metadata.csv"
+  },
+  "caveat": "Uncurated Kilosort4 output with provisional geometry."
+}

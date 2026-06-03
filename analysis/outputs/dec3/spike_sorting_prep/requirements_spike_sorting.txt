@@ -1,0 +1,9 @@
+# Optional Python helpers for spike sorting workflows.
+# Kilosort itself should be installed separately according to the version/GPU setup used.
+spikeinterface
+probeinterface
+phylib
+numpy
+scipy
+matplotlib
+pandas

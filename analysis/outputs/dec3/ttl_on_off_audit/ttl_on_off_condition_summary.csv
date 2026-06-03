@@ -1,0 +1,7 @@
+condition,amplitude,frequency,n_trials,mean_on_rising_edges,mean_off_rising_edges,median_on_rising_edges,median_off_rising_edges,trials_with_on_edges,trials_with_off_edges
+amp100_freq26,100,26,200,4.345,1.215,4.0,1.0,199,129
+amp100_freq5,100,5,200,2.98,0.89,2.0,1.0,186,129
+amp180_freq26,180,26,200,9.16,1.165,9.0,1.0,200,142
+amp180_freq5,180,5,200,3.6,0.975,3.0,1.0,200,128
+amp250_freq26,250,26,200,16.345,1.03,15.5,1.0,200,132
+amp250_freq5,250,5,200,2.96,1.025,3.0,1.0,188,131

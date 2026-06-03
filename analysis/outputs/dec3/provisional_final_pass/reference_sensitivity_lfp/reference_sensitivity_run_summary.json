@@ -1,0 +1,23 @@
+{
+  "output_dir": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/provisional_final_pass/reference_sensitivity_lfp",
+  "bad_channels_json": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/bad_channels_dec3.json",
+  "bad_channel_field": "candidate_bad_channels",
+  "excluded_channels": [
+    5,
+    6,
+    7,
+    32,
+    33,
+    34,
+    43,
+    66,
+    67
+  ],
+  "reference_modes": [
+    "raw",
+    "physical_shank_median",
+    "analysis_group_median"
+  ],
+  "condition_summary_csv": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/provisional_final_pass/reference_sensitivity_lfp/reference_sensitivity_condition_summary.csv",
+  "group_summary_csv": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/provisional_final_pass/reference_sensitivity_lfp/reference_sensitivity_group_summary.csv"
+}

@@ -1,0 +1,6 @@
+{
+  "output_dir": "analysis/outputs/dec3/adaptation_analysis",
+  "trial_metrics": "analysis/outputs/dec3/off_control_broadband/off_control_trial_metrics.csv",
+  "rolling_window": 15,
+  "n_bootstrap": 2000
+}

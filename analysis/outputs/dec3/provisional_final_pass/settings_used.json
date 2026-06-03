@@ -1,0 +1,67 @@
+{
+  "session": "Haptic_Stim_session1_251203_143031",
+  "status": "provisional_final_pass_settings",
+  "date_created": "2026-06-02",
+  "purpose": "Single explicit preprocessing config for rerunning Dec 3 LFP results with stable settings.",
+  "important_caveat": "Bad channels are still candidate exclusions from automated QC, not a finalized visual Neuroscope list.",
+  "source_files": {
+    "lfp": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.lfp",
+    "sequence": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/dec3_condition_sequence.csv",
+    "bad_channel_candidates": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/bad_channels_dec3.json"
+  },
+  "channels": {
+    "n_channels": 128,
+    "sample_rate_hz": 1250,
+    "candidate_bad_channels_to_exclude": [
+      5,
+      6,
+      7,
+      32,
+      33,
+      34,
+      43,
+      66,
+      67
+    ],
+    "definite_bad_channels": [],
+    "phantom_channels_removed_by_xml_correction": "128-255"
+  },
+  "reference": {
+    "chosen_for_provisional_final_pass": "analysis_group_median",
+    "reason": "Reference-sensitivity analysis showed the main driven-frequency conclusion was stable, and analysis-group median is a local reference matching the 32-channel analysis groups.",
+    "other_reference_modes_tested": [
+      "raw",
+      "physical_shank_median",
+      "analysis_group_median"
+    ]
+  },
+  "analysis_groups": {
+    "Group 0-31": [
+      0,
+      31
+    ],
+    "Group 32-63": [
+      32,
+      63
+    ],
+    "Group 64-95": [
+      64,
+      95
+    ],
+    "Group 96-127": [
+      96,
+      127
+    ]
+  },
+  "physical_shanks": {
+    "Physical Shank A": [
+      0,
+      63
+    ],
+    "Physical Shank B": [
+      64,
+      127
+    ]
+  },
+  "anatomy_caveat": "Do not label medial/lateral, CA1/DG, or anterior/posterior until probe orientation is confirmed."
+}

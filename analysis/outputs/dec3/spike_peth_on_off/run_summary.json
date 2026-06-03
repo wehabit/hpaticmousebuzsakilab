@@ -1,0 +1,20 @@
+{
+  "kilosort_dir": "analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results",
+  "trial_windows": "analysis/outputs/dec3/spike_sorting_prep/trial_windows.csv",
+  "output_dir": "analysis/outputs/dec3/spike_peth_on_off",
+  "fs_hz": 20000.0,
+  "n_spikes": 7311421,
+  "n_clusters": 194,
+  "n_ks_good_clusters": 28,
+  "n_trials": 1200,
+  "conditions": [
+    "amp100_freq26",
+    "amp100_freq5",
+    "amp180_freq26",
+    "amp180_freq5",
+    "amp250_freq26",
+    "amp250_freq5"
+  ],
+  "control_definition": "Each trial's 3 s OFF interval immediately after stimulation.",
+  "caveat": "Uncurated Kilosort4 output with provisional geometry; exploratory only."
+}

@@ -1,0 +1,16 @@
+{
+  "dat_path": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat",
+  "output_path": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.lfp",
+  "n_channels": 128,
+  "sample_rate_hz": 20000.0,
+  "lfp_rate_hz": 1250.0,
+  "downsample_factor": 16,
+  "raw_samples": 212888704,
+  "raw_duration_s": 10644.4352,
+  "expected_lfp_samples": 13305544,
+  "lfp_samples_written": 13305544,
+  "lfp_duration_s": 10644.4352,
+  "chunks_written": 134,
+  "output_bytes": 3406219264,
+  "note": "Raw amplifier.dat is unchanged. Chunked polyphase resampling was used; for most LFP analyses boundary effects are negligible, but avoid using samples exactly at chunk boundaries for precision artifact measurements."
+}

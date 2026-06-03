@@ -1,0 +1,26 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Large local electrophysiology data/intermediates. Keep these local or in a
+# data store; GitHub should contain code, reports, tables, and normal figures.
+*.dat
+*.rhd
+*.npy
+*.npz
+*.mat
+*.pkl
+*.pickle
+*.bin
+*.zarr/
+
+# Large/ephemeral sorter and GUI state.
+analysis/outputs/**/.phy/
+analysis/outputs/dec3/modal_kilosort4_results/**/pc_features.npy
+analysis/outputs/dec3/modal_kilosort4_results/**/spike_times.npy
+analysis/outputs/dec3/modal_kilosort4_results/**/spike_positions.npy
+analysis/outputs/dec3/modal_kilosort4_results/**/spike_clusters.npy
+analysis/outputs/dec3/modal_kilosort4_results/**/amplitudes.npy
+analysis/outputs/dec3/spike_positions_modal_kilosort4.png
+analysis/outputs/dec3/pynapple_spikes/*.npz
+analysis/outputs/dec3/spikeinterface_test_sort/**/sorter_output/

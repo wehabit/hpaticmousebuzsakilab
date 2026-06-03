@@ -1,0 +1,1526 @@
+[90m13:54:31.218 [D] context:80           Create cache directory `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:54:31.218 [D] context:80           Create cache directory `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:54:31.840 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:54:31.840 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:54:31.841 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m13:54:31.841 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m13:54:31.842 [D] base:102             Add filter `high_pass`.[0m
+[90m13:54:31.842 [D] base:102             Add filter `high_pass`.[0m
+[90m13:54:31.842 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m13:54:31.842 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m13:54:31.843 [D] plugin:146           Loading 0 plugins.[0m
+[90m13:54:31.843 [D] plugin:146           Loading 0 plugins.[0m
+[90m13:54:31.847 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m13:54:31.847 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m13:54:31.847 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl` doesn't exist.[0m
+[90m13:54:31.847 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl` doesn't exist.[0m
+[90m13:54:32.072 [D] clustering:237       Recompute spikes_per_cluster manually: this might take a while.[0m
+[90m13:54:32.072 [D] clustering:237       Recompute spikes_per_cluster manually: this might take a while.[0m
+[90m13:54:34.292 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m13:54:34.292 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m13:54:34.402 [D] gui:463              Creating GUI.[0m
+[90m13:54:34.402 [D] gui:463              Creating GUI.[0m
+[33m13:55:54.409 [W] base:941             Deleting the cache directory /Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy.[0m
+[33m13:55:54.409 [W] base:941             Deleting the cache directory /Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy.[0m
+[90m13:55:54.414 [D] context:80           Create cache directory `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:55:54.414 [D] context:80           Create cache directory `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:55:54.479 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:55:54.479 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:55:54.479 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m13:55:54.479 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m13:55:54.480 [D] base:102             Add filter `high_pass`.[0m
+[90m13:55:54.480 [D] base:102             Add filter `high_pass`.[0m
+[90m13:55:54.480 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m13:55:54.480 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m13:55:54.481 [D] plugin:146           Loading 0 plugins.[0m
+[90m13:55:54.481 [D] plugin:146           Loading 0 plugins.[0m
+[90m13:55:54.485 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m13:55:54.485 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m13:55:54.485 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl` doesn't exist.[0m
+[90m13:55:54.485 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl` doesn't exist.[0m
+[90m13:55:54.619 [D] clustering:237       Recompute spikes_per_cluster manually: this might take a while.[0m
+[90m13:55:54.619 [D] clustering:237       Recompute spikes_per_cluster manually: this might take a while.[0m
+[90m13:55:56.369 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m13:55:56.369 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m13:55:56.502 [D] gui:463              Creating GUI.[0m
+[90m13:55:56.502 [D] gui:463              Creating GUI.[0m
+[90m13:55:59.632 [D] state:177            The GUI state file `/Users/paris/.phy/TemplateGUI/state.json` doesn't exist, creating a default one...[0m
+[90m13:55:59.632 [D] state:177            The GUI state file `/Users/paris/.phy/TemplateGUI/state.json` doesn't exist, creating a default one...[0m
+[0m13:55:59.633 [I] state:180            Copied /opt/anaconda3/envs/phy-dec3/lib/python3.11/site-packages/phy/apps/template/static/state.json to /Users/paris/.phy/TemplateGUI/state.json.[0m
+[0m13:55:59.633 [I] state:180            Copied /opt/anaconda3/envs/phy-dec3/lib/python3.11/site-packages/phy/apps/template/static/state.json to /Users/paris/.phy/TemplateGUI/state.json.[0m
+[90m13:55:59.633 [D] state:46             Load /Users/paris/.phy/TemplateGUI/state.json for GUIState.[0m
+[90m13:55:59.633 [D] state:46             Load /Users/paris/.phy/TemplateGUI/state.json for GUIState.[0m
+[90m13:56:00.232 [D] gui:718              Add view ClusterView to GUI.[0m
+[90m13:56:00.232 [D] gui:718              Add view ClusterView to GUI.[0m
+[90m13:56:00.245 [D] gui:718              Add view SimilarityView to GUI.[0m
+[90m13:56:00.245 [D] gui:718              Add view SimilarityView to GUI.[0m
+[90m13:56:00.290 [D] gui:718              Add view WaveformView to GUI.[0m
+[90m13:56:00.290 [D] gui:718              Add view WaveformView to GUI.[0m
+[90m13:56:00.474 [D] base:337             Set state for WaveformView.[0m
+[90m13:56:00.474 [D] base:337             Set state for WaveformView.[0m
+[90m13:56:00.486 [D] gui:718              Add view CorrelogramView to GUI.[0m
+[90m13:56:00.486 [D] gui:718              Add view CorrelogramView to GUI.[0m
+[90m13:56:00.489 [D] base:337             Set state for CorrelogramView.[0m
+[90m13:56:00.489 [D] base:337             Set state for CorrelogramView.[0m
+[90m13:56:00.510 [D] gui:718              Add view ISIView to GUI.[0m
+[90m13:56:00.510 [D] gui:718              Add view ISIView to GUI.[0m
+[90m13:56:00.513 [D] base:337             Set state for ISIView.[0m
+[90m13:56:00.513 [D] base:337             Set state for ISIView.[0m
+[90m13:56:00.526 [D] gui:718              Add view FeatureView to GUI.[0m
+[90m13:56:00.526 [D] gui:718              Add view FeatureView to GUI.[0m
+[90m13:56:00.529 [D] base:337             Set state for FeatureView.[0m
+[90m13:56:00.529 [D] base:337             Set state for FeatureView.[0m
+[90m13:56:00.547 [D] gui:718              Add view AmplitudeView to GUI.[0m
+[90m13:56:00.547 [D] gui:718              Add view AmplitudeView to GUI.[0m
+[90m13:56:00.550 [D] base:337             Set state for AmplitudeView.[0m
+[90m13:56:00.550 [D] base:337             Set state for AmplitudeView.[0m
+[90m13:56:00.569 [D] gui:718              Add view FiringRateView to GUI.[0m
+[90m13:56:00.569 [D] gui:718              Add view FiringRateView to GUI.[0m
+[90m13:56:00.571 [D] base:337             Set state for FiringRateView.[0m
+[90m13:56:00.571 [D] base:337             Set state for FiringRateView.[0m
+[90m13:56:00.755 [D] gui:718              Add view TraceView to GUI.[0m
+[90m13:56:00.755 [D] gui:718              Add view TraceView to GUI.[0m
+[90m13:56:00.758 [D] base:337             Set state for TraceView.[0m
+[90m13:56:00.758 [D] base:337             Set state for TraceView.[0m
+[90m13:56:00.758 [D] base:494             Set color scheme to depth.[0m
+[90m13:56:00.758 [D] base:494             Set color scheme to depth.[0m
+[90m13:56:00.783 [D] base:1626            Adding default color schemes to TraceView.[0m
+[90m13:56:00.783 [D] base:1626            Adding default color schemes to TraceView.[0m
+[90m13:56:00.870 [D] gui:718              Add view ProbeView to GUI.[0m
+[90m13:56:00.870 [D] gui:718              Add view ProbeView to GUI.[0m
+[90m13:56:00.873 [D] base:337             Set state for ProbeView.[0m
+[90m13:56:00.873 [D] base:337             Set state for ProbeView.[0m
+[33m13:56:00.874 [W] gui:671              Could not create view TemplateFeatureView.[0m
+[33m13:56:00.874 [W] gui:671              Could not create view TemplateFeatureView.[0m
+[90m13:56:00.893 [D] gui:718              Add view ClusterScatterView to GUI.[0m
+[90m13:56:00.893 [D] gui:718              Add view ClusterScatterView to GUI.[0m
+[90m13:56:00.896 [D] base:337             Set state for ClusterScatterView.[0m
+[90m13:56:00.896 [D] base:337             Set state for ClusterScatterView.[0m
+[90m13:56:00.896 [D] base:494             Set color scheme to firing_rate.[0m
+[90m13:56:00.896 [D] base:494             Set color scheme to firing_rate.[0m
+[90m13:56:00.897 [D] base:1626            Adding default color schemes to ClusterScatterView.[0m
+[90m13:56:00.897 [D] base:1626            Adding default color schemes to ClusterScatterView.[0m
+[90m13:56:01.132 [D] gui:519              Load the geometry state.[0m
+[90m13:56:01.132 [D] gui:519              Load the geometry state.[0m
+[90m13:56:01.517 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.517 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.523 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.523 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.528 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.528 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.529 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.529 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.534 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.534 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.535 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.535 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.540 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.540 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.541 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.541 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.546 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.546 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.547 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.547 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.551 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.551 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.552 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.552 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.557 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.557 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.558 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.558 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.563 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.563 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.567 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.567 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:56:01.571 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.571 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.573 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.573 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.574 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.574 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.575 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.575 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.576 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.576 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.577 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.577 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.579 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.579 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.861 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.861 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.862 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.862 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.863 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.863 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.864 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.864 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.866 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.866 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.867 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.867 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.868 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.868 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.969 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.969 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.970 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.970 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.971 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.971 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.973 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.973 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.974 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.974 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.975 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.975 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.976 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:01.976 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:02.239 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:02.239 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.518 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.518 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.520 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.520 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.521 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.521 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.523 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.523 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.524 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.524 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.526 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.526 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.527 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.527 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.612 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.612 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.613 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.613 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.616 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.616 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.617 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.617 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.619 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.619 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.621 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.621 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.622 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.622 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.692 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.692 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.693 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.693 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.695 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.695 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.696 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.696 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.699 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.699 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.700 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.700 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.702 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.702 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.777 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.777 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.779 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.779 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.780 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.780 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.782 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.782 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.784 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.784 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.785 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.785 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.787 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.787 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.848 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.848 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.850 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.850 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.851 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.851 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.853 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.853 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.855 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.855 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.856 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.856 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.857 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.857 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.933 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.933 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.935 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.935 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.936 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.936 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.938 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.938 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.939 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.939 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.941 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.941 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.942 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:27.942 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.012 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.012 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.015 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.015 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.017 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.017 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.019 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.019 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.020 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.020 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.022 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.022 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.023 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.023 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.083 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.083 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.085 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.085 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.087 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.087 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.088 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.088 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.090 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.090 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.091 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.091 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.093 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.093 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.161 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.161 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.162 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.162 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.164 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.164 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.166 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.166 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.167 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.167 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.169 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.169 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.171 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.171 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.226 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.226 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.228 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.228 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.230 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.230 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.233 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.233 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.234 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.234 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.236 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.236 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.237 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.237 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.308 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.308 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.310 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.310 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.311 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.311 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.313 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.313 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.315 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.315 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.317 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.317 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.319 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.319 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.376 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.376 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.378 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.378 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.380 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.380 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.382 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.382 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.384 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.384 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.386 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.386 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.387 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.387 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.438 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.438 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.440 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.440 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.442 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.442 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.444 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.444 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.446 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.446 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.449 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.449 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.451 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.451 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.523 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.523 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.525 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.525 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.527 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.527 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.530 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.530 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.534 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.534 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.537 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.537 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.539 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.539 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.603 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.603 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.605 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.605 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.607 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.607 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.609 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.609 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.611 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.611 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.613 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.613 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.617 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.617 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.649 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.649 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.651 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.651 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.652 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.652 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.653 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.653 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.654 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.654 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.656 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.656 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.656 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.656 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.832 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.832 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.833 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.833 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.836 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.836 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.837 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.837 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.839 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.839 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.840 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.840 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.842 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.842 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.906 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.906 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.907 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.907 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.909 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.909 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.910 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.910 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.912 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.912 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.913 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.913 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.915 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.915 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.934 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.934 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.936 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.936 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.938 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.938 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.939 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.939 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.941 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.941 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.942 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.942 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.943 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.943 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.994 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.994 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.995 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.995 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.997 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.997 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.999 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:28.999 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.001 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.001 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.002 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.002 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.004 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.004 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.059 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.059 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.061 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.061 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.062 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.062 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.063 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.063 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.065 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.065 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.067 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.067 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.068 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.068 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.085 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.085 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.087 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.087 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.088 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.088 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.090 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.090 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.091 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.091 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.092 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.092 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.093 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.093 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.120 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.120 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.121 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.121 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.123 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.123 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.124 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.124 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.124 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.124 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.125 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.125 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.126 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:29.126 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.413 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.413 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.420 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.420 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.421 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.421 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.422 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.422 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.423 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.423 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.424 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.424 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.425 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:33.425 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.531 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.531 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.533 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.533 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.534 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.534 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.536 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.536 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.538 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.538 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.539 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.539 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.541 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.541 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.612 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.612 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.613 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.613 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.617 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.617 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.618 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.618 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.620 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.620 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.621 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.621 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.623 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.623 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.681 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.681 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.682 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.682 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.684 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.684 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.686 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.686 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.688 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.688 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.689 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.689 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.691 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.691 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.771 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.771 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.772 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.772 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.774 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.774 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.775 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.775 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.777 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.777 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.778 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.778 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.780 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.780 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.856 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.856 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.858 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.858 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.859 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.859 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.861 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.861 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.863 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.863 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.865 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.865 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.867 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.867 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.938 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.938 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.940 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.940 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.941 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.941 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.943 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.943 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.944 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.944 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.946 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.946 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.949 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:35.949 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.020 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.020 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.021 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.021 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.023 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.023 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.024 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.024 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.026 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.026 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.027 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.027 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.029 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.029 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.121 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.121 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.123 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.123 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.125 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.125 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.126 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.126 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.128 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.128 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.130 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.130 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.132 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.132 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.208 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.208 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.209 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.209 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.211 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.211 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.212 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.212 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.214 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.214 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.216 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.216 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.217 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.217 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.235 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.235 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.237 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.237 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.239 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.239 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.241 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.241 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.242 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.242 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.244 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.244 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.245 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.245 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.522 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.522 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.524 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.524 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.525 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.525 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.527 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.527 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.528 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.528 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.529 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.529 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.530 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.530 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.595 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.595 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.597 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.597 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.599 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.599 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.601 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.601 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.602 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.602 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.603 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.603 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.605 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.605 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.643 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.643 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.645 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.645 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.646 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.646 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.647 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.647 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.651 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.651 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.652 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:56:36.652 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:20.809 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:57:20.809 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m13:57:20.809 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m13:57:20.809 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m13:57:20.811 [D] base:102             Add filter `high_pass`.[0m
+[90m13:57:20.811 [D] base:102             Add filter `high_pass`.[0m
+[33m13:57:20.812 [W] base:948             Deleting /Users/paris/.phy/TemplateGUI/state.json.[0m
+[33m13:57:20.812 [W] base:948             Deleting /Users/paris/.phy/TemplateGUI/state.json.[0m
+[90m13:57:20.812 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m13:57:20.812 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m13:57:20.813 [D] plugin:146           Loading 0 plugins.[0m
+[90m13:57:20.813 [D] plugin:146           Loading 0 plugins.[0m
+[90m13:57:20.814 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m13:57:20.814 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m13:57:21.053 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m13:57:21.053 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m13:57:21.134 [D] gui:463              Creating GUI.[0m
+[90m13:57:21.134 [D] gui:463              Creating GUI.[0m
+[90m13:57:21.284 [D] state:177            The GUI state file `/Users/paris/.phy/TemplateGUI/state.json` doesn't exist, creating a default one...[0m
+[90m13:57:21.284 [D] state:177            The GUI state file `/Users/paris/.phy/TemplateGUI/state.json` doesn't exist, creating a default one...[0m
+[0m13:57:21.285 [I] state:180            Copied /opt/anaconda3/envs/phy-dec3/lib/python3.11/site-packages/phy/apps/template/static/state.json to /Users/paris/.phy/TemplateGUI/state.json.[0m
+[0m13:57:21.285 [I] state:180            Copied /opt/anaconda3/envs/phy-dec3/lib/python3.11/site-packages/phy/apps/template/static/state.json to /Users/paris/.phy/TemplateGUI/state.json.[0m
+[90m13:57:21.286 [D] state:46             Load /Users/paris/.phy/TemplateGUI/state.json for GUIState.[0m
+[90m13:57:21.286 [D] state:46             Load /Users/paris/.phy/TemplateGUI/state.json for GUIState.[0m
+[90m13:57:21.698 [D] gui:718              Add view ClusterView to GUI.[0m
+[90m13:57:21.698 [D] gui:718              Add view ClusterView to GUI.[0m
+[90m13:57:21.707 [D] gui:718              Add view SimilarityView to GUI.[0m
+[90m13:57:21.707 [D] gui:718              Add view SimilarityView to GUI.[0m
+[90m13:57:21.753 [D] gui:718              Add view WaveformView to GUI.[0m
+[90m13:57:21.753 [D] gui:718              Add view WaveformView to GUI.[0m
+[90m13:57:21.831 [D] base:337             Set state for WaveformView.[0m
+[90m13:57:21.831 [D] base:337             Set state for WaveformView.[0m
+[90m13:57:21.846 [D] gui:718              Add view CorrelogramView to GUI.[0m
+[90m13:57:21.846 [D] gui:718              Add view CorrelogramView to GUI.[0m
+[90m13:57:21.850 [D] base:337             Set state for CorrelogramView.[0m
+[90m13:57:21.850 [D] base:337             Set state for CorrelogramView.[0m
+[90m13:57:21.877 [D] gui:718              Add view ISIView to GUI.[0m
+[90m13:57:21.877 [D] gui:718              Add view ISIView to GUI.[0m
+[90m13:57:21.882 [D] base:337             Set state for ISIView.[0m
+[90m13:57:21.882 [D] base:337             Set state for ISIView.[0m
+[90m13:57:21.901 [D] gui:718              Add view FeatureView to GUI.[0m
+[90m13:57:21.901 [D] gui:718              Add view FeatureView to GUI.[0m
+[90m13:57:21.906 [D] base:337             Set state for FeatureView.[0m
+[90m13:57:21.906 [D] base:337             Set state for FeatureView.[0m
+[90m13:57:21.934 [D] gui:718              Add view AmplitudeView to GUI.[0m
+[90m13:57:21.934 [D] gui:718              Add view AmplitudeView to GUI.[0m
+[90m13:57:21.939 [D] base:337             Set state for AmplitudeView.[0m
+[90m13:57:21.939 [D] base:337             Set state for AmplitudeView.[0m
+[90m13:57:21.970 [D] gui:718              Add view FiringRateView to GUI.[0m
+[90m13:57:21.970 [D] gui:718              Add view FiringRateView to GUI.[0m
+[90m13:57:21.974 [D] base:337             Set state for FiringRateView.[0m
+[90m13:57:21.974 [D] base:337             Set state for FiringRateView.[0m
+[90m13:57:22.187 [D] gui:718              Add view TraceView to GUI.[0m
+[90m13:57:22.187 [D] gui:718              Add view TraceView to GUI.[0m
+[90m13:57:22.190 [D] base:337             Set state for TraceView.[0m
+[90m13:57:22.190 [D] base:337             Set state for TraceView.[0m
+[90m13:57:22.190 [D] base:494             Set color scheme to depth.[0m
+[90m13:57:22.190 [D] base:494             Set color scheme to depth.[0m
+[90m13:57:22.223 [D] base:1626            Adding default color schemes to TraceView.[0m
+[90m13:57:22.223 [D] base:1626            Adding default color schemes to TraceView.[0m
+[90m13:57:22.312 [D] gui:718              Add view ProbeView to GUI.[0m
+[90m13:57:22.312 [D] gui:718              Add view ProbeView to GUI.[0m
+[90m13:57:22.315 [D] base:337             Set state for ProbeView.[0m
+[90m13:57:22.315 [D] base:337             Set state for ProbeView.[0m
+[33m13:57:22.316 [W] gui:671              Could not create view TemplateFeatureView.[0m
+[33m13:57:22.316 [W] gui:671              Could not create view TemplateFeatureView.[0m
+[90m13:57:22.334 [D] gui:718              Add view ClusterScatterView to GUI.[0m
+[90m13:57:22.334 [D] gui:718              Add view ClusterScatterView to GUI.[0m
+[90m13:57:22.337 [D] base:337             Set state for ClusterScatterView.[0m
+[90m13:57:22.337 [D] base:337             Set state for ClusterScatterView.[0m
+[90m13:57:22.337 [D] base:494             Set color scheme to firing_rate.[0m
+[90m13:57:22.337 [D] base:494             Set color scheme to firing_rate.[0m
+[90m13:57:22.338 [D] base:1626            Adding default color schemes to ClusterScatterView.[0m
+[90m13:57:22.338 [D] base:1626            Adding default color schemes to ClusterScatterView.[0m
+[90m13:57:22.572 [D] gui:519              Load the geometry state.[0m
+[90m13:57:22.572 [D] gui:519              Load the geometry state.[0m
+[90m13:57:22.846 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.846 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.850 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.850 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.855 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.855 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.856 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.856 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.860 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.860 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.861 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.861 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.867 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.867 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.867 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.867 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.872 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.872 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.873 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.873 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.878 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.878 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.879 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.879 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.883 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.883 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.884 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.884 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.888 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.888 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.893 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.893 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m13:57:22.897 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.897 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.898 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.898 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.899 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.899 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.900 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.900 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.901 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.901 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.902 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.902 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.903 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:22.903 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.021 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.021 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.022 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.022 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.023 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.023 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.024 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.024 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.025 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.025 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.025 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.025 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.026 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.026 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.093 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.093 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.094 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.094 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.095 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.095 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.100 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.100 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.101 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.101 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.102 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.102 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.103 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.103 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.321 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m13:57:23.321 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:18.334 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m14:09:18.334 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m14:09:18.334 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m14:09:18.334 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m14:09:18.337 [D] base:102             Add filter `high_pass`.[0m
+[90m14:09:18.337 [D] base:102             Add filter `high_pass`.[0m
+[33m14:09:18.338 [W] base:948             Deleting /Users/paris/.phy/TemplateGUI/state.json.[0m
+[33m14:09:18.338 [W] base:948             Deleting /Users/paris/.phy/TemplateGUI/state.json.[0m
+[90m14:09:18.339 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m14:09:18.339 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m14:09:18.340 [D] plugin:146           Loading 0 plugins.[0m
+[90m14:09:18.340 [D] plugin:146           Loading 0 plugins.[0m
+[90m14:09:18.341 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m14:09:18.341 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m14:09:18.599 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m14:09:18.599 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m14:09:18.721 [D] gui:463              Creating GUI.[0m
+[90m14:09:18.721 [D] gui:463              Creating GUI.[0m
+[90m14:09:23.828 [D] state:177            The GUI state file `/Users/paris/.phy/TemplateGUI/state.json` doesn't exist, creating a default one...[0m
+[90m14:09:23.828 [D] state:177            The GUI state file `/Users/paris/.phy/TemplateGUI/state.json` doesn't exist, creating a default one...[0m
+[0m14:09:23.830 [I] state:180            Copied /opt/anaconda3/envs/phy-dec3-legacy/lib/python3.10/site-packages/phy/apps/template/static/state.json to /Users/paris/.phy/TemplateGUI/state.json.[0m
+[0m14:09:23.830 [I] state:180            Copied /opt/anaconda3/envs/phy-dec3-legacy/lib/python3.10/site-packages/phy/apps/template/static/state.json to /Users/paris/.phy/TemplateGUI/state.json.[0m
+[90m14:09:23.830 [D] state:46             Load /Users/paris/.phy/TemplateGUI/state.json for GUIState.[0m
+[90m14:09:23.830 [D] state:46             Load /Users/paris/.phy/TemplateGUI/state.json for GUIState.[0m
+[90m14:09:24.322 [D] gui:718              Add view ClusterView to GUI.[0m
+[90m14:09:24.322 [D] gui:718              Add view ClusterView to GUI.[0m
+[90m14:09:24.333 [D] gui:718              Add view SimilarityView to GUI.[0m
+[90m14:09:24.333 [D] gui:718              Add view SimilarityView to GUI.[0m
+[90m14:09:24.385 [D] gui:718              Add view WaveformView to GUI.[0m
+[90m14:09:24.385 [D] gui:718              Add view WaveformView to GUI.[0m
+[90m14:09:24.483 [D] base:337             Set state for WaveformView.[0m
+[90m14:09:24.483 [D] base:337             Set state for WaveformView.[0m
+[90m14:09:24.498 [D] gui:718              Add view CorrelogramView to GUI.[0m
+[90m14:09:24.498 [D] gui:718              Add view CorrelogramView to GUI.[0m
+[90m14:09:24.502 [D] base:337             Set state for CorrelogramView.[0m
+[90m14:09:24.502 [D] base:337             Set state for CorrelogramView.[0m
+[90m14:09:24.527 [D] gui:718              Add view ISIView to GUI.[0m
+[90m14:09:24.527 [D] gui:718              Add view ISIView to GUI.[0m
+[90m14:09:24.532 [D] base:337             Set state for ISIView.[0m
+[90m14:09:24.532 [D] base:337             Set state for ISIView.[0m
+[90m14:09:24.555 [D] gui:718              Add view FeatureView to GUI.[0m
+[90m14:09:24.555 [D] gui:718              Add view FeatureView to GUI.[0m
+[90m14:09:24.561 [D] base:337             Set state for FeatureView.[0m
+[90m14:09:24.561 [D] base:337             Set state for FeatureView.[0m
+[90m14:09:24.601 [D] gui:718              Add view AmplitudeView to GUI.[0m
+[90m14:09:24.601 [D] gui:718              Add view AmplitudeView to GUI.[0m
+[90m14:09:24.606 [D] base:337             Set state for AmplitudeView.[0m
+[90m14:09:24.606 [D] base:337             Set state for AmplitudeView.[0m
+[90m14:09:24.637 [D] gui:718              Add view FiringRateView to GUI.[0m
+[90m14:09:24.637 [D] gui:718              Add view FiringRateView to GUI.[0m
+[90m14:09:24.641 [D] base:337             Set state for FiringRateView.[0m
+[90m14:09:24.641 [D] base:337             Set state for FiringRateView.[0m
+[90m14:09:24.922 [D] gui:718              Add view TraceView to GUI.[0m
+[90m14:09:24.922 [D] gui:718              Add view TraceView to GUI.[0m
+[90m14:09:24.927 [D] base:337             Set state for TraceView.[0m
+[90m14:09:24.927 [D] base:337             Set state for TraceView.[0m
+[90m14:09:24.927 [D] base:494             Set color scheme to depth.[0m
+[90m14:09:24.927 [D] base:494             Set color scheme to depth.[0m
+[90m14:09:24.961 [D] base:1626            Adding default color schemes to TraceView.[0m
+[90m14:09:24.961 [D] base:1626            Adding default color schemes to TraceView.[0m
+[90m14:09:25.062 [D] gui:718              Add view ProbeView to GUI.[0m
+[90m14:09:25.062 [D] gui:718              Add view ProbeView to GUI.[0m
+[90m14:09:25.065 [D] base:337             Set state for ProbeView.[0m
+[90m14:09:25.065 [D] base:337             Set state for ProbeView.[0m
+[33m14:09:25.066 [W] gui:671              Could not create view TemplateFeatureView.[0m
+[33m14:09:25.066 [W] gui:671              Could not create view TemplateFeatureView.[0m
+[90m14:09:25.085 [D] gui:718              Add view ClusterScatterView to GUI.[0m
+[90m14:09:25.085 [D] gui:718              Add view ClusterScatterView to GUI.[0m
+[90m14:09:25.088 [D] base:337             Set state for ClusterScatterView.[0m
+[90m14:09:25.088 [D] base:337             Set state for ClusterScatterView.[0m
+[90m14:09:25.088 [D] base:494             Set color scheme to firing_rate.[0m
+[90m14:09:25.088 [D] base:494             Set color scheme to firing_rate.[0m
+[90m14:09:25.089 [D] base:1626            Adding default color schemes to ClusterScatterView.[0m
+[90m14:09:25.089 [D] base:1626            Adding default color schemes to ClusterScatterView.[0m
+[90m14:09:25.347 [D] gui:519              Load the geometry state.[0m
+[90m14:09:25.347 [D] gui:519              Load the geometry state.[0m
+[90m14:09:25.627 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.627 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.633 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.633 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.639 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.639 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.640 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.640 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.648 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.648 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.649 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.649 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.663 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.663 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.665 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.665 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.671 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.671 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.672 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.672 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.678 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.678 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.680 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.680 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.686 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.686 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.687 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.687 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.694 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.694 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.711 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.711 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:09:25.717 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.717 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.719 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.719 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.721 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.721 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.723 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.723 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.725 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.725 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.738 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.738 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.767 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.767 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.980 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.980 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.981 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.981 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.983 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.983 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.983 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.983 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.984 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.984 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.986 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.986 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.987 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:25.987 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.064 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.064 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.065 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.065 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.066 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.066 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.067 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.067 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.068 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.068 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.070 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.070 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.070 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.070 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.377 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:09:26.377 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.881 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.881 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.884 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.884 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.887 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.887 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.890 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.890 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.924 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.924 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.947 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.947 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.950 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:10:49.950 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:54.049 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m14:19:54.049 [D] context:100          Initialize joblib cache dir at `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy`.[0m
+[90m14:19:54.049 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m14:19:54.049 [D] context:101          Reducing the size of the cache if needed.[0m
+[90m14:19:54.052 [D] base:102             Add filter `high_pass`.[0m
+[90m14:19:54.052 [D] base:102             Add filter `high_pass`.[0m
+[33m14:19:54.053 [W] base:948             Deleting /Users/paris/.phy/TemplateGUI/state.json.[0m
+[33m14:19:54.053 [W] base:948             Deleting /Users/paris/.phy/TemplateGUI/state.json.[0m
+[90m14:19:54.053 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m14:19:54.053 [D] config:31            Load config file `/Users/paris/.phy/phy_config.py`.[0m
+[90m14:19:54.054 [D] plugin:146           Loading 0 plugins.[0m
+[90m14:19:54.054 [D] plugin:146           Loading 0 plugins.[0m
+[90m14:19:54.056 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m14:19:54.056 [D] context:209          The file `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/new_cluster_id.pkl` doesn't exist.[0m
+[90m14:19:54.400 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m14:19:54.400 [D] context:185          Save data to `/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/.phy/spikes_per_cluster.pkl`.[0m
+[90m14:19:54.526 [D] gui:463              Creating GUI.[0m
+[90m14:19:54.526 [D] gui:463              Creating GUI.[0m
+[90m14:19:54.730 [D] state:177            The GUI state file `/Users/paris/.phy/TemplateGUI/state.json` doesn't exist, creating a default one...[0m
+[90m14:19:54.730 [D] state:177            The GUI state file `/Users/paris/.phy/TemplateGUI/state.json` doesn't exist, creating a default one...[0m
+[0m14:19:54.732 [I] state:180            Copied /opt/anaconda3/envs/phy-dec3-legacy/lib/python3.10/site-packages/phy/apps/template/static/state.json to /Users/paris/.phy/TemplateGUI/state.json.[0m
+[0m14:19:54.732 [I] state:180            Copied /opt/anaconda3/envs/phy-dec3-legacy/lib/python3.10/site-packages/phy/apps/template/static/state.json to /Users/paris/.phy/TemplateGUI/state.json.[0m
+[90m14:19:54.732 [D] state:46             Load /Users/paris/.phy/TemplateGUI/state.json for GUIState.[0m
+[90m14:19:54.732 [D] state:46             Load /Users/paris/.phy/TemplateGUI/state.json for GUIState.[0m
+[90m14:19:55.333 [D] gui:718              Add view ClusterView to GUI.[0m
+[90m14:19:55.333 [D] gui:718              Add view ClusterView to GUI.[0m
+[90m14:19:55.353 [D] gui:718              Add view SimilarityView to GUI.[0m
+[90m14:19:55.353 [D] gui:718              Add view SimilarityView to GUI.[0m
+[90m14:19:55.424 [D] gui:718              Add view WaveformView to GUI.[0m
+[90m14:19:55.424 [D] gui:718              Add view WaveformView to GUI.[0m
+[90m14:19:55.540 [D] base:337             Set state for WaveformView.[0m
+[90m14:19:55.540 [D] base:337             Set state for WaveformView.[0m
+[90m14:19:55.559 [D] gui:718              Add view CorrelogramView to GUI.[0m
+[90m14:19:55.559 [D] gui:718              Add view CorrelogramView to GUI.[0m
+[90m14:19:55.564 [D] base:337             Set state for CorrelogramView.[0m
+[90m14:19:55.564 [D] base:337             Set state for CorrelogramView.[0m
+[90m14:19:55.591 [D] gui:718              Add view ISIView to GUI.[0m
+[90m14:19:55.591 [D] gui:718              Add view ISIView to GUI.[0m
+[90m14:19:55.595 [D] base:337             Set state for ISIView.[0m
+[90m14:19:55.595 [D] base:337             Set state for ISIView.[0m
+[90m14:19:55.616 [D] gui:718              Add view FeatureView to GUI.[0m
+[90m14:19:55.616 [D] gui:718              Add view FeatureView to GUI.[0m
+[90m14:19:55.620 [D] base:337             Set state for FeatureView.[0m
+[90m14:19:55.620 [D] base:337             Set state for FeatureView.[0m
+[90m14:19:55.651 [D] gui:718              Add view AmplitudeView to GUI.[0m
+[90m14:19:55.651 [D] gui:718              Add view AmplitudeView to GUI.[0m
+[90m14:19:55.655 [D] base:337             Set state for AmplitudeView.[0m
+[90m14:19:55.655 [D] base:337             Set state for AmplitudeView.[0m
+[90m14:19:55.686 [D] gui:718              Add view FiringRateView to GUI.[0m
+[90m14:19:55.686 [D] gui:718              Add view FiringRateView to GUI.[0m
+[90m14:19:55.691 [D] base:337             Set state for FiringRateView.[0m
+[90m14:19:55.691 [D] base:337             Set state for FiringRateView.[0m
+[90m14:19:55.949 [D] gui:718              Add view TraceView to GUI.[0m
+[90m14:19:55.949 [D] gui:718              Add view TraceView to GUI.[0m
+[90m14:19:55.952 [D] base:337             Set state for TraceView.[0m
+[90m14:19:55.952 [D] base:337             Set state for TraceView.[0m
+[90m14:19:55.952 [D] base:494             Set color scheme to depth.[0m
+[90m14:19:55.952 [D] base:494             Set color scheme to depth.[0m
+[90m14:19:55.986 [D] base:1626            Adding default color schemes to TraceView.[0m
+[90m14:19:55.986 [D] base:1626            Adding default color schemes to TraceView.[0m
+[90m14:19:56.116 [D] gui:718              Add view ProbeView to GUI.[0m
+[90m14:19:56.116 [D] gui:718              Add view ProbeView to GUI.[0m
+[90m14:19:56.121 [D] base:337             Set state for ProbeView.[0m
+[90m14:19:56.121 [D] base:337             Set state for ProbeView.[0m
+[33m14:19:56.123 [W] gui:671              Could not create view TemplateFeatureView.[0m
+[33m14:19:56.123 [W] gui:671              Could not create view TemplateFeatureView.[0m
+[90m14:19:56.154 [D] gui:718              Add view ClusterScatterView to GUI.[0m
+[90m14:19:56.154 [D] gui:718              Add view ClusterScatterView to GUI.[0m
+[90m14:19:56.159 [D] base:337             Set state for ClusterScatterView.[0m
+[90m14:19:56.159 [D] base:337             Set state for ClusterScatterView.[0m
+[90m14:19:56.159 [D] base:494             Set color scheme to firing_rate.[0m
+[90m14:19:56.159 [D] base:494             Set color scheme to firing_rate.[0m
+[90m14:19:56.161 [D] base:1626            Adding default color schemes to ClusterScatterView.[0m
+[90m14:19:56.161 [D] base:1626            Adding default color schemes to ClusterScatterView.[0m
+[90m14:19:56.442 [D] gui:519              Load the geometry state.[0m
+[90m14:19:56.442 [D] gui:519              Load the geometry state.[0m
+[90m14:19:56.760 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.760 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.767 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.767 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.777 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.777 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.778 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.778 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.784 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.784 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.785 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.785 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.795 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.795 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.796 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.796 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.805 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.805 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.806 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.806 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.813 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.813 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.814 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.814 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.824 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.824 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.825 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.825 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.832 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.832 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.841 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.841 [D] base:675             Exception in initializetGL: GLError(
+	err = 1280,
+	description = b'invalid enumerant',
+	baseOperation = glEnable,
+	cArguments = (GL_POINT_SPRITE,)
+)[0m
+[90m14:19:56.847 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.847 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.848 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.848 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.850 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.850 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.851 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.851 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.856 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.856 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.858 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.858 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.859 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:56.859 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.127 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.127 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.129 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.129 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.131 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.131 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.133 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.133 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.134 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.134 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.141 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.141 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.143 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.143 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.240 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.240 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.242 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.242 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.243 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.243 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.245 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.245 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.247 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.247 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.248 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.248 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.249 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.249 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.694 [D] base:702             Exception in paintGL: Shader compilation error[0m
+[90m14:19:57.694 [D] base:702             Exception in paintGL: Shader compilation error[0m

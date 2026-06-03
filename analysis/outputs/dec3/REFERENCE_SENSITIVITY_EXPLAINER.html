@@ -1,0 +1,272 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>What Did The Reference Sensitivity Analysis Do?</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1f2933;
+      background: #ffffff;
+      line-height: 1.45;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 26px 50px;
+    }
+    h1 {
+      font-size: 28px;
+      margin: 0 0 10px;
+    }
+    h2 {
+      font-size: 21px;
+      margin: 34px 0 12px;
+      border-bottom: 1px solid #d9dee5;
+      padding-bottom: 6px;
+    }
+    p {
+      max-width: 850px;
+    }
+    .punchline {
+      background: #eef8f7;
+      border-left: 5px solid #0f6b78;
+      padding: 14px 16px;
+      margin: 18px 0 28px;
+      font-size: 17px;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(140px, 1fr));
+      gap: 12px;
+      align-items: stretch;
+      margin: 20px 0 30px;
+    }
+    .box {
+      border: 1px solid #cfd6de;
+      border-radius: 6px;
+      padding: 14px;
+      background: #ffffff;
+      min-height: 110px;
+    }
+    .box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #0f3e46;
+    }
+    .arrow {
+      text-align: center;
+      color: #64727f;
+      font-weight: bold;
+      margin: -10px 0 8px;
+    }
+    .three {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin: 16px 0 26px;
+    }
+    .option {
+      border: 1px solid #d9dee5;
+      border-radius: 6px;
+      padding: 14px;
+      background: #f8fafb;
+    }
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin: 16px 0 26px;
+    }
+    .result {
+      border: 1px solid #d9dee5;
+      border-radius: 6px;
+      padding: 14px;
+    }
+    .best {
+      border-color: #0f6b78;
+      background: #eef8f7;
+    }
+    .weak {
+      background: #fff8ef;
+    }
+    table {
+      border-collapse: collapse;
+      min-width: 650px;
+      margin: 14px 0 26px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #d9dee5;
+      padding: 8px 10px;
+      text-align: right;
+    }
+    th:first-child, td:first-child {
+      text-align: left;
+    }
+    th {
+      background: #f3f5f7;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    img {
+      width: 100%;
+      max-width: 1050px;
+      border: 1px solid #d9dee5;
+      border-radius: 6px;
+    }
+    a {
+      color: #0f6b78;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>What Did The Reference Sensitivity Analysis Do?</h1>
+  <p>
+    This page explains the last analysis step in plain language. It is not a new biological claim;
+    it is a check that asks whether our frequency result survives reasonable preprocessing choices.
+  </p>
+
+  <div class="punchline">
+    Main takeaway: after removing current candidate noisy channels and trying three reference choices,
+    <strong>180 amplitude / 5 Hz</strong> is still the strongest clean driven-frequency response.
+    Among the 26 Hz conditions, <strong>100 amplitude / 26 Hz</strong> has the largest positive
+    26 Hz-band power change under current preprocessing.
+  </div>
+
+  <h2>Two Different Questions</h2>
+  <p>
+    The confusing part is that `amp180_freq26` is strong in one kind of LFP measurement,
+    but weak in another. Both can be true.
+  </p>
+  <div class="three">
+    <div class="option">
+      <strong>Broadband LFP response</strong>
+      This asks whether the total LFP signal got bigger during stimulation, regardless of exact frequency.
+      By this measure, `amp180_freq26` is strongest: sustained broadband change = 53.78.
+    </div>
+    <div class="option">
+      <strong>26 Hz entrainment</strong>
+      This asks whether power specifically increased at about 26 Hz during 26 Hz stimulation.
+      By this measure, `amp180_freq26` is near zero/negative: raw = -0.062, shank median = -0.033, group median = -0.014.
+    </div>
+    <div class="option">
+      <strong>Plain interpretation</strong>
+      `amp180_freq26` makes the LFP bigger overall, but it does not look like a clean sustained 26 Hz-following oscillation in the current metrics.
+    </div>
+  </div>
+
+  <h2>The Analysis Flow</h2>
+  <div class="flow">
+    <div class="box">
+      <strong>1. Start with LFP</strong>
+      Use Dec 3 `amplifier.lfp`, downsampled to 1250 Hz.
+    </div>
+    <div class="box">
+      <strong>2. Remove candidates</strong>
+      Exclude channels 5, 6, 7, 32, 33, 34, 43, 66, 67 for this sensitivity pass.
+    </div>
+    <div class="box">
+      <strong>3. Try references</strong>
+      Compare raw, physical-shank median, and 32-channel group median.
+    </div>
+    <div class="box">
+      <strong>4. Measure power</strong>
+      For each condition, compare driven-frequency power during stimulation vs before stimulation.
+    </div>
+    <div class="box">
+      <strong>5. Compare results</strong>
+      Ask whether the winning condition changes.
+    </div>
+  </div>
+
+  <h2>What Is Referencing?</h2>
+  <p>
+    LFP channels share noise. Referencing means subtracting a shared signal so we can reduce common noise.
+    If a result only appears under one reference, we should be cautious. If it appears under several,
+    it is more robust.
+  </p>
+  <div class="three">
+    <div class="option">
+      <strong>Raw</strong>
+      Use the LFP channels as recorded. This is simple, but keeps common noise.
+    </div>
+    <div class="option">
+      <strong>Physical-shank median</strong>
+      For channels 0-63 and 64-127 separately, subtract the median signal of that physical shank.
+    </div>
+    <div class="option">
+      <strong>Analysis-group median</strong>
+      For each 32-channel group, subtract that group's median signal.
+    </div>
+  </div>
+
+  <h2>What Was Measured?</h2>
+  <p>
+    Each trial has 3 seconds ON and 3 seconds OFF. For each condition we measured:
+  </p>
+  <p>
+    <strong>Driven-frequency power during stimulation</strong> divided by
+    <strong>driven-frequency power before stimulation</strong>.
+  </p>
+  <p>
+    For 5 Hz conditions, the driven frequency is 5 Hz. For 26 Hz conditions, the driven frequency is 26 Hz.
+    Positive numbers mean stimulation increased power at that frequency.
+  </p>
+
+  <h2>Result In One Table</h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Condition</th><th>Raw</th><th>Physical-shank median</th><th>Analysis-group median</th><th>Interpretation</th></tr>
+      <tr><td>amp180_freq5</td><td>0.136</td><td>0.126</td><td>0.124</td><td>Strongest across all references</td></tr>
+      <tr><td>amp100_freq26</td><td>-0.013</td><td>0.033</td><td>0.043</td><td>Largest positive 26 Hz-band power change after referencing</td></tr>
+      <tr><td>amp250_freq5</td><td>-0.060</td><td>-0.026</td><td>-0.030</td><td>Weak</td></tr>
+      <tr><td>amp180_freq26</td><td>-0.062</td><td>-0.033</td><td>-0.014</td><td>Broadband strong, but not clean 26 Hz power</td></tr>
+      <tr><td>amp100_freq5</td><td>-0.082</td><td>-0.100</td><td>-0.105</td><td>Weak</td></tr>
+      <tr><td>amp250_freq26</td><td>-0.144</td><td>-0.131</td><td>-0.133</td><td>Weak/negative</td></tr>
+    </table>
+  </div>
+
+  <h2>Visual Summary</h2>
+  <p>
+    In the figure below, each color is a reference method. The important thing is that
+    `amp180_freq5` stays highest no matter how we reference.
+  </p>
+  <a href="reference_sensitivity_lfp/reference_condition_summary.png">
+    <img src="reference_sensitivity_lfp/reference_condition_summary.png" alt="Reference sensitivity condition summary">
+  </a>
+
+  <h2>Why This Matters</h2>
+  <div class="result-grid">
+    <div class="result best">
+      <strong>Robust finding</strong>
+      `amp180_freq5` is not just a raw-signal artifact; it remains strongest after candidate channel exclusion and median referencing.
+    </div>
+    <div class="result best">
+      <strong>26 Hz power candidate</strong>
+      `amp100_freq26` becomes positive with median referencing. This means it is the largest positive 26 Hz-band power change among the 26 Hz conditions, not a final proof of entrainment.
+    </div>
+    <div class="result weak">
+      <strong>Important caution</strong>
+      `amp180_freq26` looked strong in broadband LFP, but this check says it is not a clean sustained 26 Hz power increase.
+    </div>
+  </div>
+
+  <h2>Next Step In Plain English</h2>
+  <p>
+    We should now finalize which channels are truly bad, choose one final reference method,
+    and then rerun the key plots once. After that, we can test phase-locking, which asks:
+    are the brain waves timing themselves to the 5 Hz or 26 Hz stimulus cycles?
+  </p>
+
+  <p>
+    Back to <a href="RESULTS_DASHBOARD.html">main results dashboard</a>.
+  </p>
+</main>
+</body>
+</html>

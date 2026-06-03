@@ -1,0 +1,40 @@
+{
+  "spike_peth_dir": "analysis/outputs/dec3/spike_peth_on_off",
+  "cluster_quality": "analysis/outputs/dec3/cluster_quality/cluster_quality_summary.csv",
+  "output_dir": "analysis/outputs/dec3/spike_peth_high_confidence",
+  "n_trials": 1200,
+  "conditions": [
+    "amp100_freq26",
+    "amp100_freq5",
+    "amp180_freq26",
+    "amp180_freq5",
+    "amp250_freq26",
+    "amp250_freq5"
+  ],
+  "n_all_units": 194,
+  "n_ks_good_units": 28,
+  "n_high_confidence_units": 19,
+  "high_confidence_cluster_ids": [
+    9,
+    177,
+    191,
+    112,
+    23,
+    158,
+    174,
+    80,
+    0,
+    119,
+    111,
+    157,
+    168,
+    118,
+    175,
+    169,
+    181,
+    110,
+    160
+  ],
+  "control_definition": "Each trial's 3 s OFF interval immediately after stimulation.",
+  "caveat": "Cleaner Kilosort subset, still pre-Phy-curation."
+}

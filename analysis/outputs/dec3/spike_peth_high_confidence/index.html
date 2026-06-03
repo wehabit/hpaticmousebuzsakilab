@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dec 3 High-Confidence Spike ON/OFF</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 32px; line-height: 1.45; }
+    img { max-width: 100%; border: 1px solid #ddd; margin: 12px 0 28px; }
+    code { background: #f2f2f2; padding: 2px 4px; }
+    li { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <h1>Dec 3 High-Confidence Spike ON/OFF Analysis</h1>
+  <p>This report compares all Kilosort clusters, KS-good clusters, and the
+  automated high-confidence KS-good subset. The control is each trial's
+  following 3 s OFF interval.</p>
+  <ul>
+    <li>All clusters: <code>194</code></li>
+    <li>KS-good clusters: <code>28</code></li>
+    <li>High-confidence KS-good clusters: <code>19</code></li>
+    <li>Trials: <code>1200</code></li>
+  </ul>
+  <h2>Condition Mean ON - OFF Across Unit Sets</h2>
+  <img src="condition_mean_on_minus_off_unit_set_comparison.png">
+  <h2>High-Confidence Unit Heatmap</h2>
+  <img src="high_confidence_unit_condition_heatmap.png">
+  <h2>High-Confidence Onset PETH</h2>
+  <img src="peth_onset_high_confidence_units.png">
+  <h2>High-Confidence Offset PETH</h2>
+  <img src="peth_offset_high_confidence_units.png">
+  <h2>Tables</h2>
+  <ul>
+    <li><a href="condition_summary_by_unit_set.csv">condition_summary_by_unit_set.csv</a></li>
+    <li><a href="unit_condition_stats_by_unit_set.csv">unit_condition_stats_by_unit_set.csv</a></li>
+    <li><a href="top_high_confidence_unit_condition_deltas.csv">top_high_confidence_unit_condition_deltas.csv</a></li>
+    <li><a href="run_summary.json">run_summary.json</a></li>
+  </ul>
+  <p>Caveat: still pre-Phy-curation. This is a cleaner exploratory subset, not
+  final unit inclusion.</p>
+</body>
+</html>
