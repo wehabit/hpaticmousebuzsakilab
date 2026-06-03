@@ -4,12 +4,25 @@ This folder contains lightweight Python entry points for the Intan haptic stimul
 recordings. The first pass focuses on metadata, digital TTL pulse trains, and the
 randomized stimulus schedule before loading the large `amplifier.dat` trace.
 
-## Dec 3 quick start
+## Key Docs
+
+For future sessions and reruns, start from:
+
+- `../docs/RERUN_PIPELINE.md`
+
+For Dec 3 presentation and interpretation, use:
 
 For a supervisor-facing summary of findings, figures, tools, and pipeline, use:
 
 - `analysis/DEC3_SUPERVISOR_SUMMARY.md`
 - `analysis/outputs/dec3/RESULTS_DASHBOARD.html`
+
+For original study context and collaborator links, use:
+
+- `../docs/STUDY_NOTES.md`
+- `../docs/RESOURCES_AND_GUIDANCE.md`
+
+## Dec 3 quick start
 
 From the repository root:
 
