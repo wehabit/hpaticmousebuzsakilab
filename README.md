@@ -17,6 +17,8 @@ The current completed analysis pass is for the **Dec 3 recording**.
   future recordings/conditions.
 - [Study Notes](docs/STUDY_NOTES.md): Dec 3/Dec 4 experiment notes, coordinates,
   channel notes, and original collaborator context.
+- [Experiment Setup Photos](https://photos.app.goo.gl/NzK9YqrbCPufYTYV8):
+  Google Photos album showing the study/experiment setup.
 - [Resources And Guidance](docs/RESOURCES_AND_GUIDANCE.md): links from Nick,
   Mishi, Buzcode, CellExplorer, Pynapple, Kilosort, and related references.
 
