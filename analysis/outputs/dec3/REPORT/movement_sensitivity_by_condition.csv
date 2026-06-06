@@ -1,0 +1,7 @@
+condition,spike_delta_all,spike_delta_excl,spike_nResp_all,spike_nResp_excl,lfp_ONminusOFF_all,lfp_ONminusOFF_excl
+amp250_freq26,-0.199,-0.175,0,0,-1.069,-1.791
+amp180_freq26,-0.148,-0.103,0,0,-2.137,-2.535
+amp100_freq26,0.041,0.047,0,0,1.055,0.632
+amp250_freq5,-0.238,-0.159,0,0,-0.079,-0.709
+amp180_freq5,-0.141,-0.129,0,0,-2.014,-2.766
+amp100_freq5,-0.112,-0.122,0,0,-1.186,-1.505

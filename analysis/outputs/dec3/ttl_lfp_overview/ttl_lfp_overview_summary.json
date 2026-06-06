@@ -1,0 +1,48 @@
+{
+  "n_good_channels": 119,
+  "bad_channels": [
+    5,
+    6,
+    7,
+    32,
+    33,
+    34,
+    43,
+    66,
+    67
+  ],
+  "n_ttl_rising_edges": 9171,
+  "phases_minutes": {
+    "baseline_15min": [
+      10.67,
+      25.67
+    ],
+    "stimulation_120min": [
+      25.67,
+      145.67
+    ],
+    "post_experiment_30min": [
+      145.67,
+      175.67
+    ]
+  },
+  "total_recording_min": 177.41,
+  "alignment_counts": {
+    "total": 1200,
+    "in_on": 1185,
+    "within_500ms": 921,
+    "within_200ms": 636,
+    "no_blip": 15,
+    "median_onset_ms": 175
+  },
+  "figures": [
+    "session_timeline.png",
+    "ttl_lfp_context_and_trials.png",
+    "ttl_on_alignment_per_trial.png"
+  ],
+  "tables": [
+    "TTL_ON_ALIGNMENT.md",
+    "ttl_on_alignment_condition_summary.csv",
+    "ttl_onset_offset_alignment.csv"
+  ]
+}

@@ -32,6 +32,37 @@ high-confidence single-unit subset does not show a robust ON-period firing-rate
 increase. Spike claims remain provisional until Phy curation and final probe
 geometry/channel order are confirmed.
 
+## Study Protocol & Recording Phases (Dec 3)
+
+How the session is set up. After setup, the recording runs a **15-minute
+baseline**, a **120-minute stimulation block** (1200 randomized trials, each a
+**3 s vibration ON** followed by **3 s OFF**), and a **30-minute
+post-experiment** period. The six conditions — amplitude `{100, 180, 250}` ×
+commanded frequency `{5, 26}` Hz, ~200 repeats each — are interleaved across the
+1200 trials. Stimulation onset is captured by an **accelerometer TTL**
+(`digitalin` bit 7) that fires while the device is physically vibrating, so each
+TTL burst's first edge marks the true vibration onset.
+
+| Phase | Recording time (s) | Time (min) | Duration | What happens |
+|------|-------------------:|-----------:|---------:|--------------|
+| Setup / pre-recording | 0 – 640 | 0.0 – 10.7 | ~10.7 min | recording started before the protocol |
+| **Baseline** | 640 – 1540 | 10.7 – 25.7 | **15 min** | no stimulation |
+| **Stimulation** | 1540 – 8740 | 25.7 – 145.7 | **120 min** | 1200 trials × (3 s ON + 3 s OFF), 6 interleaved conditions |
+| **Post-experiment** | 8740 – 10540 | 145.7 – 175.7 | **30 min** | no stimulation |
+| Tail | 10540 – 10644 | 175.7 – 177.4 | ~1.7 min | recording stop |
+| **Total recording** | 0 – 10644 | 0 – 177.4 | **177.4 min** | |
+
+**Protocol = 15 + 120 + 30 = 165 min.** The 120-min stimulation block matches
+`1200 trials × 6 s` exactly. The stimulation window is measured directly from the
+accelerometer TTL; the baseline/post boundaries are the intended design mapped
+onto recording time (the exact baseline start is derived from the controller
+offset).
+
+Generate the timeline and TTL-vs-LFP overview figures with
+[`analysis/plot_ttl_lfp_overview_dec3.py`](analysis/plot_ttl_lfp_overview_dec3.py)
+→ `analysis/outputs/dec3/ttl_lfp_overview/` (`session_timeline.png`,
+`ttl_lfp_trial_zoom.png`, `lfp_burst_onset_aligned.png`).
+
 ## Repository Layout
 
 ```text

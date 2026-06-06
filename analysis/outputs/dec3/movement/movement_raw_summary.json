@@ -1,0 +1,24 @@
+{
+  "source": "raw 20 kHz",
+  "channels": [
+    0,
+    20,
+    48,
+    56,
+    72,
+    88,
+    108,
+    124
+  ],
+  "band_hz": [
+    300,
+    600
+  ],
+  "win_s": 3.0,
+  "baseline_emg_median": 0.3398414629919623,
+  "baseline_emg_mad": 0.14792517328697777,
+  "movement_threshold": 0.7836169828528956,
+  "off_emg_median": 0.38167910992377374,
+  "n_trials_moving": 121,
+  "corr_emg_vs_off_toggles": 0.06323447514909071
+}

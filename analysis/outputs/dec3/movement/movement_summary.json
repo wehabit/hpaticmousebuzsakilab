@@ -1,0 +1,26 @@
+{
+  "channels": [
+    0,
+    20,
+    48,
+    56,
+    72,
+    88,
+    108,
+    124
+  ],
+  "band_hz": [
+    275,
+    500
+  ],
+  "win_s": 0.5,
+  "emg_baseline": 0.39351018664619536,
+  "emg_stim": 0.44231197877581524,
+  "emg_post": 0.39743970300416387,
+  "emg_on_median": 0.4175984398986401,
+  "emg_off_median": 0.36977314898408287,
+  "movement_threshold": 0.7387827503563995,
+  "n_trials_moving": 65,
+  "corr_emg_vs_off_toggles": 0.07664018563441147,
+  "note": "ON-window EMG is contaminated by vibration; movement is read from OFF windows."
+}

@@ -1,0 +1,7 @@
+condition,n_trials,aligned_in_ON,median_onset_ms,median_span_ms,within_500ms,within_200ms,no_blip
+amp250_freq26,200,200,58,2493,197,189,0
+amp180_freq26,200,200,124,2385,179,142,0
+amp100_freq26,200,199,226,2156,155,87,1
+amp250_freq5,200,195,298,2000,136,73,5
+amp180_freq5,200,200,344,2000,132,80,0
+amp100_freq5,200,191,326,2000,122,65,9
