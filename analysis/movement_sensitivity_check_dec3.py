@@ -77,18 +77,29 @@ def main():
     print(tbl.to_string())
 
     # ---- figure ----
-    fig, ax = plt.subplots(1, 2, figsize=(14, 5)); x = np.arange(len(COND_ORDER)); w = 0.38
-    ax[0].bar(x - w/2, sp_all.mean_unit_delta_hz, w, label="all trials", color="#7f8c8d")
-    ax[0].bar(x + w/2, sp_ex.mean_unit_delta_hz, w, label=f"excl. {n_excl} movement", color="#2a9d8f")
-    ax[0].axhline(0, color="k", lw=0.8); ax[0].set_xticks(x); ax[0].set_xticklabels(COND_ORDER, rotation=40, ha="right", fontsize=8)
+    fig, ax = plt.subplots(1, 2, figsize=(14, 5.4)); x = np.arange(len(COND_ORDER)); w = 0.38
+
+    def annotate_sign(a):
+        a.axhline(0, color="k", lw=0.9)
+        a.text(0.012, 0.97, "above 0 = ON > OFF", transform=a.transAxes, fontsize=8, color="#555", va="top")
+        a.text(0.012, 0.03, "below 0 = OFF > ON", transform=a.transAxes, fontsize=8, color="#555", va="bottom")
+
+    ax[0].bar(x - w/2, sp_all.mean_unit_delta_hz, w, label="all 1200 trials", color="#7f8c8d")
+    ax[0].bar(x + w/2, sp_ex.mean_unit_delta_hz, w, label=f"excl. {n_excl} movement", color="#c0392b")
+    annotate_sign(ax[0]); ax[0].set_xticks(x); ax[0].set_xticklabels(COND_ORDER, rotation=40, ha="right", fontsize=8)
     ax[0].set_ylabel("mean KS-good unit ON-OFF (Hz)")
-    ax[0].set_title(f"Spikes: ON-OFF firing (responsive q<0.05: all={nr_all}, excl={nr_ex})"); ax[0].legend(fontsize=8); ax[0].grid(axis="y", alpha=0.2)
-    ax[1].bar(x - w/2, lfp_all, w, label="all trials", color="#7f8c8d")
+    ax[0].set_title(f"Spikes: ON-OFF firing\nbars tiny (<0.25 Hz) & 0 significant units (all & excl) -> no effect either way")
+    ax[0].legend(fontsize=8); ax[0].grid(axis="y", alpha=0.2)
+
+    ax[1].bar(x - w/2, lfp_all, w, label="all 1200 trials", color="#7f8c8d")
     ax[1].bar(x + w/2, lfp_ex, w, label=f"excl. {n_excl} movement", color="#c0392b")
-    ax[1].axhline(0, color="k", lw=0.8); ax[1].set_xticks(x); ax[1].set_xticklabels(COND_ORDER, rotation=40, ha="right", fontsize=8)
+    annotate_sign(ax[1]); ax[1].set_xticks(x); ax[1].set_xticklabels(COND_ORDER, rotation=40, ha="right", fontsize=8)
     ax[1].set_ylabel("within-trial ON-OFF mean |LFP|")
-    ax[1].set_title("LFP broadband: ON vs within-trial OFF"); ax[1].legend(fontsize=8); ax[1].grid(axis="y", alpha=0.2)
-    fig.suptitle("Movement sensitivity: headline results, all trials vs movement-excluded", fontweight="bold")
+    ax[1].set_title("LFP sustained middle: ON vs within-trial OFF\n(edge transients excluded -> sustained ~0; sign is noise)")
+    ax[1].legend(fontsize=8); ax[1].grid(axis="y", alpha=0.2)
+
+    fig.suptitle("Movement sensitivity -- the point is GRAY vs RED overlap: removing movement trials barely moves the bars",
+                 fontweight="bold")
     fig.tight_layout(); fig.savefig(OUT / "movement_sensitivity.png", dpi=150); plt.close(fig)
 
     (OUT / "movement_sensitivity_summary.json").write_text(json.dumps({

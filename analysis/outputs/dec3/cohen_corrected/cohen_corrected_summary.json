@@ -1,0 +1,36 @@
+{
+  "itpc_sustained_grid": {
+    "amp250_freq26": 0.063,
+    "amp180_freq26": 0.0633,
+    "amp100_freq26": 0.0657,
+    "amp250_freq5": 0.0761,
+    "amp180_freq5": 0.0722,
+    "amp100_freq5": 0.0693
+  },
+  "itpc_sustained_onset_aligned": {
+    "amp250_freq26": 0.0715,
+    "amp180_freq26": 0.0691,
+    "amp100_freq26": 0.0636,
+    "amp250_freq5": 0.0824,
+    "amp180_freq5": 0.076,
+    "amp100_freq5": 0.0657
+  },
+  "broadband_rms_on": {
+    "amp250_freq26": 125.7,
+    "amp180_freq26": 124.84,
+    "amp100_freq26": 128.85,
+    "amp250_freq5": 125.74,
+    "amp180_freq5": 127.43,
+    "amp100_freq5": 124.15
+  },
+  "broadband_rms_off": {
+    "amp250_freq26": 123.13,
+    "amp180_freq26": 121.34,
+    "amp100_freq26": 130.74,
+    "amp250_freq5": 127.01,
+    "amp180_freq5": 126.75,
+    "amp100_freq5": 122.07
+  },
+  "max_trials": 150,
+  "note": "A: Cohen 19.5 onset-jitter correction. B: Cohen ch.18 power instead of mean|LFP|."
+}

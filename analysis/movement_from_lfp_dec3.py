@@ -84,7 +84,7 @@ def main():
 
     # ---- figure ----
     fig, ax = plt.subplots(2, 1, figsize=(15, 8))
-    ax[0].plot(tcen / 60, emg, color="#8e44ad", lw=0.5)
+    ax[0].plot(tcen / 60, emg, color="#2c3e50", lw=0.5)
     ax[0].axhline(thr, color="#c0392b", ls="--", lw=1, label=f"movement threshold ({thr:.2f})")
     for x0, x1, c, lab in [(640, 1540, "#9b59b6", "baseline"), (1540, 8740, "gold", "stim"),
                            (8740, 10540, "#3498db", "post")]:
@@ -97,7 +97,7 @@ def main():
     ax[1].scatter(still["off_ttl_toggles"], still["emg_off"], s=8, color="#7f8c8d", alpha=0.5, label="still")
     ax[1].scatter(mv["off_ttl_toggles"], mv["emg_off"], s=14, color="#c0392b", label="flagged moving")
     ax[1].axhline(thr, color="#c0392b", ls="--", lw=1)
-    ax[1].set_xlabel("stray bit-7 toggles in OFF window (your movement signal)")
+    ax[1].set_xlabel("stray bit-7 toggles in OFF window (movement signal)")
     ax[1].set_ylabel("OFF-window movement proxy (EMG)")
     ax[1].set_title(f"Validation: LFP movement proxy vs stray sensor toggles in OFF.   correlation r = {corr:.2f}")
     ax[1].legend(fontsize=8); ax[1].grid(alpha=0.2)

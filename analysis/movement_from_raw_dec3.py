@@ -72,8 +72,9 @@ def main():
         args.output_dir / "movement_raw_per_trial.csv", index=False)
 
     fig, ax = plt.subplots(1, 2, figsize=(15, 5.5))
-    ax[0].hist(base_emg, bins=30, color="#7f8c8d", alpha=0.7, label=f"baseline 'still' (n={args.n_baseline})", density=True)
-    ax[0].hist(seq.emg_off_raw.dropna(), bins=40, color="#8e44ad", alpha=0.5, label="trial OFF windows", density=True)
+    # colors matched to the context figure (image 2): baseline = purple, OFF = gray
+    ax[0].hist(base_emg, bins=30, color="#9b59b6", alpha=0.6, label=f"baseline 'still' (n={args.n_baseline})", density=True)
+    ax[0].hist(seq.emg_off_raw.dropna(), bins=40, color="#3498db", alpha=0.6, label="trial OFF windows", density=True)
     ax[0].axvline(thr, color="#c0392b", ls="--", label=f"movement threshold ({thr:.2f})")
     ax[0].set_xlabel("OFF-window movement proxy (raw 300-600 Hz corr)"); ax[0].set_ylabel("density")
     ax[0].set_title(f"Raw-20kHz EMG: {int(seq.moving.sum())}/1200 OFF windows above 'still' baseline")
@@ -82,7 +83,7 @@ def main():
     ax[1].scatter(still.off_ttl_toggles, still.emg_off_raw, s=8, color="#7f8c8d", alpha=0.5, label="still")
     ax[1].scatter(mv.off_ttl_toggles, mv.emg_off_raw, s=14, color="#c0392b", label="flagged moving")
     ax[1].axhline(thr, color="#c0392b", ls="--")
-    ax[1].set_xlabel("stray bit-7 toggles in OFF (your movement signal)")
+    ax[1].set_xlabel("stray bit-7 toggles in OFF (movement signal)")
     ax[1].set_ylabel("OFF-window EMG (raw)")
     ax[1].set_title(f"Validation vs stray toggles:  r = {corr:.2f}")
     ax[1].legend(fontsize=8)

@@ -33,8 +33,9 @@ def plot_counts(summary: pd.DataFrame, output: Path) -> None:
     x = np.arange(len(frame))
     width = 0.35
     fig, ax = plt.subplots(figsize=(11, 4.8))
-    ax.bar(x - width / 2, frame["mean_on_rising_edges"], width=width, color="#4C78A8", label="ON")
-    ax.bar(x + width / 2, frame["mean_off_rising_edges"], width=width, color="#54A24B", label="OFF")
+    # ON/OFF colors matched to ttl_lfp_context_and_trials.png (gold ON, gray OFF)
+    ax.bar(x - width / 2, frame["mean_on_rising_edges"], width=width, color="gold", label="ON")
+    ax.bar(x + width / 2, frame["mean_off_rising_edges"], width=width, color="#95a5a6", label="OFF")
     ax.set_xticks(x)
     ax.set_xticklabels(frame["condition"], rotation=30, ha="right")
     ax.set_ylabel("Mean rising TTL edges per trial")
