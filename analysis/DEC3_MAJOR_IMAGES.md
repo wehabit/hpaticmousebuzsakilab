@@ -11,6 +11,8 @@ Main dashboard:
 Supervisor-facing summary:
 
 - [Dec 3 Supervisor Summary](DEC3_SUPERVISOR_SUMMARY.md)
+- [Dec 3 Image Walkthrough](DEC3_IMAGE_WALKTHROUGH.md): more detailed teaching
+  guide explaining how each listed image was generated and what it means.
 
 ## Core LFP Results
 

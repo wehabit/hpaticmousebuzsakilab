@@ -11,6 +11,7 @@ Detailed supporting docs:
 
 - [Full Results Summary](DEC3_RESULTS_SUMMARY.md)
 - [Major Images Guide](DEC3_MAJOR_IMAGES.md)
+- [Image Walkthrough For Learning](DEC3_IMAGE_WALKTHROUGH.md)
 - [Run Log](DEC3_ANALYSIS_LOG.md)
 - [Open Questions](OPEN_QUESTIONS.md)
 

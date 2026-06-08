@@ -13,6 +13,8 @@ The current completed analysis pass is for the **Dec 3 recording**.
 - [Dec 3 Results Dashboard](analysis/outputs/dec3/RESULTS_DASHBOARD.html):
   clickable local HTML dashboard of result pages and figures.
 - [Dec 3 Major Images](analysis/DEC3_MAJOR_IMAGES.md): figure-by-figure guide.
+- [Dec 3 Image Walkthrough](analysis/DEC3_IMAGE_WALKTHROUGH.md): teaching guide
+  explaining how each figure was generated and what to take away from it.
 - [Reusable Pipeline](docs/RERUN_PIPELINE.md): how to repeat this analysis for
   future recordings/conditions.
 - [Study Notes](docs/STUDY_NOTES.md): Dec 3/Dec 4 experiment notes, coordinates,
