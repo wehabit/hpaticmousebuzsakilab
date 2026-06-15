@@ -52,7 +52,7 @@ def main():
         env = np.abs(seg).mean(axis=1)
         acc += env; k += 1
     m = acc / k
-    m = m - np.median(m[t < 0])                            # baseline-subtract -> 0 = baseline level
+    m = m - np.mean(m[t < 0])                              # reference to pre-stim MEAN -> baseline average = exactly 0
 
     def winmean(a, b):
         mask = (t >= a) & (t < b); return float(m[mask].mean())
@@ -77,17 +77,18 @@ def main():
     # sustained level line + label (this is the Y-AXIS measure)
     ax.hlines(sustained, MARGIN, 3 - MARGIN, color="#b8860b", lw=2.2, zorder=6)
     ax.annotate("SUSTAINED window  (0.1-2.9 s, while buzzing)\n"
-                "→ this is what the scatter's Y-AXIS measures:\nthe average signal height during the buzz",
+                "→ this is what the scatter's Y-AXIS measures:\nthe gold line = AVERAGE signal height during the buzz",
                 (1.4, sustained), xytext=(0.5, m.max() * 0.60), textcoords="data", fontsize=9.5,
                 bbox=dict(boxstyle="round,pad=0.35", fc="#fef9e7", ec="#b8860b"),
                 arrowprops=dict(arrowstyle="->", color="#b8860b", lw=1.4))
 
-    # offset surge label (this is the DOT SIZE measure)
-    ipk = np.argmin(np.abs(t - 3.0))
+    # offset surge label (this is the DOT SIZE measure) -- red line = AVERAGE in the offset window
+    ax.hlines(offset, 3 - MARGIN, 3 + MARGIN, color="#c0392b", lw=2.8, zorder=7)
     ax.annotate("OFFSET window  (2.9-3.1 s, as the buzz STOPS)\n"
                 "→ this is what the scatter's DOT SIZE measures:\n"
-                "a brief SURGE UPWARD (signal gets bigger),\nNOT a drop",
-                (3.0, m[ipk]), xytext=(3.45, m.max() * 0.82), textcoords="data", fontsize=9.5,
+                "the red line = AVERAGE signal height in this window\n"
+                "(a brief SURGE UPWARD — bigger, NOT a drop)",
+                (3.0, offset), xytext=(3.45, m.max() * 0.82), textcoords="data", fontsize=9.5,
                 bbox=dict(boxstyle="round,pad=0.35", fc="#fdecea", ec="#c0392b"),
                 arrowprops=dict(arrowstyle="->", color="#c0392b", lw=1.6))
 
