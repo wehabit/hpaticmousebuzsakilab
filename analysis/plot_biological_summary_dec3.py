@@ -210,26 +210,42 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
     gs = fig.add_gridspec(2, 3, height_ratios=[1.2, 1.0], hspace=0.85, wspace=0.34,
                           left=0.07, right=0.97, top=0.80, bottom=0.15)
 
-    # ---------- TOP: the REAL response (two broadband windows) ----------
+    # ---------- TOP: the REAL response (two broadband windows) with 95% bootstrap CIs ----------
+    ci = (pd.read_csv(Path("analysis/outputs/dec3/trial_level_stats/condition_summary_ci.csv"))
+          .set_index("condition").reindex(CONDITION_ORDER))
+    sus = ci["sustained_broadband_delta_mean"].to_numpy()
+    off = ci["offset_broadband_delta_mean"].to_numpy()
+    sus_err = np.vstack([np.clip(sus - ci["sustained_broadband_delta_ci_low"], 0, None),
+                         np.clip(ci["sustained_broadband_delta_ci_high"] - sus, 0, None)])
+    off_err = np.vstack([np.clip(off - ci["offset_broadband_delta_ci_low"], 0, None),
+                         np.clip(ci["offset_broadband_delta_ci_high"] - off, 0, None)])
+    sus_sig = ci["sustained_broadband_delta_ci_low"].to_numpy() > 0          # CI clears 0 -> reliable
+    off_sig = ci["offset_broadband_delta_ci_low"].to_numpy() > 0
+
     axt = fig.add_subplot(gs[0, :])
-    axt.bar(x - w/2, frame["sustained_broadband"], w, color="#f1c40f", edgecolor="black", lw=0.4,
-            label="DURING the buzz (sustained)")
-    axt.bar(x + w/2, frame["offset_broadband"], w, color="#c0392b", edgecolor="black", lw=0.4,
-            label="as the buzz STOPS (offset surge)")
+    axt.bar(x - w/2, sus, w, yerr=sus_err, capsize=3, color="#f1c40f", edgecolor="black", lw=0.4,
+            label="DURING the buzz (sustained)", error_kw=dict(lw=1.1, ecolor="#333"))
+    axt.bar(x + w/2, off, w, yerr=off_err, capsize=3, color="#c0392b", edgecolor="black", lw=0.4,
+            label="as the buzz STOPS (offset surge)", error_kw=dict(lw=1.1, ecolor="#333"))
     axt.axhline(0, color="black", lw=0.8)
     axt.axvline(2.5, color="#888", ls=":", lw=1.2)
     axt.set_xticks(x); axt.set_xticklabels(labels, fontsize=9)
-    axt.set_ylabel("signal increase vs baseline\nmean |LFP| (a.u.)", fontsize=10)
-    axt.set_title("STEP 1 — Does the brain REACT to the buzz?    YES: the signal gets bigger (strongest at 26 Hz / 180)",
-                  fontsize=13, fontweight="bold")
-    ymax = max(frame["offset_broadband"].max(), frame["sustained_broadband"].max())
-    axt.text(1, ymax * 1.10, "5 Hz settings", ha="center", fontsize=10, color="#1a5276", fontweight="bold")
-    axt.text(4, ymax * 1.10, "26 Hz settings", ha="center", fontsize=10, color="#7b241c", fontweight="bold")
+    axt.set_ylabel("signal increase vs baseline\nmean |LFP| (a.u., trial-level)", fontsize=10)
+    axt.set_title("STEP 1 — Does the brain REACT to the buzz?    YES, esp. at 26 Hz   "
+                  "(error bars = 95% bootstrap CI over 200 trials;  * = CI clears 0 → reliable)",
+                  fontsize=12, fontweight="bold")
+    ytop = float(np.nanmax(ci[["sustained_broadband_delta_ci_high", "offset_broadband_delta_ci_high"]].to_numpy()))
+    axt.text(1, ytop * 1.20, "5 Hz settings", ha="center", fontsize=10, color="#1a5276", fontweight="bold")
+    axt.text(4, ytop * 1.20, "26 Hz settings", ha="center", fontsize=10, color="#7b241c", fontweight="bold")
     axt.legend(loc="upper left", fontsize=9)
-    axt.grid(axis="y", alpha=0.2); axt.margins(y=0.20)
-    for xi, (sv, ov) in enumerate(zip(frame["sustained_broadband"], frame["offset_broadband"])):
-        axt.text(xi - w/2, sv, f"{sv:.0f}", ha="center", va="bottom" if sv >= 0 else "top", fontsize=7.5)
-        axt.text(xi + w/2, ov, f"{ov:.0f}", ha="center", va="bottom" if ov >= 0 else "top", fontsize=7.5)
+    axt.grid(axis="y", alpha=0.2); axt.margins(y=0.26)
+    for xi in range(len(x)):
+        if sus_sig[xi]:
+            axt.text(xi - w/2, ci["sustained_broadband_delta_ci_high"].iloc[xi] + ytop * 0.04, "*",
+                     ha="center", fontsize=14, color="#b8860b", fontweight="bold")
+        if off_sig[xi]:
+            axt.text(xi + w/2, ci["offset_broadband_delta_ci_high"].iloc[xi] + ytop * 0.04, "*",
+                     ha="center", fontsize=14, color="#c0392b", fontweight="bold")
 
     # ---------- BOTTOM: three frequency-following tests (all ~0) ----------
     bmetrics = [
@@ -253,8 +269,10 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
 
     # narration
     fig.suptitle("Haptic response — the whole story in one figure", fontsize=16, fontweight="bold", y=0.985)
-    fig.text(0.5, 0.91, "6 buzz settings along the x-axis (frequency / amplitude).  "
-             "Blue = 5 Hz, red = 26 Hz.", ha="center", fontsize=10, style="italic", color="#333")
+    fig.text(0.5, 0.915, "6 buzz settings along the x-axis (frequency / amplitude).  Blue = 5 Hz, red = 26 Hz.",
+             ha="center", fontsize=10, style="italic", color="#333")
+    fig.text(0.5, 0.895, "(STEP 1 uses trial-level group-referenced values + 95% CI; absolute a.u. are smaller than the "
+             "per-channel fingerprint, but it is the same effect.)", ha="center", fontsize=8.2, style="italic", color="#777")
     fig.text(0.5, 0.475, "STEP 2 — Does the brain FOLLOW the buzz's rhythm?    NO: all three measures sit at ≈ 0",
              ha="center", fontsize=13, fontweight="bold")
     fig.text(0.5, 0.045,
