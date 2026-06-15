@@ -117,7 +117,7 @@ def plot_biology_quadrants(frame: pd.DataFrame, output: Path) -> None:
     ax.scatter(x, y, s=sizes, c=colors, alpha=0.8, edgecolor="black", linewidth=0.9, zorder=5)
     for row in frame.itertuples(index=False):
         ax.annotate(
-            row.condition.replace("amp", "").replace("_freq", " / ") + " Hz",
+            f"{int(row.frequency)} Hz / {int(row.amplitude)}",
             (row.driven_power_analysis_group_median, row.sustained_broadband),
             xytext=(8, 8), textcoords="offset points", fontsize=9, fontweight="bold",
         )
@@ -129,21 +129,17 @@ def plot_biology_quadrants(frame: pd.DataFrame, output: Path) -> None:
 
     # key takeaway arrow to the biggest responder
     big = frame.loc[frame["sustained_broadband"].idxmax()]
-    ax.annotate("biggest response (180/26) sits at x≈0:\nlarge broadband bump, but NO power\nincrease at its own 26 Hz → broadband,\nnot frequency-following",
+    ax.annotate("biggest response (26 Hz / 180) sits at x≈0:\nlarge broadband bump, but NO power\nincrease at its own 26 Hz → broadband,\nnot frequency-following",
                 (big["driven_power_analysis_group_median"], big["sustained_broadband"]),
                 xytext=(0.30, 0.62), textcoords="axes fraction", fontsize=9, color="#222",
                 bbox=dict(boxstyle="round,pad=0.35", fc="#fffbe6", ec="#b8860b"),
                 arrowprops=dict(arrowstyle="->", color="#b8860b", lw=1.4))
 
-    # legends: color (frequency) + dot size (offset response)
-    color_handles = [plt.Line2D([0], [0], marker="o", color="w", markerfacecolor=COLORS[5], markersize=11, label="5 Hz"),
-                     plt.Line2D([0], [0], marker="o", color="w", markerfacecolor=COLORS[26], markersize=11, label="26 Hz")]
-    leg1 = ax.legend(handles=color_handles, title="stim frequency (color)", loc="center left", fontsize=9)
-    ax.add_artist(leg1)
+    # legend: dot size (offset response, a.u.). Color still encodes frequency, now also in each label.
     size_vals = [25, 50, 100]
     size_handles = [plt.scatter([], [], s=np.clip(v, 12, 110) * 5, c="#888", edgecolor="black",
                                 label=f"{v}") for v in size_vals]
-    ax.legend(handles=size_handles, title="offset response (dot size)", loc="lower right",
+    ax.legend(handles=size_handles, title="offset response, a.u.\n(dot size)", loc="lower right",
               labelspacing=1.4, borderpad=1.0, fontsize=9, framealpha=0.45)
     ax.grid(alpha=0.2, zorder=1)
     fig.tight_layout()
