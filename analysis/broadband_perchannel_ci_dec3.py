@@ -29,7 +29,7 @@ def main():
     p.add_argument("--n-boot", type=int, default=2000)
     args = p.parse_args()
     fs = args.fs
-    good = [c for c in range(NCH) if c not in BAD]
+    channels = list(range(NCH))          # all 128, matching artifact_aware_lfp / biological_interpretation
     n = args.lfp.stat().st_size // 2 // NCH
     lfp = np.memmap(args.lfp, dtype="<i2", mode="r", shape=(n, NCH))
     seq = pd.read_csv(args.sequence)
@@ -49,7 +49,9 @@ def main():
             s = int(round(t0 * fs)) - npre
             if s < 0 or s + ns > n:
                 continue
-            a = np.abs(np.asarray(lfp[s:s + ns, good], dtype=np.float32))
+            seg = np.asarray(lfp[s:s + ns, channels], dtype=np.float32)
+            seg -= np.median(seg[pre_m], axis=0, keepdims=True)   # per-trial per-channel baseline (matches artifact_aware)
+            a = np.abs(seg)
             pre_lvl = a[pre_m].mean(axis=0)
             sus_vals.append(float((a[sus_m].mean(axis=0) - pre_lvl).mean()))
             off_vals.append(float((a[off_m].mean(axis=0) - pre_lvl).mean()))
