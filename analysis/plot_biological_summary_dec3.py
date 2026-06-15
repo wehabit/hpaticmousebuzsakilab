@@ -267,7 +267,7 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
     axt.axvline(2.5, color="#888", ls=":", lw=1.2)
     axt.set_xticks(x); axt.set_xticklabels(labels, fontsize=9)
     axt.set_ylabel("signal increase vs baseline\nmean |LFP| (a.u.)", fontsize=10)
-    axt.set_title("STEP 1 — Does the brain REACT to the buzz?    Only 26 Hz / 180 is reliable   "
+    axt.set_title("STEP 1 — Does the brain REACT to the buzz?    YES, at 26 Hz (strongest at 180)   "
                   "(error bars = 95% bootstrap CI over 200 trials;  * = CI clears 0)",
                   fontsize=12, fontweight="bold")
     ytop = float(np.nanmax(ci[["sustained_ci_high", "offset_ci_high"]].to_numpy()))
@@ -308,8 +308,8 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
     fig.text(0.5, 0.915, "6 buzz settings along the x-axis (frequency / amplitude).  "
              "STEP 1 colors = time window (yellow = during buzz, blue = at buzz-stop);  STEP 2 colors = frequency (blue 5 Hz, red 26 Hz).",
              ha="center", fontsize=9.5, style="italic", color="#333")
-    fig.text(0.5, 0.895, "(STEP 1 bars = per-trial mean ± 95% bootstrap CI; * = CI clears 0. Only 26 Hz/180 is reliably non-zero.)",
-             ha="center", fontsize=8.2, style="italic", color="#777")
+    fig.text(0.5, 0.895, "(STEP 1 bars = per-trial mean ± 95% bootstrap CI; * = CI clears 0. The reliable bars are all 26 Hz, "
+             "strongest at 180; no 5 Hz bar is reliable.)", ha="center", fontsize=8.2, style="italic", color="#777")
     fig.text(0.5, 0.475, "STEP 2 — Does the brain FOLLOW the buzz's rhythm?    NO: all three measures sit at ≈ 0",
              ha="center", fontsize=13, fontweight="bold")
     fig.text(0.5, 0.045,
