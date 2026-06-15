@@ -1,10 +1,43 @@
-# Haptic Mouse Buzsaki Lab Analysis
+# Haptic Stimulation Electrophysiology — Buzsáki Lab Mouse Study
 
-Python-first analysis pipeline for Intan haptic stimulation recordings from the
-Buzsaki Lab mouse study. The repo is organized so each recording/session can be
-processed, summarized, and compared without losing the original study notes.
+## Abstract
 
-The current completed analysis pass is for the **Dec 3 recording**.
+This repository contains the electrophysiological analysis of an awake mouse
+implanted with a 128-channel high-density silicon probe (Cambridge NeuroTech;
+Intan acquisition, 20 kHz wideband / 1.25 kHz LFP) and recorded during controlled
+**vibrotactile ("haptic") stimulation**. After a 15-minute pre-stimulus baseline,
+a vibrating actuator delivered **1,200 stimulation trials** across a 120-minute
+block — each trial **3 s ON / 3 s OFF** — followed by a 30-minute post-stimulus
+period. Trials were drawn from **six interleaved conditions** crossing three drive
+amplitudes (100 / 180 / 250) with two carrier frequencies (**5 and 26 Hz**),
+~200 repeats each; an accelerometer TTL recorded the physical vibration and
+anchors every trial to its true stimulus onset.
+
+The central questions are whether neural activity (i) **responds** to the stimulus
+and (ii) **entrains** to its 5/26 Hz rhythm. We characterize the local field
+potential and single-unit spiking with event-aligned LFP, broadband and
+frequency-specific power, time-frequency and 1/f spectral-slope decomposition,
+inter-trial phase locking (PLV/ITPC) tested against an analytic chance floor,
+within-trial OFF-window and reference-scheme controls, an LFP-based movement
+proxy, and Kilosort spike sorting with peri-event time histograms — all with
+trial-level bootstrap 95% confidence intervals over 200 trials per condition.
+
+**Key findings.** (1) A **real, amplitude-graded broadband LFP response**,
+strongest for the 26 Hz / amplitude-180 condition and dominated by the
+onset/offset *transitions* rather than a sustained lift. (2) **No
+frequency-following**: no narrowband peak rises above the 1/f background and phase
+locking sits at chance — the brain registers the stimulus but does not entrain to
+its frequency. (3) **No reliable ON-vs-OFF change in single-unit firing**
+(provisional, pending manual curation). (4) These conclusions are **robust** to
+the referencing scheme and to excluding movement-contaminated trials. Methods
+follow Buzsáki-lab tooling (buzcode / CellExplorer / Kilosort) and the analysis
+conventions in Cohen (2014).
+
+The repository is organized so each recording/session can be processed,
+summarized, and compared without losing the original study notes. The current
+completed analysis pass is the **Dec 3 recording**; spike-level and laminar/CSD
+analyses remain provisional pending Phy curation and confirmation of the probe
+geometry and channel map.
 
 ## Start Here
 
