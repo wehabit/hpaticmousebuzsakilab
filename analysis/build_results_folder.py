@@ -94,7 +94,6 @@ MAP = {
         "modal_kilosort4_results/kilosort4_results/drift_amount.png",
         "modal_kilosort4_results/kilosort4_results/drift_scatter.png",
         "modal_kilosort4_results/kilosort4_results/spike_positions.png",
-        "spike_positions_modal_kilosort4.png",
         "spikeinterface_setup/spikeinterface_trace_sanity.png",
         "spike_peth_on_off/condition_mean_on_minus_off.png",
         "spike_peth_on_off/peth_onset_ks_good_units.png",

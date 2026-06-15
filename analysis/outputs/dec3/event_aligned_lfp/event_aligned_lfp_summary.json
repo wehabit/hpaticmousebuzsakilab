@@ -133,10 +133,10 @@
     126,
     127
   ],
-  "sample_rate_hz": 1250.0,
+  "sample_rate_hz": 1250,
   "pre_s": 1.0,
   "post_s": 4.0,
-  "max_trials_per_condition": 50,
+  "max_trials_per_condition": 200,
   "conditions": [
     "amp100_freq26",
     "amp100_freq5",
