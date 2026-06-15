@@ -60,9 +60,11 @@ def main():
     offset = winmean(3 - MARGIN, 3 + MARGIN)
 
     fig, ax = plt.subplots(figsize=(13, 6.2))
-    # ON / OFF backdrops
+    # PRE / ON / OFF backdrops
+    ax.axvspan(-1, 0, color="#9b59b6", alpha=0.07)
     ax.axvspan(0, 3, color="gold", alpha=0.10)
     ax.axvspan(3, 6, color="#3498db", alpha=0.06)
+    ax.text(-0.5, m.max() * 1.02, "PRE (baseline)", ha="center", fontsize=10, color="#6c3483", fontweight="bold")
     ax.text(1.5, m.max() * 1.02, "BUZZ ON (3 s)", ha="center", fontsize=10, color="#8a6d00", fontweight="bold")
     ax.text(4.5, m.max() * 1.02, "REST OFF (3 s)", ha="center", fontsize=10, color="#1f6391", fontweight="bold")
 
@@ -72,7 +74,9 @@ def main():
 
     ax.plot(t, m, color="#2c3e50", lw=1.3, zorder=5)
     ax.axhline(0, color="black", lw=1.0, ls="--")
-    ax.text(-0.95, 2, "baseline level (before any buzz) = 0", fontsize=9, color="#333", va="bottom")
+    ax.text(0.012, 0.05, "Why is baseline = 0?  We SUBTRACT the pre-stim average\nfrom the whole trace, so everything is measured RELATIVE to\nrest. The line wiggles around 0 (normal fluctuation) but averages to 0.",
+            transform=ax.transAxes, fontsize=8.3, color="#333", va="bottom",
+            bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#888", alpha=0.85))
 
     # sustained level line + label (this is the Y-AXIS measure)
     ax.hlines(sustained, MARGIN, 3 - MARGIN, color="#b8860b", lw=2.2, zorder=6)
