@@ -225,7 +225,7 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
     axt = fig.add_subplot(gs[0, :])
     axt.bar(x - w/2, sus, w, yerr=sus_err, capsize=3, color="#f1c40f", edgecolor="black", lw=0.4,
             label="DURING the buzz (sustained)", error_kw=dict(lw=1.1, ecolor="#333"))
-    axt.bar(x + w/2, off, w, yerr=off_err, capsize=3, color="#c0392b", edgecolor="black", lw=0.4,
+    axt.bar(x + w/2, off, w, yerr=off_err, capsize=3, color="#3498db", edgecolor="black", lw=0.4,
             label="as the buzz STOPS (offset surge)", error_kw=dict(lw=1.1, ecolor="#333"))
     axt.axhline(0, color="black", lw=0.8)
     axt.axvline(2.5, color="#888", ls=":", lw=1.2)
@@ -245,7 +245,7 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
                      ha="center", fontsize=14, color="#b8860b", fontweight="bold")
         if off_sig[xi]:
             axt.text(xi + w/2, ci["offset_broadband_delta_ci_high"].iloc[xi] + ytop * 0.04, "*",
-                     ha="center", fontsize=14, color="#c0392b", fontweight="bold")
+                     ha="center", fontsize=14, color="#2e86c1", fontweight="bold")
 
     # ---------- BOTTOM: three frequency-following tests (all ~0) ----------
     bmetrics = [
@@ -269,8 +269,9 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
 
     # narration
     fig.suptitle("Haptic response — the whole story in one figure", fontsize=16, fontweight="bold", y=0.985)
-    fig.text(0.5, 0.915, "6 buzz settings along the x-axis (frequency / amplitude).  Blue = 5 Hz, red = 26 Hz.",
-             ha="center", fontsize=10, style="italic", color="#333")
+    fig.text(0.5, 0.915, "6 buzz settings along the x-axis (frequency / amplitude).  "
+             "STEP 1 colors = time window (yellow = during buzz, blue = at buzz-stop);  STEP 2 colors = frequency (blue 5 Hz, red 26 Hz).",
+             ha="center", fontsize=9.5, style="italic", color="#333")
     fig.text(0.5, 0.895, "(STEP 1 uses trial-level group-referenced values + 95% CI; absolute a.u. are smaller than the "
              "per-channel fingerprint, but it is the same effect.)", ha="center", fontsize=8.2, style="italic", color="#777")
     fig.text(0.5, 0.475, "STEP 2 — Does the brain FOLLOW the buzz's rhythm?    NO: all three measures sit at ≈ 0",
