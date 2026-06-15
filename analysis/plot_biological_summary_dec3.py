@@ -47,7 +47,7 @@ def plot_condition_fingerprint(frame: pd.DataFrame, output: Path) -> None:
     ]
     fig, axes = plt.subplots(1, len(metrics), figsize=(19, 6.2), sharex=False)
     x = np.arange(len(frame))
-    labels = [c.replace("amp", "").replace("_freq", "/") for c in frame["condition"]]
+    labels = [f"{int(fr)}Hz/{int(am)}" for am, fr in zip(frame["amplitude"], frame["frequency"])]
     colors = [COLORS[freq] for freq in frame["frequency"]]
 
     for ax, (metric, title, updesc, unit, is_real, fmt) in zip(axes, metrics):
@@ -148,41 +148,54 @@ def plot_biology_quadrants(frame: pd.DataFrame, output: Path) -> None:
 
 
 def plot_frequency_amplitude_matrix(frame: pd.DataFrame, output: Path) -> None:
+    # (metric, title, plain-English meaning + unit, colorbar label, is this the REAL effect?)
     metrics = [
-        ("sustained_broadband", "Broadband"),
-        ("driven_power_analysis_group_median", "Driven power"),
-        ("sustained_timefreq", "TF driven band"),
-        ("sustained_minus_pre_plv", "PLV delta"),
+        ("sustained_broadband", "Overall response",
+         "how big the signal got\nduring the buzz", "mean |LFP| increase (a.u.)", True),
+        ("driven_power_analysis_group_median", "Power AT the stim freq",
+         "did power rise at 5/26 Hz?", "log2(stim / baseline)\n0 = no change", False),
+        ("sustained_timefreq", "Time-freq at stim freq",
+         "sustained power at 5/26 Hz", "normalized power\n0 = no change", False),
+        ("sustained_minus_pre_plv", "Phase-locking",
+         "same phase every trial?", "PLV change\n0 = no locking", False),
     ]
     amps = [100, 180, 250]
     freqs = [5, 26]
-    fig, axes = plt.subplots(1, len(metrics), figsize=(14, 4), sharey=True)
+    fig, axes = plt.subplots(1, len(metrics), figsize=(16, 4.8), sharey=True)
 
-    for ax, (metric, title) in zip(axes, metrics):
+    for ax, (metric, title, meaning, cbar_label, is_real) in zip(axes, metrics):
         matrix = np.full((len(freqs), len(amps)), np.nan)
         for i, freq in enumerate(freqs):
             for j, amp in enumerate(amps):
                 row = frame[(frame["frequency"] == freq) & (frame["amplitude"] == amp)]
                 if not row.empty:
                     matrix[i, j] = row.iloc[0][metric]
-        vmax = np.nanpercentile(np.abs(matrix), 100)
-        if metric == "sustained_broadband":
+        if is_real:
             image = ax.imshow(matrix, aspect="auto", cmap="viridis")
         else:
-            vmax = max(vmax, 0.01)
+            vmax = max(np.nanpercentile(np.abs(matrix), 100), 0.01)
             image = ax.imshow(matrix, aspect="auto", cmap="coolwarm", vmin=-vmax, vmax=vmax)
         for i in range(len(freqs)):
             for j in range(len(amps)):
-                ax.text(j, i, f"{matrix[i, j]:.2f}", ha="center", va="center", fontsize=9)
-        ax.set_title(title)
-        ax.set_xticks(np.arange(len(amps)))
-        ax.set_xticklabels(amps)
-        ax.set_yticks(np.arange(len(freqs)))
-        ax.set_yticklabels([f"{f} Hz" for f in freqs])
-        ax.set_xlabel("Amplitude")
-        fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
-    fig.suptitle("Amplitude x Frequency Summary")
-    fig.tight_layout(rect=(0, 0, 1, 0.9))
+                ax.text(j, i, f"{matrix[i, j]:.2f}", ha="center", va="center", fontsize=12,
+                        fontweight="bold", bbox=dict(boxstyle="round,pad=0.18", fc="white", ec="none", alpha=0.65))
+        ax.set_title(title, fontsize=12, fontweight="bold", pad=24)
+        ax.text(0.5, 1.02, meaning, transform=ax.transAxes, ha="center", va="bottom",
+                fontsize=8.5, style="italic", color="#444")
+        ax.set_xticks(np.arange(len(amps))); ax.set_xticklabels(amps)
+        ax.set_yticks(np.arange(len(freqs))); ax.set_yticklabels([f"{f} Hz" for f in freqs])
+        ax.set_xlabel("amplitude setting")
+        tag = ("REAL response", "#1a7a3a", "#e8f6ec") if is_real else ("≈ 0  (no entrainment)", "#8a6d00", "#fdf5e0")
+        ax.text(0.5, -0.30, tag[0], transform=ax.transAxes, ha="center", fontsize=9, fontweight="bold",
+                color=tag[1], bbox=dict(boxstyle="round,pad=0.25", fc=tag[2], ec=tag[1]))
+        cb = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
+        cb.set_label(cbar_label, fontsize=8)
+    axes[0].set_ylabel("stim frequency", fontsize=10)
+    fig.suptitle("Amplitude × Frequency grid — the SAME numbers as condition_fingerprint, arranged by setting\n"
+                 "Each cell = the measured value for that  (frequency row × amplitude column).  "
+                 "Only 'Overall response' is non-zero; the other three hover at 0 → no frequency-following.",
+                 fontsize=12, fontweight="bold")
+    fig.tight_layout(rect=(0, 0.02, 1, 0.86))
     fig.savefig(output, dpi=180)
     plt.close(fig)
 
