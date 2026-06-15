@@ -50,9 +50,26 @@ def plot_condition_fingerprint(frame: pd.DataFrame, output: Path) -> None:
     labels = [f"{int(fr)}Hz/{int(am)}" for am, fr in zip(frame["amplitude"], frame["frequency"])]
     colors = [COLORS[freq] for freq in frame["frequency"]]
 
+    # per-trial bootstrap 95% CIs for the two broadband panels (same per-channel scale as the bars)
+    try:
+        ci_df = pd.read_csv(OUTPUT / "broadband_perchannel_ci.csv").set_index("condition").reindex(frame["condition"])
+    except FileNotFoundError:
+        ci_df = None
+    CI_COLS = {"sustained_broadband": ("sustained_mean", "sustained_ci_low", "sustained_ci_high"),
+               "offset_broadband": ("offset_mean", "offset_ci_low", "offset_ci_high")}
+
     for ax, (metric, title, updesc, unit, is_real, fmt) in zip(axes, metrics):
-        values = frame[metric].to_numpy()
-        bars = ax.bar(x, values, color=colors, alpha=0.9, edgecolor="black", linewidth=0.4)
+        ci_cols = CI_COLS.get(metric)
+        if ci_df is not None and ci_cols is not None:
+            mcol, lcol, hcol = ci_cols
+            values = ci_df[mcol].to_numpy()
+            yerr = np.vstack([np.clip(values - ci_df[lcol].to_numpy(), 0, None),
+                              np.clip(ci_df[hcol].to_numpy() - values, 0, None)])
+            sig = ci_df[lcol].to_numpy() > 0                      # CI clears 0 -> reliable
+        else:
+            values = frame[metric].to_numpy(); yerr = None; sig = None
+        ax.bar(x, values, color=colors, alpha=0.9, edgecolor="black", linewidth=0.4,
+               yerr=yerr, capsize=3, error_kw=dict(lw=1.0, ecolor="#333"))
         ax.axhline(0, color="black", linewidth=0.9)
         ax.set_title(title, fontsize=12, fontweight="bold", pad=26)
         ax.text(0.5, 1.02, f"↑ = {updesc}", transform=ax.transAxes, ha="center", va="bottom",
@@ -61,15 +78,21 @@ def plot_condition_fingerprint(frame: pd.DataFrame, output: Path) -> None:
         ax.set_xticks(x)
         ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=8)
         ax.grid(axis="y", alpha=0.25)
-        # value labels on each bar
+        # value labels (above the error bar when present)
         ymax = max(abs(values.min()), abs(values.max())) or 1
         for xi, v in zip(x, values):
-            ax.text(xi, v + (0.04 * ymax if v >= 0 else -0.04 * ymax), fmt.format(v),
+            top = v + (yerr[1][xi] if (yerr is not None and v >= 0) else 0.0)
+            ax.text(xi, top + (0.05 * ymax if v >= 0 else -0.05 * ymax), fmt.format(v),
                     ha="center", va="bottom" if v >= 0 else "top", fontsize=7.5)
-        ax.margins(y=0.18)
+        if sig is not None:
+            for xi in range(len(x)):
+                if sig[xi]:
+                    ax.text(xi, values[xi] + yerr[1][xi] + 0.16 * ymax, "*", ha="center",
+                            fontsize=13, fontweight="bold", color="#1a7a3a")
+        ax.margins(y=0.28 if yerr is not None else 0.18)
         # flag the panels that carry a REAL effect vs the near-zero ones
         if is_real:
-            ax.text(0.5, 0.93, "REAL response", transform=ax.transAxes, ha="center", fontsize=9,
+            ax.text(0.5, 0.96, "REAL response", transform=ax.transAxes, ha="center", fontsize=9,
                     fontweight="bold", color="#1a7a3a", zorder=6,
                     bbox=dict(boxstyle="round,pad=0.25", fc="#e8f6ec", ec="#1a7a3a", alpha=0.4))
         else:
@@ -163,11 +186,19 @@ def plot_frequency_amplitude_matrix(frame: pd.DataFrame, output: Path) -> None:
     freqs = [5, 26]
     fig, axes = plt.subplots(1, len(metrics), figsize=(16, 5.2), sharey=True)
     tag_specs = []
+    try:                                  # recomputed per-trial broadband (same source as fingerprint/explainer)
+        bb = pd.read_csv(OUTPUT / "broadband_perchannel_ci.csv").set_index("condition")
+    except FileNotFoundError:
+        bb = None
 
     for ax, (metric, title, meaning, cbar_label, is_real) in zip(axes, metrics):
         matrix = np.full((len(freqs), len(amps)), np.nan)
         for i, freq in enumerate(freqs):
             for j, amp in enumerate(amps):
+                cond = f"amp{amp}_freq{freq}"
+                if metric == "sustained_broadband" and bb is not None and cond in bb.index:
+                    matrix[i, j] = bb.loc[cond, "sustained_mean"]
+                    continue
                 row = frame[(frame["frequency"] == freq) & (frame["amplitude"] == amp)]
                 if not row.empty:
                     matrix[i, j] = row.iloc[0][metric]
@@ -216,16 +247,16 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
                           left=0.07, right=0.97, top=0.80, bottom=0.15)
 
     # ---------- TOP: the REAL response (two broadband windows) with 95% bootstrap CIs ----------
-    ci = (pd.read_csv(Path("analysis/outputs/dec3/trial_level_stats/condition_summary_ci.csv"))
+    ci = (pd.read_csv(OUTPUT / "broadband_perchannel_ci.csv")
           .set_index("condition").reindex(CONDITION_ORDER))
-    sus = ci["sustained_broadband_delta_mean"].to_numpy()
-    off = ci["offset_broadband_delta_mean"].to_numpy()
-    sus_err = np.vstack([np.clip(sus - ci["sustained_broadband_delta_ci_low"], 0, None),
-                         np.clip(ci["sustained_broadband_delta_ci_high"] - sus, 0, None)])
-    off_err = np.vstack([np.clip(off - ci["offset_broadband_delta_ci_low"], 0, None),
-                         np.clip(ci["offset_broadband_delta_ci_high"] - off, 0, None)])
-    sus_sig = ci["sustained_broadband_delta_ci_low"].to_numpy() > 0          # CI clears 0 -> reliable
-    off_sig = ci["offset_broadband_delta_ci_low"].to_numpy() > 0
+    sus = ci["sustained_mean"].to_numpy()
+    off = ci["offset_mean"].to_numpy()
+    sus_err = np.vstack([np.clip(sus - ci["sustained_ci_low"], 0, None),
+                         np.clip(ci["sustained_ci_high"] - sus, 0, None)])
+    off_err = np.vstack([np.clip(off - ci["offset_ci_low"], 0, None),
+                         np.clip(ci["offset_ci_high"] - off, 0, None)])
+    sus_sig = ci["sustained_ci_low"].to_numpy() > 0          # CI clears 0 -> reliable
+    off_sig = ci["offset_ci_low"].to_numpy() > 0
 
     axt = fig.add_subplot(gs[0, :])
     axt.bar(x - w/2, sus, w, yerr=sus_err, capsize=3, color="#f1c40f", edgecolor="black", lw=0.4,
@@ -235,21 +266,21 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
     axt.axhline(0, color="black", lw=0.8)
     axt.axvline(2.5, color="#888", ls=":", lw=1.2)
     axt.set_xticks(x); axt.set_xticklabels(labels, fontsize=9)
-    axt.set_ylabel("signal increase vs baseline\nmean |LFP| (a.u., trial-level)", fontsize=10)
-    axt.set_title("STEP 1 — Does the brain REACT to the buzz?    YES, esp. at 26 Hz   "
-                  "(error bars = 95% bootstrap CI over 200 trials;  * = CI clears 0 → reliable)",
+    axt.set_ylabel("signal increase vs baseline\nmean |LFP| (a.u.)", fontsize=10)
+    axt.set_title("STEP 1 — Does the brain REACT to the buzz?    Only 26 Hz / 180 is reliable   "
+                  "(error bars = 95% bootstrap CI over 200 trials;  * = CI clears 0)",
                   fontsize=12, fontweight="bold")
-    ytop = float(np.nanmax(ci[["sustained_broadband_delta_ci_high", "offset_broadband_delta_ci_high"]].to_numpy()))
+    ytop = float(np.nanmax(ci[["sustained_ci_high", "offset_ci_high"]].to_numpy()))
     axt.text(1, ytop * 1.20, "5 Hz settings", ha="center", fontsize=10, color="#1a5276", fontweight="bold")
     axt.text(4, ytop * 1.20, "26 Hz settings", ha="center", fontsize=10, color="#7b241c", fontweight="bold")
     axt.legend(loc="upper left", fontsize=9)
     axt.grid(axis="y", alpha=0.2); axt.margins(y=0.26)
     for xi in range(len(x)):
         if sus_sig[xi]:
-            axt.text(xi - w/2, ci["sustained_broadband_delta_ci_high"].iloc[xi] + ytop * 0.04, "*",
+            axt.text(xi - w/2, ci["sustained_ci_high"].iloc[xi] + ytop * 0.04, "*",
                      ha="center", fontsize=14, color="#b8860b", fontweight="bold")
         if off_sig[xi]:
-            axt.text(xi + w/2, ci["offset_broadband_delta_ci_high"].iloc[xi] + ytop * 0.04, "*",
+            axt.text(xi + w/2, ci["offset_ci_high"].iloc[xi] + ytop * 0.04, "*",
                      ha="center", fontsize=14, color="#2e86c1", fontweight="bold")
 
     # ---------- BOTTOM: three frequency-following tests (all ~0) ----------
@@ -277,8 +308,8 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
     fig.text(0.5, 0.915, "6 buzz settings along the x-axis (frequency / amplitude).  "
              "STEP 1 colors = time window (yellow = during buzz, blue = at buzz-stop);  STEP 2 colors = frequency (blue 5 Hz, red 26 Hz).",
              ha="center", fontsize=9.5, style="italic", color="#333")
-    fig.text(0.5, 0.895, "(STEP 1 uses trial-level group-referenced values + 95% CI; absolute a.u. are smaller than the "
-             "per-channel fingerprint, but it is the same effect.)", ha="center", fontsize=8.2, style="italic", color="#777")
+    fig.text(0.5, 0.895, "(STEP 1 bars = per-trial mean ± 95% bootstrap CI; * = CI clears 0. Only 26 Hz/180 is reliably non-zero.)",
+             ha="center", fontsize=8.2, style="italic", color="#777")
     fig.text(0.5, 0.475, "STEP 2 — Does the brain FOLLOW the buzz's rhythm?    NO: all three measures sit at ≈ 0",
              ha="center", fontsize=13, fontweight="bold")
     fig.text(0.5, 0.045,
