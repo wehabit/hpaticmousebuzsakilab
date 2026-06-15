@@ -33,6 +33,15 @@ the referencing scheme and to excluding movement-contaminated trials. Methods
 follow Buzsáki-lab tooling (buzcode / CellExplorer / Kilosort) and the analysis
 conventions in Cohen (2014).
 
+**Important caveat (stimulus delivery).** On later review we found that the
+delivered vibration was **not clean at the nominal 5 and 26 Hz** — the input
+signal's frequency content at those rates could not be clearly resolved in this
+session. The absence of frequency entrainment must therefore be read partly as a
+**limitation of stimulus delivery**, not solely as a neural result. The next
+recording addresses this directly: it drives the stimulus from a **digital TTL**
+and verifies the **clarity of the input signal** at the target frequencies, so a
+genuine entrainment test is possible.
+
 The repository is organized so each recording/session can be processed,
 summarized, and compared without losing the original study notes. The current
 completed analysis pass is the **Dec 3 recording**; spike-level and laminar/CSD
