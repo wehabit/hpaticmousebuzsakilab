@@ -59,44 +59,47 @@ def main():
     sustained = winmean(MARGIN, 3 - MARGIN)
     offset = winmean(3 - MARGIN, 3 + MARGIN)
 
-    fig, ax = plt.subplots(figsize=(13, 6.2))
+    fig, ax = plt.subplots(figsize=(13, 7.4))
+    data_lo = min(0.0, float(m.min())); data_hi = float(m.max()) * 1.12
+    band = (data_hi - data_lo) * 0.62                 # empty band below the trace for the text boxes
+    band_y = data_lo - band * 0.55
+    ax.set_xlim(-1, 6); ax.set_ylim(data_lo - band, data_hi)
+    lbl_y = data_hi * 0.96
+
     # PRE / ON / OFF backdrops
     ax.axvspan(-1, 0, color="#9b59b6", alpha=0.07)
     ax.axvspan(0, 3, color="gold", alpha=0.10)
     ax.axvspan(3, 6, color="#3498db", alpha=0.06)
-    ax.text(-0.5, m.max() * 1.02, "PRE (baseline)", ha="center", fontsize=10, color="#6c3483", fontweight="bold")
-    ax.text(1.5, m.max() * 1.02, "BUZZ ON (3 s)", ha="center", fontsize=10, color="#8a6d00", fontweight="bold")
-    ax.text(4.5, m.max() * 1.02, "REST OFF (3 s)", ha="center", fontsize=10, color="#1f6391", fontweight="bold")
+    ax.text(-0.5, lbl_y, "PRE (baseline)", ha="center", fontsize=10, color="#6c3483", fontweight="bold")
+    ax.text(1.5, lbl_y, "BUZZ ON (3 s)", ha="center", fontsize=10, color="#8a6d00", fontweight="bold")
+    ax.text(4.5, lbl_y, "REST OFF (3 s)", ha="center", fontsize=10, color="#1f6391", fontweight="bold")
 
     # the two measurement windows
-    ax.axvspan(MARGIN, 3 - MARGIN, color="#f1c40f", alpha=0.22)
-    ax.axvspan(3 - MARGIN, 3 + MARGIN, color="#c0392b", alpha=0.30)
+    ax.axvspan(MARGIN, 3 - MARGIN, color="#f1c40f", alpha=0.18)
+    ax.axvspan(3 - MARGIN, 3 + MARGIN, color="#c0392b", alpha=0.25)
 
     ax.plot(t, m, color="#2c3e50", lw=1.3, zorder=5)
     ax.axhline(0, color="black", lw=1.0, ls="--")
-    ax.text(0.012, 0.05, "Why is baseline = 0?  We SUBTRACT the pre-stim average\nfrom the whole trace, so everything is measured RELATIVE to\nrest. The line wiggles around 0 (normal fluctuation) but averages to 0.",
-            transform=ax.transAxes, fontsize=8.3, color="#333", va="bottom",
-            bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#888", alpha=0.85))
+    ax.axhline(data_lo, color="#cccccc", lw=0.8)          # divider: trace above, text boxes below
 
-    # sustained level line + label (this is the Y-AXIS measure)
-    ax.hlines(sustained, MARGIN, 3 - MARGIN, color="#b8860b", lw=2.2, zorder=6)
-    ax.annotate("SUSTAINED window  (0.1-2.9 s, while buzzing)\n"
-                "→ this is what the scatter's Y-AXIS measures:\nthe gold line = AVERAGE signal height during the buzz",
-                (1.4, sustained), xytext=(0.5, m.max() * 0.60), textcoords="data", fontsize=9.5,
-                bbox=dict(boxstyle="round,pad=0.35", fc="#fef9e7", ec="#b8860b"),
+    # average-level lines (these are the values the scatter encodes)
+    ax.hlines(sustained, MARGIN, 3 - MARGIN, color="#b8860b", lw=2.4, zorder=6)
+    ax.hlines(offset, 3 - MARGIN, 3 + MARGIN, color="#c0392b", lw=3.0, zorder=7)
+
+    # all explanation boxes sit in the band BELOW the trace, arrows pointing up to their lines
+    ax.annotate("Baseline = 0\npre-stim average subtracted,\nso all values are relative to rest",
+                xy=(-0.5, 0), xytext=(0.0, band_y), ha="center", va="center", fontsize=8.2,
+                bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#888"),
+                arrowprops=dict(arrowstyle="->", color="#888", lw=1.2))
+    ax.annotate("SUSTAINED  (0.1-2.9 s, while buzzing)\n= the scatter's Y-AXIS\ngold line = AVERAGE signal height",
+                xy=(1.4, sustained), xytext=(2.6, band_y), ha="center", va="center", fontsize=8.4,
+                bbox=dict(boxstyle="round,pad=0.3", fc="#fef9e7", ec="#b8860b"),
                 arrowprops=dict(arrowstyle="->", color="#b8860b", lw=1.4))
-
-    # offset surge label (this is the DOT SIZE measure) -- red line = AVERAGE in the offset window
-    ax.hlines(offset, 3 - MARGIN, 3 + MARGIN, color="#c0392b", lw=2.8, zorder=7)
-    ax.annotate("OFFSET window  (2.9-3.1 s, as the buzz STOPS)\n"
-                "→ this is what the scatter's DOT SIZE measures:\n"
-                "the red line = AVERAGE signal height in this window\n"
-                "(a brief SURGE UPWARD — bigger, NOT a drop)",
-                (3.0, offset), xytext=(3.45, m.max() * 0.82), textcoords="data", fontsize=9.5,
-                bbox=dict(boxstyle="round,pad=0.35", fc="#fdecea", ec="#c0392b"),
+    ax.annotate("OFFSET  (2.9-3.1 s, as buzz STOPS)\n= the scatter's DOT SIZE\nred line = AVERAGE\n(a SURGE up, not a drop)",
+                xy=(3.0, offset), xytext=(4.8, band_y), ha="center", va="center", fontsize=8.4,
+                bbox=dict(boxstyle="round,pad=0.3", fc="#fdecea", ec="#c0392b"),
                 arrowprops=dict(arrowstyle="->", color="#c0392b", lw=1.6))
 
-    ax.set_xlim(-1, 6); ax.set_ylim(min(0, m.min()) - 5, m.max() * 1.12)
     ax.set_xlabel("time from buzz onset (s)")
     ax.set_ylabel("brain signal size above baseline\nmean |LFP| - baseline (a.u.)")
     ax.set_title("What the two measures mean: SAME signal size, TWO different time windows  (26 Hz / 180)",
