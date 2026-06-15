@@ -111,13 +111,13 @@ def plot_biology_quadrants(frame: pd.DataFrame, output: Path) -> None:
     ax.axvspan(ax.get_xlim()[0], 0, color="#fdeceb", alpha=0.6, zorder=0)   # left  = power went DOWN
     ax.text(0.985, 0.975, "RIGHT half = power INCREASED at the\nstim frequency (true entrainment)",
             transform=ax.transAxes, ha="right", va="top", fontsize=8.5, color="#1a7a3a")
-    ax.text(0.015, 0.02, "LEFT half = NO increase at the\nstim frequency", transform=ax.transAxes,
-            ha="left", va="bottom", fontsize=8.5, color="#a93226")
+    ax.text(0.015, 0.975, "LEFT half = NO increase at the\nstim frequency", transform=ax.transAxes,
+            ha="left", va="top", fontsize=8.5, color="#a93226")
 
     ax.scatter(x, y, s=sizes, c=colors, alpha=0.8, edgecolor="black", linewidth=0.9, zorder=5)
     for row in frame.itertuples(index=False):
         ax.annotate(
-            row.condition.replace("amp", "").replace("_freq", " Hz / ") + " Hz",
+            row.condition.replace("amp", "").replace("_freq", " / ") + " Hz",
             (row.driven_power_analysis_group_median, row.sustained_broadband),
             xytext=(8, 8), textcoords="offset points", fontsize=9, fontweight="bold",
         )
@@ -138,7 +138,7 @@ def plot_biology_quadrants(frame: pd.DataFrame, output: Path) -> None:
     # legends: color (frequency) + dot size (offset response)
     color_handles = [plt.Line2D([0], [0], marker="o", color="w", markerfacecolor=COLORS[5], markersize=11, label="5 Hz"),
                      plt.Line2D([0], [0], marker="o", color="w", markerfacecolor=COLORS[26], markersize=11, label="26 Hz")]
-    leg1 = ax.legend(handles=color_handles, title="stim frequency (color)", loc="upper left", fontsize=9)
+    leg1 = ax.legend(handles=color_handles, title="stim frequency (color)", loc="center left", fontsize=9)
     ax.add_artist(leg1)
     size_vals = [25, 50, 100]
     size_handles = [plt.scatter([], [], s=np.clip(v, 12, 110) * 5, c="#888", edgecolor="black",
