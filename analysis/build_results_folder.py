@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
-"""Build the curated Results/ deliverable tree from the raw dec3 pipeline outputs.
+"""Build the curated Results/<session>/ deliverable tree from raw pipeline outputs.
 
-Copies each canonical figure into Results/<NN_Category>/ (the same grouping used in
-the review). Raw outputs under analysis/outputs/dec3/<step>/ are left untouched so
-downstream code keeps working; Results/ is the browsable view. Re-runnable and
-idempotent. Duplicate / superseded copies (REPORT mirrors, provisional_final_pass)
-are intentionally skipped and reported.
+Per session (default `dec3`): copies each canonical figure from
+`analysis/outputs/<session>/<step>/` into `Results/<session>/<NN_Category>/`
+(the grouping used in the review), and writes a per-figure index plus a parent
+`Results/README.md` listing every session. Raw outputs are left untouched.
+Re-runnable and idempotent.
+
+    python analysis/build_results_folder.py --session dec3
+    python analysis/build_results_folder.py --session dec4   # same pipeline, new session
 """
 from __future__ import annotations
 import shutil
 from pathlib import Path
-from results_layout import RESULTS_ROOT, CATEGORIES, results_dir
+from results_layout import CATEGORIES
 
-BASE = Path("analysis/outputs/dec3")
 MAX_MB = 50          # skip pathological oversized renders (e.g. a 1.75 GB spike_positions png)
 
 # category key -> list of source paths (relative to BASE). Directories copy their *.png.
@@ -129,9 +131,19 @@ SKIPPED = ["REPORT/1-7_*  (mirror of ttl_lfp_overview + movement)",
            "provisional_final_pass/*  (mirror of phase_locking + reference_sensitivity)"]
 
 
-def main():
-    if RESULTS_ROOT.exists():
-        shutil.rmtree(RESULTS_ROOT)
+def main(session="dec3"):
+    base = Path("analysis/outputs") / session
+    res_root = Path("Results") / session
+
+    def rdir(cat, sub=None):
+        d = res_root / CATEGORIES[cat]
+        if sub:
+            d = d / sub
+        d.mkdir(parents=True, exist_ok=True)
+        return d
+
+    if res_root.exists():
+        shutil.rmtree(res_root)
     copied = missing = 0
     per_cat = {}
     too_large = []
@@ -152,18 +164,18 @@ def main():
             copied_files.setdefault(cat, []).append(name)
 
     for cat, files in MAP.items():
-        d = results_dir(cat)
+        d = rdir(cat)
         for rel in files:
-            src = BASE / rel
+            src = base / rel
             if src.exists():
                 copy_one(src, d, cat)
             else:
                 print(f"  MISSING: {src}"); missing += 1
     for dirname, (cat, sub) in DIR_MAP.items():
-        srcdir = BASE / dirname
+        srcdir = base / dirname
         if not srcdir.exists():
             print(f"  MISSING DIR: {srcdir}"); continue
-        d = results_dir(cat, sub)
+        d = rdir(cat, sub)
         for png in sorted(srcdir.glob("*.png")):
             copy_one(png, d, cat, record=False)
 
@@ -191,14 +203,14 @@ def main():
         "channelqc": "Per-channel noise QC plus raw/LFP trace-browsing pages.",
         "teaching": "Teaching/methods explainers: how to read the results, the +/-100 ms margin, and the probe map.",
     }
-    lines = ["# Results - Dec 3 haptic analysis\n",
-             "**This is the curated, de-duplicated set of every result figure**, grouped by analysis type.",
+    lines = [f"# Results - {session} haptic analysis\n",
+             "**Curated, de-duplicated set of every result figure for this session**, grouped by analysis type.",
              "Each figure here is the canonical copy; the raw per-step working files under",
-             "`analysis/outputs/dec3/<step>/` are inputs the scripts read from (not duplicates to browse).",
-             "Rebuild this folder anytime with `python analysis/build_results_folder.py`.\n",
+             f"`analysis/outputs/{session}/<step>/` are inputs the scripts read from (not duplicates to browse).",
+             f"Rebuild with `python analysis/build_results_folder.py --session {session}`.\n",
              "## Headline figures (start here)"]
     for path, label in HEADLINE:
-        if (RESULTS_ROOT / path).exists():
+        if (res_root / path).exists():
             lines.append(f"- [{Path(path).name}]({path}) - {label}")
     lines.append("\n## All figures by category")
     for cat, folder in CATEGORIES.items():
@@ -209,7 +221,7 @@ def main():
             lines.append(f"- [{name}]({folder}/{name})")
         for dirname, (c, sub) in DIR_MAP.items():
             if c == cat:
-                d = RESULTS_ROOT / folder / sub
+                d = res_root / folder / sub
                 k = len(list(d.glob("*.png"))) if d.exists() else 0
                 if k:
                     lines.append(f"- `{sub}/` - {k} trace-browsing pages")
@@ -219,12 +231,24 @@ def main():
     if too_large:
         lines.append(f"\n_Skipped (> {MAX_MB} MB, regenerate at sane DPI):_")
         lines += [f"- {s}" for s in too_large]
-    (RESULTS_ROOT / "README.md").write_text("\n".join(lines) + "\n")
+    (res_root / "README.md").write_text("\n".join(lines) + "\n")
 
-    print(f"\nResults/ built: {copied} figures copied, {missing} missing, {len(too_large)} too-large skipped.")
+    # parent index of all sessions
+    sessions = sorted(p.name for p in Path("Results").iterdir() if p.is_dir())
+    parent = ["# Results\n",
+              "Curated result figures, **one folder per recording session**. Open a session's",
+              "`README.md` for its per-figure index.\n"]
+    for s in sessions:
+        parent.append(f"- [`{s}/`]({s}/README.md)")
+    Path("Results/README.md").write_text("\n".join(parent) + "\n")
+
+    print(f"\nResults/{session} built: {copied} figures copied, {missing} missing, {len(too_large)} too-large skipped.")
     for cat, folder in CATEGORIES.items():
         print(f"  {folder}: {per_cat.get(cat, 0)}")
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    ap = argparse.ArgumentParser(description="Build Results/<session>/ from analysis/outputs/<session>/")
+    ap.add_argument("--session", default="dec3", help="session id, e.g. dec3 or dec4")
+    main(ap.parse_args().session)

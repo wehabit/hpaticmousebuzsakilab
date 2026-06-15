@@ -70,27 +70,30 @@ geometry and channel map.
 
 ## Results — Every Figure
 
-All result figures live in **[`Results/`](Results/)** — the curated,
-**de-duplicated** figure set, grouped into 13 numbered categories
-(`01_Session_Timeline` … `13_Teaching_and_Methods`). This is the place to browse
-results; see **[`Results/README.md`](Results/README.md)** for a per-figure index
-with one-line descriptions.
+Result figures live in **[`Results/`](Results/)**, organized **one folder per
+recording session** (`Results/dec3/`, `Results/dec4/`, …). Each session folder
+holds the curated, **de-duplicated** figures grouped into 13 numbered categories
+(`01_Session_Timeline` … `13_Teaching_and_Methods`) plus a per-figure index. See
+**[`Results/README.md`](Results/README.md)** for the session list, and
+**[`Results/dec3/README.md`](Results/dec3/README.md)** for the Dec 3 per-figure
+index with descriptions.
 
 > **About "duplicate" images.** The per-step folders under
-> `analysis/outputs/dec3/<step>/` are the raw **working files** that scripts read
-> from and write to. `Results/` holds the single **canonical copy** of each figure
-> for browsing. A figure can appear in both places by design — read it in
-> `Results/`. Rebuild the folder anytime with
-> `python analysis/build_results_folder.py` (one figure per result, no duplicates).
+> `analysis/outputs/<session>/<step>/` are the raw **working files** that scripts
+> read from and write to. `Results/<session>/` holds the single **canonical copy**
+> of each figure for browsing. A figure can appear in both places by design — read
+> it in `Results/`. Rebuild a session anytime with
+> `python analysis/build_results_folder.py --session dec3` (one figure per result,
+> no duplicates).
 
-**Headline figures (start here):**
+**Headline figures (Dec 3 — start here):**
 
-- [The whole story in one figure](Results/10_Biological_Summary/combined_explainer.png) — reacts to the buzz (yes, at 26 Hz) but does **not** follow its frequency.
-- [Session timeline](Results/01_Session_Timeline/session_timeline.png) — baseline / stimulation / post.
-- [Condition × channel response](Results/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) — `amp180_freq26` strongest.
-- [Broadband, not oscillation](Results/05_Frequency_Spectral/spectral_slope_decomposition.png) — 1/f spectral-slope test.
-- [No entrainment](Results/06_Phase_Locking/phase_locking_null_floor.png) — phase locking at chance.
-- [Spike firing flat ON vs OFF](Results/11_Spikes/peth_onset_ks_good_units.png) — provisional, pre-curation.
+- [The whole story in one figure](Results/dec3/10_Biological_Summary/combined_explainer.png) — reacts to the buzz (yes, at 26 Hz) but does **not** follow its frequency.
+- [Session timeline](Results/dec3/01_Session_Timeline/session_timeline.png) — baseline / stimulation / post.
+- [Condition × channel response](Results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) — `amp180_freq26` strongest.
+- [Broadband, not oscillation](Results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png) — 1/f spectral-slope test.
+- [No entrainment](Results/dec3/06_Phase_Locking/phase_locking_null_floor.png) — phase locking at chance.
+- [Spike firing flat ON vs OFF](Results/dec3/11_Spikes/peth_onset_ks_good_units.png) — provisional, pre-curation.
 
 ## Current Dec 3 Takeaway
 
@@ -130,29 +133,31 @@ offset).
 
 Generate the timeline and TTL-vs-LFP overview figures with
 [`analysis/plot_ttl_lfp_overview_dec3.py`](analysis/plot_ttl_lfp_overview_dec3.py).
-The figures land in `Results/01_Session_Timeline/` and `Results/02_TTL_Alignment/`
-([`session_timeline.png`](Results/01_Session_Timeline/session_timeline.png),
-[`ttl_lfp_context_and_trials.png`](Results/01_Session_Timeline/ttl_lfp_context_and_trials.png),
-[`ttl_on_alignment_per_trial.png`](Results/02_TTL_Alignment/ttl_on_alignment_per_trial.png)).
+The figures land in `Results/dec3/01_Session_Timeline/` and `Results/dec3/02_TTL_Alignment/`
+([`session_timeline.png`](Results/dec3/01_Session_Timeline/session_timeline.png),
+[`ttl_lfp_context_and_trials.png`](Results/dec3/01_Session_Timeline/ttl_lfp_context_and_trials.png),
+[`ttl_on_alignment_per_trial.png`](Results/dec3/02_TTL_Alignment/ttl_on_alignment_per_trial.png)).
 
 ## Repository Layout
 
 ```text
-Results/                       Curated, de-duplicated result figures (browse here)
-  01_Session_Timeline/ … 13_Teaching_and_Methods/
-  README.md                    Per-figure index with descriptions
+Results/                       Curated result figures, ONE FOLDER PER SESSION
+  README.md                    Parent index (lists sessions)
+  dec3/                        Dec 3 session
+    01_Session_Timeline/ … 13_Teaching_and_Methods/
+    README.md                  Per-figure index for Dec 3
+  dec4/                        Dec 4 session (created when processed)
 
 analysis/
-  *.py                         Reusable analysis scripts
-  build_results_folder.py      Rebuilds Results/ from the raw outputs
+  *.py                         Reusable, session-agnostic analysis scripts
+  build_results_folder.py      Rebuilds Results/<session>/ from the raw outputs
   DEC3_SUPERVISOR_SUMMARY.md   Main Dec 3 summary for presentation
-  DEC3_RESULTS_SUMMARY.md      Longer interpretation and results notes
-  DEC3_MAJOR_IMAGES.md         Important figure map
-  DEC3_ANALYSIS_LOG.md         Detailed run log
-  outputs/dec3/                Raw per-step working files (scripts read these)
+  DEC3_*.md                    Dec 3 notes (Dec 4 gets parallel DEC4_*.md)
+  outputs/dec3/                Raw per-step working files for Dec 3
+  outputs/dec4/                Raw per-step working files for Dec 4 (when processed)
 
 docs/
-  RERUN_PIPELINE.md            Future-study rerun guide
+  RERUN_PIPELINE.md            How to process a new session
   STUDY_NOTES.md               Experimental notes moved out of front page
   RESOURCES_AND_GUIDANCE.md    External links and collaborator guidance
 ```
@@ -160,6 +165,23 @@ docs/
 Large raw/intermediate arrays are intentionally kept out of GitHub. The repo
 tracks code, Markdown summaries, CSV/JSON summaries, HTML reports, and
 normal-sized PNG/JPG figures.
+
+## Adding a New Session (e.g. Dec 4)
+
+Dec 4 uses the **same protocol and the same pipeline** as Dec 3 — only the input
+data and the output folder change. The scripts are session-agnostic (they take
+`--lfp` / `--sequence` / `--output-dir` arguments), so for a new session you:
+
+1. Keep the new recording in its own folder, e.g.
+   `~/Documents/Buzsaki Lab/Dec4_session_<date>/…`.
+2. Run the pipeline scripts pointed at that data, writing under
+   `analysis/outputs/dec4/<step>/` (mirror the `dec3` step folders).
+3. Build the curated figures: `python analysis/build_results_folder.py --session dec4`
+   → creates `Results/dec4/` and updates the parent `Results/README.md`.
+4. Add `DEC4_*.md` notes alongside the `DEC3_*.md` set.
+
+See [docs/RERUN_PIPELINE.md](docs/RERUN_PIPELINE.md) for the step-by-step checklist.
+`Results/dec3/` and `Results/dec4/` stay completely separate.
 
 ## Analysis Pipeline Overview
 
