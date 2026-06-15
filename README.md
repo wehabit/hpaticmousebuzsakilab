@@ -8,6 +8,8 @@ The current completed analysis pass is for the **Dec 3 recording**.
 
 ## Start Here
 
+- [**Results — every figure**](Results/README.md): all result figures, curated
+  and grouped by analysis type (the canonical place to browse results).
 - [Dec 3 Supervisor Summary](analysis/DEC3_SUPERVISOR_SUMMARY.md): clean
   findings, figure links, methods, caveats, and suggested presentation order.
 - [Dec 3 Results Dashboard](analysis/outputs/dec3/RESULTS_DASHBOARD.html):
@@ -23,6 +25,30 @@ The current completed analysis pass is for the **Dec 3 recording**.
   Google Photos album showing the study/experiment setup.
 - [Resources And Guidance](docs/RESOURCES_AND_GUIDANCE.md): links from Nick,
   Mishi, Buzcode, CellExplorer, Pynapple, Kilosort, and related references.
+
+## Results — Every Figure
+
+All result figures live in **[`Results/`](Results/)** — the curated,
+**de-duplicated** figure set, grouped into 13 numbered categories
+(`01_Session_Timeline` … `13_Teaching_and_Methods`). This is the place to browse
+results; see **[`Results/README.md`](Results/README.md)** for a per-figure index
+with one-line descriptions.
+
+> **About "duplicate" images.** The per-step folders under
+> `analysis/outputs/dec3/<step>/` are the raw **working files** that scripts read
+> from and write to. `Results/` holds the single **canonical copy** of each figure
+> for browsing. A figure can appear in both places by design — read it in
+> `Results/`. Rebuild the folder anytime with
+> `python analysis/build_results_folder.py` (one figure per result, no duplicates).
+
+**Headline figures (start here):**
+
+- [The whole story in one figure](Results/10_Biological_Summary/combined_explainer.png) — reacts to the buzz (yes, at 26 Hz) but does **not** follow its frequency.
+- [Session timeline](Results/01_Session_Timeline/session_timeline.png) — baseline / stimulation / post.
+- [Condition × channel response](Results/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) — `amp180_freq26` strongest.
+- [Broadband, not oscillation](Results/05_Frequency_Spectral/spectral_slope_decomposition.png) — 1/f spectral-slope test.
+- [No entrainment](Results/06_Phase_Locking/phase_locking_null_floor.png) — phase locking at chance.
+- [Spike firing flat ON vs OFF](Results/11_Spikes/peth_onset_ks_good_units.png) — provisional, pre-curation.
 
 ## Current Dec 3 Takeaway
 
@@ -61,20 +87,27 @@ onto recording time (the exact baseline start is derived from the controller
 offset).
 
 Generate the timeline and TTL-vs-LFP overview figures with
-[`analysis/plot_ttl_lfp_overview_dec3.py`](analysis/plot_ttl_lfp_overview_dec3.py)
-→ `analysis/outputs/dec3/ttl_lfp_overview/` (`session_timeline.png`,
-`ttl_lfp_trial_zoom.png`, `lfp_burst_onset_aligned.png`).
+[`analysis/plot_ttl_lfp_overview_dec3.py`](analysis/plot_ttl_lfp_overview_dec3.py).
+The figures land in `Results/01_Session_Timeline/` and `Results/02_TTL_Alignment/`
+([`session_timeline.png`](Results/01_Session_Timeline/session_timeline.png),
+[`ttl_lfp_context_and_trials.png`](Results/01_Session_Timeline/ttl_lfp_context_and_trials.png),
+[`ttl_on_alignment_per_trial.png`](Results/02_TTL_Alignment/ttl_on_alignment_per_trial.png)).
 
 ## Repository Layout
 
 ```text
+Results/                       Curated, de-duplicated result figures (browse here)
+  01_Session_Timeline/ … 13_Teaching_and_Methods/
+  README.md                    Per-figure index with descriptions
+
 analysis/
   *.py                         Reusable analysis scripts
+  build_results_folder.py      Rebuilds Results/ from the raw outputs
   DEC3_SUPERVISOR_SUMMARY.md   Main Dec 3 summary for presentation
   DEC3_RESULTS_SUMMARY.md      Longer interpretation and results notes
   DEC3_MAJOR_IMAGES.md         Important figure map
   DEC3_ANALYSIS_LOG.md         Detailed run log
-  outputs/dec3/                Dec 3 reports, tables, and normal-sized figures
+  outputs/dec3/                Raw per-step working files (scripts read these)
 
 docs/
   RERUN_PIPELINE.md            Future-study rerun guide

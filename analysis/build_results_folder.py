@@ -135,15 +135,21 @@ def main():
     copied = missing = 0
     per_cat = {}
     too_large = []
+    copied_files = {}                     # cat -> [actual filenames copied to the category folder]
 
-    def copy_one(src, dest_dir, cat):
+    def copy_one(src, dest_dir, cat, record=True):
         nonlocal copied
         mb = src.stat().st_size / 1e6
         if mb > MAX_MB:
             too_large.append(f"{src}  ({mb:.0f} MB)"); print(f"  SKIP too large ({mb:.0f} MB): {src}")
             return
-        shutil.copy2(src, dest_dir / src.name); copied += 1
+        name = src.name
+        if (dest_dir / name).exists():    # avoid name collisions (e.g. two channel_qc_metrics.png)
+            name = f"{src.parent.name}_{src.name}"
+        shutil.copy2(src, dest_dir / name); copied += 1
         per_cat[cat] = per_cat.get(cat, 0) + 1
+        if record:
+            copied_files.setdefault(cat, []).append(name)
 
     for cat, files in MAP.items():
         d = results_dir(cat)
@@ -159,17 +165,56 @@ def main():
             print(f"  MISSING DIR: {srcdir}"); continue
         d = results_dir(cat, sub)
         for png in sorted(srcdir.glob("*.png")):
-            copy_one(png, d, cat)
+            copy_one(png, d, cat, record=False)
 
-    # index
-    lines = ["# Results - Dec 3 haptic analysis (curated figure tree)\n",
-             "Figures grouped by analysis type. Raw pipeline outputs remain under",
-             "`analysis/outputs/dec3/<step>/`; this folder is the browsable deliverable,",
-             "rebuilt by `python analysis/build_results_folder.py`.\n"]
+    # ---- rich, per-figure index ----
+    HEADLINE = [
+        ("10_Biological_Summary/combined_explainer.png", "the whole story in one figure: reacts to the buzz (yes, at 26 Hz) but does NOT follow its frequency"),
+        ("01_Session_Timeline/session_timeline.png", "the session at a glance: baseline / stimulation / post"),
+        ("04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png", "which condition & channels respond (26 Hz / 180 strongest)"),
+        ("05_Frequency_Spectral/spectral_slope_decomposition.png", "the response is a broadband shift, not a 5/26 Hz oscillation"),
+        ("06_Phase_Locking/phase_locking_null_floor.png", "phase locking sits at chance -> no entrainment"),
+        ("11_Spikes/peth_onset_ks_good_units.png", "firing is flat ON vs OFF (provisional, pre-curation)"),
+    ]
+    BLURB = {
+        "timeline": "Session at a glance: baseline -> stimulation -> post, with the accelerometer TTL and LFP.",
+        "ttl": "Accelerometer-TTL vs commanded ON time: alignment, per-trial onset, and ON/OFF edge counts.",
+        "movement": "Movement proxy (EMG-from-LFP) and the data-cleaning sensitivity check.",
+        "event_lfp": "Event-aligned broadband LFP per condition, by channel and by shank (200 trials).",
+        "frequency": "Power at the driven 5/26 Hz frequency, frequency specificity, and the 1/f spectral-slope test.",
+        "phase": "Phase locking (PLV/ITPC) against chance, incl. the null-floor and onset-jitter checks.",
+        "broadband": "Onset / sustained / offset broadband windows, OFF-control, and trial-level bootstrap CIs.",
+        "adaptation": "How the response changes over the course of the trials.",
+        "reference": "Robustness of the LFP results to the referencing scheme.",
+        "biological": "Plain-language summary: does the brain react, and does it follow the buzz frequency? (with 95% CIs).",
+        "spikes": "Kilosort cluster quality, drift, and ON-vs-OFF firing (PETH). Provisional until Phy curation.",
+        "channelqc": "Per-channel noise QC plus raw/LFP trace-browsing pages.",
+        "teaching": "Teaching/methods explainers: how to read the results, the +/-100 ms margin, and the probe map.",
+    }
+    lines = ["# Results - Dec 3 haptic analysis\n",
+             "**This is the curated, de-duplicated set of every result figure**, grouped by analysis type.",
+             "Each figure here is the canonical copy; the raw per-step working files under",
+             "`analysis/outputs/dec3/<step>/` are inputs the scripts read from (not duplicates to browse).",
+             "Rebuild this folder anytime with `python analysis/build_results_folder.py`.\n",
+             "## Headline figures (start here)"]
+    for path, label in HEADLINE:
+        if (RESULTS_ROOT / path).exists():
+            lines.append(f"- [{Path(path).name}]({path}) - {label}")
+    lines.append("\n## All figures by category")
     for cat, folder in CATEGORIES.items():
-        n = per_cat.get(cat, 0)
-        lines.append(f"- **{folder}** - {n} figure(s)")
-    lines.append("\n_Skipped (duplicates / superseded):_")
+        lines.append(f"\n### {folder}")
+        if cat in BLURB:
+            lines.append(f"_{BLURB[cat]}_\n")
+        for name in copied_files.get(cat, []):
+            lines.append(f"- [{name}]({folder}/{name})")
+        for dirname, (c, sub) in DIR_MAP.items():
+            if c == cat:
+                d = RESULTS_ROOT / folder / sub
+                k = len(list(d.glob("*.png"))) if d.exists() else 0
+                if k:
+                    lines.append(f"- `{sub}/` - {k} trace-browsing pages")
+    lines.append("\n---")
+    lines.append("_Not copied here (intentional):_")
     lines += [f"- {s}" for s in SKIPPED]
     if too_large:
         lines.append(f"\n_Skipped (> {MAX_MB} MB, regenerate at sane DPI):_")
