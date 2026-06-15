@@ -21,6 +21,3 @@ rebuilt by `python analysis/build_results_folder.py`.
 _Skipped (duplicates / superseded):_
 - REPORT/1-7_*  (mirror of ttl_lfp_overview + movement)
 - provisional_final_pass/*  (mirror of phase_locking + reference_sensitivity)
-
-_Skipped (> 50 MB, regenerate at sane DPI):_
-- analysis/outputs/dec3/spike_positions_modal_kilosort4.png  (1755 MB)

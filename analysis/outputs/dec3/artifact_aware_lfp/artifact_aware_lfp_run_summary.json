@@ -2,6 +2,6 @@
   "output_dir": "analysis/outputs/dec3/artifact_aware_lfp",
   "summary_csv": "analysis/outputs/dec3/artifact_aware_lfp/artifact_aware_lfp_summary.csv",
   "artifact_margin_s": 0.1,
-  "max_trials_per_condition": 100,
+  "max_trials_per_condition": 200,
   "note": "Sustained response excludes the first/last artifact-margin seconds around stimulation onset/offset."
 }
