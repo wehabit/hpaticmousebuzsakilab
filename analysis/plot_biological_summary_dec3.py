@@ -200,6 +200,72 @@ def plot_frequency_amplitude_matrix(frame: pd.DataFrame, output: Path) -> None:
     plt.close(fig)
 
 
+def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
+    """One figure that walks through the whole story: react? (yes) then follow-frequency? (no)."""
+    x = np.arange(len(frame)); w = 0.38
+    labels = [f"{int(fr)}Hz/{int(am)}" for am, fr in zip(frame["amplitude"], frame["frequency"])]
+    fcolors = [COLORS[f] for f in frame["frequency"]]
+
+    fig = plt.figure(figsize=(16, 9.2))
+    gs = fig.add_gridspec(2, 3, height_ratios=[1.2, 1.0], hspace=0.85, wspace=0.34,
+                          left=0.07, right=0.97, top=0.80, bottom=0.15)
+
+    # ---------- TOP: the REAL response (two broadband windows) ----------
+    axt = fig.add_subplot(gs[0, :])
+    axt.bar(x - w/2, frame["sustained_broadband"], w, color="#f1c40f", edgecolor="black", lw=0.4,
+            label="DURING the buzz (sustained)")
+    axt.bar(x + w/2, frame["offset_broadband"], w, color="#c0392b", edgecolor="black", lw=0.4,
+            label="as the buzz STOPS (offset surge)")
+    axt.axhline(0, color="black", lw=0.8)
+    axt.axvline(2.5, color="#888", ls=":", lw=1.2)
+    axt.set_xticks(x); axt.set_xticklabels(labels, fontsize=9)
+    axt.set_ylabel("signal increase vs baseline\nmean |LFP| (a.u.)", fontsize=10)
+    axt.set_title("STEP 1 — Does the brain REACT to the buzz?    YES: the signal gets bigger (strongest at 26 Hz / 180)",
+                  fontsize=13, fontweight="bold")
+    ymax = max(frame["offset_broadband"].max(), frame["sustained_broadband"].max())
+    axt.text(1, ymax * 1.10, "5 Hz settings", ha="center", fontsize=10, color="#1a5276", fontweight="bold")
+    axt.text(4, ymax * 1.10, "26 Hz settings", ha="center", fontsize=10, color="#7b241c", fontweight="bold")
+    axt.legend(loc="upper left", fontsize=9)
+    axt.grid(axis="y", alpha=0.2); axt.margins(y=0.20)
+    for xi, (sv, ov) in enumerate(zip(frame["sustained_broadband"], frame["offset_broadband"])):
+        axt.text(xi - w/2, sv, f"{sv:.0f}", ha="center", va="bottom" if sv >= 0 else "top", fontsize=7.5)
+        axt.text(xi + w/2, ov, f"{ov:.0f}", ha="center", va="bottom" if ov >= 0 else "top", fontsize=7.5)
+
+    # ---------- BOTTOM: three frequency-following tests (all ~0) ----------
+    bmetrics = [
+        ("driven_power_analysis_group_median", "Power AT the buzz freq", "log2(stim/baseline)\n0 = no change"),
+        ("sustained_timefreq", "Time-freq at buzz freq", "normalized power\n0 = none"),
+        ("sustained_minus_pre_plv", "Phase-locking (PLV)", "PLV change\n0 = no locking"),
+    ]
+    for gi, (metric, title, unit) in enumerate(bmetrics):
+        ax = fig.add_subplot(gs[1, gi])
+        vals = frame[metric].to_numpy()
+        ax.bar(x, vals, color=fcolors, edgecolor="black", lw=0.4)
+        ax.axhline(0, color="black", lw=0.9)
+        ymx = max(np.abs(vals).max(), 1e-3)
+        ax.axhspan(-0.5 * ymx, 0.5 * ymx, color="#bbbbbb", alpha=0.12)
+        ax.set_xticks(x); ax.set_xticklabels(labels, rotation=45, ha="right", fontsize=7.5)
+        ax.set_title(title, fontsize=10.5, fontweight="bold")
+        ax.set_ylabel(unit, fontsize=8)
+        ax.text(0.5, 0.90, "≈ 0", transform=ax.transAxes, ha="center", fontsize=12, fontweight="bold",
+                color="#8a6d00", bbox=dict(boxstyle="round,pad=0.2", fc="#fdf5e0", ec="#b8860b"))
+        ax.grid(axis="y", alpha=0.2); ax.margins(y=0.22)
+
+    # narration
+    fig.suptitle("Haptic response — the whole story in one figure", fontsize=16, fontweight="bold", y=0.985)
+    fig.text(0.5, 0.91, "6 buzz settings along the x-axis (frequency / amplitude).  "
+             "Blue = 5 Hz, red = 26 Hz.", ha="center", fontsize=10, style="italic", color="#333")
+    fig.text(0.5, 0.475, "STEP 2 — Does the brain FOLLOW the buzz's rhythm?    NO: all three measures sit at ≈ 0",
+             ha="center", fontsize=13, fontweight="bold")
+    fig.text(0.5, 0.045,
+             "BOTTOM LINE:  a real, amplitude-graded BROADBAND reaction to the buzz (top, strongest at 26 Hz / 180) — "
+             "but NO frequency-following / entrainment (bottom, all ≈ 0).\nThe brain clearly NOTICES the buzz; it does not lock to its rhythm.",
+             ha="center", fontsize=11, color="#111",
+             bbox=dict(boxstyle="round,pad=0.5", fc="#eef6ff", ec="#2c3e50"))
+    fig.savefig(output, dpi=170)
+    plt.close(fig)
+
+
 def write_html(output: Path) -> None:
     html = [
         "<!doctype html><html><head><meta charset='utf-8'><title>Dec 3 Biological Summary</title>",
@@ -224,6 +290,7 @@ def main() -> None:
     plot_condition_fingerprint(frame, OUTPUT / "condition_fingerprint.png")
     plot_biology_quadrants(frame, OUTPUT / "broadband_vs_driven_power.png")
     plot_frequency_amplitude_matrix(frame, OUTPUT / "amplitude_frequency_matrix.png")
+    plot_combined_explainer(frame, OUTPUT / "combined_explainer.png")
     write_html(OUTPUT)
     print({"output": str(OUTPUT / "index.html")})
 

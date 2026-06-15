@@ -13,7 +13,7 @@ rebuilt by `python analysis/build_results_folder.py`.
 - **07_Broadband_OFFcontrol_TrialStats** - 9 figure(s)
 - **08_Adaptation** - 3 figure(s)
 - **09_Reference_Sensitivity** - 2 figure(s)
-- **10_Biological_Summary** - 4 figure(s)
+- **10_Biological_Summary** - 5 figure(s)
 - **11_Spikes** - 16 figure(s)
 - **12_ChannelQC_Traces** - 23 figure(s)
 - **13_Teaching_and_Methods** - 4 figure(s)

@@ -84,6 +84,7 @@ MAP = {
         "biological_summary/amplitude_frequency_matrix.png",
         "biological_summary/broadband_vs_driven_power.png",
         "biological_summary/condition_fingerprint.png",
+        "biological_summary/combined_explainer.png",
         "biological_summary/sustained_vs_offset_explained.png",
     ],
     "spikes": [
