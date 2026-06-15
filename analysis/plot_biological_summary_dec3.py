@@ -161,7 +161,8 @@ def plot_frequency_amplitude_matrix(frame: pd.DataFrame, output: Path) -> None:
     ]
     amps = [100, 180, 250]
     freqs = [5, 26]
-    fig, axes = plt.subplots(1, len(metrics), figsize=(16, 4.8), sharey=True)
+    fig, axes = plt.subplots(1, len(metrics), figsize=(16, 5.2), sharey=True)
+    tag_specs = []
 
     for ax, (metric, title, meaning, cbar_label, is_real) in zip(axes, metrics):
         matrix = np.full((len(freqs), len(amps)), np.nan)
@@ -184,18 +185,22 @@ def plot_frequency_amplitude_matrix(frame: pd.DataFrame, output: Path) -> None:
                 fontsize=8.5, style="italic", color="#444")
         ax.set_xticks(np.arange(len(amps))); ax.set_xticklabels(amps)
         ax.set_yticks(np.arange(len(freqs))); ax.set_yticklabels([f"{f} Hz" for f in freqs])
-        ax.set_xlabel("amplitude setting")
-        tag = ("REAL response", "#1a7a3a", "#e8f6ec") if is_real else ("≈ 0  (no entrainment)", "#8a6d00", "#fdf5e0")
-        ax.text(0.5, -0.30, tag[0], transform=ax.transAxes, ha="center", fontsize=9, fontweight="bold",
-                color=tag[1], bbox=dict(boxstyle="round,pad=0.25", fc=tag[2], ec=tag[1]))
+        ax.set_xlabel("amplitude setting", labelpad=6)
+        tag_specs.append((ax, ("REAL response", "#1a7a3a", "#e8f6ec") if is_real
+                          else ("≈ 0  (no entrainment)", "#8a6d00", "#fdf5e0")))
         cb = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
         cb.set_label(cbar_label, fontsize=8)
     axes[0].set_ylabel("stim frequency", fontsize=10)
     fig.suptitle("Amplitude × Frequency grid — the SAME numbers as condition_fingerprint, arranged by setting\n"
                  "Each cell = the measured value for that  (frequency row × amplitude column).  "
                  "Only 'Overall response' is non-zero; the other three hover at 0 → no frequency-following.",
-                 fontsize=12, fontweight="bold")
-    fig.tight_layout(rect=(0, 0.02, 1, 0.86))
+                 fontsize=12, fontweight="bold", y=0.99)
+    fig.tight_layout(rect=(0, 0.16, 1, 0.84))
+    # place REAL / ≈0 tags at a fixed y BELOW each panel (after layout, so they never collide with the x-label)
+    for ax, tag in tag_specs:
+        pos = ax.get_position()
+        fig.text((pos.x0 + pos.x1) / 2, 0.05, tag[0], ha="center", va="center", fontsize=9,
+                 fontweight="bold", color=tag[1], bbox=dict(boxstyle="round,pad=0.25", fc=tag[2], ec=tag[1]))
     fig.savefig(output, dpi=180)
     plt.close(fig)
 
