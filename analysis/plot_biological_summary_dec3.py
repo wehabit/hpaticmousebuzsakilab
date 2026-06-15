@@ -109,8 +109,8 @@ def plot_biology_quadrants(frame: pd.DataFrame, output: Path) -> None:
     # shade the meaningful halves of the x-axis
     ax.axvspan(0, ax.get_xlim()[1], color="#e8f6ec", alpha=0.6, zorder=0)   # right = power went UP at stim freq
     ax.axvspan(ax.get_xlim()[0], 0, color="#fdeceb", alpha=0.6, zorder=0)   # left  = power went DOWN
-    ax.text(0.985, 0.02, "RIGHT half = power INCREASED at the\nstim frequency (true entrainment)",
-            transform=ax.transAxes, ha="right", va="bottom", fontsize=8.5, color="#1a7a3a")
+    ax.text(0.985, 0.975, "RIGHT half = power INCREASED at the\nstim frequency (true entrainment)",
+            transform=ax.transAxes, ha="right", va="top", fontsize=8.5, color="#1a7a3a")
     ax.text(0.015, 0.02, "LEFT half = NO increase at the\nstim frequency", transform=ax.transAxes,
             ha="left", va="bottom", fontsize=8.5, color="#a93226")
 
@@ -144,7 +144,7 @@ def plot_biology_quadrants(frame: pd.DataFrame, output: Path) -> None:
     size_handles = [plt.scatter([], [], s=np.clip(v, 12, 110) * 5, c="#888", edgecolor="black",
                                 label=f"{v}") for v in size_vals]
     ax.legend(handles=size_handles, title="offset response (dot size)", loc="lower right",
-              labelspacing=1.4, borderpad=1.0, fontsize=9, framealpha=0.9)
+              labelspacing=1.4, borderpad=1.0, fontsize=9, framealpha=0.45)
     ax.grid(alpha=0.2, zorder=1)
     fig.tight_layout()
     fig.savefig(output, dpi=180)
