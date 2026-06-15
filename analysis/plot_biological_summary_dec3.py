@@ -54,8 +54,8 @@ def plot_condition_fingerprint(frame: pd.DataFrame, output: Path) -> None:
         values = frame[metric].to_numpy()
         bars = ax.bar(x, values, color=colors, alpha=0.9, edgecolor="black", linewidth=0.4)
         ax.axhline(0, color="black", linewidth=0.9)
-        ax.set_title(title, fontsize=12, fontweight="bold")
-        ax.text(0.5, 1.005, f"↑ = {updesc}", transform=ax.transAxes, ha="center", va="bottom",
+        ax.set_title(title, fontsize=12, fontweight="bold", pad=26)
+        ax.text(0.5, 1.02, f"↑ = {updesc}", transform=ax.transAxes, ha="center", va="bottom",
                 fontsize=8.5, style="italic", color="#444")
         ax.set_ylabel(unit, fontsize=9)
         ax.set_xticks(x)
@@ -70,23 +70,26 @@ def plot_condition_fingerprint(frame: pd.DataFrame, output: Path) -> None:
         # flag the panels that carry a REAL effect vs the near-zero ones
         if is_real:
             ax.text(0.5, 0.93, "REAL response", transform=ax.transAxes, ha="center", fontsize=9,
-                    fontweight="bold", color="#1a7a3a",
-                    bbox=dict(boxstyle="round,pad=0.25", fc="#e8f6ec", ec="#1a7a3a"))
+                    fontweight="bold", color="#1a7a3a", zorder=6,
+                    bbox=dict(boxstyle="round,pad=0.25", fc="#e8f6ec", ec="#1a7a3a", alpha=0.4))
         else:
-            ax.axhspan(-0.5 * ymax, 0.5 * ymax, color="#bbbbbb", alpha=0.18, zorder=0)
+            ax.axhspan(-0.5 * ymax, 0.5 * ymax, color="#bbbbbb", alpha=0.10, zorder=0)
             ax.text(0.5, 0.93, "≈ 0  (no entrainment)", transform=ax.transAxes, ha="center", fontsize=9,
-                    fontweight="bold", color="#8a6d00",
-                    bbox=dict(boxstyle="round,pad=0.25", fc="#fdf5e0", ec="#b8860b"))
+                    fontweight="bold", color="#8a6d00", zorder=6,
+                    bbox=dict(boxstyle="round,pad=0.25", fc="#fdf5e0", ec="#b8860b", alpha=0.4))
 
     legend_handles = [plt.Rectangle((0, 0), 1, 1, color=COLORS[5]),
                       plt.Rectangle((0, 0), 1, 1, color=COLORS[26])]
-    fig.legend(legend_handles, ["5 Hz stimulation", "26 Hz stimulation"],
-               loc="upper right", fontsize=10, frameon=True, title="bar color")
-    fig.suptitle("Condition Fingerprint — what kind of response does each buzz setting produce?\n"
-                 "Each bar = one condition (amplitude/frequency). The two LEFT panels show a real, size-graded "
-                 "response; the three RIGHT panels are all ~0 → the brain reacts to the buzz but does NOT follow its frequency.",
-                 fontsize=12.5, fontweight="bold")
-    fig.tight_layout(rect=(0, 0, 1, 0.88))
+    # legend inside panel 1 (its bars grow rightward, so the top-left is empty) -> no title overlap
+    axes[0].legend(legend_handles, ["5 Hz", "26 Hz"], loc="upper left", fontsize=8.5,
+                   frameon=True, title="bar color")
+    fig.suptitle("Condition Fingerprint — what response does each buzz setting produce?",
+                 fontsize=14, fontweight="bold", y=0.985)
+    fig.text(0.5, 0.04,
+             "Each bar = one condition (amplitude / frequency).   The two LEFT panels show a real, size-graded response;   "
+             "the three RIGHT panels are all ≈ 0  →  the brain reacts to the buzz but does NOT follow its frequency.",
+             ha="center", fontsize=10, style="italic")
+    fig.tight_layout(rect=(0, 0.07, 1, 0.92))
     fig.savefig(output, dpi=180)
     plt.close(fig)
 
