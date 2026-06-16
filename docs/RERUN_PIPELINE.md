@@ -186,11 +186,11 @@ For each new session, create/update:
 
 For Dec 3 these are:
 
-- `analysis/DEC3_SUPERVISOR_SUMMARY.md`
-- `analysis/DEC3_MAJOR_IMAGES.md`
+- `docs/DEC3_SUPERVISOR_SUMMARY.md`
+- `docs/DEC3_MAJOR_IMAGES.md`
 - `analysis/outputs/dec3/RESULTS_DASHBOARD.html`
-- `analysis/OPEN_QUESTIONS.md`
-- `analysis/DEC3_ANALYSIS_LOG.md`
+- `docs/OPEN_QUESTIONS.md`
+- `docs/DEC3_ANALYSIS_LOG.md`
 
 ## 10. What To Preserve In Git
 

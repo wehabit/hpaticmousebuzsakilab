@@ -52,12 +52,12 @@ geometry and channel map.
 
 - [**Results — every figure**](results/README.md): all result figures, curated
   and grouped by analysis type (the canonical place to browse results).
-- [Dec 3 Supervisor Summary](analysis/DEC3_SUPERVISOR_SUMMARY.md): clean
+- [Dec 3 Supervisor Summary](docs/DEC3_SUPERVISOR_SUMMARY.md): clean
   findings, figure links, methods, caveats, and suggested presentation order.
 - [Dec 3 Results Dashboard](analysis/outputs/dec3/RESULTS_DASHBOARD.html):
   clickable local HTML dashboard of result pages and figures.
-- [Dec 3 Major Images](analysis/DEC3_MAJOR_IMAGES.md): figure-by-figure guide.
-- [Dec 3 Image Walkthrough](analysis/DEC3_IMAGE_WALKTHROUGH.md): teaching guide
+- [Dec 3 Major Images](docs/DEC3_MAJOR_IMAGES.md): figure-by-figure guide.
+- [Dec 3 Image Walkthrough](docs/DEC3_IMAGE_WALKTHROUGH.md): teaching guide
   explaining how each figure was generated and what to take away from it.
 - [Reusable Pipeline](docs/RERUN_PIPELINE.md): how to repeat this analysis for
   future recordings/conditions.

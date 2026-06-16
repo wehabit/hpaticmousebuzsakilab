@@ -97,7 +97,7 @@ TheStateEditor
 
 Current repo spike-sorting notes:
 
-- `analysis/KILOSORT_PYNAPPLE_PLAN.md`
-- `analysis/PHY_DEC3_SETUP.md`
+- `docs/KILOSORT_PYNAPPLE_PLAN.md`
+- `docs/PHY_DEC3_SETUP.md`
 - `analysis/outputs/dec3/cluster_quality/index.html`
 - `analysis/outputs/dec3/spike_peth_high_confidence/index.html`

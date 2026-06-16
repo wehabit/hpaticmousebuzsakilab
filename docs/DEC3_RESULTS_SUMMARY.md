@@ -35,7 +35,7 @@ Spike-sorting preparation metadata has been generated:
 
 Kilosort/Pynapple setup notes have been added:
 
-- `analysis/KILOSORT_PYNAPPLE_PLAN.md`
+- `docs/KILOSORT_PYNAPPLE_PLAN.md`
 - `analysis/envs/kilosort4_dec3_gpu.yml`
 - `analysis/envs/setup_kilosort4_dec3_gpu.sh`
 - `analysis/modal_kilosort_dec3.py`
@@ -388,7 +388,7 @@ shift interpretation rather than a purely immediate ON response.
 - Raw trace pages:
   `analysis/outputs/dec3/channel_trace_pages/index.html`
 - Analysis foundations / reading map:
-  `analysis/ANALYSIS_FOUNDATIONS.md`
+  `docs/ANALYSIS_FOUNDATIONS.md`
 - Provisional Kilosort spike PETH / ON-OFF analysis:
   `analysis/outputs/dec3/spike_peth_on_off/index.html`
 - Pynapple spike export:
@@ -422,7 +422,7 @@ shift interpretation rather than a purely immediate ON response.
      reference.
 7. Keep anatomy labels conservative until probe orientation is confirmed.
    - Ask collaborators the open questions in `OPEN_QUESTIONS.md`.
-   - See `analysis/ANALYSIS_FOUNDATIONS.md` for why the hippocampal
+   - See `docs/ANALYSIS_FOUNDATIONS.md` for why the hippocampal
      electroanatomy paper makes this caution important.
 8. Install/run spike sorting.
    - Spike-sorting prep and SpikeInterface setup are ready.
@@ -630,7 +630,7 @@ Interpretation:
 
 Setup note:
 
-- `analysis/PHY_DEC3_SETUP.md`
+- `docs/PHY_DEC3_SETUP.md`
 
 What works:
 

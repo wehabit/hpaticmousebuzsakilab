@@ -14,7 +14,7 @@ For Dec 3 presentation and interpretation, use:
 
 For a supervisor-facing summary of findings, figures, tools, and pipeline, use:
 
-- `analysis/DEC3_SUPERVISOR_SUMMARY.md`
+- `docs/DEC3_SUPERVISOR_SUMMARY.md`
 - `analysis/outputs/dec3/RESULTS_DASHBOARD.html`
 
 For original study context and collaborator links, use:
@@ -49,7 +49,7 @@ Outputs:
 
 Kilosort/Pynapple setup notes are tracked in:
 
-- `analysis/KILOSORT_PYNAPPLE_PLAN.md`
+- `docs/KILOSORT_PYNAPPLE_PLAN.md`
 
 Clean Kilosort4 environment files:
 

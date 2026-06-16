@@ -41,7 +41,7 @@ Buzcode/CellExplorer workflow while keeping the raw files unchanged unless noted
    - The anatomical direction of Shank A vs Shank B cannot be assigned from the
      atlas screenshot alone; implant orientation must be confirmed.
    - Running questions to ask collaborators are tracked in
-     `analysis/OPEN_QUESTIONS.md`.
+     `docs/OPEN_QUESTIONS.md`.
 
 3. **Dec 3 trial sequence exported**
    - Source: `Haptic_Stim_session1_log/cmd_config_1_Dec3rd.json`
@@ -73,7 +73,7 @@ Buzcode/CellExplorer workflow while keeping the raw files unchanged unless noted
 
 Added:
 
-- `analysis/KILOSORT_PYNAPPLE_PLAN.md`
+- `docs/KILOSORT_PYNAPPLE_PLAN.md`
 - `analysis/envs/kilosort4_dec3_gpu.yml`
 - `analysis/envs/setup_kilosort4_dec3_gpu.sh`
 - `analysis/modal_kilosort_dec3.py`
