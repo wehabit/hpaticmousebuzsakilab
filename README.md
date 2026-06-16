@@ -50,7 +50,7 @@ geometry and channel map.
 
 ## Start Here
 
-- [**Results — every figure**](Results/README.md): all result figures, curated
+- [**Results — every figure**](results/README.md): all result figures, curated
   and grouped by analysis type (the canonical place to browse results).
 - [Dec 3 Supervisor Summary](analysis/DEC3_SUPERVISOR_SUMMARY.md): clean
   findings, figure links, methods, caveats, and suggested presentation order.
@@ -70,30 +70,30 @@ geometry and channel map.
 
 ## Results — Every Figure
 
-Result figures live in **[`Results/`](Results/)**, organized **one folder per
-recording session** (`Results/dec3/`, `Results/dec4/`, …). Each session folder
+Result figures live in **[`results/`](results/)**, organized **one folder per
+recording session** (`results/dec3/`, `results/dec4/`, …). Each session folder
 holds the curated, **de-duplicated** figures grouped into 13 numbered categories
 (`01_Session_Timeline` … `13_Teaching_and_Methods`) plus a per-figure index. See
-**[`Results/README.md`](Results/README.md)** for the session list, and
-**[`Results/dec3/README.md`](Results/dec3/README.md)** for the Dec 3 per-figure
+**[`results/README.md`](results/README.md)** for the session list, and
+**[`results/dec3/README.md`](results/dec3/README.md)** for the Dec 3 per-figure
 index with descriptions.
 
 > **About "duplicate" images.** The per-step folders under
 > `analysis/outputs/<session>/<step>/` are the raw **working files** that scripts
-> read from and write to. `Results/<session>/` holds the single **canonical copy**
+> read from and write to. `results/<session>/` holds the single **canonical copy**
 > of each figure for browsing. A figure can appear in both places by design — read
-> it in `Results/`. Rebuild a session anytime with
+> it in `results/`. Rebuild a session anytime with
 > `python analysis/build_results_folder.py --session dec3` (one figure per result,
 > no duplicates).
 
 **Headline figures (Dec 3 — start here):**
 
-- [The whole story in one figure](Results/dec3/10_Biological_Summary/combined_explainer.png) — reacts to the buzz (yes, at 26 Hz) but does **not** follow its frequency.
-- [Session timeline](Results/dec3/01_Session_Timeline/session_timeline.png) — baseline / stimulation / post.
-- [Condition × channel response](Results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) — `amp180_freq26` strongest.
-- [Broadband, not oscillation](Results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png) — 1/f spectral-slope test.
-- [No entrainment](Results/dec3/06_Phase_Locking/phase_locking_null_floor.png) — phase locking at chance.
-- [Spike firing flat ON vs OFF](Results/dec3/11_Spikes/peth_onset_ks_good_units.png) — provisional, pre-curation.
+- [The whole story in one figure](results/dec3/10_Biological_Summary/combined_explainer.png) — reacts to the buzz (yes, at 26 Hz) but does **not** follow its frequency.
+- [Session timeline](results/dec3/01_Session_Timeline/session_timeline.png) — baseline / stimulation / post.
+- [Condition × channel response](results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) — `amp180_freq26` strongest.
+- [Broadband, not oscillation](results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png) — 1/f spectral-slope test.
+- [No entrainment](results/dec3/06_Phase_Locking/phase_locking_null_floor.png) — phase locking at chance.
+- [Spike firing flat ON vs OFF](results/dec3/11_Spikes/peth_onset_ks_good_units.png) — provisional, pre-curation.
 
 ## Current Dec 3 Takeaway
 
@@ -133,15 +133,15 @@ offset).
 
 Generate the timeline and TTL-vs-LFP overview figures with
 [`analysis/plot_ttl_lfp_overview_dec3.py`](analysis/plot_ttl_lfp_overview_dec3.py).
-The figures land in `Results/dec3/01_Session_Timeline/` and `Results/dec3/02_TTL_Alignment/`
-([`session_timeline.png`](Results/dec3/01_Session_Timeline/session_timeline.png),
-[`ttl_lfp_context_and_trials.png`](Results/dec3/01_Session_Timeline/ttl_lfp_context_and_trials.png),
-[`ttl_on_alignment_per_trial.png`](Results/dec3/02_TTL_Alignment/ttl_on_alignment_per_trial.png)).
+The figures land in `results/dec3/01_Session_Timeline/` and `results/dec3/02_TTL_Alignment/`
+([`session_timeline.png`](results/dec3/01_Session_Timeline/session_timeline.png),
+[`ttl_lfp_context_and_trials.png`](results/dec3/01_Session_Timeline/ttl_lfp_context_and_trials.png),
+[`ttl_on_alignment_per_trial.png`](results/dec3/02_TTL_Alignment/ttl_on_alignment_per_trial.png)).
 
 ## Repository Layout
 
 ```text
-Results/                       Curated result figures, ONE FOLDER PER SESSION
+results/                       Curated result figures, ONE FOLDER PER SESSION
   README.md                    Parent index (lists sessions)
   dec3/                        Dec 3 session
     01_Session_Timeline/ … 13_Teaching_and_Methods/
@@ -150,7 +150,7 @@ Results/                       Curated result figures, ONE FOLDER PER SESSION
 
 analysis/
   *.py                         Reusable, session-agnostic analysis scripts
-  build_results_folder.py      Rebuilds Results/<session>/ from the raw outputs
+  build_results_folder.py      Rebuilds results/<session>/ from the raw outputs
   DEC3_SUPERVISOR_SUMMARY.md   Main Dec 3 summary for presentation
   DEC3_*.md                    Dec 3 notes (Dec 4 gets parallel DEC4_*.md)
   outputs/dec3/                Raw per-step working files for Dec 3
@@ -177,11 +177,11 @@ data and the output folder change. The scripts are session-agnostic (they take
 2. Run the pipeline scripts pointed at that data, writing under
    `analysis/outputs/dec4/<step>/` (mirror the `dec3` step folders).
 3. Build the curated figures: `python analysis/build_results_folder.py --session dec4`
-   → creates `Results/dec4/` and updates the parent `Results/README.md`.
+   → creates `results/dec4/` and updates the parent `results/README.md`.
 4. Add `DEC4_*.md` notes alongside the `DEC3_*.md` set.
 
 See [docs/RERUN_PIPELINE.md](docs/RERUN_PIPELINE.md) for the step-by-step checklist.
-`Results/dec3/` and `Results/dec4/` stay completely separate.
+`results/dec3/` and `results/dec4/` stay completely separate.
 
 ## Analysis Pipeline Overview
 

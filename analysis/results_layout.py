@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Canonical Results/ folder layout for the Dec 3 haptic analysis.
+"""Canonical results/ folder layout for the Dec 3 haptic analysis.
 
 One curated, human-browsable tree of figures, grouped by analysis type (the same
 categories used in the review). Raw pipeline outputs still live under
-analysis/outputs/dec3/<step>/ (downstream code reads them there); Results/ is the
+analysis/outputs/dec3/<step>/ (downstream code reads them there); results/ is the
 deliverable view. New analysis scripts write straight here via results_dir().
 """
 from __future__ import annotations
 from pathlib import Path
 
-RESULTS_ROOT = Path("Results")
+RESULTS_ROOT = Path("results")
 
 CATEGORIES = {
     "timeline":   "01_Session_Timeline",
@@ -29,7 +29,7 @@ CATEGORIES = {
 
 
 def results_dir(category: str, subfolder: str | None = None) -> Path:
-    """Return (and create) Results/<NN_Category>[/subfolder]."""
+    """Return (and create) results/<NN_Category>[/subfolder]."""
     if category not in CATEGORIES:
         raise KeyError(f"unknown results category {category!r}; valid: {sorted(CATEGORIES)}")
     d = RESULTS_ROOT / CATEGORIES[category]

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Build the curated Results/<session>/ deliverable tree from raw pipeline outputs.
+"""Build the curated results/<session>/ deliverable tree from raw pipeline outputs.
 
 Per session (default `dec3`): copies each canonical figure from
-`analysis/outputs/<session>/<step>/` into `Results/<session>/<NN_Category>/`
+`analysis/outputs/<session>/<step>/` into `results/<session>/<NN_Category>/`
 (the grouping used in the review), and writes a per-figure index plus a parent
-`Results/README.md` listing every session. Raw outputs are left untouched.
+`results/README.md` listing every session. Raw outputs are left untouched.
 Re-runnable and idempotent.
 
     python analysis/build_results_folder.py --session dec3
@@ -126,14 +126,14 @@ DIR_MAP = {
     "lfp_trace_pages": ("channelqc", "lfp_trace_pages"),
 }
 
-# superseded copies we deliberately do NOT bring into Results/
+# superseded copies we deliberately do NOT bring into results/
 SKIPPED = ["REPORT/1-7_*  (mirror of ttl_lfp_overview + movement)",
            "provisional_final_pass/*  (mirror of phase_locking + reference_sensitivity)"]
 
 
 def main(session="dec3"):
     base = Path("analysis/outputs") / session
-    res_root = Path("Results") / session
+    res_root = Path("results") / session
 
     def rdir(cat, sub=None):
         d = res_root / CATEGORIES[cat]
@@ -234,21 +234,21 @@ def main(session="dec3"):
     (res_root / "README.md").write_text("\n".join(lines) + "\n")
 
     # parent index of all sessions
-    sessions = sorted(p.name for p in Path("Results").iterdir() if p.is_dir())
+    sessions = sorted(p.name for p in Path("results").iterdir() if p.is_dir())
     parent = ["# Results\n",
               "Curated result figures, **one folder per recording session**. Open a session's",
               "`README.md` for its per-figure index.\n"]
     for s in sessions:
         parent.append(f"- [`{s}/`]({s}/README.md)")
-    Path("Results/README.md").write_text("\n".join(parent) + "\n")
+    Path("results/README.md").write_text("\n".join(parent) + "\n")
 
-    print(f"\nResults/{session} built: {copied} figures copied, {missing} missing, {len(too_large)} too-large skipped.")
+    print(f"\nresults/{session} built: {copied} figures copied, {missing} missing, {len(too_large)} too-large skipped.")
     for cat, folder in CATEGORIES.items():
         print(f"  {folder}: {per_cat.get(cat, 0)}")
 
 
 if __name__ == "__main__":
     import argparse
-    ap = argparse.ArgumentParser(description="Build Results/<session>/ from analysis/outputs/<session>/")
+    ap = argparse.ArgumentParser(description="Build results/<session>/ from analysis/outputs/<session>/")
     ap.add_argument("--session", default="dec3", help="session id, e.g. dec3 or dec4")
     main(ap.parse_args().session)
