@@ -5,7 +5,7 @@ analysis. It points to the key figures, findings, tools, and pipeline steps.
 
 Main clickable dashboard:
 
-- [Dec 3 Results Dashboard](outputs/dec3/RESULTS_DASHBOARD.html)
+- [Dec 3 Results Dashboard](../analysis/outputs/dec3/RESULTS_DASHBOARD.html)
 
 Detailed supporting docs:
 
@@ -38,10 +38,10 @@ firing-rate increase; spike claims remain provisional until Phy curation.
 
 Key figures:
 
-- [Condition fingerprint](outputs/dec3/biological_summary/condition_fingerprint.png)
-- [Broadband vs driven power](outputs/dec3/biological_summary/broadband_vs_driven_power.png)
-- [Broadband transition windows](outputs/dec3/broadband_transition/broadband_windows_condition_ci.png)
-- [OFF-control broadband effect](outputs/dec3/off_control_broadband/off_control_condition_ci.png)
+- [Condition fingerprint](../analysis/outputs/dec3/biological_summary/condition_fingerprint.png)
+- [Broadband vs driven power](../analysis/outputs/dec3/biological_summary/broadband_vs_driven_power.png)
+- [Broadband transition windows](../analysis/outputs/dec3/broadband_transition/broadband_windows_condition_ci.png)
+- [OFF-control broadband effect](../analysis/outputs/dec3/off_control_broadband/off_control_condition_ci.png)
 
 ### 2. Frequency-Specific Power Is More Nuanced
 
@@ -56,10 +56,10 @@ Key figures:
 
 Key figures:
 
-- [Time-frequency condition grid](outputs/dec3/time_frequency_lfp/time_frequency_condition_grid.png)
-- [Driven-frequency time courses](outputs/dec3/time_frequency_lfp/driven_frequency_timecourses.png)
-- [Frequency specificity by group](outputs/dec3/frequency_lfp/frequency_specificity_by_group.png)
-- [Driven-power confidence intervals](outputs/dec3/trial_level_stats_equal_spectral_windows/driven_power_ci.png)
+- [Time-frequency condition grid](../analysis/outputs/dec3/time_frequency_lfp/time_frequency_condition_grid.png)
+- [Driven-frequency time courses](../analysis/outputs/dec3/time_frequency_lfp/driven_frequency_timecourses.png)
+- [Frequency specificity by group](../analysis/outputs/dec3/frequency_lfp/frequency_specificity_by_group.png)
+- [Driven-power confidence intervals](../analysis/outputs/dec3/trial_level_stats_equal_spectral_windows/driven_power_ci.png)
 
 ### 3. Phase-Locking Does Not Support Strong Entrainment Yet
 
@@ -70,8 +70,8 @@ Key figures:
 
 Key figures:
 
-- [PLV condition summary](outputs/dec3/phase_locking_lfp/plv_condition_summary.png)
-- [PLV time courses](outputs/dec3/phase_locking_lfp/plv_timecourses.png)
+- [PLV condition summary](../analysis/outputs/dec3/phase_locking_lfp/plv_condition_summary.png)
+- [PLV time courses](../analysis/outputs/dec3/phase_locking_lfp/plv_timecourses.png)
 
 ### 4. Adaptation And OFF/Recovery Dynamics Matter
 
@@ -82,9 +82,9 @@ Key figures:
 
 Key figures:
 
-- [Adaptation time courses](outputs/dec3/adaptation_analysis/adaptation_timecourses.png)
-- [Adaptation slope summary](outputs/dec3/adaptation_analysis/adaptation_slope_summary.png)
-- [Transition index](outputs/dec3/broadband_transition/transition_index_condition.png)
+- [Adaptation time courses](../analysis/outputs/dec3/adaptation_analysis/adaptation_timecourses.png)
+- [Adaptation slope summary](../analysis/outputs/dec3/adaptation_analysis/adaptation_slope_summary.png)
+- [Transition index](../analysis/outputs/dec3/broadband_transition/transition_index_condition.png)
 
 ### 5. Spike Results Are Provisional And Do Not Yet Match The LFP Story
 
@@ -99,12 +99,12 @@ Key figures:
 
 Key figures:
 
-- [Cluster quality scatter](outputs/dec3/cluster_quality/cluster_quality_scatter.png)
-- [Cluster label counts](outputs/dec3/cluster_quality/cluster_quality_label_counts.png)
-- [High-confidence spike unit-set comparison](outputs/dec3/spike_peth_high_confidence/condition_mean_on_minus_off_unit_set_comparison.png)
-- [High-confidence spike heatmap](outputs/dec3/spike_peth_high_confidence/high_confidence_unit_condition_heatmap.png)
-- [High-confidence onset PETH](outputs/dec3/spike_peth_high_confidence/peth_onset_high_confidence_units.png)
-- [High-confidence offset PETH](outputs/dec3/spike_peth_high_confidence/peth_offset_high_confidence_units.png)
+- [Cluster quality scatter](../analysis/outputs/dec3/cluster_quality/cluster_quality_scatter.png)
+- [Cluster label counts](../analysis/outputs/dec3/cluster_quality/cluster_quality_label_counts.png)
+- [High-confidence spike unit-set comparison](../analysis/outputs/dec3/spike_peth_high_confidence/condition_mean_on_minus_off_unit_set_comparison.png)
+- [High-confidence spike heatmap](../analysis/outputs/dec3/spike_peth_high_confidence/high_confidence_unit_condition_heatmap.png)
+- [High-confidence onset PETH](../analysis/outputs/dec3/spike_peth_high_confidence/peth_onset_high_confidence_units.png)
+- [High-confidence offset PETH](../analysis/outputs/dec3/spike_peth_high_confidence/peth_offset_high_confidence_units.png)
 
 ## Methods And Pipeline
 
@@ -145,10 +145,10 @@ Scripts:
 
 Outputs:
 
-- [TTL audit counts](outputs/dec3/ttl_on_off_audit/ttl_on_off_counts.png)
-- [Trial windows](outputs/dec3/spike_sorting_prep/trial_windows.csv)
-- [Condition sequence](outputs/dec3/dec3_condition_sequence.csv)
-- [Stimulation events](outputs/dec3/stimulation_events.csv)
+- [TTL audit counts](../analysis/outputs/dec3/ttl_on_off_audit/ttl_on_off_counts.png)
+- [Trial windows](../analysis/outputs/dec3/spike_sorting_prep/trial_windows.csv)
+- [Condition sequence](../analysis/outputs/dec3/dec3_condition_sequence.csv)
+- [Stimulation events](../analysis/outputs/dec3/stimulation_events.csv)
 
 ### LFP Analysis
 
@@ -168,15 +168,15 @@ Scripts:
 
 Reports:
 
-- [Event-aligned LFP](outputs/dec3/event_aligned_lfp/index.html)
-- [Time-frequency LFP](outputs/dec3/time_frequency_lfp/index.html)
-- [Frequency LFP](outputs/dec3/frequency_lfp/index.html)
-- [Trial-level stats](outputs/dec3/trial_level_stats_equal_spectral_windows/index.html)
-- [OFF-control broadband](outputs/dec3/off_control_broadband/index.html)
-- [Broadband transition](outputs/dec3/broadband_transition/index.html)
-- [Adaptation](outputs/dec3/adaptation_analysis/index.html)
-- [Phase locking](outputs/dec3/phase_locking_lfp/index.html)
-- [Reference sensitivity](outputs/dec3/reference_sensitivity_lfp/index.html)
+- [Event-aligned LFP](../analysis/outputs/dec3/event_aligned_lfp/index.html)
+- [Time-frequency LFP](../analysis/outputs/dec3/time_frequency_lfp/index.html)
+- [Frequency LFP](../analysis/outputs/dec3/frequency_lfp/index.html)
+- [Trial-level stats](../analysis/outputs/dec3/trial_level_stats_equal_spectral_windows/index.html)
+- [OFF-control broadband](../analysis/outputs/dec3/off_control_broadband/index.html)
+- [Broadband transition](../analysis/outputs/dec3/broadband_transition/index.html)
+- [Adaptation](../analysis/outputs/dec3/adaptation_analysis/index.html)
+- [Phase locking](../analysis/outputs/dec3/phase_locking_lfp/index.html)
+- [Reference sensitivity](../analysis/outputs/dec3/reference_sensitivity_lfp/index.html)
 
 ### Spike Sorting And Spike Analysis
 
@@ -201,12 +201,12 @@ Scripts:
 
 Reports:
 
-- [Spike sorting prep](outputs/dec3/spike_sorting_prep/README.md)
-- [SpikeInterface setup](outputs/dec3/spikeinterface_setup/README.md)
-- [Kilosort output summary](outputs/dec3/modal_kilosort4_results/kilosort4_results/README.md)
-- [Cluster quality](outputs/dec3/cluster_quality/index.html)
-- [Uncurated spike ON/OFF](outputs/dec3/spike_peth_on_off/index.html)
-- [High-confidence spike ON/OFF](outputs/dec3/spike_peth_high_confidence/index.html)
+- [Spike sorting prep](../analysis/outputs/dec3/spike_sorting_prep/README.md)
+- [SpikeInterface setup](../analysis/outputs/dec3/spikeinterface_setup/README.md)
+- [Kilosort output summary](../analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/README.md)
+- [Cluster quality](../analysis/outputs/dec3/cluster_quality/index.html)
+- [Uncurated spike ON/OFF](../analysis/outputs/dec3/spike_peth_on_off/index.html)
+- [High-confidence spike ON/OFF](../analysis/outputs/dec3/spike_peth_high_confidence/index.html)
 - [Phy setup status](PHY_DEC3_SETUP.md)
 
 ## Important Caveats
@@ -259,7 +259,7 @@ Reports:
 ## Suggested Presentation Order
 
 1. Start with
-   [Condition fingerprint](outputs/dec3/biological_summary/condition_fingerprint.png).
+   [Condition fingerprint](../analysis/outputs/dec3/biological_summary/condition_fingerprint.png).
 
    Main point: this is the quick overview of how the six amplitude/frequency
    conditions differ. Use it to orient the audience before going into details.
@@ -267,7 +267,7 @@ Reports:
    `amp180_freq26` standing out in the LFP features.
 
 2. Explain broadband vs driven-frequency using
-   [Broadband vs driven power](outputs/dec3/biological_summary/broadband_vs_driven_power.png).
+   [Broadband vs driven power](../analysis/outputs/dec3/biological_summary/broadband_vs_driven_power.png).
 
    Main point: broadband LFP response and frequency-specific entrainment are
    different measurements. `amp180_freq26` is strong in broadband LFP, but that
@@ -275,7 +275,7 @@ Reports:
    This figure is the clearest way to explain why our conclusion is nuanced.
 
 3. Show timing/recovery with
-   [Broadband transition windows](outputs/dec3/broadband_transition/broadband_windows_condition_ci.png).
+   [Broadband transition windows](../analysis/outputs/dec3/broadband_transition/broadband_windows_condition_ci.png).
 
    Main point: the response depends on time window. `amp180_freq26` has
    sustained, offset, and recovery broadband increases, while some other
@@ -283,7 +283,7 @@ Reports:
    and recovery dynamics matter, not just average ON-period activity.
 
 4. Then show the 3 s OFF-control result with
-   [OFF-control broadband effect](outputs/dec3/off_control_broadband/off_control_condition_ci.png).
+   [OFF-control broadband effect](../analysis/outputs/dec3/off_control_broadband/off_control_condition_ci.png).
 
    Main point: the following OFF period is not always flat. For `amp180_freq26`,
    the OFF-control interval remains elevated, so the response persists after
@@ -292,7 +292,7 @@ Reports:
    measuring.
 
 5. Show the entrainment caveat with
-   [Time-frequency condition grid](outputs/dec3/time_frequency_lfp/time_frequency_condition_grid.png).
+   [Time-frequency condition grid](../analysis/outputs/dec3/time_frequency_lfp/time_frequency_condition_grid.png).
 
    Main point: the time-frequency plot shows when spectral changes occur around
    stimulation. It helps separate sustained ON-period frequency changes from
@@ -300,14 +300,14 @@ Reports:
    "26 Hz stimulation equals sustained 26 Hz entrainment" interpretation.
 
 6. Pair that with
-   [PLV condition summary](outputs/dec3/phase_locking_lfp/plv_condition_summary.png).
+   [PLV condition summary](../analysis/outputs/dec3/phase_locking_lfp/plv_condition_summary.png).
 
    Main point: PLV asks whether the LFP phase is consistent across trials at
    the stimulation frequency. The first PLV pass does not show strong sustained
    phase-locking, which further weakens a final entrainment claim.
 
 7. Show spike caveat with
-   [High-confidence spike unit-set comparison](outputs/dec3/spike_peth_high_confidence/condition_mean_on_minus_off_unit_set_comparison.png).
+   [High-confidence spike unit-set comparison](../analysis/outputs/dec3/spike_peth_high_confidence/condition_mean_on_minus_off_unit_set_comparison.png).
 
    Main point: when we restrict to the cleanest automated KS-good units, the
    spike response does not show a robust ON > OFF firing-rate increase. This
@@ -316,9 +316,9 @@ Reports:
    high-confidence single-unit firing-rate effect yet.
 
 8. If there is time, show
-   [Cluster quality scatter](outputs/dec3/cluster_quality/cluster_quality_scatter.png)
+   [Cluster quality scatter](../analysis/outputs/dec3/cluster_quality/cluster_quality_scatter.png)
    or
-   [Cluster label counts](outputs/dec3/cluster_quality/cluster_quality_label_counts.png).
+   [Cluster label counts](../analysis/outputs/dec3/cluster_quality/cluster_quality_label_counts.png).
 
    Main point: these explain why spike claims are provisional. Kilosort found
    194 clusters, but only 28 were KS-good and 19 passed the conservative
