@@ -6,13 +6,16 @@
  * @author Jason Ho
  * Contact: jho@zeitgeistus.com
  *
- * 2026-06-17 SYNC ADDITIONS (for neural-recording alignment), all marked "// SYNC":
- *   - SYNC_CYCLE_PIN : toggles a clean square once per carrier cycle (rising edge at
- *                      sine index 0) -> wire to an Intan DIGITAL input = phase clock.
- *   - TRIAL_GATE_PIN : HIGH for the whole ON window (amplitude > 0), LOW otherwise
+ * 2026-06-18 SYNC ADDITIONS (for neural-recording alignment), all marked "// SYNC":
+ *   - SYNC_CYCLE_PIN = P1.04/OUT1 : toggles a clean square once per carrier cycle (rising
+ *                      edge at sine index 0) -> wire to an Intan DIGITAL input = phase clock.
+ *   - TRIAL_GATE_PIN = P1.06/OUT2 : HIGH for the whole ON window (amplitude > 0), LOW otherwise
  *                      -> wire to an Intan DIGITAL input = trial timing.
- *   Set both pin numbers below before flashing. (The ANALOG accelerometer goes
- *   straight into an Intan ADC input -- that is hardware only, no firmware here.)
+ *   - Waveform table = START-AT-ZERO (index 0 = minimum) to avoid the startup click; the
+ *     phase clock's rising edge therefore marks the waveform minimum (fixed reference).
+ *   Pins are set below; confirm the P1.04/P1.06 pin-number mapping for this board, then flash.
+ *   (The ANALOG PVDF/accelerometer goes straight into an Intan ADC input via a charge-amp
+ *   front-end -- hardware only, no firmware here.)
  */
 
 #include "actuator.h"
@@ -31,16 +34,16 @@
 // 2026-04-02: LED pin comment corrected for maintainability.
 #define LED_PIN 11       // Tactor status LED (Orange)
 
-// SYNC 2026-06-17: set these to the two free GPIOs you wire to the Intan DIGITAL inputs.
-//   (11/12/13 are taken above by LED/PWM/BST_SHDN -- pick other free pins.)
+// SYNC 2026-06-18: the two free GPIOs wired to the Intan DIGITAL inputs (per Volodymyr):
+//   SYNC_CYCLE_PIN -> P1.04 / OUT1   ;   TRIAL_GATE_PIN -> P1.06 / OUT2   (OUT3/OUT4 left free)
+// nRF52 GPIO numbering: port 1 pins = 32 + pin, so P1.04 = 36 and P1.06 = 38.
+// >>> Volodymyr: confirm this board's core maps Arduino pin 36->P1.04 and 38->P1.06
+//     before flashing (replace with the board's pin constant if the variant map differs).
 #ifndef SYNC_CYCLE_PIN
-#define SYNC_CYCLE_PIN  (0xFFu)   // <<< FILL IN: per-carrier-cycle phase marker
+#define SYNC_CYCLE_PIN  (32u + 4u)   // P1.04 / OUT1 : per-carrier-cycle phase marker
 #endif
 #ifndef TRIAL_GATE_PIN
-#define TRIAL_GATE_PIN  (0xFFu)   // <<< FILL IN: HIGH during the ON window
-#endif
-#if (SYNC_CYCLE_PIN == 0xFFu) || (TRIAL_GATE_PIN == 0xFFu)
-#warning "SYNC: set SYNC_CYCLE_PIN and TRIAL_GATE_PIN to your wired GPIO numbers before flashing."
+#define TRIAL_GATE_PIN  (32u + 6u)   // P1.06 / OUT2 : HIGH during the ON window
 #endif
 
 // 2026-04-02: Replace magic constants with explicit waveform/timer constants.
@@ -63,9 +66,11 @@
 // };
 
 // 2026-04-02: 256-point sine table improves waveform smoothness and reduces audible stepping.
-// SYNC 2026-06-17: STANDARD mid-rise table = the production waveform (test table below is
-// DISABLED via #if 0). index 0 = rising zero-crossing, so SYNC_CYCLE_PIN's rising edge marks
-// stimulus phase 0 deg (the conventional reference, and the max-slope point => precise mark).
+// SYNC 2026-06-18: PRODUCTION waveform is the START-AT-ZERO table (defined active just below).
+// Per Volodymyr, starting mid-rise causes an audible startup click/inrush in the tactor;
+// start-at-zero ramps in smoothly. This mid-rise table is kept but DISABLED (#if 0) for an
+// optional on-hardware click comparison only. Do not enable both (redefinition).
+#if 0  // DISABLED mid-rise table (kept only for the optional click test)
 const uint8_t sine_table[SINE_TABLE_SIZE] =
 {
     128, 131, 134, 137, 140, 143, 146, 149, 152, 155, 158, 162, 165, 167, 170, 173,
@@ -85,11 +90,13 @@ const uint8_t sine_table[SINE_TABLE_SIZE] =
     37, 40, 42, 44, 47, 49, 52, 54, 57, 59, 62, 65, 67, 70, 73, 76,
     79, 82, 85, 88, 90, 93, 97, 100, 103, 106, 109, 112, 115, 118, 121, 124,
 };
+#endif  // end of DISABLED mid-rise table
 
-// SYNC 2026-06-17: TEST-ONLY phase-shifted table (index 0 = waveform minimum), kept for
-// startup-transient experiments. DISABLED for production via #if 0; the STANDARD table
-// above is the one compiled. Do not enable both (redefinition).
-#if 0
+// SYNC 2026-06-18: PRODUCTION table -- START-AT-ZERO (index 0 = waveform MINIMUM/trough).
+// Avoids the startup click (per Volodymyr). SYNC_CYCLE_PIN's rising edge fires at index 0
+// (see ISR below), so our phase reference is anchored to the waveform minimum -- a fixed,
+// known point (a quarter cycle / -90 deg from the rising zero-crossing). That constant
+// offset is harmless for phase-locking analysis as long as it stays consistent (it does).
 const uint8_t sine_table[SINE_TABLE_SIZE] =
  {
      0, 0, 0, 0, 1, 1, 1, 2, 2, 3, 4, 5, 5, 6, 7, 9,
@@ -109,7 +116,6 @@ const uint8_t sine_table[SINE_TABLE_SIZE] =
      37, 35, 33, 31, 29, 27, 25, 23, 21, 20, 18, 17, 15, 14, 12, 11,
      10, 9, 7, 6, 5, 5, 4, 3, 2, 2, 1, 1, 1, 0, 0, 0,
 };
-#endif  // SYNC 2026-06-17: end of disabled test table
 // 2026-04-02: Shared ISR/main-loop state to remove waveform jitter from loop timing.
 static volatile uint8_t g_sine_index = 0u;
 static volatile uint8_t g_output_level = 0u;
@@ -243,11 +249,12 @@ extern "C"
             // 2026-04-02: Wrap index with mask for 256-point table.
             g_sine_index = (uint8_t) ((g_sine_index + 1u) & SINE_INDEX_MASK);
 
-            // SYNC 2026-06-17: per-carrier-cycle phase marker, ONLY while actually
+            // SYNC 2026-06-18: per-carrier-cycle phase marker, ONLY while actually
             // delivering (amplitude > 0). Square wave at the carrier frequency: rising
-            // edge at index 0 (= rising zero-crossing for the standard table => stimulus
-            // phase 0 deg), falling edge at the half-cycle. Parked LOW during OFF/idle
-            // (see UpdateLevel / drv_dis). Each rising edge is a fixed-phase reference.
+            // edge at index 0 (= waveform MINIMUM/trough for the production start-at-zero
+            // table), falling edge at the half-cycle. Parked LOW during OFF/idle
+            // (see UpdateLevel / drv_dis). Each rising edge is a fixed-phase reference --
+            // analysis anchors stimulus phase to the waveform minimum.
             if (g_pwm_active && g_output_level > 0u)
             {
                 if (g_sine_index == 0u)
