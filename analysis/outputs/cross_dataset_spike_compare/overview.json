@@ -1,0 +1,32 @@
+[
+  {
+    "dataset": "dec3_dHPC",
+    "n_curated_good": 29,
+    "n_unit_condition_tests": 174,
+    "n_responsive_q05": 0,
+    "frac_responsive": 0.0,
+    "mean_on_minus_off_hz": -0.1399,
+    "median_on_minus_off_hz": -0.0717,
+    "pct_unit_conditions_ON_gt_OFF": 37.9
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "n_curated_good": 15,
+    "n_unit_condition_tests": 180,
+    "n_responsive_q05": 19,
+    "frac_responsive": 0.1056,
+    "mean_on_minus_off_hz": 0.0431,
+    "median_on_minus_off_hz": -0.0175,
+    "pct_unit_conditions_ON_gt_OFF": 46.1
+  },
+  {
+    "dataset": "dec4_LEC",
+    "n_curated_good": 15,
+    "n_unit_condition_tests": 180,
+    "n_responsive_q05": 13,
+    "frac_responsive": 0.0722,
+    "mean_on_minus_off_hz": -0.007,
+    "median_on_minus_off_hz": -0.0117,
+    "pct_unit_conditions_ON_gt_OFF": 46.7
+  }
+]

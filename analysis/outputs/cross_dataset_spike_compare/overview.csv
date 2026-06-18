@@ -1,0 +1,4 @@
+dataset,n_curated_good,n_unit_condition_tests,n_responsive_q05,frac_responsive,mean_on_minus_off_hz,median_on_minus_off_hz,pct_unit_conditions_ON_gt_OFF
+dec3_dHPC,29,174,0,0.0,-0.1399,-0.0717,37.9
+dec4_dHPC,15,180,19,0.1056,0.0431,-0.0175,46.1
+dec4_LEC,15,180,13,0.0722,-0.007,-0.0117,46.7

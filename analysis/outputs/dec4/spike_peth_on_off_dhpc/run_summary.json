@@ -1,0 +1,26 @@
+{
+  "kilosort_dir": "analysis/outputs/dec4/kilosort4_results_dhpc",
+  "trial_windows": "analysis/outputs/dec4/spike_sorting_prep/trial_windows.csv",
+  "output_dir": "analysis/outputs/dec4/spike_peth_on_off_dhpc",
+  "fs_hz": 20000.0,
+  "n_spikes": 11909664,
+  "n_clusters": 161,
+  "n_ks_good_clusters": 21,
+  "n_trials": 2400,
+  "conditions": [
+    "amp100_freq10",
+    "amp100_freq26",
+    "amp100_freq5",
+    "amp100_freq50",
+    "amp180_freq10",
+    "amp180_freq26",
+    "amp180_freq5",
+    "amp180_freq50",
+    "amp250_freq10",
+    "amp250_freq26",
+    "amp250_freq5",
+    "amp250_freq50"
+  ],
+  "control_definition": "Each trial's 3 s OFF interval immediately after stimulation.",
+  "caveat": "Uncurated Kilosort4 output with provisional geometry; exploratory only."
+}

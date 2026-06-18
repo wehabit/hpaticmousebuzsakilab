@@ -257,9 +257,15 @@ def plot_peth(
 ) -> None:
     centers = (edges[:-1] + edges[1:]) / 2
     bin_size = float(np.diff(edges)[0])
-    fig, axes = plt.subplots(2, 3, figsize=(15, 7), sharex=True, sharey=True)
-    axes = axes.ravel()
-    for ax, condition in zip(axes, condition_order, strict=True):
+    # Size the grid to the number of conditions (6 for Dec 3, 12 for Dec 4, etc.).
+    ncols = 3
+    nrows = (len(condition_order) + ncols - 1) // ncols
+    fig, axes = plt.subplots(nrows, ncols, figsize=(5 * ncols, 3.5 * nrows),
+                             sharex=True, sharey=True)
+    axes = np.atleast_1d(axes).ravel()
+    for ax in axes[len(condition_order):]:
+        ax.axis("off")  # hide unused cells
+    for ax, condition in zip(axes, condition_order, strict=False):
         cidx = condition_order.index(condition)
         n_trials = int((trial_windows["condition"] == condition).sum())
         unit_rates = peth_counts[cidx, cluster_ids, :] / (n_trials * bin_size)
