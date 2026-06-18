@@ -40,10 +40,10 @@
 // >>> Volodymyr: confirm this board's core maps Arduino pin 36->P1.04 and 38->P1.06
 //     before flashing (replace with the board's pin constant if the variant map differs).
 #ifndef SYNC_CYCLE_PIN
-#define SYNC_CYCLE_PIN  (32u + 4u)   // P1.04 / OUT1 : per-carrier-cycle phase marker
+#define SYNC_CYCLE_PIN  36u   // P1.04 / OUT1 (port1 base 32 + 4) : per-carrier-cycle phase marker
 #endif
 #ifndef TRIAL_GATE_PIN
-#define TRIAL_GATE_PIN  (32u + 6u)   // P1.06 / OUT2 : HIGH during the ON window
+#define TRIAL_GATE_PIN  38u   // P1.06 / OUT2 (port1 base 32 + 6) : HIGH during the ON window
 #endif
 
 // 2026-04-02: Replace magic constants with explicit waveform/timer constants.
