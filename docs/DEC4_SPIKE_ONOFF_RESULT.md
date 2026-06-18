@@ -49,8 +49,39 @@ mean ON−OFF **+0.79 Hz**) — highest frequency × highest amplitude.
 - Still an ON-vs-OFF contrast; the OFF window is the within-trial control, not a
   neutral baseline.
 
+## Interpretation: what the 50 Hz response actually means
+Figure: `analysis/outputs/cross_dataset_spike_compare/spike_50hz_interpretation.png`.
+
+The question is whether the 50 Hz "response" is just the stimulus being **passively
+relayed/echoed** into the brain, or whether the brain is **actively responding**.
+Walking the inference ladder:
+
+1. **Not electrical/mechanical artifact.** Sorted single units change their firing
+   *rate* during 50 Hz ON vs OFF — electrical pickup cannot make a curated neuron
+   fire more/less. So there is a genuine neural response.
+2. **Not a simple passive echo.** A passive relay would look the **same everywhere**.
+   Instead the two regions respond with **different distributions** — at 50 Hz,
+   **LEC units are predominantly suppressed** (~67% fire less; mean −0.08 Hz) while
+   **dHPC shows a driven-up subset** (mean +0.22 Hz, a few units strongly increased).
+   And the LFP 50 Hz is **induced, not phase-locked**. Both point to the input being
+   *transformed differently by each circuit*, not mirrored.
+3. **→ Active, region-specific processing** is the supported reading: the 50 Hz
+   input is handled differently by hippocampus vs entorhinal cortex.
+
+**What this does NOT show: "the regions working together."** Coordination
+(neurons synchronizing, the two regions becoming more coupled, spikes locking to a
+shared rhythm) was **not measured**. We showed *each region responds* and *they
+respond differently* — not that they *coordinate*. Testing that needs **spike–field
+coupling** and **cross-region coherence** (runnable on existing data), and true
+stimulus phase-locking (needs the recorded stimulus — next round).
+
+**Caveat:** part of the rate change could be a strong-stimulus arousal/state effect
+(amp250_freq50 is the most intense buzz). The frequency-specificity and movement
+controls argue against pure arousal, but a state component can't be fully excluded.
+
 ## One-line takeaway
-High-frequency (50 Hz), high-amplitude haptic stimulation **does modulate
-single-unit firing** in both dHPC and LEC — a frequency regime Dec 3 never tested
-— matching the 50 Hz LFP effect and turning the earlier "no single-unit effect"
-into "no single-unit effect *at 5/26 Hz*."
+High-frequency (50 Hz), high-amplitude haptic stimulation drives an **active,
+region-specific** single-unit response (dHPC driven-up subset; LEC suppressed) —
+**not a passive echo** — in a frequency regime Dec 3 never tested, matching the
+50 Hz LFP effect. Whether the regions *coordinate* ("work together") is the next
+test, not yet answered.
