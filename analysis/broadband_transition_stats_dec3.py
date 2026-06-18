@@ -108,13 +108,18 @@ def plot_transition_index(condition_summary: pd.DataFrame, output: Path) -> None
     frame = condition_summary.set_index("condition").reindex(CONDITION_ORDER).reset_index()
     x = np.arange(len(frame))
     colors = ["#2F6BBA" if parse_condition(c)[1] == 5 else "#C43A31" for c in frame["condition"]]
+    mean = frame["transition_index_mean"].to_numpy()
+    yerr = np.vstack([mean - frame["transition_index_ci_low"].to_numpy(),
+                      frame["transition_index_ci_high"].to_numpy() - mean])
     fig, ax = plt.subplots(figsize=(10, 4.8))
-    ax.bar(x, frame["transition_index_mean"], color=colors, alpha=0.86)
+    ax.bar(x, mean, color=colors, alpha=0.86, yerr=yerr, capsize=3,
+           error_kw={"ecolor": "#333", "elinewidth": 1})
     ax.axhline(0, color="black", linewidth=0.8)
     ax.set_xticks(x)
     ax.set_xticklabels(frame["condition"], rotation=30, ha="right")
     ax.set_ylabel("Offset delta - sustained delta")
-    ax.set_title("Transition Index: Positive Means More Offset-Heavy Than Sustained")
+    ax.set_title("Transition Index (trial-level bootstrap 95% CI): "
+                 "positive = more offset-heavy than sustained")
     ax.grid(axis="y", alpha=0.25)
     fig.tight_layout()
     fig.savefig(output, dpi=180)
