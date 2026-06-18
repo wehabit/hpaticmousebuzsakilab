@@ -31,27 +31,37 @@ reference-scheme controls, an LFP-based movement proxy, and **Kilosort spike
 sorting with over-split/merge detection, curation, and peri-event time
 histograms** — all with trial-level bootstrap 95% confidence intervals.
 
-**Key findings.**
+**Key findings.** (each links to the figure(s) that show it)
 1. A **real, amplitude-graded broadband LFP response**, strongest for the
    `amp180_freq26` condition (Dec 3) and dominated by onset/offset *transitions*
    rather than a sustained lift.
+   → [condition × channel heatmap](results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png),
+   [transition index](results/dec3/07_Broadband_OFFcontrol_TrialStats/transition_index_condition.png)
 2. **No frequency-following in dHPC at any tested frequency** (5/10/26/50 Hz): no
    narrowband peak above the 1/f background, phase locking at chance. This
    **replicates across Dec 3 and Dec 4 on the identical probe** and extends to the
    two new frequencies.
+   → [Dec 3 spectral-slope decomposition](results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png),
+   [Dec 3 phase-locking null floor](results/dec3/06_Phase_Locking/phase_locking_null_floor.png),
+   [Dec 4 spectral slope + ITPC](results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png)
 3. **LEC (Dec 4) shows a real, amplitude-graded narrowband 50 Hz power increase —
    but *induced*, not phase-locked** (ITPC stays at the chance floor): a
    frequency-specific *power* change without onset entrainment, with no comparable
    effect at 5/10/26 Hz or in dHPC.
+   → [driven-power change by region](results/dec4/05_Frequency_Spectral/driven_power_change_by_analysis_group.png),
+   [phase locking by condition](results/dec4/06_Phase_Locking/plv_condition_summary.png)
 4. **No reliable ON-vs-OFF change in single-unit firing**, now **confirmed after
    curation** (curated single units: Dec 3 dHPC **29**, Dec 4 dHPC **15**, Dec 4
    LEC **15**). A weak, non-significant suppression trend at high amplitude is
    consistent with the broadband/recovery story, not active modulation.
+   → [onset PETH, good units](results/dec3/11_Spikes/peth_onset_ks_good_units.png)
 5. Conclusions are **robust** to referencing scheme and to excluding
    movement-contaminated trials. Hardware note: the dHPC probe was improved before
    Dec 4 (the nine Dec-3 bad channels are clean on Dec 4); the LEC probe is
    noisier (45/128 bad, incl. a dead block 224–255). Methods follow Buzsáki-lab
    tooling (buzcode / CellExplorer / Kilosort) and Cohen (2014).
+   → [reference-scheme sensitivity](results/dec3/09_Reference_Sensitivity/reference_condition_summary.png),
+   [movement: excluded vs kept trials](results/dec3/03_Movement_DataCleaning/excluded_vs_kept_examples.png)
 
 **Important caveat (stimulus delivery / entrainment).** Neither session recorded a
 usable **analog copy of the delivered vibration**, and the actuator's phase was
