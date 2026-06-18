@@ -26,6 +26,8 @@ def main() -> None:
     source_files = config["source_files"]
     channels = config["channels"]
     reference = config["reference"]["chosen_for_provisional_final_pass"]
+    bad_channel_field = config.get("bad_channel_field_for_final_pass", "definite_bad_channels")
+    bad_channel_json = source_files.get("bad_channel_definite", source_files["bad_channel_candidates"])
 
     output_dir = repo / args.output_dir
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -37,9 +39,9 @@ def main() -> None:
         "--sequence",
         source_files["sequence"],
         "--bad-channels-json",
-        source_files["bad_channel_candidates"],
+        bad_channel_json,
         "--bad-channel-field",
-        "candidate_bad_channels",
+        bad_channel_field,
         "--n-channels",
         str(channels["n_channels"]),
         "--sample-rate-hz",
@@ -91,7 +93,7 @@ def main() -> None:
         "<style>body{font-family:Arial,sans-serif;margin:24px;max-width:1200px} a{color:#0f6b78;font-weight:600}</style>",
         "</head><body><h1>Dec 3 Provisional Final Pass</h1>",
         "<p>These outputs used <code>analysis/final_preprocessing_dec3.json</code>.</p>",
-        "<p>Caveat: bad channels are candidate exclusions, not a collaborator-confirmed visual list.</p>",
+        "<p>Bad channels are treated as confirmed for the current Dec 3 analysis pass. Anatomy labels remain provisional.</p>",
         "<ul>",
         "<li><a href='settings_used.json'>settings_used.json</a></li>",
         "<li><a href='reference_sensitivity_lfp/index.html'>reference_sensitivity_lfp</a></li>",

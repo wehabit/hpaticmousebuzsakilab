@@ -7,6 +7,8 @@ import argparse
 import json
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -96,7 +98,7 @@ def plot_plv_timecourses(summary_npz: Path, output: Path) -> None:
     for ax, condition in zip(axes, conditions):
         condition_idx = conditions.index(condition)
         for group_idx, group in enumerate(groups):
-            ax.plot(time_s, plv[condition_idx, group_idx], color=colors[group], linewidth=1.5, label=group)
+            ax.plot(time_s, plv[condition_idx, group_idx], color=colors.get(group, "#888888"), linewidth=1.5, label=group)
         ax.axvline(0, color="black", linewidth=0.8)
         ax.axvline(3, color="black", linewidth=0.8, linestyle="--")
         ax.axvspan(0, 3, color="gold", alpha=0.12)

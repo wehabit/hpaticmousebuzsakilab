@@ -1,0 +1,24 @@
+{
+  "kilosort_dir": "analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results",
+  "n_clusters": 194,
+  "recording_duration_s": 10644.4,
+  "coincidence_window_ms": 1.0,
+  "n_candidate_pairs_tested": 930,
+  "n_strong_merge_pairs": 4,
+  "n_possible_merge_pairs": 14,
+  "merge_groups": [
+    [
+      90,
+      91,
+      92,
+      97,
+      104
+    ]
+  ],
+  "n_merge_groups": 1,
+  "clusters_removed_by_merging": 4,
+  "n_clusters_after_merging": 190,
+  "n_high_confidence_before": 19,
+  "n_high_confidence_after_merging": 19,
+  "method": "0-lag cross-correlogram duplication fraction; candidate pairs from Kilosort template similarity (top-K)."
+}

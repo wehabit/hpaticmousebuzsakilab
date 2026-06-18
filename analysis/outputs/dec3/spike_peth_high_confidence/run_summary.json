@@ -36,5 +36,6 @@
     160
   ],
   "control_definition": "Each trial's 3 s OFF interval immediately after stimulation.",
-  "caveat": "Cleaner Kilosort subset, still pre-Phy-curation."
+  "local_artifact_status": "CSV/PNG outputs are present, but Kilosort .npy arrays needed for local rerun are missing from this checkout.",
+  "caveat": "Cleaner Kilosort subset, still pre-Phy-curation. Restore missing Kilosort arrays before rerunning locally."
 }

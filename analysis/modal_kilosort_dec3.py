@@ -2,6 +2,12 @@
 
 This file assumes the Dec 3 raw binary and spike-sorting prep folder have been
 uploaded to the Modal Volume named `dec3-kilosort-data`.
+
+  modal run          analysis/modal_kilosort_dec3.py --action check
+  modal run --detach analysis/modal_kilosort_dec3.py --action run
+
+Always use --detach for run: the sort takes well over an hour and an attached
+run is cancelled the moment the client (terminal/agent) disconnects.
 """
 
 from __future__ import annotations

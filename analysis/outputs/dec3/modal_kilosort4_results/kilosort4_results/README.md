@@ -13,11 +13,9 @@ Full-session Kilosort4 run completed on Modal.
 - Kilosort final summary spike count: `7,311,421`
 - Mean absolute drift: `0.8 um`
 
-Important files:
+Important files currently present in this checkout:
 
 - `params.py`: Phy parameter file
-- `spike_times.npy`: spike sample indices
-- `spike_clusters.npy`: cluster assignment per spike
 - `cluster_group.tsv`: Kilosort/Phy group labels
 - `cluster_KSLabel.tsv`: Kilosort labels
 - `cluster_ContamPct.tsv`: contamination estimates
@@ -27,6 +25,17 @@ Important files:
 - `spike_positions.png`: spike-position plot
 - `modal_kilosort_run_summary.json`: runner summary
 - `kilosort4.log`: full Kilosort log
+
+Large Kilosort arrays needed for full local reruns are not present in this
+checkout:
+
+- `spike_times.npy`
+- `spike_clusters.npy`
+- `templates.npy`
+- related waveform/template arrays
+
+Restore those files from the Modal volume or lab data store before rerunning
+Phy, Pynapple spike export, or spike PETH analyses from scratch.
 
 Caveat:
 

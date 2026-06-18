@@ -154,6 +154,7 @@ def attach_spike_response_summary(df: pd.DataFrame, peth_stats_path: Path) -> pd
     if not peth_stats_path.exists():
         df["max_abs_on_off_delta_hz"] = np.nan
         df["best_on_off_condition"] = ""
+        df["best_on_off_delta_hz"] = np.nan
         df["n_conditions_q05"] = 0
         return df
 

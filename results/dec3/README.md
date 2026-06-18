@@ -6,11 +6,11 @@ Each figure here is the canonical copy; the raw per-step working files under
 Rebuild with `python analysis/build_results_folder.py --session dec3`.
 
 ## Headline figures (start here)
-- [combined_explainer.png](10_Biological_Summary/combined_explainer.png) - the whole story in one figure: reacts to the buzz (yes, at 26 Hz) but does NOT follow its frequency
+- [combined_explainer.png](10_Biological_Summary/combined_explainer.png) - the whole story in one figure: strongest broadband/recovery response at 26 Hz / 180, weak driven-frequency evidence
 - [session_timeline.png](01_Session_Timeline/session_timeline.png) - the session at a glance: baseline / stimulation / post
 - [condition_by_channel_lfp_response_heatmap.png](04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) - which condition & channels respond (26 Hz / 180 strongest)
 - [spectral_slope_decomposition.png](05_Frequency_Spectral/spectral_slope_decomposition.png) - the response is a broadband shift, not a 5/26 Hz oscillation
-- [phase_locking_null_floor.png](06_Phase_Locking/phase_locking_null_floor.png) - phase locking sits at chance -> no entrainment
+- [phase_locking_null_floor.png](06_Phase_Locking/phase_locking_null_floor.png) - phase locking stays near the finite-trial floor, so this pass does not support strong entrainment
 - [peth_onset_ks_good_units.png](11_Spikes/peth_onset_ks_good_units.png) - firing is flat ON vs OFF (provisional, pre-curation)
 
 ## All figures by category
@@ -140,6 +140,7 @@ _Teaching/methods explainers: how to read the results, the +/-100 ms margin, and
 - [LEARN_real_vs_dec3.png](13_Teaching_and_Methods/LEARN_real_vs_dec3.png)
 - [LEARN_results_at_a_glance.png](13_Teaching_and_Methods/LEARN_results_at_a_glance.png)
 - [margin_exclusion_test.png](13_Teaching_and_Methods/margin_exclusion_test.png)
+- [trial_window_diagram.png](13_Teaching_and_Methods/trial_window_diagram.png)
 - [supp_provisional_probe_map_H12_UNRESOLVED.png](13_Teaching_and_Methods/supp_provisional_probe_map_H12_UNRESOLVED.png)
 
 ---

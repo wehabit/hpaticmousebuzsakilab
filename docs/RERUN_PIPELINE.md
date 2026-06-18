@@ -27,7 +27,7 @@ Record the key inputs:
 For Dec 3, the study design used 3 s ON followed by 3 s OFF, with 200 repeats
 per condition and at least 15 minutes of baseline.
 
-## 2. Parse Intan Metadata And TTL
+## 2. Parse Intan Metadata, Schedule, And TTL QC
 
 Template command:
 
@@ -43,8 +43,14 @@ Outputs to check:
 
 - `session_summary.json`
 - `stimulus_config_schedule.csv`
+- `dec3_condition_sequence.csv` or the session-equivalent condition sequence
 - `stimulation_events.csv`
 - `digital_edges_ch*.csv`
+
+Use the schedule-derived condition sequence as the authoritative trial label and
+ON/OFF window source. Treat `stimulation_events.csv` as a TTL QC table only when
+there is any burst-count mismatch, pre/post/test TTL activity, or merged/missing
+bursts.
 
 Then audit ON/OFF timing:
 
@@ -98,6 +104,8 @@ session-specific version and change:
 - bad-channel list
 - reference strategy
 - trial-window definitions
+- whether a figure is exploratory all-channel output or final
+  bad-channel-excluded/referenced output
 
 ## 5. Spike Sorting Prep
 

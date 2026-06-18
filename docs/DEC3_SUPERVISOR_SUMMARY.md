@@ -12,6 +12,7 @@ Detailed supporting docs:
 - [Full Results Summary](DEC3_RESULTS_SUMMARY.md)
 - [Major Images Guide](DEC3_MAJOR_IMAGES.md)
 - [Image Walkthrough For Learning](DEC3_IMAGE_WALKTHROUGH.md)
+- [Misi Preprocessing Checklist](DEC3_MISI_PREPROCESSING_CHECKLIST.md)
 - [Run Log](DEC3_ANALYSIS_LOG.md)
 - [Open Questions](OPEN_QUESTIONS.md)
 
@@ -88,7 +89,10 @@ Key figures:
 
 ### 5. Spike Results Are Provisional And Do Not Yet Match The LFP Story
 
-- Kilosort produced `194` clusters/templates.
+- Kilosort produced `194` clusters/templates (an over-count: an automated
+  over-split detector found templates `{90, 91, 92, 97, 104}` are one neuron
+  split into 5, giving ~`190` candidate units; the `19` high-confidence units
+  are validated as distinct from each other).
 - Kilosort labeled `28` clusters as `good`.
 - Automated quality triage identified `19` high-confidence KS-good clusters.
 - The high-confidence subset shows no BH-corrected ON-vs-OFF unit/condition
@@ -133,7 +137,11 @@ Current channel assumptions:
   `5, 6, 7, 32, 33, 34, 43, 66, 67`
 - Good/connected channels used for spike sorting: `119`
 - Current reference for main LFP pass: `analysis_group_median`
-- Anatomy labels are not assigned yet.
+- Probe identity (confirmed via the Dec 4 two-probe recording): the Dec 3
+  128-ch recording is the **dHPC probe (Cambridge NeuroTech H12_2), Port A**.
+  See [DEC4_SUPERVISOR_SUMMARY.md](DEC4_SUPERVISOR_SUMMARY.md).
+- Subregion anatomy labels (CA1/DG/medial/lateral) are still not assigned --
+  that needs surgery orientation + histology, not more analysis.
 
 ### TTL And Trial Windows
 
@@ -148,7 +156,13 @@ Outputs:
 - [TTL audit counts](../analysis/outputs/dec3/ttl_on_off_audit/ttl_on_off_counts.png)
 - [Trial windows](../analysis/outputs/dec3/spike_sorting_prep/trial_windows.csv)
 - [Condition sequence](../analysis/outputs/dec3/dec3_condition_sequence.csv)
-- [Stimulation events](../analysis/outputs/dec3/stimulation_events.csv)
+- [Stimulation events](../analysis/outputs/dec3/stimulation_events.csv) -- TTL QC
+  only for Dec 3 because burst enumeration is not one-to-one with scheduled
+  trials.
+
+Use `dec3_condition_sequence.csv` / `trial_windows.csv` as the source of trial
+labels and ON/OFF windows. Use TTL tables and figures to check physical delivery
+and missing/merged/pre/post TTL activity.
 
 ### LFP Analysis
 
@@ -218,12 +232,13 @@ Reports:
   current spike figures are therefore useful for triage and hypothesis
   generation, but they should not be presented as final single-neuron results.
 
-- Exact probe geometry/channel order still needs final confirmation. We know
-  the recording has 128 amplifier channels and we have excluded the current bad
-  channels, but the exact Cambridge NeuroTech site order and physical shank
-  orientation still need to be verified. This matters most for spike sorting,
-  shank-level summaries, and any spatial interpretation of effects across the
-  probe.
+- Probe *identity* is now confirmed: the Dec 4 two-probe recording established
+  that this Dec 3 128-ch recording is the dHPC probe (Cambridge NeuroTech
+  H12_2) on Port A. What still needs final confirmation is probe *geometry* --
+  the exact site order within H12_2 and the physical shank orientation
+  (which shank is medial/lateral/anterior/posterior). This matters most for
+  spike sorting, shank-level summaries, and any spatial interpretation across
+  the probe.
 
 - Anatomy labels should remain conservative; no CA1/DG/medial/lateral claims
   are made yet. At this stage we can refer to channel groups or provisional

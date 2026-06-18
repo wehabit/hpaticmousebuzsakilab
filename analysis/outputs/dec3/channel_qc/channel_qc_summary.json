@@ -1,5 +1,5 @@
 {
-  "dat_path": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat",
+  "dat_path": "Haptic_Stim_session1_251203_143031/amplifier.dat",
   "n_channels": 128,
   "sample_rate_hz": 20000.0,
   "total_samples": 212888704,
@@ -7,6 +7,8 @@
   "window_seconds": 2.0,
   "n_windows": 8,
   "compute_common_corr": false,
+  "qc_start_s": null,
+  "qc_end_s": null,
   "window_start_samples": [
     0,
     30406957,

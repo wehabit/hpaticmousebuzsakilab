@@ -10,8 +10,10 @@ a vibrating actuator delivered **1,200 stimulation trials** across a 120-minute
 block — each trial **3 s ON / 3 s OFF** — followed by a 30-minute post-stimulus
 period. Trials were drawn from **six interleaved conditions** crossing three drive
 amplitudes (100 / 180 / 250) with two carrier frequencies (**5 and 26 Hz**),
-~200 repeats each; an accelerometer TTL recorded the physical vibration and
-anchors every trial to its true stimulus onset.
+~200 repeats each. The controller schedule is the authoritative condition/trial
+table; an accelerometer TTL recorded physical vibration and is used as timing
+QC because the TTL bursts include pre/post/test activity and do not cleanly
+enumerate all trials.
 
 The central questions are whether neural activity (i) **responds** to the stimulus
 and (ii) **entrains** to its 5/26 Hz rhythm. We characterize the local field
@@ -54,11 +56,19 @@ geometry and channel map.
   and grouped by analysis type (the canonical place to browse results).
 - [Dec 3 Supervisor Summary](docs/DEC3_SUPERVISOR_SUMMARY.md): clean
   findings, figure links, methods, caveats, and suggested presentation order.
+- [**Dec 4 Supervisor Summary**](docs/DEC4_SUPERVISOR_SUMMARY.md): two-probe
+  (dHPC + LEC) session, four drive frequencies. Headline: dHPC follows no
+  frequency (replicating Dec 3 on the same probe); LEC shows an induced,
+  amplitude-graded 50 Hz power increase that is **not** phase-locked. Figures in
+  [`results/dec4/`](results/dec4/README.md).
 - [Dec 3 Results Dashboard](analysis/outputs/dec3/RESULTS_DASHBOARD.html):
   clickable local HTML dashboard of result pages and figures.
 - [Dec 3 Major Images](docs/DEC3_MAJOR_IMAGES.md): figure-by-figure guide.
 - [Dec 3 Image Walkthrough](docs/DEC3_IMAGE_WALKTHROUGH.md): teaching guide
   explaining how each figure was generated and what to take away from it.
+- [Dec 3 Misi Preprocessing Checklist](docs/DEC3_MISI_PREPROCESSING_CHECKLIST.md):
+  status of each collaborator preprocessing step, including blocked/no-data
+  items.
 - [Reusable Pipeline](docs/RERUN_PIPELINE.md): how to repeat this analysis for
   future recordings/conditions.
 - [Study Notes](docs/STUDY_NOTES.md): Dec 3/Dec 4 experiment notes, coordinates,
@@ -112,9 +122,11 @@ baseline**, a **120-minute stimulation block** (1200 randomized trials, each a
 **3 s vibration ON** followed by **3 s OFF**), and a **30-minute
 post-experiment** period. The six conditions — amplitude `{100, 180, 250}` ×
 commanded frequency `{5, 26}` Hz, ~200 repeats each — are interleaved across the
-1200 trials. Stimulation onset is captured by an **accelerometer TTL**
-(`digitalin` bit 7) that fires while the device is physically vibrating, so each
-TTL burst's first edge marks the true vibration onset.
+1200 trials. Trial labels and ON/OFF windows come from the randomized controller
+schedule in `analysis/outputs/dec3/dec3_condition_sequence.csv`. The
+**accelerometer TTL** (`digitalin` bit 7) fires while the device is physically
+vibrating and is audited as a delivery/timing QC signal, but it is not used as
+the sole trial enumerator.
 
 | Phase | Recording time (s) | Time (min) | Duration | What happens |
 |------|-------------------:|-----------:|---------:|--------------|
@@ -126,10 +138,9 @@ TTL burst's first edge marks the true vibration onset.
 | **Total recording** | 0 – 10644 | 0 – 177.4 | **177.4 min** | |
 
 **Protocol = 15 + 120 + 30 = 165 min.** The 120-min stimulation block matches
-`1200 trials × 6 s` exactly. The stimulation window is measured directly from the
-accelerometer TTL; the baseline/post boundaries are the intended design mapped
-onto recording time (the exact baseline start is derived from the controller
-offset).
+`1200 trials × 6 s` exactly. The stimulation window is derived from the command
+schedule mapped onto recording time; TTL edges are overlaid to check delivery
+and reveal missing/merged/pre/post activity.
 
 Generate the timeline and TTL-vs-LFP overview figures with
 [`analysis/plot_ttl_lfp_overview_dec3.py`](analysis/plot_ttl_lfp_overview_dec3.py).
@@ -185,8 +196,9 @@ See [docs/RERUN_PIPELINE.md](docs/RERUN_PIPELINE.md) for the step-by-step checkl
 
 ## Analysis Pipeline Overview
 
-1. Parse Intan metadata and digital TTL events.
-2. Build the randomized condition schedule and 3 s ON / 3 s OFF trial windows.
+1. Parse Intan metadata and digital TTL events for QC.
+2. Build the randomized condition schedule and authoritative 3 s ON / 3 s OFF
+   trial windows.
 3. Confirm/exclude bad channels.
 4. Extract LFP and compute event-aligned, broadband, frequency-specific,
    time-frequency, trial-level, OFF-control, adaptation, and phase-locking

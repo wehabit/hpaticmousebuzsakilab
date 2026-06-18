@@ -378,7 +378,7 @@ def main() -> None:
     good = [c for c in range(args.n_channels) if c not in set(args.bad_channels)]
     lfp = load_lfp(args.lfp, args.n_channels)
     rising = load_rising_edges(args.edges_csv, args.ttl_rate_hz)        # for activity-density figures
-    transitions = load_all_edges(args.edges_csv, args.ttl_rate_hz)      # all toggles -> true onset
+    transitions = load_all_edges(args.edges_csv, args.ttl_rate_hz)      # all toggles -> delivery/timing QC
     sequence = pd.read_csv(args.sequence).sort_values("trial_number").reset_index(drop=True)
     phases = {"baseline_start_s": args.baseline_start_s, "stim_start_s": args.stim_start_s,
               "stim_end_s": args.stim_end_s, "post_end_s": args.post_end_s,

@@ -1,6 +1,6 @@
 {
   "output_dir": "analysis/outputs/dec3/spike_sorting_prep",
-  "raw_dat": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat",
+  "raw_dat": "Haptic_Stim_session1_251203_143031/amplifier.dat",
   "n_channels": 128,
   "sample_rate_hz": 20000.0,
   "bad_channels": [

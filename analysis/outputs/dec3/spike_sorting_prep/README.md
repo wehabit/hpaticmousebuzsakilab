@@ -2,7 +2,7 @@
 
 This folder contains metadata for preparing spike sorting for:
 
-`/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat`
+`Haptic_Stim_session1_251203_143031/amplifier.dat`
 
 The raw `amplifier.dat` is **not modified** by this prep step.
 

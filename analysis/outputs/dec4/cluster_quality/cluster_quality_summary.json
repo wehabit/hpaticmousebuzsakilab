@@ -1,0 +1,15 @@
+{
+  "kilosort_dir": "analysis/outputs/dec4/kilosort4_results_lec",
+  "output_dir": "analysis/outputs/dec4/cluster_quality",
+  "fs_hz": 20000.0,
+  "recording_duration_s": 18135.63375,
+  "n_spikes": 5054120,
+  "n_clusters": 102,
+  "n_ks_good": 12,
+  "n_high_confidence": 9,
+  "n_likely_noise": 81,
+  "n_manual_review": 12,
+  "n_mua_candidate_review": 0,
+  "refractory_ms_for_isi_fraction": 2.0,
+  "caveat": "Automated pre-curation only; final inclusion still needs Phy review."
+}

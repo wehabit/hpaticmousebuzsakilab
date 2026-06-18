@@ -1,35 +1,48 @@
 #!/usr/bin/env python3
-"""Per-trial bootstrap 95% CIs for the per-channel broadband metric.
+"""Per-trial bootstrap 95% CIs for the Dec 3 broadband LFP amplitude metric.
 
 Reproduces the artifact_aware_lfp broadband definition (per channel: mean |LFP|
 in a window minus mean |LFP| in the pre window, averaged over good channels) but
 keeps it PER TRIAL, so we can bootstrap a 95% CI across trials for each condition.
-Same scale as condition_fingerprint's Sustained/Offset broadband bars.
+uses the approved bad-channel exclusion before averaging. Same scale as
+condition_fingerprint's Sustained/Offset broadband bars after regeneration.
 
 Windows (artifact margin 0.1 s):  pre = [-1,0],  sustained = [0.1,2.9],  offset = [2.9,3.1].
 """
 from __future__ import annotations
 import argparse
+import json
 from pathlib import Path
 import numpy as np, pandas as pd
 
 NCH = 128
-BAD = {5, 6, 7, 32, 33, 34, 43, 66, 67}
+DEFAULT_BAD = {5, 6, 7, 32, 33, 34, 43, 66, 67}
 COND_ORDER = ["amp100_freq5", "amp180_freq5", "amp250_freq5",
               "amp100_freq26", "amp180_freq26", "amp250_freq26"]
+
+
+def load_bad_channels(path: Path | None, field: str) -> set[int]:
+    if path is None:
+        return set(DEFAULT_BAD)
+    data = json.loads(path.read_text())
+    return {int(ch) for ch in data.get(field, DEFAULT_BAD)}
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--lfp", type=Path, required=True)
     p.add_argument("--sequence", type=Path, required=True)
+    p.add_argument("--bad-channels-json", type=Path,
+                   default=Path("analysis/bad_channels_dec3.json"))
+    p.add_argument("--bad-channel-field", default="definite_bad_channels")
     p.add_argument("--output", type=Path,
                    default=Path("analysis/outputs/dec3/biological_summary/broadband_perchannel_ci.csv"))
     p.add_argument("--fs", type=float, default=1250.0)
     p.add_argument("--n-boot", type=int, default=2000)
     args = p.parse_args()
     fs = args.fs
-    channels = list(range(NCH))          # all 128, matching artifact_aware_lfp / biological_interpretation
+    bad_channels = load_bad_channels(args.bad_channels_json, args.bad_channel_field)
+    channels = [ch for ch in range(NCH) if ch not in bad_channels]
     n = args.lfp.stat().st_size // 2 // NCH
     lfp = np.memmap(args.lfp, dtype="<i2", mode="r", shape=(n, NCH))
     seq = pd.read_csv(args.sequence)
@@ -65,6 +78,8 @@ def main():
         sm, slo, shi = boot_ci(sus_arr)
         om, olo, ohi = boot_ci(off_arr)
         rows.append(dict(condition=cond, n_trials=ntr,
+                         n_channels_used=len(channels),
+                         excluded_channels=" ".join(map(str, sorted(bad_channels))),
                          sustained_mean=sm, sustained_ci_low=slo, sustained_ci_high=shi,
                          offset_mean=om, offset_ci_low=olo, offset_ci_high=ohi))
         print(f"{cond}: n={ntr}  sustained={sm:.1f} [{slo:.1f},{shi:.1f}]  offset={om:.1f} [{olo:.1f},{ohi:.1f}]")

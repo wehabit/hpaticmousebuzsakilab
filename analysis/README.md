@@ -28,8 +28,8 @@ From the repository root:
 
 ```bash
 python analysis/intan_haptic_summary.py \
-  --session-dir "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031" \
-  --config "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_log/cmd_config_1_Dec3rd.json" \
+  --session-dir "Haptic_Stim_session1_251203_143031" \
+  --config "Haptic_Stim_session1_251203_143031/My log/cmd_config_1_Dec3rd.json" \
   --recording-start-offset-s 640 \
   --output-dir analysis/outputs/dec3
 ```
@@ -41,7 +41,10 @@ Outputs:
 - `stimulus_config_schedule.csv`: one row per nonzero command from the randomized
   stimulus config.
 - `stimulation_events.csv`: detected TTL pulse bursts with config columns joined by
-  row order. Check `alignment_warning` in the summary before treating labels as final.
+  row order. For Dec 3 this is QC only; use `dec3_condition_sequence.csv` as the
+  authoritative condition/trial table.
+- `dec3_condition_sequence.csv`: authoritative schedule-derived ON/OFF trial
+  table after applying the recording offset.
 - `digital_edges_ch*.csv`: rising/falling sample indices for each parsed digital
   channel.
 

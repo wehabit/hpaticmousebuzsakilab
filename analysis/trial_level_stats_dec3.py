@@ -7,6 +7,8 @@ import argparse
 import json
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -89,7 +91,7 @@ def plot_metric(summary: pd.DataFrame, metric: str, ylabel: str, output: Path) -
         lo = sub[f"{metric}_ci_low"].to_numpy()
         hi = sub[f"{metric}_ci_high"].to_numpy()
         freqs = [parse_condition(c)[1] for c in conditions]
-        ax.bar(x, y, color=[colors[f] for f in freqs], alpha=0.86)
+        ax.bar(x, y, color=[colors.get(f, "#888888") for f in freqs], alpha=0.86)
         ax.errorbar(x, y, yerr=[y - lo, hi - y], fmt="none", color="black", linewidth=0.8, capsize=3)
         ax.axhline(0, color="black", linewidth=0.8)
         ax.set_title(group)
@@ -237,7 +239,7 @@ def main() -> None:
         "img{width:100%;border:1px solid #d9dee5;margin-bottom:30px}"
         "a{color:#0f6b78;font-weight:600}</style></head><body>",
         "<h1>Dec 3 Trial-Level Statistics</h1>",
-        "<p>Bootstrap 95% confidence intervals across trials, using candidate-channel exclusion and analysis-group median reference.</p>",
+        "<p>Bootstrap 95% confidence intervals across trials, using confirmed bad-channel exclusion and analysis-group median reference. Broadband here is group-mean LFP amplitude after channel averaging.</p>",
         "<h2>Sustained Broadband</h2><img src='sustained_broadband_ci.png'>",
         "<h2>Offset Broadband</h2><img src='offset_broadband_ci.png'>",
         "<h2>Driven-Frequency Power</h2><img src='driven_power_ci.png'>",

@@ -3,12 +3,17 @@
 This log tracks the Python version of the Dec 3 pipeline, following Mishi's
 Buzcode/CellExplorer workflow while keeping the raw files unchanged unless noted.
 
+Note: this is a historical run log. Some commands below preserve the older
+absolute path used during the original analysis. For current reruns, use the
+workspace-relative paths in `README.md`, `docs/RERUN_PIPELINE.md`, and
+`analysis/final_preprocessing_dec3.json`.
+
 ## Current Provisional Final-Pass Settings
 
 - Config: `analysis/final_preprocessing_dec3.json`
-- Candidate bad channels excluded: `5, 6, 7, 32, 33, 34, 43, 66, 67`
+- Confirmed bad channels excluded for this pass: `5, 6, 7, 32, 33, 34, 43, 66, 67`
 - LFP reference: `analysis_group_median`
-- Caveat: this is not yet a collaborator-confirmed visual bad-channel list.
+- Caveat: anatomy labels remain provisional even though the bad-channel set is now fixed for this pass.
 - Anatomy labels remain channel/group-level only until probe orientation is
   confirmed.
 - Provisional final-pass outputs:

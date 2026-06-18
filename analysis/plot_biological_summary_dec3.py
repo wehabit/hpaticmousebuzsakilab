@@ -5,12 +5,17 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
 
 OUTPUT = Path("analysis/outputs/dec3/biological_summary")
+TRIAL_LEVEL_CONDITION_CI = Path(
+    "analysis/outputs/dec3/trial_level_stats_equal_spectral_windows/condition_summary_ci.csv"
+)
 CONDITION_ORDER = [
     "amp100_freq5",
     "amp180_freq5",
@@ -29,6 +34,21 @@ def load_summary() -> pd.DataFrame:
     path = Path("analysis/outputs/dec3/condition_interpretation/condition_interpretation_summary.csv")
     frame = pd.read_csv(path)
     return frame.set_index("condition").reindex(CONDITION_ORDER).reset_index()
+
+
+def load_broadband_ci() -> pd.DataFrame:
+    frame = pd.read_csv(TRIAL_LEVEL_CONDITION_CI)
+    frame = frame.rename(
+        columns={
+            "sustained_broadband_delta_mean": "sustained_mean",
+            "sustained_broadband_delta_ci_low": "sustained_ci_low",
+            "sustained_broadband_delta_ci_high": "sustained_ci_high",
+            "offset_broadband_delta_mean": "offset_mean",
+            "offset_broadband_delta_ci_low": "offset_ci_low",
+            "offset_broadband_delta_ci_high": "offset_ci_high",
+        }
+    )
+    return frame.set_index("condition").reindex(CONDITION_ORDER)
 
 
 def plot_condition_fingerprint(frame: pd.DataFrame, output: Path) -> None:
@@ -50,9 +70,9 @@ def plot_condition_fingerprint(frame: pd.DataFrame, output: Path) -> None:
     labels = [f"{int(fr)}Hz/{int(am)}" for am, fr in zip(frame["amplitude"], frame["frequency"])]
     colors = [COLORS[freq] for freq in frame["frequency"]]
 
-    # per-trial bootstrap 95% CIs for the two broadband panels (same per-channel scale as the bars)
+    # Final equal-window trial-level bootstrap CIs for the two broadband panels.
     try:
-        ci_df = pd.read_csv(OUTPUT / "broadband_perchannel_ci.csv").set_index("condition").reindex(frame["condition"])
+        ci_df = load_broadband_ci().reindex(frame["condition"])
     except FileNotFoundError:
         ci_df = None
     CI_COLS = {"sustained_broadband": ("sustained_mean", "sustained_ci_low", "sustained_ci_high"),
@@ -92,12 +112,12 @@ def plot_condition_fingerprint(frame: pd.DataFrame, output: Path) -> None:
         ax.margins(y=0.28 if yerr is not None else 0.18)
         # flag the panels that carry a REAL effect vs the near-zero ones
         if is_real:
-            ax.text(0.5, 0.96, "REAL response", transform=ax.transAxes, ha="center", fontsize=9,
+            ax.text(0.5, 0.96, "BROADBAND response", transform=ax.transAxes, ha="center", fontsize=9,
                     fontweight="bold", color="#1a7a3a", zorder=6,
                     bbox=dict(boxstyle="round,pad=0.25", fc="#e8f6ec", ec="#1a7a3a", alpha=0.4))
         else:
             ax.axhspan(-0.5 * ymax, 0.5 * ymax, color="#bbbbbb", alpha=0.10, zorder=0)
-            ax.text(0.5, 0.93, "≈ 0  (no entrainment)", transform=ax.transAxes, ha="center", fontsize=9,
+            ax.text(0.5, 0.93, "weak / near-zero", transform=ax.transAxes, ha="center", fontsize=9,
                     fontweight="bold", color="#8a6d00", zorder=6,
                     bbox=dict(boxstyle="round,pad=0.25", fc="#fdf5e0", ec="#b8860b", alpha=0.4))
 
@@ -109,8 +129,8 @@ def plot_condition_fingerprint(frame: pd.DataFrame, output: Path) -> None:
     fig.suptitle("Condition Fingerprint — what response does each buzz setting produce?",
                  fontsize=14, fontweight="bold", y=0.985)
     fig.text(0.5, 0.04,
-             "Each bar = one condition (amplitude / frequency).   The two LEFT panels show a real, size-graded response;   "
-             "the three RIGHT panels are all ≈ 0  →  the brain reacts to the buzz but does NOT follow its frequency.",
+             "Each bar = one condition (amplitude / frequency).   The two LEFT panels show broadband/recovery response size;   "
+             "the three RIGHT panels test whether the response follows the commanded frequency.",
              ha="center", fontsize=10, style="italic")
     fig.tight_layout(rect=(0, 0.07, 1, 0.92))
     fig.savefig(output, dpi=180)
@@ -132,7 +152,7 @@ def plot_biology_quadrants(frame: pd.DataFrame, output: Path) -> None:
     # shade the meaningful halves of the x-axis
     ax.axvspan(0, ax.get_xlim()[1], color="#e8f6ec", alpha=0.6, zorder=0)   # right = power went UP at stim freq
     ax.axvspan(ax.get_xlim()[0], 0, color="#fdeceb", alpha=0.6, zorder=0)   # left  = power went DOWN
-    ax.text(0.985, 0.975, "RIGHT half = power INCREASED at the\nstim frequency (true entrainment)",
+    ax.text(0.985, 0.975, "RIGHT half = power INCREASED at the\nstim frequency (entrainment candidate)",
             transform=ax.transAxes, ha="right", va="top", fontsize=8.5, color="#1a7a3a")
     ax.text(0.015, 0.975, "LEFT half = NO increase at the\nstim frequency", transform=ax.transAxes,
             ha="left", va="top", fontsize=8.5, color="#a93226")
@@ -187,7 +207,7 @@ def plot_frequency_amplitude_matrix(frame: pd.DataFrame, output: Path) -> None:
     fig, axes = plt.subplots(1, len(metrics), figsize=(16, 5.2), sharey=True)
     tag_specs = []
     try:                                  # recomputed per-trial broadband (same source as fingerprint/explainer)
-        bb = pd.read_csv(OUTPUT / "broadband_perchannel_ci.csv").set_index("condition")
+        bb = load_broadband_ci()
     except FileNotFoundError:
         bb = None
 
@@ -217,14 +237,14 @@ def plot_frequency_amplitude_matrix(frame: pd.DataFrame, output: Path) -> None:
         ax.set_xticks(np.arange(len(amps))); ax.set_xticklabels(amps)
         ax.set_yticks(np.arange(len(freqs))); ax.set_yticklabels([f"{f} Hz" for f in freqs])
         ax.set_xlabel("amplitude setting", labelpad=6)
-        tag_specs.append((ax, ("REAL response", "#1a7a3a", "#e8f6ec") if is_real
-                          else ("≈ 0  (no entrainment)", "#8a6d00", "#fdf5e0")))
+        tag_specs.append((ax, ("BROADBAND response", "#1a7a3a", "#e8f6ec") if is_real
+                          else ("weak / near-zero", "#8a6d00", "#fdf5e0")))
         cb = fig.colorbar(image, ax=ax, fraction=0.046, pad=0.04)
         cb.set_label(cbar_label, fontsize=8)
     axes[0].set_ylabel("stim frequency", fontsize=10)
     fig.suptitle("Amplitude × Frequency grid — the SAME numbers as condition_fingerprint, arranged by setting\n"
                  "Each cell = the measured value for that  (frequency row × amplitude column).  "
-                 "Only 'Overall response' is non-zero; the other three hover at 0 → no frequency-following.",
+                 "Overall response and frequency-following metrics are shown separately; entrainment requires the right-side metrics, not only broadband amplitude.",
                  fontsize=12, fontweight="bold", y=0.99)
     fig.tight_layout(rect=(0, 0.16, 1, 0.84))
     # place REAL / ≈0 tags at a fixed y BELOW each panel (after layout, so they never collide with the x-label)
@@ -246,9 +266,8 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
     gs = fig.add_gridspec(2, 3, height_ratios=[1.2, 1.0], hspace=0.85, wspace=0.34,
                           left=0.07, right=0.97, top=0.80, bottom=0.15)
 
-    # ---------- TOP: the REAL response (two broadband windows) with 95% bootstrap CIs ----------
-    ci = (pd.read_csv(OUTPUT / "broadband_perchannel_ci.csv")
-          .set_index("condition").reindex(CONDITION_ORDER))
+    # ---------- TOP: broadband/recovery response (two windows) with 95% bootstrap CIs ----------
+    ci = load_broadband_ci()
     sus = ci["sustained_mean"].to_numpy()
     off = ci["offset_mean"].to_numpy()
     sus_err = np.vstack([np.clip(sus - ci["sustained_ci_low"], 0, None),
@@ -268,7 +287,7 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
     axt.set_xticks(x); axt.set_xticklabels(labels, fontsize=9)
     axt.set_ylabel("signal increase vs baseline\nmean |LFP| (a.u.)", fontsize=10)
     axt.set_title("STEP 1 — Does the brain REACT to the buzz?    YES, at 26 Hz (strongest at 180)   "
-                  "(error bars = 95% bootstrap CI over 200 trials;  * = CI clears 0)",
+                  "(error bars = 95% bootstrap CI over trials;  * = CI clears 0)",
                   fontsize=12, fontweight="bold")
     ytop = float(np.nanmax(ci[["sustained_ci_high", "offset_ci_high"]].to_numpy()))
     axt.text(1, ytop * 1.20, "5 Hz settings", ha="center", fontsize=10, color="#1a5276", fontweight="bold")
@@ -308,13 +327,14 @@ def plot_combined_explainer(frame: pd.DataFrame, output: Path) -> None:
     fig.text(0.5, 0.915, "6 buzz settings along the x-axis (frequency / amplitude).  "
              "STEP 1 colors = time window (yellow = during buzz, blue = at buzz-stop);  STEP 2 colors = frequency (blue 5 Hz, red 26 Hz).",
              ha="center", fontsize=9.5, style="italic", color="#333")
-    fig.text(0.5, 0.895, "(STEP 1 bars = per-trial mean ± 95% bootstrap CI; * = CI clears 0. The reliable bars are all 26 Hz, "
-             "strongest at 180; no 5 Hz bar is reliable.)", ha="center", fontsize=8.2, style="italic", color="#777")
-    fig.text(0.5, 0.475, "STEP 2 — Does the brain FOLLOW the buzz's rhythm?    NO: all three measures sit at ≈ 0",
+    fig.text(0.5, 0.895, "(STEP 1 bars = per-trial mean ± 95% bootstrap CI; * = CI clears 0. "
+             "Interpret these as broadband/recovery response size, not proof of 5/26 Hz entrainment.)",
+             ha="center", fontsize=8.2, style="italic", color="#777")
+    fig.text(0.5, 0.475, "STEP 2 — Does the brain FOLLOW the buzz's rhythm?    Check driven power, time-frequency, and PLV",
              ha="center", fontsize=13, fontweight="bold")
     fig.text(0.5, 0.045,
-             "BOTTOM LINE:  a real, amplitude-graded BROADBAND reaction to the buzz (top, strongest at 26 Hz / 180) — "
-             "but NO frequency-following / entrainment (bottom, all ≈ 0).\nThe brain clearly NOTICES the buzz; it does not lock to its rhythm.",
+             "BOTTOM LINE:  a real BROADBAND / recovery reaction to the buzz (top, strongest at 26 Hz / 180) — "
+             "but weak evidence for frequency-following / entrainment in the driven-power, time-frequency, and PLV panels.",
              ha="center", fontsize=11, color="#111",
              bbox=dict(boxstyle="round,pad=0.5", fc="#eef6ff", ec="#2c3e50"))
     fig.savefig(output, dpi=170)
@@ -329,7 +349,7 @@ def write_html(output: Path) -> None:
         "a{color:#0f6b78;font-weight:600}</style></head><body>",
         "<h1>Dec 3 Biological Summary Figures</h1>",
         "<p>These figures combine the current condition-level metrics into a small number of biological views.</p>",
-        "<p><strong>Reading guide:</strong> broadband LFP is overall response size; driven-frequency power asks whether power increased specifically at 5 Hz or 26 Hz; PLV asks whether phase became consistent across trials.</p>",
+        "<p><strong>Reading guide:</strong> broadband LFP is overall response size from the corrected equal-window trial table; driven-frequency power asks whether power increased specifically at 5 Hz or 26 Hz; PLV asks whether phase became consistent across trials.</p>",
         "<h2>Condition Fingerprint</h2><img src='condition_fingerprint.png'>",
         "<h2>Broadband vs Driven-Frequency Power</h2><img src='broadband_vs_driven_power.png'>",
         "<h2>Amplitude x Frequency Matrix</h2><img src='amplitude_frequency_matrix.png'>",

@@ -2,7 +2,9 @@
 set -euo pipefail
 
 VOLUME_NAME="${VOLUME_NAME:-dec3-kilosort-data}"
-SESSION_DIR="${SESSION_DIR:-/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+SESSION_DIR="${SESSION_DIR:-${REPO_DIR}/Haptic_Stim_session1_251203_143031}"
 PREP_DIR="${PREP_DIR:-analysis/outputs/dec3/spike_sorting_prep}"
 
 echo "Creating Modal volume if needed: ${VOLUME_NAME}"

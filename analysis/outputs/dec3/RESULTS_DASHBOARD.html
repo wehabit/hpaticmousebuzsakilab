@@ -186,7 +186,7 @@
       </div>
       <div>
         <strong>Frequency-specific power</strong>
-        The cleanest full-window driven-frequency increase is `amp180_freq5`, not `amp180_freq26`.
+        Reference-sensitivity summaries still put `amp180_freq5` highest, but trial-level driven-frequency CIs cross zero; treat driven-band effects as suggestive.
       </div>
       <div>
         <strong>26 Hz nuance</strong>
@@ -194,7 +194,7 @@
       </div>
       <div>
         <strong>Reference sensitivity</strong>
-        Excluding candidate bad channels and median referencing does not flip the main driven-frequency result: `amp180_freq5` stays strongest.
+        Excluding the confirmed bad-channel set and median referencing does not flip the main driven-frequency trend: `amp180_freq5` stays highest in the reference-sensitivity table.
       </div>
       <div>
         <strong>Phase locking</strong>
@@ -235,23 +235,23 @@
     </div>
 
     <p class="caution">
-      Current result status: strong exploratory evidence, not final claims. The next analyses should rerun these plots after bad-channel exclusion and LFP referencing are finalized.
+      Current result status: corrected Dec 3 LFP pass with confirmed bad-channel exclusion and analysis-group median referencing. Spike claims remain provisional until Phy/manual curation is complete.
     </p>
     <p class="caution">
       Important distinction: broadband LFP asks whether the overall signal got bigger; entrainment asks whether it got bigger specifically at the stimulus frequency. This is why `amp180_freq26` can be broadband-strong but not cleanly 26 Hz-entrained.
     </p>
 
     <h2>Key Numbers</h2>
-    <h3>Artifact-aware sustained broadband LFP</h3>
+    <h3>Corrected sustained broadband LFP</h3>
     <div class="table-wrap">
       <table>
-        <tr><th>Condition</th><th>Sustained mean abs-LFP change</th></tr>
-        <tr><td>amp180_freq26</td><td>53.78</td></tr>
-        <tr><td>amp100_freq26</td><td>19.97</td></tr>
-        <tr><td>amp180_freq5</td><td>16.96</td></tr>
-        <tr><td>amp250_freq26</td><td>6.30</td></tr>
-        <tr><td>amp250_freq5</td><td>1.85</td></tr>
-        <tr><td>amp100_freq5</td><td>1.76</td></tr>
+        <tr><th>Condition</th><th>Equal-window trial mean</th></tr>
+        <tr><td>amp180_freq26</td><td>6.65</td></tr>
+        <tr><td>amp100_freq26</td><td>3.27</td></tr>
+        <tr><td>amp100_freq5</td><td>1.60</td></tr>
+        <tr><td>amp250_freq26</td><td>0.98</td></tr>
+        <tr><td>amp250_freq5</td><td>0.58</td></tr>
+        <tr><td>amp180_freq5</td><td>-0.34</td></tr>
       </table>
     </div>
 
@@ -259,16 +259,16 @@
     <div class="table-wrap">
       <table>
         <tr><th>Condition</th><th>Onset</th><th>Sustained</th><th>Offset</th></tr>
-        <tr><td>amp100_freq26</td><td>-0.003</td><td>0.091</td><td>0.265</td></tr>
-        <tr><td>amp180_freq5</td><td>-0.112</td><td>0.064</td><td>0.107</td></tr>
-        <tr><td>amp250_freq5</td><td>-0.128</td><td>0.044</td><td>0.056</td></tr>
-        <tr><td>amp180_freq26</td><td>-0.089</td><td>-0.043</td><td>0.142</td></tr>
-        <tr><td>amp100_freq5</td><td>-0.111</td><td>-0.046</td><td>-0.051</td></tr>
-        <tr><td>amp250_freq26</td><td>-0.349</td><td>-0.300</td><td>-0.110</td></tr>
+        <tr><td>amp100_freq5</td><td>-0.010</td><td>0.057</td><td>0.090</td></tr>
+        <tr><td>amp250_freq5</td><td>-0.227</td><td>0.055</td><td>0.043</td></tr>
+        <tr><td>amp180_freq26</td><td>-0.174</td><td>0.047</td><td>0.225</td></tr>
+        <tr><td>amp100_freq26</td><td>0.016</td><td>0.044</td><td>0.082</td></tr>
+        <tr><td>amp180_freq5</td><td>-0.221</td><td>0.003</td><td>0.128</td></tr>
+        <tr><td>amp250_freq26</td><td>-0.372</td><td>-0.135</td><td>-0.012</td></tr>
       </table>
     </div>
 
-    <h3>Reference and candidate bad-channel sensitivity</h3>
+    <h3>Reference and confirmed bad-channel sensitivity</h3>
     <div class="table-wrap">
       <table>
         <tr><th>Condition</th><th>Raw</th><th>Physical-shank median</th><th>Analysis-group median</th></tr>
@@ -482,7 +482,7 @@
         <img src="reference_sensitivity_lfp/reference_condition_summary.png" alt="Reference condition sensitivity">
       </a>
       <figcaption>
-        Driven-frequency power after excluding current candidate bad channels and comparing raw, physical-shank median, and analysis-group median reference. `amp180_freq5` remains strongest across all reference choices.
+        Driven-frequency power after excluding the confirmed bad-channel set for this pass and comparing raw, physical-shank median, and analysis-group median reference. `amp180_freq5` remains the highest trend across reference choices, while trial-level CIs remain compatible with zero.
       </figcaption>
     </figure>
 
@@ -548,7 +548,7 @@
         <img src="event_aligned_lfp/condition_summary_plots/lfp_response_grouped_bars.png" alt="Grouped event LFP bars">
       </a>
       <figcaption>
-        Earlier event-aligned broadband metric. Useful, but less artifact-aware than the later analyses.
+        Earlier event-aligned broadband metric. Useful as an exploratory view, but the final biological summary uses the bad-channel-excluded equal-window trial table.
       </figcaption>
     </figure>
 

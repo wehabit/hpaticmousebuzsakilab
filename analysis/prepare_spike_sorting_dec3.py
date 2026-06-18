@@ -19,6 +19,8 @@ ANALYSIS_GROUPS = {
     "Group 96-127": list(range(96, 128)),
 }
 
+DEFAULT_RAW_DAT = Path("Haptic_Stim_session1_251203_143031/amplifier.dat")
+
 
 def channel_group(channel: int) -> str:
     for group, channels in ANALYSIS_GROUPS.items():
@@ -111,12 +113,13 @@ def main() -> None:
     parser.add_argument("--config", type=Path, default=Path("analysis/final_preprocessing_dec3.json"))
     parser.add_argument("--sequence", type=Path, default=Path("analysis/outputs/dec3/dec3_condition_sequence.csv"))
     parser.add_argument("--output-dir", type=Path, default=Path("analysis/outputs/dec3/spike_sorting_prep"))
+    parser.add_argument("--raw-dat", type=Path, default=DEFAULT_RAW_DAT)
     args = parser.parse_args()
 
     config = json.loads(args.config.read_text())
     n_channels = 128
     sample_rate_hz = 20000.0
-    raw_dat = Path("/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat")
+    raw_dat = args.raw_dat
     bad_channels = set(int(ch) for ch in config["channels"]["definite_bad_channels"])
 
     args.output_dir.mkdir(parents=True, exist_ok=True)

@@ -4,11 +4,20 @@ Questions to ask while continuing the analysis. These are not blockers for the
 next Python analyses, but they matter before making final anatomical or
 publication-style claims.
 
+> **Update (Dec 4 session analyzed):** several of these are now answered by the
+> Dec 4 two-probe recording — see `docs/DEC4_SUPERVISOR_SUMMARY.md`. In short:
+> both LEC and dHPC probes exist (Recording Metadata Q1); Port A = dHPC (the same
+> probe Dec 3 used alone), Port B = LEC (Q2); and the entrainment question is now
+> tested across 5/10/26/50 Hz in both regions. Items answered are tagged
+> **[Dec4: answered]** below.
+
 ## Probe / Anatomy
 
 1. For the Dec 3 dHPC implant, was the probe definitely Cambridge NeuroTech
    `H12_2`, and is there a specific channel map PDF or `.prb` file used by the
-   lab for this exact probe?
+   lab for this exact probe? **[Dec4: partially answered]** The Dec 4 two-probe
+   recording confirms the Dec 3 recording is the dHPC `H12_2` probe (Port A).
+   Still open: the lab's specific channel-map PDF/`.prb` for this exact probe.
 2. Which physical shank is medial vs lateral in the brain?
    - Current safe labels: channels `0-63` = physical Shank A, channels `64-127`
      = physical Shank B.
@@ -26,15 +35,23 @@ publication-style claims.
 ## Recording Metadata
 
 1. Were both LEC and dHPC probes recorded in this Dec 3 session, or only the
-   dHPC H12_2 probe?
+   dHPC H12_2 probe? **[Dec4: answered]** Both probes exist on this mouse; the
+   Dec 3 128-ch recording was the dHPC probe (Port A) alone.
 2. If both were present physically, which Intan headstage/port corresponds to
-   which probe?
+   which probe? **[Dec4: answered]** Port A (ch 0–127) = dHPC (H12_2);
+   Port B (ch 128–255) = LEC (H15).
 3. Were any amplifier channels known to be disconnected, shorted, reference
    channels, ground, or intentionally unused?
 4. What reference scheme was used during acquisition?
 5. Did anyone save the final Neuroscope bad-channel list after visual review?
 
 ## Stimulation / Behavior
+
+> **Hardware action item (next session):** the actuator runs a *free-running* sine
+> oscillator (phase not reset per trial) and Dec 4 recorded no stimulus copy, which
+> makes entrainment untestable from the LFP. Add a stimulus sync + delivery recording
+> — see **`docs/STIMULUS_SYNC_RECORDING_SPEC.md`** (hand to the hardware engineer).
+
 
 1. Is `cmd_config_1_Dec3rd.json` the final source of truth for the 1200-trial
    stimulation order?

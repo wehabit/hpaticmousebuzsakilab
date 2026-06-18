@@ -1,0 +1,22 @@
+{
+  "kilosort_dir": "analysis/outputs/dec4/kilosort4_results_lec",
+  "n_clusters": 102,
+  "recording_duration_s": 18135.6,
+  "coincidence_window_ms": 1.0,
+  "n_candidate_pairs_tested": 478,
+  "n_strong_merge_pairs": 2,
+  "n_possible_merge_pairs": 8,
+  "merge_groups": [
+    [
+      1,
+      2,
+      5
+    ]
+  ],
+  "n_merge_groups": 1,
+  "clusters_removed_by_merging": 2,
+  "n_clusters_after_merging": 100,
+  "n_high_confidence_before": null,
+  "n_high_confidence_after_merging": null,
+  "method": "0-lag cross-correlogram duplication fraction; candidate pairs from Kilosort template similarity (top-K)."
+}

@@ -1,20 +1,20 @@
 <!doctype html><html><head><meta charset='utf-8'><title>Dec 3 Condition Interpretation</title>
 <style>body{font-family:Arial,sans-serif;margin:24px;max-width:1250px;line-height:1.45}table{border-collapse:collapse;font-size:14px}th,td{border:1px solid #d9dee5;padding:8px 10px;vertical-align:top}th{background:#f3f5f7}td:nth-child(n+2):nth-child(-n+6){text-align:right}a{color:#0f6b78;font-weight:600}</style></head><body>
 <h1>Dec 3 Condition-Level Biological Interpretation</h1>
-<p>This page translates the current LFP metrics into condition-level language. It uses the provisional final-pass preprocessing where available.</p>
+<p>This page translates the current LFP metrics into condition-level language. It uses the bad-channel-excluded equal-window trial-level LFP table for broadband/driven metrics, with final-pass PLV/reference summaries where available.</p>
 <p><strong>What 'largest 26 Hz power candidate' means:</strong> among the 26 Hz stimulation conditions, it has the largest positive increase in 26 Hz-band power under the current preprocessing. It does not mean it is statistically proven, anatomically localized, or strongly phase-locked.</p>
 <table><tr><th>Condition</th><th>Sustained broadband</th><th>Offset broadband</th><th>Driven power<br>group median</th><th>Sustained TF<br>driven band</th><th>PLV delta</th><th>Interpretation</th></tr>
-<tr><td>amp100_freq5</td><td>15.94</td><td>37.74</td><td>-0.105</td><td>-0.046</td><td>-0.013</td><td>moderate broadband LFP response; offset/transition-heavy; driven-frequency power suppressed/negative; negative PLV change</td></tr>
-<tr><td>amp180_freq5</td><td>18.81</td><td>18.30</td><td>0.124</td><td>0.064</td><td>0.005</td><td>moderate broadband LFP response; clear driven-frequency power increase; no meaningful PLV increase</td></tr>
-<tr><td>amp250_freq5</td><td>15.78</td><td>31.78</td><td>-0.030</td><td>0.044</td><td>-0.001</td><td>moderate broadband LFP response; offset/transition-heavy; near-zero driven-frequency power; no meaningful PLV increase</td></tr>
-<tr><td>amp100_freq26</td><td>27.87</td><td>23.47</td><td>0.043</td><td>0.091</td><td>-0.004</td><td>moderate broadband LFP response; weak positive driven-frequency power; no meaningful PLV increase</td></tr>
-<tr><td>amp180_freq26</td><td>48.50</td><td>77.29</td><td>-0.014</td><td>-0.043</td><td>-0.001</td><td>large broadband LFP response; offset/transition-heavy; near-zero driven-frequency power; no meaningful PLV increase</td></tr>
-<tr><td>amp250_freq26</td><td>15.93</td><td>60.63</td><td>-0.133</td><td>-0.300</td><td>-0.010</td><td>moderate broadband LFP response; offset/transition-heavy; driven-frequency power suppressed/negative; negative PLV change</td></tr>
+<tr><td>amp100_freq5</td><td>1.60</td><td>4.92</td><td>-0.082</td><td>0.057</td><td>-0.013</td><td>weak/no sustained broadband LFP response; offset/transition-heavy trend; negative driven-frequency power trend; negative PLV change</td></tr>
+<tr><td>amp180_freq5</td><td>-0.34</td><td>2.23</td><td>0.051</td><td>0.003</td><td>0.005</td><td>weak/no sustained broadband LFP response; weak positive driven-frequency power; no meaningful PLV increase</td></tr>
+<tr><td>amp250_freq5</td><td>0.58</td><td>-0.28</td><td>-0.042</td><td>0.055</td><td>-0.001</td><td>weak/no sustained broadband LFP response; near-zero driven-frequency power; no meaningful PLV increase</td></tr>
+<tr><td>amp100_freq26</td><td>3.27</td><td>1.33</td><td>0.076</td><td>0.044</td><td>-0.004</td><td>positive sustained broadband LFP trend; weak positive driven-frequency power; no meaningful PLV increase</td></tr>
+<tr><td>amp180_freq26</td><td>6.65</td><td>12.58</td><td>-0.045</td><td>0.047</td><td>-0.001</td><td>reliable sustained broadband LFP response; reliable offset/recovery response; near-zero driven-frequency power; no meaningful PLV increase</td></tr>
+<tr><td>amp250_freq26</td><td>0.98</td><td>7.69</td><td>-0.036</td><td>-0.135</td><td>-0.010</td><td>weak/no sustained broadband LFP response; reliable offset/recovery response; near-zero driven-frequency power; negative PLV change</td></tr>
 </table>
 <h2>Short Biological Read</h2>
-<p><strong>amp180_freq26</strong>: largest overall LFP amplitude response, but this looks broadband/offset-heavy rather than clean sustained 26 Hz-following.</p>
-<p><strong>amp180_freq5</strong>: clearest driven-frequency power increase at 5 Hz.</p>
-<p><strong>amp100_freq26</strong>: largest positive 26 Hz-band power increase under the current referenced preprocessing, but PLV does not show strong phase-locking.</p>
-<p><strong>amp250_freq26</strong>: weak/negative in driven-frequency and time-frequency metrics, despite some broadband offset response.</p>
+<p><strong>amp180_freq26</strong>: strongest reliable broadband/recovery response, but not clean sustained 26 Hz-following.</p>
+<p><strong>amp180_freq5</strong>: positive 5 Hz driven-frequency trend, but the equal-window bootstrap CI remains compatible with zero.</p>
+<p><strong>amp100_freq26</strong>: positive 26 Hz driven-frequency trend, but PLV does not show strong phase-locking and the CI remains cautious.</p>
+<p><strong>amp250_freq26</strong>: offset/recovery-heavy response with weak/negative driven-frequency evidence.</p>
 <p>Back to <a href='../RESULTS_DASHBOARD.html'>main dashboard</a>.</p>
 </body></html>

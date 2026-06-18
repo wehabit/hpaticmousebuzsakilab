@@ -1,7 +1,7 @@
 {
   "output_dir": "analysis/outputs/dec3/reference_sensitivity_lfp",
   "bad_channels_json": "analysis/bad_channels_dec3.json",
-  "bad_channel_field": "candidate_bad_channels",
+  "bad_channel_field": "definite_bad_channels",
   "excluded_channels": [
     5,
     6,

@@ -246,6 +246,7 @@ def write_events(output_dir: Path, stimuli: list[dict], bursts: list[Burst]) -> 
         stimulus = stimuli[idx] if idx < len(stimuli) else {}
         row = {
             **asdict(burst),
+            "label_source": "ttl_row_join_qc_only",
             "config_index": stimulus.get("config_index"),
             "amplitude": stimulus.get("amplitude"),
             "expected_freq_hz": stimulus.get("freq"),
@@ -340,6 +341,10 @@ def main() -> None:
         "recording_start_offset_s": args.recording_start_offset_s,
         "detected_burst_count": len(bursts),
         "tentative_row_joined_event_count": min(len(stimuli), len(bursts)),
+        "event_labeling_note": (
+            "dec3_condition_sequence.csv is the authoritative Dec 3 trial schedule. "
+            "stimulation_events.csv row-joins detected TTL bursts to config rows for delivery/timing QC only."
+        ),
         "alignment_warning": alignment_warning,
         "median_start_time_error_s": (
             float(np.median([row["start_time_error_s"] for row in event_rows if row["start_time_error_s"] is not None]))

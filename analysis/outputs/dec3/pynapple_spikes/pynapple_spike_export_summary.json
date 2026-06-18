@@ -13,5 +13,12 @@
     "ks_good_units": "kilosort_ks_good_units_tsgroup.npz",
     "metadata": "cluster_metadata.csv"
   },
-  "caveat": "Uncurated Kilosort4 output with provisional geometry."
+  "local_artifact_status": "Pynapple .npz spike exports are missing from this checkout.",
+  "required_to_regenerate": [
+    "spike_times.npy",
+    "spike_clusters.npy",
+    "templates.npy",
+    "related Kilosort waveform/template arrays"
+  ],
+  "caveat": "Uncurated Kilosort4 output with provisional geometry. Restore missing Kilosort arrays before local spike-export reruns."
 }

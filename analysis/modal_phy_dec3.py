@@ -2,6 +2,21 @@
 
 This reuses the existing `dec3-kilosort-data` Modal Volume. It does not upload
 the 51 GB raw file again.
+
+Launch (detached so it survives a disconnected client during a long curation
+session):
+
+  modal run --detach analysis/modal_phy_dec3.py
+
+The browser URL is printed to the logs AND written to
+  /data/dec3/kilosort4_results/NOVNC_URL.txt  on the volume,
+so it can be retrieved after a detached launch with:
+
+  modal volume get dec3-kilosort-data dec3/kilosort4_results/NOVNC_URL.txt -
+
+When finished curating, stop the desktop to free the container:
+
+  modal app stop <app-id> --yes
 """
 
 from __future__ import annotations
@@ -173,15 +188,24 @@ def start_phy_novnc() -> None:
 
     websockify = shutil.which("websockify") or "/usr/bin/websockify"
     with modal.forward(6080) as tunnel:
-        print("")
-        print("Open this URL in your browser for the Modal Phy desktop:")
-        print(f"{tunnel.url}/vnc.html?autoconnect=true&resize=scale")
-        print("")
-        print("Inside the desktop, Phy should be launching automatically.")
-        print("Kilosort results:", RESULTS_DIR)
-        print("Params:", PARAMS_PATH)
-        print("Launch log:", LAUNCH_LOG)
-        print("")
+        vnc_url = f"{tunnel.url}/vnc.html?autoconnect=true&resize=scale"
+        # Persist the URL to the volume so it is retrievable even when this
+        # function is launched with --detach (the streamed stdout is lost then).
+        Path(f"{RESULTS_DIR}/NOVNC_URL.txt").write_text(vnc_url + "\n")
+        volume.commit()
+        # flush=True is essential: without it these lines sit in Python's buffer
+        # forever because the function blocks in the while-loop below and never
+        # flushes, so the URL would never reach `modal app logs`.
+        print("", flush=True)
+        print("Open this URL in your browser for the Modal Phy desktop:", flush=True)
+        print(vnc_url, flush=True)
+        print("", flush=True)
+        print("Inside the desktop, Phy should be launching automatically.", flush=True)
+        print("Kilosort results:", RESULTS_DIR, flush=True)
+        print("Params:", PARAMS_PATH, flush=True)
+        print("Launch log:", LAUNCH_LOG, flush=True)
+        print("URL also saved to:", f"{RESULTS_DIR}/NOVNC_URL.txt", flush=True)
+        print("", flush=True)
 
         subprocess.Popen(
             [

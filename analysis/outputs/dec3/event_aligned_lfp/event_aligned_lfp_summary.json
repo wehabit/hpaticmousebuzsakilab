@@ -1,5 +1,5 @@
 {
-  "lfp": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.lfp",
+  "lfp": "Haptic_Stim_session1_251203_143031/amplifier.lfp",
   "sequence": "analysis/outputs/dec3/dec3_condition_sequence.csv",
   "output_dir": "analysis/outputs/dec3/event_aligned_lfp",
   "n_channels_input": 128,
@@ -133,7 +133,7 @@
     126,
     127
   ],
-  "sample_rate_hz": 1250,
+  "sample_rate_hz": 1250.0,
   "pre_s": 1.0,
   "post_s": 4.0,
   "max_trials_per_condition": 200,

@@ -12,7 +12,7 @@ The current explicit preprocessing config is:
 
 It chooses:
 
-- candidate bad channels to exclude: `5, 6, 7, 32, 33, 34, 43, 66, 67`
+- confirmed bad channels to exclude in this pass: `5, 6, 7, 32, 33, 34, 43, 66, 67`
 - LFP reference: `analysis_group_median`
 - sample rate: `1250 Hz`
 - channel count: `128`
@@ -117,8 +117,10 @@ Current spike-sorting channel status:
 - connected/good channels: `119`
 - channels `128-255` are ignored phantom channels from the old XML issue
 
-Important: the generated Kilosort map has provisional two-shank geometry. It is
-usable for setup/sanity checks, but exact Cambridge NeuroTech `H12_2` geometry
+Important: the Dec 4 two-probe recording confirmed this Dec 3 recording is the
+dHPC probe (Cambridge NeuroTech `H12_2`, Port A). The probe *identity* is
+therefore settled, but the generated Kilosort map still has provisional
+two-shank geometry: the exact `H12_2` site order and physical shank orientation
 should replace it before final spike-sorting claims.
 
 ## Current Working Conclusion
@@ -157,7 +159,7 @@ strongest" story.
 4. The amplitude response is not monotonic. Amplitude `180` often looks stronger
    than `250`.
 5. Reference/bad-channel sensitivity supports this split result.
-   - After excluding current candidate bad channels and testing raw,
+   - After excluding the confirmed bad-channel set for this pass and testing raw,
      physical-shank median, and analysis-group median reference,
      `amp180_freq5` remains the strongest driven-frequency condition.
    - `amp100_freq26` becomes positive with median referencing.
@@ -462,7 +464,7 @@ Run URL:
 Inputs:
 
 - Raw binary:
-  `/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat`
+  `Haptic_Stim_session1_251203_143031/amplifier.dat`
 - Sampling rate: `20000 Hz`
 - Binary channels: `128`
 - Bad channels excluded in the prep metadata:
@@ -637,7 +639,7 @@ What works:
 - A clean local conda environment named `phy-dec3` was created.
 - The official GitHub Phy install is available as `phy==2.0b6`.
 - `params.py` now points to the local Dec 3 raw data:
-  `/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat`
+  `Haptic_Stim_session1_251203_143031/amplifier.dat`
 - Phy validates the dataset with `template-describe`.
 
 Phy validation result:

@@ -1,6 +1,6 @@
 {
-  "dat_path": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat",
-  "output_path": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.lfp",
+  "dat_path": "Haptic_Stim_session1_251203_143031/amplifier.dat",
+  "output_path": "Haptic_Stim_session1_251203_143031/amplifier.lfp",
   "n_channels": 128,
   "sample_rate_hz": 20000.0,
   "lfp_rate_hz": 1250.0,

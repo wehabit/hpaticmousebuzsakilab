@@ -1,7 +1,7 @@
 {
-  "output_dir": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/provisional_final_pass/phase_locking_lfp",
-  "summary_csv": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/provisional_final_pass/phase_locking_lfp/phase_locking_summary.csv",
-  "maps_npz": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/provisional_final_pass/phase_locking_lfp/phase_locking_plv_maps.npz",
+  "output_dir": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec3/provisional_final_pass/phase_locking_lfp",
+  "summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec3/provisional_final_pass/phase_locking_lfp/phase_locking_summary.csv",
+  "maps_npz": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec3/provisional_final_pass/phase_locking_lfp/phase_locking_plv_maps.npz",
   "reference_mode": "analysis_group_median",
   "excluded_channels": [
     5,

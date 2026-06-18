@@ -1,5 +1,5 @@
 {
-  "raw_dat": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat",
+  "raw_dat": "Haptic_Stim_session1_251203_143031/amplifier.dat",
   "n_channels_raw": 128,
   "good_channel_count": 119,
   "bad_channels": [

@@ -13,9 +13,12 @@ import spikeinterface.preprocessing as spre
 import spikeinterface.sorters as ss
 
 
+DEFAULT_RAW_DAT = Path("Haptic_Stim_session1_251203_143031/amplifier.dat")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--raw-dat", type=Path, default=Path("/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat"))
+    parser.add_argument("--raw-dat", type=Path, default=DEFAULT_RAW_DAT)
     parser.add_argument("--prep-dir", type=Path, default=Path("analysis/outputs/dec3/spike_sorting_prep"))
     parser.add_argument("--output-dir", type=Path, default=Path("analysis/outputs/dec3/spikeinterface_test_sort"))
     parser.add_argument("--sorter", default="tridesclous2")

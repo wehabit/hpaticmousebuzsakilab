@@ -24,3 +24,12 @@ analysis/outputs/dec3/modal_kilosort4_results/**/amplitudes.npy
 analysis/outputs/dec3/spike_positions_modal_kilosort4.png
 analysis/outputs/dec3/pynapple_spikes/*.npz
 analysis/outputs/dec3/spikeinterface_test_sort/**/sorter_output/
+*.lfp
+*.eeg
+
+# Curated-merge copies: symlinks + regenerable from apply_cluster_merges.py
+analysis/outputs/dec3/curated_merged/
+analysis/outputs/dec4/curated_merged_lec/
+analysis/outputs/dec4/curated_merged_dhpc/
+analysis/outputs/dec4/kilosort4_results_lec/
+analysis/outputs/dec4/kilosort4_results_dhpc/

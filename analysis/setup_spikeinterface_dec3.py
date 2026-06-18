@@ -7,11 +7,16 @@ import argparse
 import json
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import probeinterface as pi
 import spikeinterface as si
+
+
+DEFAULT_RAW_DAT = Path("Haptic_Stim_session1_251203_143031/amplifier.dat")
 
 
 def build_probe(channel_metadata: pd.DataFrame) -> pi.Probe:
@@ -52,7 +57,7 @@ def plot_sanity_trace(recording, output: Path, start_s: float, duration_s: float
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--prep-dir", type=Path, default=Path("analysis/outputs/dec3/spike_sorting_prep"))
-    parser.add_argument("--raw-dat", type=Path, default=Path("/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat"))
+    parser.add_argument("--raw-dat", type=Path, default=DEFAULT_RAW_DAT)
     parser.add_argument("--output-dir", type=Path, default=Path("analysis/outputs/dec3/spikeinterface_setup"))
     parser.add_argument("--n-channels", type=int, default=128)
     parser.add_argument("--sample-rate-hz", type=float, default=20000)

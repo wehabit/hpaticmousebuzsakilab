@@ -16,7 +16,7 @@ dedicated environment with GPU support.
 
 Raw data:
 
-`/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat`
+`Haptic_Stim_session1_251203_143031/amplifier.dat`
 
 Keep this file immutable. Let the sorting tool do filtering/CAR, or write any
 derived binary to a separate output folder.

@@ -8,5 +8,18 @@
   "noverlap": 448,
   "max_freq_hz": 80.0,
   "max_trials_per_condition": 200,
+  "excluded_channels": [
+    5,
+    6,
+    7,
+    32,
+    33,
+    34,
+    43,
+    66,
+    67
+  ],
+  "bad_channel_field": "definite_bad_channels",
+  "reference_mode": "analysis_group_median",
   "note": "Time-frequency maps are trial-averaged group mean LFP spectrograms, baseline normalized by pre-stim power."
 }

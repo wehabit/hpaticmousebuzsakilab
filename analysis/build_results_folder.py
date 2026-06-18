@@ -68,9 +68,9 @@ MAP = {
         "broadband_transition/transition_index_condition.png",
         "off_control_broadband/off_control_condition_ci.png",
         "off_control_broadband/off_control_group_heatmaps.png",
-        "trial_level_stats/driven_power_ci.png",
-        "trial_level_stats/offset_broadband_ci.png",
-        "trial_level_stats/sustained_broadband_ci.png",
+        "trial_level_stats_equal_spectral_windows/driven_power_ci.png",
+        "trial_level_stats_equal_spectral_windows/offset_broadband_ci.png",
+        "trial_level_stats_equal_spectral_windows/sustained_broadband_ci.png",
         "cohen_corrected/B_broadband_rms.png",
     ],
     "adaptation": [
@@ -181,11 +181,11 @@ def main(session="dec3"):
 
     # ---- rich, per-figure index ----
     HEADLINE = [
-        ("10_Biological_Summary/combined_explainer.png", "the whole story in one figure: reacts to the buzz (yes, at 26 Hz) but does NOT follow its frequency"),
+        ("10_Biological_Summary/combined_explainer.png", "the whole story in one figure: strongest broadband/recovery response at 26 Hz / 180, weak driven-frequency evidence"),
         ("01_Session_Timeline/session_timeline.png", "the session at a glance: baseline / stimulation / post"),
         ("04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png", "which condition & channels respond (26 Hz / 180 strongest)"),
         ("05_Frequency_Spectral/spectral_slope_decomposition.png", "the response is a broadband shift, not a 5/26 Hz oscillation"),
-        ("06_Phase_Locking/phase_locking_null_floor.png", "phase locking sits at chance -> no entrainment"),
+        ("06_Phase_Locking/phase_locking_null_floor.png", "phase locking stays near the finite-trial floor, so this pass does not support strong entrainment"),
         ("11_Spikes/peth_onset_ks_good_units.png", "firing is flat ON vs OFF (provisional, pre-curation)"),
     ]
     BLURB = {

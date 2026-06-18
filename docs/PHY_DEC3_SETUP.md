@@ -41,13 +41,13 @@ analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/
 Raw data used by Phy:
 
 ```text
-/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat
+Haptic_Stim_session1_251203_143031/amplifier.dat
 ```
 
-`params.py` was corrected to point to the local raw data path:
+`params.py` was corrected to point to the workspace-local raw data path:
 
 ```python
-dat_path = ['/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat']
+dat_path = ['Haptic_Stim_session1_251203_143031/amplifier.dat']
 ```
 
 Launch helper:
@@ -61,14 +61,14 @@ analysis/launch_phy_dec3.sh
 This non-GUI Phy command works:
 
 ```bash
-cd "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results"
+cd "analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results"
 conda run --no-capture-output -n phy-dec3 phy template-describe params.py
 ```
 
 Result:
 
 ```text
-Data files              /Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat
+Data files              Haptic_Stim_session1_251203_143031/amplifier.dat
 Duration                10644.4s
 Sample rate             20.0 kHz
 Data type               int16
@@ -105,14 +105,14 @@ that shader profile.
 Foreground launch, best for seeing errors:
 
 ```bash
-cd "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results"
+cd "analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results"
 conda run --no-capture-output -n phy-dec3 phy template-gui --clear-state params.py
 ```
 
 Detached launch:
 
 ```bash
-cd "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab"
+cd "/Users/paris/Documents/Buzsakli Lab Github"
 bash analysis/launch_phy_dec3.sh
 ```
 
@@ -161,14 +161,14 @@ phy, version 2.0b6
 The Dec 3 dataset also validates in the legacy environment:
 
 ```bash
-cd "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results"
+cd "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results"
 /opt/anaconda3/envs/phy-dec3-legacy/bin/phy template-describe params.py
 ```
 
 The best local GUI attempt is:
 
 ```bash
-bash "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/launch_phy_dec3_foreground.sh"
+bash "/Users/paris/Documents/Buzsakli Lab Github/analysis/launch_phy_dec3_foreground.sh"
 ```
 
 Observed result:
@@ -213,10 +213,24 @@ Purpose:
 - launch Phy inside that remote desktop;
 - expose the desktop through a temporary Modal tunnel.
 
-Command:
+Command (launch detached so a disconnected client cannot kill the desktop
+mid-curation):
 
 ```bash
-modal run analysis/modal_phy_dec3.py
+modal run --detach analysis/modal_phy_dec3.py
+```
+
+Retrieve the browser URL after a detached launch (it is also written to the
+volume, not just streamed to stdout):
+
+```bash
+modal volume get dec3-kilosort-data dec3/kilosort4_results/NOVNC_URL.txt -
+```
+
+Stop the desktop when done curating:
+
+```bash
+modal app stop <app-id> --yes
 ```
 
 What the script does on Modal:
@@ -254,6 +268,17 @@ Current run status:
   - `QTWEBENGINE_DISABLE_SANDBOX=1`
 - The latest Phy log gets past dataset validation and Qt startup without the
   previous crash. Browser-side visual confirmation is still needed.
+
+Update (2026-06-17): the launcher was hardened and re-run successfully. The
+tunnel-URL print was buffered and never reached the logs under `--detach`, so
+the URL is now flushed and also persisted to
+`/data/dec3/kilosort4_results/NOVNC_URL.txt`. On the latest detached run the
+Phy GUI log reached `model: extracting waveforms on the fly` with **no
+`Could not create view` / GLSL `version '120'` shader error** -- the failure
+mode that blocked the local Mac GUI and earlier Modal attempts. The Mesa
+software-GL overrides (`LIBGL_ALWAYS_SOFTWARE=1`, `MESA_GL_VERSION_OVERRIDE=3.3`,
+`MESA_GLSL_VERSION_OVERRIDE=330`) appear to resolve it. Final step is user
+browser confirmation + the curation pass itself.
 
 Important caveats:
 

@@ -1,34 +1,40 @@
 {
-  "session_dir": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031",
-  "reason": "info.rhd and file-size checks show Dec 3 has 128 amplifier channels, while the original amplifier.xml declared 256.",
-  "original_xml_backup": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier_original_256ch.xml",
-  "corrected_xml_copy": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier_corrected_128ch.xml",
-  "active_xml": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.xml",
-  "n_channels_before": 256,
+  "session_dir": "Haptic_Stim_session1_251203_143031",
+  "reason": "info.rhd and file-size checks show Dec 3 has 128 amplifier channels; XML metadata must not expose phantom channels 128-255.",
   "n_channels_after": 128,
   "valid_amplifier_channels": "0-127",
   "invalid_phantom_channels_removed": "128-255",
-  "channel_groups_after": [
+  "targets": [
     {
-      "group": 1,
-      "channels": "96-127",
-      "size": 32
+      "path": "Haptic_Stim_session1_251203_143031/amplifier.xml",
+      "backup": "Haptic_Stim_session1_251203_143031/amplifier_pre_repair.xml",
+      "n_channels_before": "256",
+      "n_channels_after": 128,
+      "channel_group_sizes_after": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "remaining_invalid_channel_count": 0,
+      "invalid_channel_elements_removed": 640,
+      "empty_groups_removed": 4
     },
     {
-      "group": 2,
-      "channels": "64-95",
-      "size": 32
-    },
-    {
-      "group": 3,
-      "channels": "32-63",
-      "size": 32
-    },
-    {
-      "group": 4,
-      "channels": "0-31",
-      "size": 32
+      "path": "Haptic_Stim_session1_251203_143031/amplifier_corrected_128ch.xml",
+      "backup": "Haptic_Stim_session1_251203_143031/amplifier_corrected_128ch_pre_repair.xml",
+      "n_channels_before": "128",
+      "n_channels_after": 128,
+      "channel_group_sizes_after": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "remaining_invalid_channel_count": 0,
+      "invalid_channel_elements_removed": 512,
+      "empty_groups_removed": 2
     }
   ],
-  "note": "Probe/anatomical ordering still needs confirmation from the probe map/Heechul/Nick. This correction only fixes the Dec 3 channel count and removes non-recorded channel groups."
+  "note": "This fixes channel count and removes phantom channel elements from XML metadata. Exact Cambridge NeuroTech H12_2 site order still needs probe-map confirmation before anatomical claims."
 }

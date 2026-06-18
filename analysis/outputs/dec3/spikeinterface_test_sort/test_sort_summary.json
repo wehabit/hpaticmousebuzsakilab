@@ -12,7 +12,7 @@
   "duration_s": 30.0,
   "good_channel_count": 119,
   "note": "This is a smoke test on a short segment, not full-session sorting.",
-  "unit_count": 103,
+  "unit_count": 106,
   "unit_ids": [
     0,
     1,
@@ -20,6 +20,7 @@
     6,
     8,
     9,
+    10,
     11,
     12,
     13,
@@ -60,9 +61,8 @@
     63,
     65,
     66,
+    67,
     68,
-    70,
-    71,
-    72
+    70
   ]
 }

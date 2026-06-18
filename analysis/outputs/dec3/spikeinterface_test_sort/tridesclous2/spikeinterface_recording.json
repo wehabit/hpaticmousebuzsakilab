@@ -1,30 +1,30 @@
 {
     "class": "spikeinterface.preprocessing.common_reference.CommonReferenceRecording",
     "module": "spikeinterface",
-    "version": "0.104.3",
+    "version": "0.104.5",
     "kwargs": {
         "recording": {
             "class": "spikeinterface.preprocessing.filter.BandpassFilterRecording",
             "module": "spikeinterface",
-            "version": "0.104.3",
+            "version": "0.104.5",
             "kwargs": {
                 "recording": {
                     "class": "spikeinterface.core.frameslicerecording.FrameSliceRecording",
                     "module": "spikeinterface",
-                    "version": "0.104.3",
+                    "version": "0.104.5",
                     "kwargs": {
                         "parent_recording": {
                             "class": "spikeinterface.core.channelslice.ChannelSliceRecording",
                             "module": "spikeinterface",
-                            "version": "0.104.3",
+                            "version": "0.104.5",
                             "kwargs": {
                                 "parent_recording": {
                                     "class": "spikeinterface.core.binaryrecordingextractor.BinaryRecordingExtractor",
                                     "module": "spikeinterface",
-                                    "version": "0.104.3",
+                                    "version": "0.104.5",
                                     "kwargs": {
                                         "file_paths": [
-                                            "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat"
+                                            "/Users/paris/Documents/Buzsakli Lab Github/Haptic_Stim_session1_251203_143031/amplifier.dat"
                                         ],
                                         "sampling_frequency": 20000.0,
                                         "t_starts": null,

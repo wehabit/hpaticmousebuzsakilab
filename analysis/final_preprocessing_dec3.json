@@ -5,10 +5,12 @@
   "purpose": "Single explicit preprocessing config for rerunning Dec 3 LFP results with stable settings.",
   "important_caveat": "Bad channels are treated as confirmed for the current analysis pass per user instruction. Anatomy labels are still not assigned.",
   "source_files": {
-    "lfp": "/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.lfp",
-    "sequence": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/outputs/dec3/dec3_condition_sequence.csv",
-    "bad_channel_candidates": "/Users/paris/Documents/Buzsaki Lab/hpaticmousebuzsakilab/analysis/bad_channels_dec3.json"
+    "lfp": "Haptic_Stim_session1_251203_143031/amplifier.lfp",
+    "sequence": "analysis/outputs/dec3/dec3_condition_sequence.csv",
+    "bad_channel_candidates": "analysis/bad_channels_dec3.json",
+    "bad_channel_definite": "analysis/bad_channels_dec3.json"
   },
+  "bad_channel_field_for_final_pass": "definite_bad_channels",
   "channels": {
     "n_channels": 128,
     "sample_rate_hz": 1250,

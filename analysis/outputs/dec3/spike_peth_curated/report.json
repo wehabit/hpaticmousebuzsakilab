@@ -1,0 +1,48 @@
+{
+  "n_high_confidence_19": 19,
+  "n_curated_good_29": 29,
+  "n_responsive_unit_conditions": {
+    "high_confidence_19": 0,
+    "curated_good_29": 0
+  },
+  "responsive_units_curated": [],
+  "responsive_units_high_conf": [],
+  "curated_per_condition": {
+    "amp100_freq26": {
+      "mean_on_minus_off_hz": 0.035,
+      "n_units_on_gt_off": 19,
+      "n_units_on_lt_off": 10,
+      "n_responsive_q05": 0
+    },
+    "amp100_freq5": {
+      "mean_on_minus_off_hz": -0.1214,
+      "n_units_on_gt_off": 9,
+      "n_units_on_lt_off": 20,
+      "n_responsive_q05": 0
+    },
+    "amp180_freq26": {
+      "mean_on_minus_off_hz": -0.1579,
+      "n_units_on_gt_off": 8,
+      "n_units_on_lt_off": 21,
+      "n_responsive_q05": 0
+    },
+    "amp180_freq5": {
+      "mean_on_minus_off_hz": -0.1503,
+      "n_units_on_gt_off": 12,
+      "n_units_on_lt_off": 17,
+      "n_responsive_q05": 0
+    },
+    "amp250_freq26": {
+      "mean_on_minus_off_hz": -0.1963,
+      "n_units_on_gt_off": 12,
+      "n_units_on_lt_off": 17,
+      "n_responsive_q05": 0
+    },
+    "amp250_freq5": {
+      "mean_on_minus_off_hz": -0.2483,
+      "n_units_on_gt_off": 6,
+      "n_units_on_lt_off": 23,
+      "n_responsive_q05": 0
+    }
+  }
+}

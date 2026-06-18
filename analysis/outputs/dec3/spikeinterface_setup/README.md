@@ -2,7 +2,7 @@
 
 This folder verifies that SpikeInterface can open the Dec 3 raw binary.
 
-- Raw data: `/Users/paris/Documents/Buzsaki Lab/Haptic_Stim_session1_251203_143031/amplifier.dat`
+- Raw data: `Haptic_Stim_session1_251203_143031/amplifier.dat`
 - Raw channels: `128`
 - Good channels after confirmed bad-channel exclusion: `119`
 - Sampling rate: `20000 Hz`

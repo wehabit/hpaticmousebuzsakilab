@@ -7,6 +7,8 @@ import argparse
 import json
 from pathlib import Path
 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -26,6 +28,13 @@ def load_lfp(path: Path, n_channels: int) -> np.memmap:
     return np.memmap(path, dtype="<i2", mode="r", shape=(samples, n_channels))
 
 
+def load_bad_channels(path: Path | None, field: str) -> set[int]:
+    if path is None:
+        return set()
+    data = json.loads(path.read_text())
+    return {int(ch) for ch in data.get(field, [])}
+
+
 def parse_condition(condition: str) -> tuple[int, int]:
     parts = condition.replace("amp", "").replace("freq", "").split("_")
     return int(parts[0]), int(parts[1])
@@ -34,6 +43,22 @@ def parse_condition(condition: str) -> tuple[int, int]:
 def condition_sort_key(condition: str) -> tuple[int, int]:
     amp, freq = parse_condition(condition)
     return freq, amp
+
+
+def reference_segment(segment: np.ndarray, mode: str, excluded_channels: set[int]) -> np.ndarray:
+    if mode == "raw":
+        return segment
+    if mode != "analysis_group_median":
+        raise ValueError(f"Unsupported reference mode: {mode}")
+
+    referenced = segment.copy()
+    for channels in ANALYSIS_GROUPS.values():
+        usable = [ch for ch in channels if ch not in excluded_channels]
+        if not usable:
+            continue
+        ref = np.median(segment[:, usable], axis=1, keepdims=True)
+        referenced[:, channels] = segment[:, channels] - ref
+    return referenced
 
 
 def compute_group_spectrogram(
@@ -113,12 +138,12 @@ def plot_driven_frequency_timecourses(
 ) -> None:
     fig, axes = plt.subplots(2, 3, figsize=(15, 8), sharex=True, sharey=True)
     axes = axes.ravel()
-    colors = {
-        "Group 96-127": "#595959",
-        "Group 64-95": "#D95F02",
-        "Group 32-63": "#1B9E77",
-        "Group 0-31": "#2F6BBA",
-    }
+    # Build colors from the groups actually present so this works for any session
+    # (Dec 3: 4 groups; Dec 4: 6 groups across two probes).
+    sample_groups = list(next(iter(condition_maps.values())).keys())
+    palette = ["#595959", "#D95F02", "#1B9E77", "#2F6BBA", "#E45756", "#9467BD",
+               "#8C564B", "#17BECF"]
+    colors = {g: palette[i % len(palette)] for i, g in enumerate(sample_groups)}
 
     for ax, condition in zip(axes, sorted(condition_maps, key=condition_sort_key)):
         _, freq = parse_condition(condition)
@@ -149,6 +174,9 @@ def main() -> None:
     parser.add_argument("--lfp", type=Path, required=True)
     parser.add_argument("--sequence", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--bad-channels-json", type=Path, default=None)
+    parser.add_argument("--bad-channel-field", default="candidate_bad_channels")
+    parser.add_argument("--reference-mode", default="analysis_group_median")
     parser.add_argument("--n-channels", type=int, default=128)
     parser.add_argument("--sample-rate-hz", type=float, default=1250)
     parser.add_argument("--pre-s", type=float, default=1.0)
@@ -162,6 +190,7 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
     lfp = load_lfp(args.lfp, args.n_channels)
     sequence = pd.read_csv(args.sequence)
+    excluded_channels = load_bad_channels(args.bad_channels_json, args.bad_channel_field)
     rng = np.random.default_rng(321)
 
     pre_samples = int(round(args.pre_s * args.sample_rate_hz))
@@ -188,12 +217,16 @@ def main() -> None:
             if start < 0 or stop > lfp.shape[0]:
                 continue
             segment = np.asarray(lfp[start:stop], dtype=np.float32)
+            segment = reference_segment(segment, args.reference_mode, excluded_channels)
             time_axis = (np.arange(n_samples) - pre_samples) / args.sample_rate_hz
             baseline = np.nanmedian(segment[time_axis < 0], axis=0, keepdims=True)
             segment = segment - baseline
 
             for group, channels in ANALYSIS_GROUPS.items():
-                group_signal = np.nanmean(segment[:, channels], axis=1)
+                usable = [ch for ch in channels if ch not in excluded_channels]
+                if not usable:
+                    continue
+                group_signal = np.nanmean(segment[:, usable], axis=1)
                 freqs, times, power = compute_group_spectrogram(
                     group_signal,
                     args.sample_rate_hz,
@@ -269,7 +302,7 @@ def main() -> None:
         "<!doctype html><html><head><meta charset='utf-8'><title>Dec 3 Time-Frequency LFP</title>",
         "<style>body{font-family:Arial,sans-serif;margin:24px;max-width:1400px} img{width:100%;border:1px solid #ddd;margin-bottom:32px}</style>",
         "</head><body><h1>Dec 3 Time-Frequency LFP</h1>",
-        "<p>Maps are averaged across trials and channels within each 32-channel analysis group.</p>",
+        "<p>Maps are averaged across trials and usable channels within each analysis group after confirmed bad-channel exclusion and the requested reference mode.</p>",
         "<p>Color is log2(power / pre-stim baseline) at each frequency.</p>",
         "<h2>Condition Grid</h2><img src='time_frequency_condition_grid.png'>",
         "<h2>Driven Frequency Time Courses</h2><img src='driven_frequency_timecourses.png'>",
@@ -287,6 +320,9 @@ def main() -> None:
         "noverlap": args.noverlap,
         "max_freq_hz": args.max_freq_hz,
         "max_trials_per_condition": args.max_trials_per_condition,
+        "excluded_channels": sorted(excluded_channels),
+        "bad_channel_field": args.bad_channel_field,
+        "reference_mode": args.reference_mode,
         "note": "Time-frequency maps are trial-averaged group mean LFP spectrograms, baseline normalized by pre-stim power.",
     }
     (args.output_dir / "time_frequency_run_summary.json").write_text(json.dumps(report, indent=2) + "\n")
