@@ -33,8 +33,10 @@ histograms** — all with trial-level bootstrap 95% confidence intervals.
 
 **Key findings.** (each links to the figure(s) that show it)
 1. A **real, amplitude-graded broadband LFP response**, strongest for the
-   `amp180_freq26` condition (Dec 3) and dominated by onset/offset *transitions*
-   rather than a sustained lift.
+   `amp180_freq26` condition (Dec 3). The response is **transition-weighted
+   (onset/offset) rather than a sustained lift** — though, on the trial-level
+   bootstrap CIs, that offset-heavy asymmetry is statistically reliable only at
+   `amp250_freq26` (CI excludes 0) and marginal at `amp180_freq26`.
    → [condition × channel heatmap](results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png),
    [transition index](results/dec3/07_Broadband_OFFcontrol_TrialStats/transition_index_condition.png)
 2. **No frequency-following in dHPC at any tested frequency** (5/10/26/50 Hz): no
