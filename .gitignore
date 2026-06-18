@@ -39,3 +39,8 @@ analysis/outputs/dec4/kilosort4_results_dhpc/
 # Raw recordings (never commit)
 Haptic_Stim_*/
 .mplconfig/
+
+# macOS junk + large reference textbook (not work product)
+.DS_Store
+**/.DS_Store
+resources/Cohen*.pdf
