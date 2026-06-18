@@ -1,0 +1,260 @@
+
+======================================================================
+[dec4] frequency_lfp  (frequency_lfp)
+======================================================================
+{
+  "output_dir": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/frequency_lfp",
+  "channel_summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/frequency_lfp/frequency_lfp_channel_summary.csv",
+  "group_summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/frequency_lfp/frequency_lfp_group_summary.csv",
+  "physical_shank_summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/frequency_lfp/frequency_lfp_physical_shank_summary.csv",
+  "window_duration_s": 2.8,
+  "artifact_margin_s": 0.1,
+  "band_half_width_hz": 1.0,
+  "max_trials_per_condition": 200,
+  "note": "Frequency analysis uses pre window immediately before trial onset and stim window after onset artifact margin."
+}
+[dec4] frequency_lfp: ok in 58.1s
+
+======================================================================
+[dec4] time_frequency_lfp  (time_frequency_lfp)
+======================================================================
+/Users/paris/Documents/Buzsakli Lab Github/analysis/time_frequency_lfp.py:267: RuntimeWarning: Mean of empty slice
+  "baseline_driven_log2_power": float(np.nanmean(tf_map[driven_band][:, baseline_mask])),
+/Users/paris/Documents/Buzsakli Lab Github/analysis/time_frequency_lfp.py:268: RuntimeWarning: Mean of empty slice
+  "onset_driven_log2_power": float(np.nanmean(tf_map[driven_band][:, onset_mask])),
+/Users/paris/Documents/Buzsakli Lab Github/analysis/time_frequency_lfp.py:269: RuntimeWarning: Mean of empty slice
+  "sustained_driven_log2_power": float(np.nanmean(tf_map[driven_band][:, sustained_mask])),
+/Users/paris/Documents/Buzsakli Lab Github/analysis/time_frequency_lfp.py:270: RuntimeWarning: Mean of empty slice
+  "offset_driven_log2_power": float(np.nanmean(tf_map[driven_band][:, offset_mask])),
+{
+  "output_dir": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/time_frequency_lfp",
+  "summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/time_frequency_lfp/time_frequency_summary.csv",
+  "maps_npz": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/time_frequency_lfp/time_frequency_group_maps.npz",
+  "pre_s": 1.0,
+  "post_s": 4.0,
+  "nperseg": 512,
+  "noverlap": 448,
+  "max_freq_hz": 80.0,
+  "max_trials_per_condition": 150,
+  "excluded_channels": [
+    5,
+    6,
+    7,
+    32,
+    33,
+    34,
+    43,
+    66,
+    67,
+    121,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    137,
+    138,
+    139,
+    140,
+    141,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255
+  ],
+  "bad_channel_field": "candidate_bad_channels",
+  "reference_mode": "analysis_group_median",
+  "note": "Time-frequency maps are trial-averaged group mean LFP spectrograms, baseline normalized by pre-stim power."
+}
+[dec4] time_frequency_lfp: ok in 48.5s
+
+======================================================================
+[dec4] phase_locking_lfp  (phase_locking_lfp)
+======================================================================
+{
+  "output_dir": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/phase_locking_lfp",
+  "summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/phase_locking_lfp/phase_locking_summary.csv",
+  "maps_npz": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/phase_locking_lfp/phase_locking_plv_maps.npz",
+  "reference_mode": "analysis_group_median",
+  "excluded_channels": [
+    5,
+    6,
+    7,
+    32,
+    33,
+    34,
+    43,
+    66,
+    67,
+    121,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    137,
+    138,
+    139,
+    140,
+    141,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255
+  ],
+  "band_half_width_hz": 1.5,
+  "note": "PLV is inter-trial phase consistency at the condition's driven frequency, aligned to trial onset."
+}
+[dec4] phase_locking_lfp: ok in 57.0s
+
+======================================================================
+[dec4] trial_level_stats  (trial_level_stats_dec3)
+======================================================================
+{
+  "output_dir": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/trial_level_stats",
+  "trial_metrics_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/trial_level_stats/trial_level_metrics.csv",
+  "summary_ci_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/trial_level_stats/trial_level_summary_ci.csv",
+  "condition_summary_ci_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/trial_level_stats/condition_summary_ci.csv",
+  "excluded_channels": [
+    5,
+    6,
+    7,
+    32,
+    33,
+    34,
+    43,
+    66,
+    67,
+    121,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    137,
+    138,
+    139,
+    140,
+    141,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255
+  ],
+  "reference_mode": "analysis_group_median",
+  "spectral_window_s": 2.8,
+  "n_bootstrap": 2000
+}
+[dec4] trial_level_stats: ok in 117.2s
+
+======================================================================
+[dec4] artifact_aware_lfp  (artifact_aware_lfp)
+======================================================================
+{
+  "output_dir": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/artifact_aware_lfp",
+  "summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/artifact_aware_lfp/artifact_aware_lfp_summary.csv",
+  "artifact_margin_s": 0.1,
+  "max_trials_per_condition": 100,
+  "note": "Sustained response excludes the first/last artifact-margin seconds around stimulation onset/offset."
+}
+[dec4] artifact_aware_lfp: ok in 5.7s
+
+=== Dec 4 pipeline summary ===
+  frequency_lfp            ok     58.1s  
+  time_frequency_lfp       ok     48.5s  
+  phase_locking_lfp        ok     57.0s  
+  trial_level_stats        ok     117.2s  
+  artifact_aware_lfp       ok     5.7s  

@@ -1,0 +1,66 @@
+{
+  "freq5": {
+    "dHPC": {
+      "baseline_std": 10.99,
+      "onset_peak": 45.87,
+      "onset_peak_over_baseline": 4.17,
+      "offset_peak": 31.24,
+      "offset_peak_over_baseline": 2.84
+    },
+    "LEC": {
+      "baseline_std": 5.8,
+      "onset_peak": 16.54,
+      "onset_peak_over_baseline": 2.85,
+      "offset_peak": 14.58,
+      "offset_peak_over_baseline": 2.51
+    }
+  },
+  "freq10": {
+    "dHPC": {
+      "baseline_std": 12.39,
+      "onset_peak": 30.45,
+      "onset_peak_over_baseline": 2.46,
+      "offset_peak": 36.44,
+      "offset_peak_over_baseline": 2.94
+    },
+    "LEC": {
+      "baseline_std": 7.85,
+      "onset_peak": 13.68,
+      "onset_peak_over_baseline": 1.74,
+      "offset_peak": 25.2,
+      "offset_peak_over_baseline": 3.21
+    }
+  },
+  "freq26": {
+    "dHPC": {
+      "baseline_std": 10.64,
+      "onset_peak": 38.02,
+      "onset_peak_over_baseline": 3.57,
+      "offset_peak": 27.44,
+      "offset_peak_over_baseline": 2.58
+    },
+    "LEC": {
+      "baseline_std": 7.02,
+      "onset_peak": 19.01,
+      "onset_peak_over_baseline": 2.71,
+      "offset_peak": 17.1,
+      "offset_peak_over_baseline": 2.44
+    }
+  },
+  "freq50": {
+    "dHPC": {
+      "baseline_std": 12.21,
+      "onset_peak": 33.16,
+      "onset_peak_over_baseline": 2.72,
+      "offset_peak": 24.85,
+      "offset_peak_over_baseline": 2.04
+    },
+    "LEC": {
+      "baseline_std": 4.87,
+      "onset_peak": 12.1,
+      "onset_peak_over_baseline": 2.48,
+      "offset_peak": 22.82,
+      "offset_peak_over_baseline": 4.69
+    }
+  }
+}

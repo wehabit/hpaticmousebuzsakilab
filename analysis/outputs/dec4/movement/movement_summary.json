@@ -1,0 +1,32 @@
+{
+  "proxy_channels": [
+    0,
+    10,
+    20,
+    32,
+    42,
+    52,
+    64,
+    74,
+    84,
+    96,
+    106,
+    116,
+    136,
+    158,
+    175,
+    192,
+    202,
+    212
+  ],
+  "band_hz": [
+    200.0,
+    500.0
+  ],
+  "exclude_quantile": 0.75,
+  "movement_threshold": 56.94651895470037,
+  "n_trials": 2400,
+  "n_high_movement": 600,
+  "driven_full_vs_excluded_corr": 0.903060279335467,
+  "note": "LFP-only movement proxy (no accelerometer this session). High correlation => driven-power results are not driven by the highest-movement trials."
+}

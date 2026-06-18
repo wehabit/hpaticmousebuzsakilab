@@ -1,0 +1,17 @@
+Created Volume 'dec4-kilosort-data' in environment 'None'. 
+
+Code example:
+
+                                                                                
+@app.function(volumes={"/my_vol": modal.Volume.from_name("dec4-kilosort-data")})
+def some_func():                                                                
+    os.listdir("/my_vol")                                                       
+                                                                                
+Uploading prep folder (channel maps)...
+✓ Uploaded directory 'analysis/outputs/dec4/spike_sorting_prep' to 
+'/dec4/spike_sorting_prep'
+Uploading /Users/paris/Documents/Buzsakli Lab Github/Haptic_Stim_session2_251204_131403/amplifier_lec.dat -> /dec4/amplifier_lec.dat (large; may take hours)...
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ Uploading of /Users/paris/Documents/Buzsakli Lab                             │
+│ Github/Haptic_Stim_session2_251204_131403/amplifier_lec.dat timed out        │
+╰──────────────────────────────────────────────────────────────────────────────╯

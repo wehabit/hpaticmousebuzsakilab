@@ -1,0 +1,32 @@
+[
+  {
+    "step": "adaptation_analysis",
+    "status": "ok",
+    "seconds": 1.4
+  },
+  {
+    "step": "broadband_perchannel_ci",
+    "status": "ok",
+    "seconds": 4.5
+  },
+  {
+    "step": "explain_sustained_vs_offset_dHPC",
+    "status": "ok",
+    "seconds": 0.6
+  },
+  {
+    "step": "explain_sustained_vs_offset_LEC",
+    "status": "ok",
+    "seconds": 0.4
+  },
+  {
+    "step": "margin_exclusion_test_dHPC",
+    "status": "ok",
+    "seconds": 0.5
+  },
+  {
+    "step": "margin_exclusion_test_LEC",
+    "status": "ok",
+    "seconds": 0.4
+  }
+]

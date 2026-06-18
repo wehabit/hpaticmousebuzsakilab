@@ -1,0 +1,55 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Dec 4 Results Dashboard — Haptic Stim (dHPC + LEC)</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;margin:28px;max-width:1100px;line-height:1.5;color:#1c2833}
+h1{margin-bottom:4px}h2{margin-top:30px;border-bottom:2px solid #e5e9ee;padding-bottom:4px}
+.sub{color:#5d6d7e}a{color:#0f6b78;font-weight:600;text-decoration:none}a:hover{text-decoration:underline}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.card{border:1px solid #d9dee5;border-radius:8px;padding:12px}
+img{max-width:100%;border:1px solid #e5e9ee;border-radius:4px}
+code{background:#f3f5f7;padding:1px 5px;border-radius:4px}
+.key{background:#fef9e7;border-left:4px solid #f1c40f;padding:10px 14px;border-radius:4px}
+</style></head><body>
+<h1>Dec 4 Results Dashboard</h1>
+<p class="sub">Two-probe haptic stimulation — dHPC (Port A, same probe as Dec 3) + LEC (Port B).
+12 conditions = amplitude {100,180,250} × frequency {5,10,26,50} Hz, 200 trials each. LFP pass.</p>
+
+<div class="key">
+<b>Headline.</b> dHPC follows <i>no</i> drive frequency (replicates Dec 3 on the same probe).
+LEC shows a real, amplitude-graded narrowband <b>50 Hz</b> power peak above the 1/f background,
+but ITPC stays at chance → <b>induced 50 Hz power, not onset-locked entrainment</b>.
+Robust to reference scheme and to excluding high-movement trials (r=0.90).
+</div>
+
+<h2>Start here</h2>
+<div class="grid">
+<div class="card"><a href="../../../results/dec4/10_Biological_Summary/combined_explainer.png">Combined explainer</a><br>
+<span class="sub">the whole story in one figure</span><br>
+<img src="../../../results/dec4/10_Biological_Summary/combined_explainer.png"></div>
+<div class="card"><a href="../../../results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png">Entrainment test (1/f + ITPC)</a><br>
+<span class="sub">narrowband peak above 1/f vs phase locking, per probe × frequency</span><br>
+<img src="../../../results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png"></div>
+</div>
+
+<h2>Reports &amp; tables</h2>
+<ul>
+<li><a href="../../../docs/DEC4_SUPERVISOR_SUMMARY.md">Dec 4 Supervisor Summary</a> — findings, methods, caveats, next steps</li>
+<li><a href="condition_interpretation/index.html">Per-probe condition interpretation table</a></li>
+<li><a href="../../../results/dec4/README.md">All result figures (curated, by category)</a></li>
+<li><a href="session_summary.json">session_summary.json</a> ·
+    <a href="../../bad_channels_dec4.json">bad_channels_dec4.json</a> ·
+    <a href="dec4_condition_sequence.csv">condition sequence (2400 trials)</a></li>
+</ul>
+
+<h2>Analyses (analysis/outputs/dec4/)</h2>
+<ul>
+<li><b>Channel QC</b> (per probe): dHPC clean (bad=[121]); LEC 45/128 bad incl. dead block 224–255.</li>
+<li><b>Event-aligned / broadband</b>: <code>event_aligned_lfp</code>, <code>artifact_aware_lfp</code>, <code>broadband_transition</code>, <code>off_control_broadband</code>, <code>trial_level_stats</code></li>
+<li><b>Frequency / entrainment</b>: <code>frequency_lfp</code>, <code>time_frequency_lfp</code>, <code>phase_locking_lfp</code>, <code>spectral_slope_itpc</code></li>
+<li><b>Reference robustness</b>: <code>reference_sensitivity</code> (raw / probe / group median)</li>
+<li><b>Adaptation</b> over 200 repeats; <b>movement</b> proxy + robustness (r=0.90)</li>
+<li><b>Spike sorting</b>: <code>spike_sorting_prep</code> + <code>spikeinterface_setup</code> (trace sanity). Full Kilosort = Modal/GPU next.</li>
+<li><b>Pynapple</b> ON/OFF/baseline intervals: <code>pynapple_intervals</code></li>
+</ul>
+<p class="sub">Not applicable to Dec 4 (no TTL/accelerometer shared): TTL audits, onset-jitter (cohen) correction.</p>
+</body></html>

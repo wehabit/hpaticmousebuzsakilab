@@ -1,0 +1,6 @@
+{
+  "output_dir": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/adaptation_analysis",
+  "trial_metrics": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/off_control_broadband/off_control_trial_metrics.csv",
+  "rolling_window": 15,
+  "n_bootstrap": 2000
+}

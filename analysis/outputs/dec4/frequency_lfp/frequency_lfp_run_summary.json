@@ -1,0 +1,11 @@
+{
+  "output_dir": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/frequency_lfp",
+  "channel_summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/frequency_lfp/frequency_lfp_channel_summary.csv",
+  "group_summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/frequency_lfp/frequency_lfp_group_summary.csv",
+  "physical_shank_summary_csv": "/Users/paris/Documents/Buzsakli Lab Github/analysis/outputs/dec4/frequency_lfp/frequency_lfp_physical_shank_summary.csv",
+  "window_duration_s": 2.8,
+  "artifact_margin_s": 0.1,
+  "band_half_width_hz": 1.0,
+  "max_trials_per_condition": 200,
+  "note": "Frequency analysis uses pre window immediately before trial onset and stim window after onset artifact margin."
+}

@@ -33,3 +33,9 @@ analysis/outputs/dec4/curated_merged_lec/
 analysis/outputs/dec4/curated_merged_dhpc/
 analysis/outputs/dec4/kilosort4_results_lec/
 analysis/outputs/dec4/kilosort4_results_dhpc/
+
+# Large intermediate arrays (regenerable; keep local)
+*.npz
+# Raw recordings (never commit)
+Haptic_Stim_*/
+.mplconfig/
