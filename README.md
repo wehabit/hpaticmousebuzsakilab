@@ -52,11 +52,16 @@ histograms** — all with trial-level bootstrap 95% confidence intervals.
    effect at 5/10/26 Hz or in dHPC.
    → [driven-power change by region](results/dec4/05_Frequency_Spectral/driven_power_change_by_analysis_group.png),
    [phase locking by condition](results/dec4/06_Phase_Locking/plv_condition_summary.png)
-4. **No reliable ON-vs-OFF change in single-unit firing**, now **confirmed after
-   curation** (curated single units: Dec 3 dHPC **29**, Dec 4 dHPC **15**, Dec 4
-   LEC **15**). A weak, non-significant suppression trend at high amplitude is
-   consistent with the broadband/recovery story, not active modulation.
-   → [onset PETH, good units](results/dec3/11_Spikes/peth_onset_ks_good_units.png)
+4. **Single-unit ON/OFF firing is frequency-specific.** At **5/26 Hz there is no
+   effect** (Dec 3: 0/174 unit-conditions responsive, post-curation). But Dec 4
+   added 10/50 Hz, and at **50 Hz / high amplitude a subset of single units *are*
+   modulated** — in **both** dHPC (19/180 responsive) and LEC (13/180),
+   concentrated at 50 Hz (15/19 and 8/13). This matches the LEC 50 Hz LFP effect
+   and turns "no single-unit effect" into "none *at 5/26 Hz*." Curated units:
+   Dec 3 dHPC 29, Dec 4 dHPC 15, LEC 15.
+   → [cross-dataset spike ON/OFF figure](analysis/outputs/cross_dataset_spike_compare/spike_onoff_cross_dataset.png),
+   [writeup](docs/DEC4_SPIKE_ONOFF_RESULT.md),
+   [Dec 3 onset PETH](results/dec3/11_Spikes/peth_onset_ks_good_units.png)
 5. Conclusions are **robust** to referencing scheme and to excluding
    movement-contaminated trials. Hardware note: the dHPC probe was improved before
    Dec 4 (the nine Dec-3 bad channels are clean on Dec 4); the LEC probe is
@@ -155,7 +160,10 @@ that null now holds *post*-curation, not just provisionally.
 result replicates** and extends to 10 and 50 Hz. The new region, **LEC**, shows a
 genuine **amplitude-graded 50 Hz power increase that is *induced*, not
 phase-locked** — a frequency-specific power change without onset entrainment.
-Both probes are sorted and curated (dHPC 15, LEC 15 good units).
+Both probes are sorted and curated (dHPC 15, LEC 15 good units). And at the
+**single-unit** level, **50 Hz / high-amplitude** stimulation modulates a subset
+of units in **both** regions (absent at 5/26 Hz) — coherent with the 50 Hz LFP
+effect ([details](docs/DEC4_SPIKE_ONOFF_RESULT.md)).
 
 **Across both:** the brain *registers* the stimulus (broadband; and in LEC, 50 Hz
 power) but does **not entrain** to its rhythm — with the important caveat that

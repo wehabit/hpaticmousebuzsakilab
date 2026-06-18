@@ -1,9 +1,10 @@
 # Dec 4 Supervisor Summary — Two-Probe Haptic Stimulation (dHPC + LEC)
 
-> First analysis pass on the Dec 4 session, run with the **same verified pipeline
-> as Dec 3** (the Dec 3 analysis modules were re-used unchanged; only the channel
-> grouping and condition list were swapped for this session). LFP-level only;
-> spike sorting is a documented next step.
+> Dec 4 session, run with the **same verified pipeline as Dec 3** (the Dec 3
+> analysis modules were re-used unchanged; only the channel grouping and condition
+> list were swapped). **Now includes spike sorting + curation + single-unit ON/OFF**
+> for both probes (see headline finding 4 and `docs/DEC4_SPIKE_ONOFF_RESULT.md`),
+> in addition to the LFP analyses.
 
 ## What is different from Dec 3
 
@@ -80,6 +81,17 @@ Total Dec 4 bad channels = 46 ([121] on dHPC + 45 on LEC).
 3. **Broadband response is onset/transient and amplitude-graded** (mostly dHPC):
    onset-window broadband increases scale with amplitude and are largest at amp250,
    with little sustained elevation — the same transition-dominated character as Dec 3.
+
+4. **Single-unit ON/OFF firing is modulated at 50 Hz / high amplitude — in BOTH
+   probes.** Both probes were spike-sorted, over-split-corrected, and curated
+   (dHPC 15, LEC 15 good units; see `docs/DEC4_SPIKE_ONOFF_RESULT.md`). On the
+   curated ON-vs-OFF test, Dec 3 (5/26 Hz only) showed **0/174** responsive
+   unit-conditions, but Dec 4 shows **dHPC 19/180 and LEC 13/180**, concentrated
+   at **50 Hz** (15/19 and 8/13) and high amplitude (peak dHPC `amp250_freq50`:
+   9 units, mean ON−OFF +0.79 Hz). Direction is mixed (a modulated *subset*, not
+   a uniform drive). So the Dec 3 single-unit null was **frequency-limited**, and
+   the 50 Hz spike modulation is coherent with the LEC 50 Hz LFP effect.
+   Figure: `analysis/outputs/cross_dataset_spike_compare/spike_onoff_cross_dataset.png`.
 
 **One-figure version:** `results/dec4/10_Biological_Summary/combined_explainer.png`.
 **Entrainment test:** `results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png`.
