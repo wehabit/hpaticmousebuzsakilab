@@ -3,52 +3,71 @@
 ## Abstract
 
 This repository contains the electrophysiological analysis of an awake mouse
-implanted with a 128-channel high-density silicon probe (Cambridge NeuroTech;
-Intan acquisition, 20 kHz wideband / 1.25 kHz LFP) and recorded during controlled
-**vibrotactile ("haptic") stimulation**. After a 15-minute pre-stimulus baseline,
-a vibrating actuator delivered **1,200 stimulation trials** across a 120-minute
-block — each trial **3 s ON / 3 s OFF** — followed by a 30-minute post-stimulus
-period. Trials were drawn from **six interleaved conditions** crossing three drive
-amplitudes (100 / 180 / 250) with two carrier frequencies (**5 and 26 Hz**),
-~200 repeats each. The controller schedule is the authoritative condition/trial
-table; an accelerometer TTL recorded physical vibration and is used as timing
-QC because the TTL bursts include pre/post/test activity and do not cleanly
-enumerate all trials.
+implanted with **Cambridge NeuroTech silicon probes** (Intan acquisition, 20 kHz
+wideband / 1.25 kHz LFP) and recorded during controlled **vibrotactile
+("haptic") stimulation**, across **two sessions**:
+
+- **Dec 3** — a single **128-channel probe in dorsal hippocampus** (**dHPC**,
+  Cambridge NeuroTech `H12_2`, Intan Port A). 15-min baseline → **1,200 trials**
+  (each **3 s ON / 3 s OFF**) over a 120-min block → 30-min post. Six interleaved
+  conditions: amplitude `{100, 180, 250}` × frequency `{5, 26}` Hz, ~200 each.
+- **Dec 4** — the **same mouse and dHPC probe** plus a **second probe in lateral
+  entorhinal cortex** (**LEC**, Port B) = **256 channels**, with two added drive
+  frequencies. **2,400 trials** (12 conditions: 3 amplitudes × **{5, 10, 26, 50}
+  Hz**) over a ~5-hour session. Port A is the identical dHPC probe/channel map as
+  Dec 3, so dHPC is **directly comparable across sessions**.
+
+The delivered vibration was logged only as crude QC (a 1-bit accelerometer TTL on
+Dec 3; no stimulus channel shared on Dec 4), and the actuator ran as a
+free-running oscillator — see the stimulus caveat below. Trial timing comes from
+the randomized controller schedule, validated against the recording-start offset.
 
 The central questions are whether neural activity (i) **responds** to the stimulus
-and (ii) **entrains** to its 5/26 Hz rhythm. We characterize the local field
-potential and single-unit spiking with event-aligned LFP, broadband and
-frequency-specific power, time-frequency and 1/f spectral-slope decomposition,
-inter-trial phase locking (PLV/ITPC) tested against an analytic chance floor,
-within-trial OFF-window and reference-scheme controls, an LFP-based movement
-proxy, and Kilosort spike sorting with peri-event time histograms — all with
-trial-level bootstrap 95% confidence intervals over 200 trials per condition.
+and (ii) **entrains** to its drive frequency. Both sessions use the **same
+pipeline**: event-aligned LFP, broadband and frequency-specific power,
+time-frequency and 1/f spectral-slope decomposition, inter-trial phase locking
+(PLV/ITPC) tested against an analytic chance floor, within-trial OFF-window and
+reference-scheme controls, an LFP-based movement proxy, and **Kilosort spike
+sorting with over-split/merge detection, curation, and peri-event time
+histograms** — all with trial-level bootstrap 95% confidence intervals.
 
-**Key findings.** (1) A **real, amplitude-graded broadband LFP response**,
-strongest for the 26 Hz / amplitude-180 condition and dominated by the
-onset/offset *transitions* rather than a sustained lift. (2) **No
-frequency-following**: no narrowband peak rises above the 1/f background and phase
-locking sits at chance — the brain registers the stimulus but does not entrain to
-its frequency. (3) **No reliable ON-vs-OFF change in single-unit firing**
-(provisional, pending manual curation). (4) These conclusions are **robust** to
-the referencing scheme and to excluding movement-contaminated trials. Methods
-follow Buzsáki-lab tooling (buzcode / CellExplorer / Kilosort) and the analysis
-conventions in Cohen (2014).
+**Key findings.**
+1. A **real, amplitude-graded broadband LFP response**, strongest for the
+   `amp180_freq26` condition (Dec 3) and dominated by onset/offset *transitions*
+   rather than a sustained lift.
+2. **No frequency-following in dHPC at any tested frequency** (5/10/26/50 Hz): no
+   narrowband peak above the 1/f background, phase locking at chance. This
+   **replicates across Dec 3 and Dec 4 on the identical probe** and extends to the
+   two new frequencies.
+3. **LEC (Dec 4) shows a real, amplitude-graded narrowband 50 Hz power increase —
+   but *induced*, not phase-locked** (ITPC stays at the chance floor): a
+   frequency-specific *power* change without onset entrainment, with no comparable
+   effect at 5/10/26 Hz or in dHPC.
+4. **No reliable ON-vs-OFF change in single-unit firing**, now **confirmed after
+   curation** (curated single units: Dec 3 dHPC **29**, Dec 4 dHPC **15**, Dec 4
+   LEC **15**). A weak, non-significant suppression trend at high amplitude is
+   consistent with the broadband/recovery story, not active modulation.
+5. Conclusions are **robust** to referencing scheme and to excluding
+   movement-contaminated trials. Hardware note: the dHPC probe was improved before
+   Dec 4 (the nine Dec-3 bad channels are clean on Dec 4); the LEC probe is
+   noisier (45/128 bad, incl. a dead block 224–255). Methods follow Buzsáki-lab
+   tooling (buzcode / CellExplorer / Kilosort) and Cohen (2014).
 
-**Important caveat (stimulus delivery).** On later review we found that the
-delivered vibration was **not clean at the nominal 5 and 26 Hz** — the input
-signal's frequency content at those rates could not be clearly resolved in this
-session. The absence of frequency entrainment must therefore be read partly as a
-**limitation of stimulus delivery**, not solely as a neural result. The next
-recording addresses this directly: it drives the stimulus from a **digital TTL**
-and verifies the **clarity of the input signal** at the target frequencies, so a
-genuine entrainment test is possible.
+**Important caveat (stimulus delivery / entrainment).** Neither session recorded a
+usable **analog copy of the delivered vibration**, and the actuator's phase was
+never reset, so the stimulus's instantaneous phase is **unrecoverable**. The "no
+entrainment" result is therefore partly a **measurement limitation, not a purely
+neural one** — you can measure band power, but you cannot test phase-following
+without a phase reference. The next recording fixes this by capturing the
+**delivered vibration as a continuous analog waveform** — a thin PVDF force sensor
+in the tactor→skin path, into an Intan analog input on the shared 20 kHz clock —
+plus per-cycle and per-trial digital sync lines, making a genuine entrainment test
+possible (see [docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md](docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md)).
 
-The repository is organized so each recording/session can be processed,
-summarized, and compared without losing the original study notes. The current
-completed analysis pass is the **Dec 3 recording**; spike-level and laminar/CSD
-analyses remain provisional pending Phy curation and confirmation of the probe
-geometry and channel map.
+**Status.** Both Dec 3 and Dec 4 are fully processed through LFP analysis and
+**spike sorting + curation**. Remaining items are external: confirming probe
+geometry / channel order for laminar/anatomical claims, and the analog stimulus
+recording above (see [docs/DEC3_EXTERNAL_BLOCKERS.md](docs/DEC3_EXTERNAL_BLOCKERS.md)).
 
 ## Start Here
 
@@ -103,17 +122,34 @@ index with descriptions.
 - [Condition × channel response](results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) — `amp180_freq26` strongest.
 - [Broadband, not oscillation](results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png) — 1/f spectral-slope test.
 - [No entrainment](results/dec3/06_Phase_Locking/phase_locking_null_floor.png) — phase locking at chance.
-- [Spike firing flat ON vs OFF](results/dec3/11_Spikes/peth_onset_ks_good_units.png) — provisional, pre-curation.
+- [Spike firing flat ON vs OFF](results/dec3/11_Spikes/peth_onset_ks_good_units.png) — no single-unit effect (confirmed after curation; 29 good units).
 
-## Current Dec 3 Takeaway
+**Headline figures (Dec 4 — two probes, four frequencies):**
 
-Dec 3 shows clear stimulation-related LFP effects, especially a broadband and
-recovery-period response around `amp180_freq26`. The evidence does **not** yet
-support a simple final claim of clean sustained 26 Hz entrainment: 26 Hz-band
-power and PLV are more cautious. Spike sorting has run, but the cleanest
-high-confidence single-unit subset does not show a robust ON-period firing-rate
-increase. Spike claims remain provisional until Phy curation and final probe
-geometry/channel order are confirmed.
+- [Driven-power change by region](results/dec4/05_Frequency_Spectral/driven_power_change_by_analysis_group.png) — LEC's amplitude-graded **50 Hz** increase; dHPC flat at all frequencies.
+- [Spectral slope + ITPC](results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png) — the 50 Hz power is a real narrowband peak, but **induced, not phase-locked**.
+- [Phase locking by condition](results/dec4/06_Phase_Locking/plv_condition_summary.png) — ITPC at the chance floor, including LEC 50 Hz.
+- [Full Dec 4 supervisor summary](docs/DEC4_SUPERVISOR_SUMMARY.md) and [Dec 4 figure index](results/dec4/README.md).
+
+## Current Takeaway (Dec 3 + Dec 4)
+
+**Dec 3 (dHPC).** Clear stimulation-related LFP effects — a broadband and
+recovery-period response around `amp180_freq26` — but **no clean frequency
+entrainment** (26 Hz-band power and PLV sit at chance). After spike sorting **and
+curation** (29 good single units), there is **no ON-vs-OFF firing-rate effect**;
+that null now holds *post*-curation, not just provisionally.
+
+**Dec 4 (dHPC + LEC).** On the same dHPC probe, the **no-frequency-following
+result replicates** and extends to 10 and 50 Hz. The new region, **LEC**, shows a
+genuine **amplitude-graded 50 Hz power increase that is *induced*, not
+phase-locked** — a frequency-specific power change without onset entrainment.
+Both probes are sorted and curated (dHPC 15, LEC 15 good units).
+
+**Across both:** the brain *registers* the stimulus (broadband; and in LEC, 50 Hz
+power) but does **not entrain** to its rhythm — with the important caveat that
+entrainment could not be properly tested because the delivered vibration was never
+recorded as an analog phase reference (fixed in the next round). Laminar/anatomical
+claims await probe-geometry confirmation.
 
 ## Study Protocol & Recording Phases (Dec 3)
 
@@ -157,7 +193,7 @@ results/                       Curated result figures, ONE FOLDER PER SESSION
   dec3/                        Dec 3 session
     01_Session_Timeline/ … 13_Teaching_and_Methods/
     README.md                  Per-figure index for Dec 3
-  dec4/                        Dec 4 session (created when processed)
+  dec4/                        Dec 4 session (two probes: dHPC + LEC)
 
 analysis/
   *.py                         Reusable, session-agnostic analysis scripts
@@ -165,7 +201,7 @@ analysis/
   DEC3_SUPERVISOR_SUMMARY.md   Main Dec 3 summary for presentation
   DEC3_*.md                    Dec 3 notes (Dec 4 gets parallel DEC4_*.md)
   outputs/dec3/                Raw per-step working files for Dec 3
-  outputs/dec4/                Raw per-step working files for Dec 4 (when processed)
+  outputs/dec4/                Raw per-step working files for Dec 4 (dHPC + LEC)
 
 docs/
   RERUN_PIPELINE.md            How to process a new session
@@ -205,8 +241,9 @@ See [docs/RERUN_PIPELINE.md](docs/RERUN_PIPELINE.md) for the step-by-step checkl
    analyses.
 5. Prepare spike sorting metadata and run Kilosort/SpikeInterface checks.
 6. Export Pynapple-compatible intervals/spikes where useful.
-7. Run provisional spike ON-vs-OFF analyses.
-8. Perform Phy curation before final spike claims.
+7. Run spike ON-vs-OFF analyses (per curated unit set).
+8. Detect over-split clusters, curate (good/mua/noise + merges), and confirm
+   spike claims against the curated set.
 9. Update supervisor summary, dashboard, and major-image guide.
 
 ## Rerunning For A Future Study
@@ -228,6 +265,7 @@ guide.
 
 ## GitHub Notes
 
-The latest pushed Dec 3 summary is on `main`. Raw data and large sorter arrays
-are not committed; rerunning the full pipeline requires local access to those
-files.
+Both the Dec 3 and Dec 4 analyses (LFP + sorted/curated spikes) are pushed to
+`main`. Raw data, large sorter arrays (`*.npy`/`*.npz`), and the curated-merge
+working copies are intentionally **not** committed; rerunning the full pipeline
+requires local access to those files.
