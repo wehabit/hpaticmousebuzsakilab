@@ -48,8 +48,8 @@ def pu(key):  # per-unit PLV list
     return r[key]["per_unit_PLV"]
 
 
-fig, axes = plt.subplots(1, 3, figsize=(13.5, 5.6))
-fig.subplots_adjust(bottom=0.40, top=0.76, left=0.07, right=0.985, wspace=0.32)
+fig, axes = plt.subplots(1, 3, figsize=(13, 4.9))
+fig.subplots_adjust(bottom=0.34, top=0.83, left=0.07, right=0.985, wspace=0.26)
 
 bars(axes[0],
      [("dHPC", pu("within:dhpc_spikes_x_dhpc_phase:ON"), pu("within:dhpc_spikes_x_dhpc_phase:OFF")),
@@ -60,7 +60,7 @@ bars(axes[1],
      [("dHPC→LEC", pu("cross:dhpc_spikes_x_lec_phase:ON"), pu("cross:dhpc_spikes_x_lec_phase:OFF")),
       ("LEC→dHPC", pu("cross:lec_spikes_x_dhpc_phase:ON"), pu("cross:lec_spikes_x_dhpc_phase:OFF"))],
      None, "spike–field PLV (mean ± 95% CI)",
-     "2. SPIKES vs the OTHER region's rhythm\n★ artifact-proof coordination test", highlight=True)
+     "2. SPIKES vs the OTHER region's rhythm\n(the decisive, artifact-proof test)", highlight=True)
 
 on = r["LFP_coherence_dHPC_LEC_50Hz:ON"]["per_trial_coherence"]
 off = r["LFP_coherence_dHPC_LEC_50Hz:OFF"]["per_trial_coherence"]
@@ -75,7 +75,7 @@ caps = [
     (0.875, "ON > OFF (CIs separate) — looks like\ncoupling, BUT inflated by a SHARED\nsignal; spikes (panel 2) don't follow\nit → not real coordination.", "#9a6700"),
 ]
 for x, txt, col in caps:
-    fig.text(x, 0.27, txt, ha="center", va="top", fontsize=8.6, color=col)
+    fig.text(x, 0.235, txt, ha="center", va="top", fontsize=8.6, color=col)
 
 fig.suptitle("Do dHPC & LEC 'work together' at 50 Hz?  —  If they did, panel 2 (cross-region SPIKES) would rise\n"
              "during ON; it does NOT. Panel 3 (LFP) rises but is fooled by a shared signal.  ⇒  NO clear coordination.",
