@@ -49,7 +49,14 @@ def spikes_in_mask(t_s, mask):
 
 
 def main():
+    import argparse
     import pandas as pd
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--amp", type=int, default=None, help="restrict to one amplitude (e.g. 250)")
+    args = ap.parse_args()
+    global OUT
+    if args.amp:
+        OUT = Path(f"analysis/outputs/dec4/coordination_50hz_amp{args.amp}"); OUT.mkdir(parents=True, exist_ok=True)
     n = Path(LFP).stat().st_size // 2 // NCH
     mm = np.memmap(LFP, dtype="<i2", mode="r", shape=(n, NCH))
     dhpc_ch = [c for c in range(0, 128) if c not in DHPC_BAD]
@@ -66,6 +73,8 @@ def main():
     ph_dhpc = region_phase(dhpc); ph_lec = region_phase(lec)
 
     tw = pd.read_csv(TRIALS); tw50 = tw[tw.freq == 50]
+    if args.amp:
+        tw50 = tw50[tw50.amplitude == args.amp]
     on_mask = np.zeros(n, bool); off_mask = np.zeros(n, bool)
     for r in tw50.itertuples(index=False):
         on_mask[int(r.on_start_s * FS):int(r.on_end_s * FS)] = True

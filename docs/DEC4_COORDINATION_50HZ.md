@@ -43,6 +43,17 @@ caveat** for the 50 Hz LFP: the shared cross-region coherence is consistent with
 50 Hz artifact component, so the LFP 50 Hz effect still warrants a dedicated
 artifact check (the single-unit *rate* effect remains the cleanest neural evidence).
 
+## Amplitude check (does pooling hide it?)
+The single-unit *rate* effect was strongest at **amp250**, so coordination — if
+real — should be clearest there. Re-running on **amp250_freq50 alone** (200 trials,
+`coordination_50hz_amp250/`): the decisive cross-region **spike** test shows only a
+**faint, non-compelling hint** of ON-elevation that pooling had washed out
+(dHPC spk→LEC ϕ: 0.043 ON vs 0.031 OFF, 3/15 vs 1/15 units significant; the reverse
+direction is flat, 0/15). PLVs stay ~0.04 and the 200-trial CIs are wide. LFP
+coherence is larger still (0.27 vs 0.17) but remains the artifact-prone measure.
+**Conclusion unchanged:** no compelling coordination even at the strongest
+amplitude — at most a weak hint that needs more data / the recorded stimulus.
+
 ## Caveats
 - Spike–field PLVs are **low in absolute terms** (~0.02–0.06); many units pass the
   Rayleigh test only because spike counts are large. Within-region 50 Hz (gamma)
