@@ -48,40 +48,40 @@ def pu(key):  # per-unit PLV list
     return r[key]["per_unit_PLV"]
 
 
-fig, axes = plt.subplots(1, 3, figsize=(16, 7.4))
+fig, axes = plt.subplots(1, 3, figsize=(13.5, 5.6))
+fig.subplots_adjust(bottom=0.40, top=0.76, left=0.07, right=0.985, wspace=0.32)
 
-# Panel 1: within-region spike-field
 bars(axes[0],
      [("dHPC", pu("within:dhpc_spikes_x_dhpc_phase:ON"), pu("within:dhpc_spikes_x_dhpc_phase:OFF")),
       ("LEC", pu("within:lec_spikes_x_lec_phase:ON"), pu("within:lec_spikes_x_lec_phase:OFF"))],
      None, "spike–field PLV (mean ± 95% CI)", "1. Each region vs its OWN 50 Hz rhythm")
-axes[0].text(0.5, -0.34, "Weak coupling, and ON ≈ OFF (CIs overlap).\nBaseline gamma coupling, not stimulus-driven.",
-             transform=axes[0].transAxes, ha="center", va="top", fontsize=9, color="#444")
 
-# Panel 2: cross-region spike-field (decisive)
 bars(axes[1],
-     [("dHPC spk\n→ LEC ϕ", pu("cross:dhpc_spikes_x_lec_phase:ON"), pu("cross:dhpc_spikes_x_lec_phase:OFF")),
-      ("LEC spk\n→ dHPC ϕ", pu("cross:lec_spikes_x_dhpc_phase:ON"), pu("cross:lec_spikes_x_dhpc_phase:OFF"))],
+     [("dHPC→LEC", pu("cross:dhpc_spikes_x_lec_phase:ON"), pu("cross:dhpc_spikes_x_lec_phase:OFF")),
+      ("LEC→dHPC", pu("cross:lec_spikes_x_dhpc_phase:ON"), pu("cross:lec_spikes_x_dhpc_phase:OFF"))],
      None, "spike–field PLV (mean ± 95% CI)",
-     "2. One region's SPIKES vs the OTHER's rhythm\n★ the artifact-proof coordination test", highlight=True)
-axes[1].text(0.5, -0.34, "Very weak, and ON ≈ OFF (CIs overlap).\nNeurons do NOT track the other region → no coordination.",
-             transform=axes[1].transAxes, ha="center", fontsize=9, color="#b5179e")
+     "2. SPIKES vs the OTHER region's rhythm\n★ artifact-proof coordination test", highlight=True)
 
-# Panel 3: LFP-LFP coherence (misleading)
 on = r["LFP_coherence_dHPC_LEC_50Hz:ON"]["per_trial_coherence"]
 off = r["LFP_coherence_dHPC_LEC_50Hz:OFF"]["per_trial_coherence"]
-bars(axes[2], [("dHPC ↔ LEC\nLFP", on, off)],
+bars(axes[2], [("dHPC↔LEC", on, off)],
      r["LFP_coherence_dHPC_LEC_50Hz:ON"]["chance_floor_per_trial"],
      "50 Hz phase coherence (mean ± 95% CI)", "3. The two LFPs' 50 Hz coupling")
-axes[2].text(0.5, -0.34, "ON > OFF (CIs separate) — looks like coupling.\nBUT LFP coherence is inflated by a SHARED signal;\nspikes (panel 2) don't follow it → not real coordination.",
-             transform=axes[2].transAxes, ha="center", fontsize=9, color="#9a6700")
 
-fig.suptitle("Do dHPC & LEC 'work together' at 50 Hz?\n"
-             "If they coordinated, panel 2 (cross-region SPIKES) would rise during ON — it does NOT. "
-             "Panel 3 (LFP) rises but is fooled by shared signal.  ⇒  NO clear coordination.",
-             fontsize=12.5)
-fig.text(0.5, 0.005, "All panels: 50 Hz trials, ALL amplitudes pooled (amp100 + amp180 + amp250, 600 trials). ON = 3 s buzz; OFF = following 3 s gap.", ha="center", fontsize=9, color="#555")
-fig.tight_layout(rect=[0, 0.13, 1, 0.88])
+# captions at fixed figure positions, well below the axes (no overlap)
+caps = [
+    (0.215, "Weak; ON ≈ OFF (CIs overlap).\nBaseline gamma coupling,\nnot stimulus-driven.", "#444"),
+    (0.545, "Very weak; ON ≈ OFF (CIs overlap).\nNeurons do NOT track the other\nregion → no coordination.", "#b5179e"),
+    (0.875, "ON > OFF (CIs separate) — looks like\ncoupling, BUT inflated by a SHARED\nsignal; spikes (panel 2) don't follow\nit → not real coordination.", "#9a6700"),
+]
+for x, txt, col in caps:
+    fig.text(x, 0.27, txt, ha="center", va="top", fontsize=8.6, color=col)
+
+fig.suptitle("Do dHPC & LEC 'work together' at 50 Hz?  —  If they did, panel 2 (cross-region SPIKES) would rise\n"
+             "during ON; it does NOT. Panel 3 (LFP) rises but is fooled by a shared signal.  ⇒  NO clear coordination.",
+             fontsize=11)
+fig.text(0.5, 0.02, "50 Hz trials, all amplitudes pooled (amp100+180+250, 600 trials). ON = 3 s buzz; OFF = following 3 s gap.",
+         ha="center", fontsize=8.3, color="#666")
 out = D / "coordination_50hz.png"
-fig.savefig(out, dpi=160)
+fig.savefig(out, dpi=120)
 print("wrote", out)
