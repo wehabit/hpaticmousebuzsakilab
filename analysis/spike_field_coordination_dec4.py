@@ -108,17 +108,24 @@ def main():
                     "n_units_sig_p05": per_unit_sig,
                     "mean_unit_PLV": round(float(np.nanmean(per_unit_R)), 4) if per_unit_R else None,
                     "pooled_PLV": round(pooledR, 4) if np.isfinite(pooledR) else None,
+                    "per_unit_PLV": [round(float(x), 5) for x in per_unit_R],  # for bootstrap CI over units
                 }
 
-    # (3) cross-region LFP-LFP 50 Hz coherence (phase-difference consistency).
+    # (3) cross-region LFP-LFP 50 Hz coherence, computed PER TRIAL (for a trial-bootstrap CI).
     dphi = ph_dhpc - ph_lec
-    for win, mask in [("ON", on_mask), ("OFF", off_mask)]:
-        coh = float(np.abs(np.mean(np.exp(1j * dphi[mask]))))
-        # effective-N chance floor (decorrelate by ~1 cycle = FS/50 samples)
-        n_eff = mask.sum() / (FS / 50.0)
+    min_samp = int(3 * FS / 50)  # >=3 cycles
+    for win, (c0, c1) in [("ON", ("on_start_s", "on_end_s")), ("OFF", ("off_start_s", "off_end_s"))]:
+        per_trial = []
+        for r in tw50.itertuples(index=False):
+            s, e = int(getattr(r, c0) * FS), int(getattr(r, c1) * FS)
+            if e - s >= min_samp:
+                per_trial.append(float(np.abs(np.mean(np.exp(1j * dphi[s:e])))))
+        per_trial = np.asarray(per_trial)
+        cyc = (3 * FS) / (FS / 50.0)  # ~150 cycles per 3 s trial
         res[f"LFP_coherence_dHPC_LEC_50Hz:{win}"] = {
-            "coherence": round(coh, 4), "n_eff": int(n_eff),
-            "chance_floor": round(float(np.sqrt(np.pi) / (2 * np.sqrt(max(n_eff, 1)))), 4),
+            "mean_per_trial": round(float(per_trial.mean()), 4),
+            "chance_floor_per_trial": round(float(np.sqrt(np.pi) / (2 * np.sqrt(cyc))), 4),
+            "per_trial_coherence": [round(float(x), 4) for x in per_trial],
         }
 
     (OUT / "coordination_summary.json").write_text(json.dumps(res, indent=2) + "\n")

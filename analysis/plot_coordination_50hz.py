@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Figure: do dHPC & LEC coordinate at 50 Hz? (spike-field + LFP coherence)."""
+"""Figure: do dHPC & LEC coordinate at 50 Hz? Bootstrap-CI, annotated for clarity."""
 from __future__ import annotations
 import json
 from pathlib import Path
@@ -10,46 +10,77 @@ import matplotlib.pyplot as plt
 
 D = Path("analysis/outputs/dec4/coordination_50hz")
 r = json.load(open(D / "coordination_summary.json"))
-
-fig, axes = plt.subplots(1, 3, figsize=(15, 4.8))
-
-
-def grp(ax, labels, on, off, ylabel, title, floor=None):
-    x = np.arange(len(labels)); w = 0.36
-    ax.bar(x - w/2, on, w, color="#e76f51", label="50 Hz ON")
-    ax.bar(x + w/2, off, w, color="#9aa0a6", label="OFF (control)")
-    if floor is not None:
-        ax.axhline(floor, color="#444", ls=":", lw=1)
-        ax.text(ax.get_xlim()[1], floor, " chance", fontsize=8, va="bottom", ha="right", color="#444")
-    ax.set_xticks(x); ax.set_xticklabels(labels, fontsize=9)
-    ax.set_ylabel(ylabel); ax.set_title(title, fontsize=11)
-    ax.legend(fontsize=8, frameon=False)
+rng = np.random.default_rng(0)
 
 
-# A: within-region spike-field locking
-grp(axes[0], ["dHPC→dHPC", "LEC→LEC"],
-    [r["within:dhpc_spikes_x_dhpc_phase:ON"]["mean_unit_PLV"], r["within:lec_spikes_x_lec_phase:ON"]["mean_unit_PLV"]],
-    [r["within:dhpc_spikes_x_dhpc_phase:OFF"]["mean_unit_PLV"], r["within:lec_spikes_x_lec_phase:OFF"]["mean_unit_PLV"]],
-    "mean spike–field PLV", "Within-region spike–field at 50 Hz\n(weak; barely ON>OFF)")
+def boot(vals, nb=5000):
+    vals = np.asarray(vals, float)
+    vals = vals[np.isfinite(vals)]
+    if len(vals) == 0:
+        return np.nan, np.nan, np.nan
+    bs = np.array([np.mean(rng.choice(vals, len(vals), replace=True)) for _ in range(nb)])
+    return float(vals.mean()), float(np.percentile(bs, 2.5)), float(np.percentile(bs, 97.5))
 
-# B: cross-region spike-field locking (the artifact-robust coordination test)
-grp(axes[1], ["dHPC spk→LEC ϕ", "LEC spk→dHPC ϕ"],
-    [r["cross:dhpc_spikes_x_lec_phase:ON"]["mean_unit_PLV"], r["cross:lec_spikes_x_dhpc_phase:ON"]["mean_unit_PLV"]],
-    [r["cross:dhpc_spikes_x_lec_phase:OFF"]["mean_unit_PLV"], r["cross:lec_spikes_x_dhpc_phase:OFF"]["mean_unit_PLV"]],
-    "mean spike–field PLV", "Cross-region spike–field (artifact-robust)\nvery weak; NOT ON>OFF")
 
-# C: cross-region LFP-LFP 50 Hz coherence
-grp(axes[2], ["dHPC ↔ LEC LFP"],
-    [r["LFP_coherence_dHPC_LEC_50Hz:ON"]["coherence"]],
-    [r["LFP_coherence_dHPC_LEC_50Hz:OFF"]["coherence"]],
-    "50 Hz phase coherence", "Cross-region LFP coherence\nON>OFF — but likely SHARED signal",
-    floor=r["LFP_coherence_dHPC_LEC_50Hz:ON"]["chance_floor"])
-axes[2].text(0.5, 0.97, "spikes don't follow it →\nnot proof of coordination", transform=axes[2].transAxes,
-             ha="center", va="top", fontsize=8.5, color="#9a3", fontstyle="italic")
+def bars(ax, items, chance, ylabel, title, highlight=False):
+    """items: list of (label, on_vals, off_vals)."""
+    x = np.arange(len(items)); w = 0.36
+    for j, side, col, off in [(0, "50 Hz ON", "#e76f51", -w/2), (1, "OFF (control)", "#9aa0a6", +w/2)]:
+        ms, los, his = [], [], []
+        for _, on_v, off_v in items:
+            m, lo, hi = boot(on_v if j == 0 else off_v)
+            ms.append(m); los.append(m - lo); his.append(hi - m)
+        ax.bar(x + off, ms, w, yerr=[los, his], capsize=4, color=col,
+               error_kw={"elinewidth": 1.2, "ecolor": "#333"}, label=side)
+    if chance is not None:
+        ax.axhline(chance, color="#444", ls=":", lw=1.2)
+        ax.text(ax.get_xlim()[1], chance, " chance", fontsize=8, va="bottom", ha="right", color="#444")
+    ax.set_xticks(x); ax.set_xticklabels([it[0] for it in items], fontsize=9)
+    ax.set_ylabel(ylabel); ax.legend(fontsize=8, frameon=False, loc="upper right")
+    tcol = "#b5179e" if highlight else "black"
+    ax.set_title(title, fontsize=11, color=tcol, fontweight="bold" if highlight else "normal")
+    if highlight:
+        for s in ax.spines.values():
+            s.set_edgecolor("#b5179e"); s.set_linewidth(2)
 
-fig.suptitle("Do dHPC & LEC 'work together' at 50 Hz?  —  LFP coherence rises, but the artifact-robust spike test does NOT → no clear coordination",
-             fontsize=11.5)
-fig.tight_layout(rect=[0, 0, 1, 0.94])
+
+def pu(key):  # per-unit PLV list
+    return r[key]["per_unit_PLV"]
+
+
+fig, axes = plt.subplots(1, 3, figsize=(16, 6.4))
+
+# Panel 1: within-region spike-field
+bars(axes[0],
+     [("dHPC", pu("within:dhpc_spikes_x_dhpc_phase:ON"), pu("within:dhpc_spikes_x_dhpc_phase:OFF")),
+      ("LEC", pu("within:lec_spikes_x_lec_phase:ON"), pu("within:lec_spikes_x_lec_phase:OFF"))],
+     None, "spike–field PLV (mean ± 95% CI)", "1. Each region vs its OWN 50 Hz rhythm")
+axes[0].text(0.5, -0.20, "Weak coupling, and ON ≈ OFF (CIs overlap).\nBaseline gamma coupling, not stimulus-driven.",
+             transform=axes[0].transAxes, ha="center", fontsize=9, color="#444")
+
+# Panel 2: cross-region spike-field (decisive)
+bars(axes[1],
+     [("dHPC spk\n→ LEC ϕ", pu("cross:dhpc_spikes_x_lec_phase:ON"), pu("cross:dhpc_spikes_x_lec_phase:OFF")),
+      ("LEC spk\n→ dHPC ϕ", pu("cross:lec_spikes_x_dhpc_phase:ON"), pu("cross:lec_spikes_x_dhpc_phase:OFF"))],
+     None, "spike–field PLV (mean ± 95% CI)",
+     "2. One region's SPIKES vs the OTHER's rhythm\n★ the artifact-proof coordination test", highlight=True)
+axes[1].text(0.5, -0.20, "Very weak, and ON ≈ OFF (CIs overlap).\nNeurons do NOT track the other region → no coordination.",
+             transform=axes[1].transAxes, ha="center", fontsize=9, color="#b5179e")
+
+# Panel 3: LFP-LFP coherence (misleading)
+on = r["LFP_coherence_dHPC_LEC_50Hz:ON"]["per_trial_coherence"]
+off = r["LFP_coherence_dHPC_LEC_50Hz:OFF"]["per_trial_coherence"]
+bars(axes[2], [("dHPC ↔ LEC\nLFP", on, off)],
+     r["LFP_coherence_dHPC_LEC_50Hz:ON"]["chance_floor_per_trial"],
+     "50 Hz phase coherence (mean ± 95% CI)", "3. The two LFPs' 50 Hz coupling")
+axes[2].text(0.5, -0.20, "ON > OFF (CIs separate) — looks like coupling.\nBUT LFP coherence is inflated by a SHARED signal;\nspikes (panel 2) don't follow it → not real coordination.",
+             transform=axes[2].transAxes, ha="center", fontsize=9, color="#9a6700")
+
+fig.suptitle("Do dHPC & LEC 'work together' at 50 Hz?\n"
+             "If they coordinated, panel 2 (cross-region SPIKES) would rise during ON — it does NOT. "
+             "Panel 3 (LFP) rises but is fooled by shared signal.  ⇒  NO clear coordination.",
+             fontsize=12.5)
+fig.tight_layout(rect=[0, 0.02, 1, 0.90])
 out = D / "coordination_50hz.png"
 fig.savefig(out, dpi=160)
 print("wrote", out)

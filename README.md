@@ -62,7 +62,18 @@ histograms** — all with trial-level bootstrap 95% confidence intervals.
    → [cross-dataset spike ON/OFF figure](analysis/outputs/cross_dataset_spike_compare/spike_onoff_cross_dataset.png),
    [writeup](docs/DEC4_SPIKE_ONOFF_RESULT.md),
    [Dec 3 onset PETH](results/dec3/11_Spikes/peth_onset_ks_good_units.png)
-5. Conclusions are **robust** to referencing scheme and to excluding
+5. **The 50 Hz response is active and region-specific — but the regions do *not*
+   demonstrably coordinate.** It is not a passive echo (dHPC shows a driven-up
+   subset, LEC mostly suppresses; an echo would look the same everywhere). But a
+   coordination test found **no clear cross-region "working together"**: the
+   artifact-robust cross-region spike–field coupling does **not** rise with
+   stimulation, so the parallel rise in LFP coherence is best explained by a
+   **shared 50 Hz signal** — which keeps the LFP-artifact question open and makes
+   the single-unit *rate* change the cleanest neural evidence.
+   → [interpretation figure](analysis/outputs/cross_dataset_spike_compare/spike_50hz_interpretation.png),
+   [coordination test figure](analysis/outputs/dec4/coordination_50hz/coordination_50hz.png),
+   [writeup](docs/DEC4_COORDINATION_50HZ.md)
+6. Conclusions are **robust** to referencing scheme and to excluding
    movement-contaminated trials. Hardware note: the dHPC probe was improved before
    Dec 4 (the nine Dec-3 bad channels are clean on Dec 4); the LEC probe is
    noisier (45/128 bad, incl. a dead block 224–255). Methods follow Buzsáki-lab
@@ -163,7 +174,10 @@ phase-locked** — a frequency-specific power change without onset entrainment.
 Both probes are sorted and curated (dHPC 15, LEC 15 good units). And at the
 **single-unit** level, **50 Hz / high-amplitude** stimulation modulates a subset
 of units in **both** regions (absent at 5/26 Hz) — coherent with the 50 Hz LFP
-effect ([details](docs/DEC4_SPIKE_ONOFF_RESULT.md)).
+effect. This response is **active and region-specific** (not a passive echo), but
+a coordination test found the two regions do **not** demonstrably "work together"
+at 50 Hz (the cross-region LFP coherence rise is best explained by a shared signal,
+not neural coordination) ([details](docs/DEC4_COORDINATION_50HZ.md)).
 
 **Across both:** the brain *registers* the stimulus (broadband; and in LEC, 50 Hz
 power) but does **not entrain** to its rhythm — with the important caveat that
