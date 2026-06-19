@@ -1,0 +1,60 @@
+{
+  "within:dhpc_spikes_x_dhpc_phase:ON": {
+    "n_units_tested": 15,
+    "n_units_sig_p05": 11,
+    "mean_unit_PLV": 0.0639,
+    "pooled_PLV": 0.041
+  },
+  "within:dhpc_spikes_x_dhpc_phase:OFF": {
+    "n_units_tested": 15,
+    "n_units_sig_p05": 12,
+    "mean_unit_PLV": 0.0571,
+    "pooled_PLV": 0.0426
+  },
+  "cross:dhpc_spikes_x_lec_phase:ON": {
+    "n_units_tested": 15,
+    "n_units_sig_p05": 6,
+    "mean_unit_PLV": 0.0253,
+    "pooled_PLV": 0.0073
+  },
+  "cross:dhpc_spikes_x_lec_phase:OFF": {
+    "n_units_tested": 15,
+    "n_units_sig_p05": 4,
+    "mean_unit_PLV": 0.0237,
+    "pooled_PLV": 0.001
+  },
+  "cross:lec_spikes_x_dhpc_phase:ON": {
+    "n_units_tested": 15,
+    "n_units_sig_p05": 2,
+    "mean_unit_PLV": 0.0212,
+    "pooled_PLV": 0.0095
+  },
+  "cross:lec_spikes_x_dhpc_phase:OFF": {
+    "n_units_tested": 15,
+    "n_units_sig_p05": 2,
+    "mean_unit_PLV": 0.0203,
+    "pooled_PLV": 0.0079
+  },
+  "within:lec_spikes_x_lec_phase:ON": {
+    "n_units_tested": 15,
+    "n_units_sig_p05": 6,
+    "mean_unit_PLV": 0.0437,
+    "pooled_PLV": 0.0425
+  },
+  "within:lec_spikes_x_lec_phase:OFF": {
+    "n_units_tested": 15,
+    "n_units_sig_p05": 8,
+    "mean_unit_PLV": 0.0365,
+    "pooled_PLV": 0.0395
+  },
+  "LFP_coherence_dHPC_LEC_50Hz:ON": {
+    "coherence": 0.162,
+    "n_eff": 90000,
+    "chance_floor": 0.003
+  },
+  "LFP_coherence_dHPC_LEC_50Hz:OFF": {
+    "coherence": 0.092,
+    "n_eff": 90000,
+    "chance_floor": 0.003
+  }
+}

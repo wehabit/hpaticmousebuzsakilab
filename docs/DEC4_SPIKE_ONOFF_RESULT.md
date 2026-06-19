@@ -68,12 +68,16 @@ Walking the inference ladder:
 3. **→ Active, region-specific processing** is the supported reading: the 50 Hz
    input is handled differently by hippocampus vs entorhinal cortex.
 
-**What this does NOT show: "the regions working together."** Coordination
-(neurons synchronizing, the two regions becoming more coupled, spikes locking to a
-shared rhythm) was **not measured**. We showed *each region responds* and *they
-respond differently* — not that they *coordinate*. Testing that needs **spike–field
-coupling** and **cross-region coherence** (runnable on existing data), and true
-stimulus phase-locking (needs the recorded stimulus — next round).
+**Does it show "the regions working together"? — We tested this; the answer is no
+clear coordination.** Follow-up analysis (spike–field locking + cross-region 50 Hz
+coherence; see [DEC4_COORDINATION_50HZ.md](DEC4_COORDINATION_50HZ.md)) found that
+the **artifact-robust** test — whether sorted neurons in one region lock to the
+*other* region's 50 Hz rhythm — shows only very weak coupling that **does not
+increase** with stimulation. Cross-region *LFP* coherence does rise during ON, but
+that is best explained by a **shared 50 Hz signal** (plausibly stimulus artifact),
+not coordination. So: each region responds, but they do **not** demonstrably
+coordinate. True stimulus phase-locking still needs the recorded stimulus (next
+round).
 
 **Caveat:** part of the rate change could be a strong-stimulus arousal/state effect
 (amp250_freq50 is the most intense buzz). The frequency-specificity and movement
