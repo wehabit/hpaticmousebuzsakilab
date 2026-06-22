@@ -46,12 +46,16 @@ histograms** — all with trial-level bootstrap 95% confidence intervals.
    → [Dec 3 spectral-slope decomposition](results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png),
    [Dec 3 phase-locking null floor](results/dec3/06_Phase_Locking/phase_locking_null_floor.png),
    [Dec 4 spectral slope + ITPC](results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png)
-3. **LEC (Dec 4) shows a real, amplitude-graded narrowband 50 Hz power increase —
-   but *induced*, not phase-locked** (ITPC stays at the chance floor): a
-   frequency-specific *power* change without onset entrainment, with no comparable
-   effect at 5/10/26 Hz or in dHPC.
+3. **LEC (Dec 4) shows an amplitude-graded narrowband 50 Hz LFP power increase that
+   is *induced*, not phase-locked** (ITPC at chance) — with no comparable effect at
+   5/10/26 Hz or in dHPC. **But a dedicated artifact check shows this LFP effect is
+   contaminated by non-neural pickup:** disconnected LEC electrodes (which can't
+   record neurons) pick up **~6× more** 50 Hz during ON than tissue, and the
+   cross-region 50 Hz lag is ~0 ms (a shared signal). So the LEC 50 Hz *LFP* is not
+   clean neural evidence — the single-unit rate change (finding 4) is.
    → [driven-power change by region](results/dec4/05_Frequency_Spectral/driven_power_change_by_analysis_group.png),
-   [phase locking by condition](results/dec4/06_Phase_Locking/plv_condition_summary.png)
+   [50 Hz artifact check](analysis/outputs/dec4/artifact_check_50hz/artifact_check_50hz.png),
+   [writeup](docs/DEC4_50HZ_ARTIFACT_CHECK.md)
 4. **Single-unit ON/OFF firing is frequency-specific.** At **5/26 Hz there is no
    effect** (Dec 3: 0/174 unit-conditions responsive, post-curation). But Dec 4
    added 10/50 Hz, and at **50 Hz / high amplitude a subset of single units *are*
@@ -68,8 +72,10 @@ histograms** — all with trial-level bootstrap 95% confidence intervals.
    coordination test found **no clear cross-region "working together"**: the
    artifact-robust cross-region spike–field coupling does **not** rise with
    stimulation, so the parallel rise in LFP coherence is best explained by a
-   **shared 50 Hz signal** — which keeps the LFP-artifact question open and makes
-   the single-unit *rate* change the cleanest neural evidence.
+   **shared 50 Hz signal** — and a **dedicated artifact check then confirmed a real
+   non-neural 50 Hz pickup** (disconnected electrodes pick up ~6× more than tissue,
+   ~0 ms cross-region lag), making the single-unit *rate* change the cleanest
+   neural evidence.
    → [interpretation figure](analysis/outputs/cross_dataset_spike_compare/spike_50hz_interpretation.png),
    [coordination test figure](analysis/outputs/dec4/coordination_50hz/coordination_50hz.png),
    [writeup](docs/DEC4_COORDINATION_50HZ.md)
@@ -99,6 +105,8 @@ recording above (see [docs/DEC3_EXTERNAL_BLOCKERS.md](docs/DEC3_EXTERNAL_BLOCKER
 
 ## Start Here
 
+- [**CONCLUSIONS.md**](CONCLUSIONS.md): one-page synthesis across Dec 3 + Dec 4 —
+  what is supported, what is explicitly negative, and what the next recording needs.
 - [**Results — every figure**](results/README.md): all result figures, curated
   and grouped by analysis type (the canonical place to browse results).
 - [Dec 3 Supervisor Summary](docs/DEC3_SUPERVISOR_SUMMARY.md): clean

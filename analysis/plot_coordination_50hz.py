@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """Figure: do dHPC & LEC coordinate at 50 Hz? Bootstrap-CI, annotated for clarity."""
 from __future__ import annotations
+import argparse
 import json
 from pathlib import Path
 import numpy as np
@@ -8,7 +9,13 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-D = Path("analysis/outputs/dec4/coordination_50hz")
+ap = argparse.ArgumentParser()
+ap.add_argument("--dir", default="analysis/outputs/dec4/coordination_50hz",
+                help="dir holding coordination_summary.json")
+ap.add_argument("--footer", default="50 Hz trials, all amplitudes pooled (amp100+180+250, 600 trials)."
+                " ON = 3 s buzz; OFF = following 3 s gap.")
+args = ap.parse_args()
+D = Path(args.dir)
 r = json.load(open(D / "coordination_summary.json"))
 rng = np.random.default_rng(0)
 
@@ -80,8 +87,7 @@ for x, txt, col in caps:
 fig.suptitle("Do dHPC & LEC 'work together' at 50 Hz?  —  If they did, panel 2 (cross-region SPIKES) would rise\n"
              "during ON; it does NOT. Panel 3 (LFP) rises but is fooled by a shared signal.  ⇒  NO clear coordination.",
              fontsize=11)
-fig.text(0.5, 0.02, "50 Hz trials, all amplitudes pooled (amp100+180+250, 600 trials). ON = 3 s buzz; OFF = following 3 s gap.",
-         ha="center", fontsize=8.3, color="#666")
+fig.text(0.5, 0.02, args.footer, ha="center", fontsize=8.3, color="#666")
 out = D / "coordination_50hz.png"
 fig.savefig(out, dpi=120)
 print("wrote", out)

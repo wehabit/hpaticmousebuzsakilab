@@ -1,0 +1,77 @@
+{
+  "n_trials": 600,
+  "per_channel_50Hz_ON_minus_OFF_envelope": {
+    "dHPC_good": {
+      "n_ch": 127,
+      "mean_ON_minus_OFF": -0.99,
+      "ci": [
+        -1.51,
+        -0.46
+      ],
+      "mean_ON": 167.09,
+      "mean_OFF": 168.08
+    },
+    "LEC_good": {
+      "n_ch": 83,
+      "mean_ON_minus_OFF": 4.9,
+      "ci": [
+        3.56,
+        6.32
+      ],
+      "mean_ON": 47.25,
+      "mean_OFF": 42.34
+    },
+    "LEC_dead": {
+      "n_ch": 45,
+      "mean_ON_minus_OFF": 28.4,
+      "ci": [
+        19.24,
+        37.79
+      ],
+      "mean_ON": 504.54,
+      "mean_OFF": 476.14
+    },
+    "dHPC_dead": {
+      "n_ch": 1,
+      "mean_ON_minus_OFF": 1.89,
+      "ci": [
+        1.89,
+        1.89
+      ],
+      "mean_ON": 98.57,
+      "mean_OFF": 96.68
+    }
+  },
+  "dead_vs_good_pickup_ratio_LEC": 5.796,
+  "harmonics_dHPC": {
+    "50Hz": {
+      "ON_prominence_dB": 0.98,
+      "OFF_prominence_dB": -0.12
+    },
+    "100Hz": {
+      "ON_prominence_dB": 1.41,
+      "OFF_prominence_dB": 0.05
+    },
+    "150Hz": {
+      "ON_prominence_dB": 2.42,
+      "OFF_prominence_dB": -0.35
+    }
+  },
+  "harmonic_ratio_100_over_50_ON_dB": 0.43,
+  "cross_region_phase_ON": {
+    "mean_resultant_coherence": 0.2155,
+    "mean_lag_rad": -0.083,
+    "mean_lag_deg": -4.76,
+    "mean_lag_ms": -0.264
+  },
+  "amplitude_scaling_dHPC_50Hz_ON_minus_OFF": {
+    "100": -4.07,
+    "180": -1.21,
+    "250": 7.81
+  },
+  "verdict_flags": {
+    "dead-channel pickup": "HIGH (artifact-like)",
+    "100 Hz harmonic": "absent (neural-like)",
+    "cross-region lag": "~0 (shared signal)"
+  }
+}

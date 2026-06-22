@@ -38,10 +38,13 @@ sorted spikes are not.
 
 **So:** each region *actively responds* at 50 Hz (rate changes — see
 [DEC4_SPIKE_ONOFF_RESULT.md](DEC4_SPIKE_ONOFF_RESULT.md)), but we find **no clear
-evidence they "work together" / coordinate.** This also **re-raises the artifact
+evidence they "work together" / coordinate.** This also **re-raised the artifact
 caveat** for the 50 Hz LFP: the shared cross-region coherence is consistent with a
-50 Hz artifact component, so the LFP 50 Hz effect still warrants a dedicated
-artifact check (the single-unit *rate* effect remains the cleanest neural evidence).
+50 Hz artifact component. **We then ran that dedicated check
+([DEC4_50HZ_ARTIFACT_CHECK.md](DEC4_50HZ_ARTIFACT_CHECK.md)) and it confirmed a real
+non-neural 50 Hz component** — disconnected LEC electrodes pick up ~6× more 50 Hz
+than tissue, and the cross-region lag is ~0 ms. So the LFP 50 Hz effect is
+contaminated; the single-unit *rate* effect remains the cleanest neural evidence.
 
 ## Amplitude check (does pooling hide it?)
 The single-unit *rate* effect was strongest at **amp250**, so coordination — if
