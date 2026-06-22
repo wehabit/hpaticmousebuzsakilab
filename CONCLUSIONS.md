@@ -60,6 +60,12 @@ should not be read as entrainment.
   impossible this session; "no entrainment" is partly a *measurement* limit.
 - ON-vs-OFF is a within-trial contrast (OFF = post-stim, not neutral baseline); a
   strong-stimulus arousal/state component can't be fully excluded.
+- All 15 curated good **LEC** units sit in the 50 Hz **pickup zone** (peak channels
+  173–214; none in the clean shallow region), so unit location and pickup location
+  can't be spatially separated. The rate result still holds (≈300 Hz high-pass
+  removes 50 Hz pre-detection; LEC units *suppress* during ON, opposite to a
+  pickup-false-spike artifact; dHPC's effect occurs with zero pickup) — see
+  [DEC4_50HZ_ARTIFACT_CHECK.md](docs/DEC4_50HZ_ARTIFACT_CHECK.md).
 - Probe geometry / channel order not yet confirmed for laminar/anatomical claims.
 
 ## What the next recording must add (external, can't be done on this data)

@@ -59,6 +59,42 @@ rate modulation in both regions; see
 cleanest neural signature**, exactly as argued. The artifact-robust cross-region
 **spike** test was already flat — consistent with this finding.
 
+## Channel-QC audit: are the dead channels otherwise accounted for?
+A follow-up audit checked whether dead/marginal channels contaminate results
+anywhere *else*. The structural safeguards hold, but two honest caveats remain.
+
+**Accounted for:**
+- **Sorting excluded the dead channels.** Kilosort ran on dHPC `channel_map`=127 and
+  LEC=83 (global 136–223); the dead 128–135 / 224–255 blocks were removed *before*
+  sorting, so KS whitening/CAR never saw them and no units sit on them.
+- **References exclude bad channels** (group-median LFP ref "bad ch excluded";
+  coordination/artifact region-means over good channels only).
+- **50 Hz is below the spike band** — the sort's ~300 Hz high-pass removes it before
+  detection, so pickup cannot *create* spikes. No good channel flatlines.
+
+**Caveat 1 — the 50 Hz pickup is a spatial gradient, not confined to flagged-dead
+channels.** ~28 of the 83 "good" LEC channels (the deep half, **173–223**) carry
+extreme 50 Hz power (robust-z 7–10), rising toward both dead blocks. So even the
+LEC *good-channel* 50 Hz region-mean is dominated by near-dead-block pickup —
+reinforcing that the LEC 50 Hz **LFP** should not be read as neural.
+
+**Caveat 2 — all 15 curated good LEC units sit in that pickup zone** (peak channels
+173–214; **zero** in the clean shallow region 136–172). We therefore cannot
+spatially separate "where the LEC units are" from "where the 50 Hz pickup is." This
+does **not** invalidate the single-unit rate result, because (i) the ~300 Hz
+high-pass removes 50 Hz before detection; (ii) LEC units predominantly **suppress**
+during ON — the *opposite* of what pickup-driven false detections would add; and
+(iii) the dHPC driven-up subset occurs with **zero** pickup. It is a disclosure, not
+a refutation.
+
+**Minor:** an independent robust-z RMS sweep flagged one extra hot LEC channel,
+**ch142** (RMS ~3.5× median, z=4.6), that escaped the original auto pass; it hosts
+no curated good unit and its own 50 Hz rise is ~0, so excluding it shifts the LEC
+50 Hz region-mean by only +1.2% (4.90→4.96). It has been added to the exclusion
+lists (`bad_channels_dec4.json` → `post_hoc_qc_2026_06`) for future LFP region-means;
+sorts were not re-run (no unit on it). The Dec-3 "hardware-fixed" dHPC channels are
+the noisiest dHPC channels (~2× median) but not dead.
+
 ## Why the next round fixes it
 This is precisely what the **recorded analog stimulus** (PVDF force sensor on the
 shared 20 kHz clock) buys: with a continuous copy of the delivered vibration you can

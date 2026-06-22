@@ -40,6 +40,7 @@
     139,
     140,
     141,
+    142,
     224,
     225,
     226,
@@ -146,6 +147,7 @@
     139,
     140,
     141,
+    142,
     224,
     225,
     226,
@@ -194,6 +196,7 @@
     139,
     140,
     141,
+    142,
     224,
     225,
     226,
@@ -226,5 +229,12 @@
     253,
     254,
     255
-  ]
+  ],
+  "post_hoc_qc_2026_06": {
+    "added_channels": [
+      142
+    ],
+    "reason": "Independent post-hoc per-channel QC (4x60s robust-z RMS sweep) flagged LEC ch142 as hot (RMS ~1456, ~3.5x LEC median, robust-z 4.6). It escaped the original auto RMS pass. ch142 hosts NO curated good unit (good LEC unit peak channels span 173-214), so spike sorting/curation is unaffected. Its own 50 Hz ON-OFF rise is ~0, so excluding it changes the LEC 50 Hz region-mean by only +1.2% (4.90->4.96). Added to exclusion lists for future LFP region-means; existing sorts not re-run (no good unit on it).",
+    "note_dec3_fixed_channels": "Dec3-fixed dHPC channels 5,6,7,32,33,34,43,66,67 are the highest-RMS dHPC channels in Dec4 (~2x median, robust-z ~2) but not outliers/dead; 'improved, not pristine'. Not excluded."
+  }
 }
