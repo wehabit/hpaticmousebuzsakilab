@@ -5,12 +5,14 @@ the [README key findings](README.md#abstract) and the per-topic writeups linked
 below.
 
 ## Bottom line
-Body-surface haptic stimulation produces a **real, measurable cortical/hippocampal
-response**, but it is **not** the brain "following" the vibration frequency, and the
-two recorded regions do **not** demonstrably **coordinate**. The cleanest neural
-signature is a **single-unit firing-rate change at 50 Hz / high amplitude**, present
-in *both* dHPC and LEC; the LFP "50 Hz" signal is partly **non-neural pickup** and
-should not be read as entrainment.
+Haptic stimulation affects the brain. Dec 3 showed a broadband, **transition-weighted**
+dHPC response but **no clean entrainment**. Dec 4's clean readout is **single-unit
+firing**: 50 Hz, high-amplitude stimulation produces the **strongest frequency-specific
+rate effect**, with a **driven-up subset in dHPC** and **net suppression in LEC**. The
+LEC 50 Hz **LFP** is pickup-contaminated, so **spikes are the trustworthy measure**.
+The up-going units, including unit 87, pass the spike-artifact screens. We do **not**
+yet show **entrainment** (no stimulus phase was recorded), and we do **not** show
+**cross-region coordination**.
 
 ## The arc, in order
 1. **There is a genuine response (Dec 3).** Haptic stimulation drives an
@@ -33,12 +35,26 @@ should not be read as entrainment.
    The ~300 Hz spike high-pass removes the slow 50 Hz pickup before detection, and
    the ACG/ISI/waveform screens argue against pickup-manufactured spikes, so this is
    the cleanest evidence. It also explains the Dec 3 single-unit null: Dec 3 only
-   tested 5/26 Hz, where there is no effect. →
+   tested 5/26 Hz, where there is no effect.
+   *Honesty:* responders are a **modest fraction** (~7–11% of tests) and FDR allows a
+   few false positives — so the trustworthy claim is the **concentration at 50 Hz**
+   (15/19 and 8/13, far above the uniform spread chance would give), not that every
+   flagged unit is real. →
    [DEC4_SPIKE_ONOFF_RESULT.md](docs/DEC4_SPIKE_ONOFF_RESULT.md).
-5. **The response is active & region-specific, not a passive echo.** A passive relay
-   would look identical everywhere; instead **LEC is predominantly suppressed**
-   (~67% of modulated units fire less) while **dHPC has a driven-up subset**. The
-   50 Hz input is *transformed differently by each circuit*.
+   - *Why 50 Hz and not 26 Hz?* In the **LFP** (Dec 3) the biggest gross *transient*
+     was at 26 Hz / high amplitude — but that is the **contaminated, frequency-non-
+     specific** measure (onset/offset broadband), not clean entrainment. The **clean
+     single-unit** measure points to **50 Hz**.
+5. **The response is active & region-specific, not a passive echo** — the strongest
+   biological argument. A passive relay/echo would look **similar across regions**;
+   instead the two regions transform the 50 Hz input **in opposite directions**:
+   **dHPC shows a driven-up subset** — a few strong up-units carry a positive mean
+   (**+0.79 Hz** at amp250_freq50); across all 50 Hz amplitudes the dHPC population is
+   **mixed**, so this is a *subset*, **not a globally excited dHPC** — while **LEC
+   leans net-suppressed** (10 of 15 units down, mean −0.08 Hz). Same external stimulus,
+   different regional transformation. The LEC suppression doubles as **artifact logic**:
+   additive pickup *adds*, not removes, apparent spikes, so a net loss of spikes is not
+   what pickup produces.
 6. **But the regions do not demonstrably coordinate.** The cross-region
    **spike–field** test (do one region's neurons lock to the *other* region's
    rhythm? — harder for pickup to fake than the LFP) is weak and **does not rise**
@@ -50,7 +66,8 @@ should not be read as entrainment.
 - A real, amplitude-graded, **event-/transition-driven** haptic response (LFP).
 - **No frequency-following** (no entrainment by power *or* phase), replicated.
 - A genuine, frequency-specific (**50 Hz**), region-specific **single-unit rate**
-  modulation at high amplitude — the headline neural finding.
+  modulation at high amplitude — **driven-up subset in dHPC, net suppression in LEC**
+  (same input, opposite transformations) — the headline neural finding.
 
 ## What is NOT supported / explicitly negative
 - The brain does **not** oscillate at the drive frequency.
@@ -61,13 +78,19 @@ should not be read as entrainment.
 - **Single animal**, single session per region pairing.
 - **No recorded stimulus phase** → a true entrainment (phase-following) test is
   impossible this session; "no entrainment" is partly a *measurement* limit.
-- ON-vs-OFF is a within-trial contrast (OFF = post-stim, not neutral baseline); a
-  strong-stimulus arousal/state component can't be fully excluded.
+- ON-vs-OFF is a within-trial contrast (OFF = post-stim, not neutral baseline). A
+  strong-stimulus **arousal/state** component could ride along with the **whole** 50 Hz
+  rate effect (amp250_freq50 is the most intense buzz), not just unit 87. The defense
+  is **frequency-specificity** — 50 Hz produces much stronger spike modulation than
+  26 Hz at matched amplitude, which argues against pure intensity-driven arousal — but
+  **indirect sensory/state mechanisms remain possible**. The screens rule out
+  pickup-manufactured spikes, **not** the direct-circuit-modulation-vs-indirect-cascade
+  distinction.
 - All 15 curated good **LEC** units sit in the 50 Hz **pickup zone** (peak channels
   173–214; none in the clean shallow region), so unit location and pickup location
   can't be spatially separated. The rate result still holds: ≈300 Hz high-pass
-  removes 50 Hz pre-detection; the LEC population *leans down* during ON (10/15 units,
-  pickup can't remove spikes); and two spike-artifact screens clear **0/8 up-going
+  removes 50 Hz pre-detection; the LEC population *leans down* during ON (10/15 units —
+  additive pickup adds, not removes, apparent spikes); and two spike-artifact screens clear **0/8 up-going
   units** — no ON 50 Hz ACG comb, and no ON rise in ISI<2ms violations (unit 87 incl.;
   closing both the periodic-pickup and broadband-noise-floor loopholes). So the
   up-going units **pass the spike-artifact screens** (clean refractory, no comb,
