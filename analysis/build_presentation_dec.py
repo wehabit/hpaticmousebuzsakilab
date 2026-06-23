@@ -13,6 +13,7 @@ import textwrap
 
 OUT = Path("presentation"); OUT.mkdir(exist_ok=True)
 F = "results/dec4"
+CF = "presentation/concept_figs"   # schematic illustrations (build_concept_figures.py)
 TTL = "analysis/outputs/dec3/ttl_diagnostic/ttl_cannot_recover_tactor_phase.png"
 NAVY, TEAL, GREY, PANEL = "#1A1A2E", "#1C6E8C", "#555555", "#F2F5F7"
 
@@ -25,7 +26,7 @@ SLIDES = [
     dict(kind="content", title="The dream: wearables that gently 'nudge' the brain through touch",
          take="To build that, we first have to answer a basic question: does a buzz on the body actually reach and change the brain?",
          notes="Big picture first. There's huge interest in wearables that touch your skin to shift a brain state — to help you sleep, focus, calm down, or aid therapy after injury. The skin is the easiest, safest door to the nervous system. But before any of that, we need the unglamorous groundwork: if I buzz the body, (1) does the brain even notice, (2) does it matter how FAST I buzz, and (3) can the brain lock onto the rhythm of the buzz? That third one — 'marching in step' with the stimulus — is the holy grail, because that's how you'd drive a brain rhythm on purpose."),
-    dict(kind="content", title="The experiment, in one picture",
+    dict(kind="content", title="The experiment, in one picture", fig=f"{CF}/experiment.png",
          take="Buzz the body in 3-second bursts at different speeds; listen to the brain at the same time; repeat 200×.",
          notes="Here's the whole setup in plain terms. We put a little vibrating motor — a 'tactor', like the buzz in your phone — on the body. We buzz it for 3 seconds, then rest 3 seconds, over and over. We try different buzz SPEEDS: 5, 10, 26, and 50 buzzes per second. And different strengths. While that happens, we listen to the brain with fine electrodes. Then we ask: what changed in the brain during the buzz versus the rest? [Tip: drop a setup photo here.]"),
     dict(kind="content", title="Three questions",
@@ -33,10 +34,10 @@ SLIDES = [
          notes="Keep these three questions in your head — the whole talk answers them. One: does the brain register the buzz at all? Two: does it care how fast we buzz — is 50/sec different from 26/sec? Three, the big one: does the brain 'entrain' — literally oscillate in lockstep with the buzz, like marching to a drumbeat? Spoiler: yes, yes-ish, and 'we couldn't fully test it' — and WHY we couldn't is one of the most useful things we learned."),
 
     dict(kind="section", title="Part 1 — How do you 'listen' to a brain?", sub="Two ideas you need, both with analogies"),
-    dict(kind="content", title="We listened in two neighboring brain regions",
+    dict(kind="content", title="We listened in two neighboring brain regions", fig=f"{CF}/two_regions.png",
          take="Hippocampus = the brain's inner GPS & memory.   Entorhinal cortex = its main input hub. Two listening posts.",
          notes="We recorded from two spots that talk to each other: the hippocampus — think of it as the brain's inner GPS and memory-maker — and right next to it the entorhinal cortex, which is the hippocampus's main inbox, where a lot of sensory information arrives. So: two listening posts in a circuit that handles where-you-are and what-just-happened. Don't worry about the names; just 'two connected regions.'"),
-    dict(kind="content", kicker="concept · analogy", title="THE key idea: a brain recording has two very different signals",
+    dict(kind="content", kicker="concept · analogy", title="THE key idea: a brain recording has two very different signals", fig=f"{CF}/stadium.png",
          take="Stadium analogy → the CROWD MURMUR (the field potential) vs. INDIVIDUAL VOICES (single neurons firing).",
          notes="This is the single most important idea in the talk. Imagine a microphone over a packed stadium. You hear TWO things. First, the low ROAR of the whole crowd — that's the 'field potential' (LFP): the blended, slow electrical hum of thousands of cells. Second, individual people SHOUTING — sharp, brief, distinct. Those are 'spikes': single neurons firing, each a crisp ~1-millisecond blip. The crowd murmur is easy to hear but vague; the individual voices are harder to pick out but tell you exactly who said what. We use BOTH — and the difference between them is the whole plot."),
     dict(kind="content", kicker="concept", title="Why single neurons are the gold standard",
@@ -48,7 +49,7 @@ SLIDES = [
          fig=f"{F}/07_Broadband_OFFcontrol_TrialStats/transition_index_condition.png",
          take="Like a doorbell: the brain responds to the EVENT of the buzz turning on/off — not by humming along with it.",
          notes="First result. The crowd-murmur signal clearly changes when we buzz — so yes, the brain notices. But HOW: it mostly reacts to the buzz turning ON and OFF, not by settling into its rhythm. Analogy: a doorbell. Your attention spikes when it RINGS and when it STOPS, but you don't start vibrating at the doorbell's pitch. So the brain registers the event, but isn't obviously 'tuning in.'"),
-    dict(kind="content", kicker="concept · analogy", title="'Marching in step' has a name: entrainment",
+    dict(kind="content", kicker="concept · analogy", title="'Marching in step' has a name: entrainment", fig=f"{CF}/entrainment.png",
          take="Pushing a swing in rhythm → if the brain entrains, its own waves line up with the buzz's beat.",
          notes="The dream is 'entrainment': the brain's own waves locking onto the buzz's rhythm. Analogy: pushing a swing. If you push exactly in time, it goes higher and higher — your rhythm drives its rhythm. If the brain entrained to a 50-per-second buzz, we'd see brain activity ticking at 50 per second. That would mean you can DIAL IN a brain rhythm from the skin. So: does the brain hum along at the buzz frequency?"),
     dict(kind="content", kicker="finding 2", title="The hippocampus does NOT hum along — at any buzz speed",
@@ -59,7 +60,7 @@ SLIDES = [
          fig=f"{F}/05_Frequency_Spectral/driven_power_change_by_analysis_group.png",
          take="In the entorhinal region a 50 Hz signal appears in the crowd murmur — and it grows with buzz strength. Exciting!",
          notes="Now it gets interesting. In the entorhinal inbox, a signal at exactly 50 per second DOES show up in the crowd murmur, and it grows as we buzz harder. We were excited — maybe THIS region entrains at 50! But there's a trap, and a careful scientist has to check it. Let me teach you the trap."),
-    dict(kind="content", kicker="concept · analogy", title="The trap: the machine has its OWN electrical hum",
+    dict(kind="content", kicker="concept · analogy", title="The trap: the machine has its OWN electrical hum", fig=f"{CF}/trap.png",
          take="A microphone can pick up the speaker's buzz, not just the crowd. Electrical equipment leaks its own signal.",
          notes="Analogy: you're recording the crowd, but the stadium PA speaker hums at 50 Hz and your mic picks up THAT. Now your recording shows a clean 50 Hz — but it's the speaker, not the crowd. Same risk: the buzzing motor and its electronics can leak a 50-per-second electrical signal into our wires. That would look like a '50 Hz brain signal' but be pure equipment artifact. How do you tell brain from machine? We found a clean test."),
     dict(kind="content", kicker="finding 3b · the killer test", title="That 50 Hz is mostly the machine — the dead-electrode test proves it",
@@ -91,7 +92,7 @@ SLIDES = [
          fig=TTL,
          take="It updated ~4×/sec while the tactor buzzed 26×/sec — like checking a hummingbird's wings 4 times a second.",
          notes="I proved this from the data. The signal that should have marked each buzz cycle updated only ~4 times a second — but the tactor buzzed 26 times a second. Analogy: tracking a hummingbird's wingbeats by glancing 4 times a second — between glances the wings flapped 6 times; you can't recover the motion. (Top: the actual recorded line, slow and irregular. Middle: what a real 26-per-second buzz looks like. Bottom: the gaps are ~6× too long.) So the 'music track' was effectively blank. That one missing signal is the main limitation of the study."),
-    dict(kind="content", title="The fix is concrete — next round records the buzz properly",
+    dict(kind="content", title="The fix is concrete — next round records the buzz properly", fig=f"{CF}/fix.png",
          take="A per-cycle marker from the firmware + a tiny force sensor that measures the ACTUAL vibration, on the same clock.",
          notes="The good news: a wiring problem, not a dead end, and we've designed the fix. Next round we record the music three ways at once, all on the brain's clock: (1) a clean marker the buzzer's software emits once per cycle; (2) a tiny force sensor between tactor and skin measuring the ACTUAL vibration — proving the buzz happened and giving its exact beat; (3) a copy of the drive signal as backup. Plus a 2-minute test recording to CONFIRM it works before real data — the check that would have caught this. Then entrainment is directly testable."),
 
