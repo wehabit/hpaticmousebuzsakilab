@@ -1,0 +1,46 @@
+{
+  "dHPC": {
+    "n_good": 127,
+    "n_dead": 1,
+    "good_50Hz_ON_minus_OFF": {
+      "mean": -0.99,
+      "median": -0.62,
+      "max": 4.37,
+      "n_channels_gt_5": 0
+    },
+    "dead_50Hz_ON_minus_OFF_mean": 1.89,
+    "n_hot_channels_z50_gt4": 0,
+    "frac_hot": 0.0,
+    "depth_profile_mean_50Hz_ON_minus_OFF": {
+      "ch0-31": -1.22,
+      "ch31-63": -1.89,
+      "ch63-95": -1.02,
+      "ch95-127": 0.22
+    }
+  },
+  "LEC": {
+    "n_good": 82,
+    "n_dead": 46,
+    "good_50Hz_ON_minus_OFF": {
+      "mean": 4.96,
+      "median": 0.3,
+      "max": 18.91,
+      "n_channels_gt_5": 28
+    },
+    "dead_50Hz_ON_minus_OFF_mean": 27.79,
+    "n_hot_channels_z50_gt4": 31,
+    "frac_hot": 0.378,
+    "depth_profile_mean_50Hz_ON_minus_OFF": {
+      "ch128-159": 0.92,
+      "ch159-191": 4.56,
+      "ch191-223": 7.64,
+      "ch223-255": null
+    }
+  },
+  "dHPC_per_shank_50Hz_ON_minus_OFF": {
+    "dHPC_shank1_0-31": -1.22,
+    "dHPC_shank2_32-63": -1.89,
+    "dHPC_shank3_64-95": -1.02,
+    "dHPC_shank4_96-127": 0.22
+  }
+}
