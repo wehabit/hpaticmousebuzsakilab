@@ -62,9 +62,13 @@ should not be read as entrainment.
   strong-stimulus arousal/state component can't be fully excluded.
 - All 15 curated good **LEC** units sit in the 50 Hz **pickup zone** (peak channels
   173–214; none in the clean shallow region), so unit location and pickup location
-  can't be spatially separated. The rate result still holds (≈300 Hz high-pass
-  removes 50 Hz pre-detection; LEC units *suppress* during ON, opposite to a
-  pickup-false-spike artifact; dHPC's effect occurs with zero pickup) — see
+  can't be spatially separated. The rate result still holds: ≈300 Hz high-pass
+  removes 50 Hz pre-detection; the LEC population *leans down* during ON (10/15 units,
+  pickup can't remove spikes); and the **autocorrelogram screen clears 0/8 up-going
+  units** of pickup (no ON 50 Hz comb; unit 87 incl.). So the up-going units **pass
+  the strongest spike-artifact screen we have** — the remaining caveat is
+  arousal/state, n=1, and **indirect sensory-network effects** (direct 50 Hz circuit
+  modulation vs an indirect sensory/state cascade), **not** 50 Hz pickup. See
   [DEC4_50HZ_ARTIFACT_CHECK.md](docs/DEC4_50HZ_ARTIFACT_CHECK.md).
 - Probe geometry / channel order not yet confirmed for laminar/anatomical claims.
 

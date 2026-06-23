@@ -12,28 +12,42 @@ figure: [`analysis/outputs/dec4/artifact_check_50hz/artifact_check_50hz.png`](..
 numbers: `analysis/outputs/dec4/artifact_check_50hz/artifact_check_summary.json`
 (600 freq50 trials, 50 Hz envelope = 45–55 Hz band-pass + Hilbert, ON vs OFF window).
 
+**Channel partition (clean 3-way).** dHPC: **good 127 / disconnected-dead 1** (ch121).
+LEC: **good 82 / disconnected-dead 45 / hot-excluded 1** (ch142 — broadband-hot but
+*live*, its own 50 Hz rise ≈0; see "Channel-QC audit" below). 82+45+1 = 128.
+
 ## The decisive test: do *disconnected* electrodes pick up 50 Hz?
 A QC-bad / disconnected electrode **cannot record neural LFP** but **will** act as
 an antenna for a volume-conducted electrical (or microphonic/mechanical) artifact.
-The LEC probe has **45/128 dead channels** (incl. the dead block 224–255) — a
+The LEC probe has **45 disconnected channels** (incl. the dead block 224–255) — a
 built-in artifact probe.
 
-| channel group | 50 Hz ON − OFF (mean ± 95% CI) | read |
+| channel group | 50 Hz ON − OFF (µV) | read |
 |---|---|---|
-| dHPC tissue (127 ch) | **−0.99** (−1.5, −0.5) | **no 50 Hz rise** at all |
-| LEC tissue (83 ch) | **+4.9** (+3.6, +6.3) | modest rise |
-| **LEC DEAD (45 ch)** | **+28.4** (+19.2, +37.8) | **largest rise — on electrodes that can't see neurons** |
+| dHPC tissue (127 ch) | **−0.19** | **no 50 Hz rise** at all |
+| LEC tissue (82 ch, ch142 excluded) | **+0.97** | modest rise |
+| **LEC disconnected-dead (45 ch)** | **+5.54** | **largest rise — on electrodes that can't see neurons** |
 
-The disconnected LEC electrodes show a **5.8× larger** 50 Hz ON-rise than the
+(50 Hz = 45–55 Hz Hilbert envelope, ON−OFF; µV via Intan 0.195 µV/bit; ≈ −0.99 /
++4.9 / +28.4 in raw ADC units, the values in `artifact_check_summary.json`.)
+
+The disconnected LEC electrodes show a **5.7× larger** 50 Hz ON-rise than the
 in-tissue LEC electrodes. Since those electrodes are not recording tissue, that
 50 Hz can only be **non-neural pickup**. So **a real 50 Hz electrical/mechanical
-artifact is present in the LEC probe during ON.**
+artifact is present in the LEC probe during ON.** Side-by-side dHPC-vs-LEC and
+amplitude-resolved views:
+[`gradient_dhpc_vs_lec.png`](../analysis/outputs/dec4/artifact_check_50hz/gradient_dhpc_vs_lec.png),
+[`explainer_1_contamination.png`](../analysis/outputs/dec4/artifact_check_50hz/explainer_1_contamination.png).
 
 ## Three supporting signatures
-- **dHPC is clean.** dHPC tissue shows essentially **no** 50 Hz LFP rise (−0.99),
-  matching its established *no frequency-following* result. The pickup is LEC-probe
-  specific, and dHPC's amplitude scaling is ~0 except a small amp250 bump
-  (−4.1 / −1.2 / +7.8 for amp100/180/250).
+- **dHPC is much cleaner — but not perfectly pickup-free.** dHPC tissue shows
+  essentially **no** pooled 50 Hz LFP rise (−0.19 µV), matching its *no
+  frequency-following* result. But amplitude-resolved, dHPC is negative at
+  amp100/180 and shows a small **amp250** bump — and its *dead* channel (ch121)
+  shows a **larger** amp250 bump than tissue (+1.7 vs +1.3 µV), proving that bump is
+  **pickup too**, just **~5× smaller** than LEC's. So "dHPC is clean" holds at
+  amp100/180; at amp250 it leaks a little. The pickup is LEC-*dominant*, not
+  LEC-exclusive.
 - **Cross-region lag ≈ 0.** dHPC↔LEC 50 Hz coupling is **near-zero-lag**
   (−4.8°, **−0.26 ms**; coherence 0.22). A genuine neural cross-region interaction
   carries a conduction/synaptic delay; ~0 ms is the signature of **one shared
@@ -73,27 +87,53 @@ anywhere *else*. The structural safeguards hold, but two honest caveats remain.
   detection, so pickup cannot *create* spikes. No good channel flatlines.
 
 **Caveat 1 — the 50 Hz pickup is a spatial gradient, not confined to flagged-dead
-channels.** ~28 of the 83 "good" LEC channels (the deep half, **173–223**) carry
-extreme 50 Hz power (robust-z 7–10), rising toward both dead blocks. So even the
-LEC *good-channel* 50 Hz region-mean is dominated by near-dead-block pickup —
-reinforcing that the LEC 50 Hz **LFP** should not be read as neural.
+channels.** **~30 of the 82** "good" LEC channels (the deep half, **173–223**) carry
+elevated 50 Hz (31 by robust-z>4 on 50 Hz power; 28 by a µV threshold — metric-
+dependent, hence "~30"), rising toward both dead blocks. So even the LEC
+*good-channel* 50 Hz region-mean is dominated by near-dead-block pickup — reinforcing
+that the LEC 50 Hz **LFP** should not be read as neural.
 
 **Caveat 2 — all 15 curated good LEC units sit in that pickup zone** (peak channels
-173–214; **zero** in the clean shallow region 136–172). We therefore cannot
-spatially separate "where the LEC units are" from "where the 50 Hz pickup is." This
-does **not** invalidate the single-unit rate result, because (i) the ~300 Hz
-high-pass removes 50 Hz before detection; (ii) LEC units predominantly **suppress**
-during ON — the *opposite* of what pickup-driven false detections would add; and
-(iii) the dHPC driven-up subset occurs with **zero** pickup. It is a disclosure, not
-a refutation.
+173–214; **zero** in the clean shallow region 136–172). We cannot spatially separate
+"where the LEC units are" from "where the 50 Hz pickup is." This does **not**
+invalidate the single-unit rate result, for three reasons: (i) the ~300 Hz high-pass
+removes 50 Hz before detection; (ii) the LEC population **leans down** at 50 Hz (10 of
+15 units, mean −0.08 Hz) — additive pickup cannot *remove* spikes; and (iii) the
+**autocorrelogram screen** below clears the up-going units directly. It is a
+disclosure, not a refutation.
 
 **Minor:** an independent robust-z RMS sweep flagged one extra hot LEC channel,
 **ch142** (RMS ~3.5× median, z=4.6), that escaped the original auto pass; it hosts
 no curated good unit and its own 50 Hz rise is ~0, so excluding it shifts the LEC
-50 Hz region-mean by only +1.2% (4.90→4.96). It has been added to the exclusion
-lists (`bad_channels_dec4.json` → `post_hoc_qc_2026_06`) for future LFP region-means;
-sorts were not re-run (no unit on it). The Dec-3 "hardware-fixed" dHPC channels are
-the noisiest dHPC channels (~2× median) but not dead.
+50 Hz region-mean by only ~1% (≈+4.90→+4.96 ADC). Added to the exclusion lists
+(`bad_channels_dec4.json` → `post_hoc_qc_2026_06`) for future LFP region-means; sorts
+were not re-run (no unit on it). The Dec-3 "hardware-fixed" dHPC channels are the
+noisiest dHPC channels (~2× median) but not dead.
+
+## The autocorrelogram screen: is unit 87 (the soft spot) a real neuron or pickup?
+The up-going LEC units near the pickup zone — chiefly **unit 87** (rises
+dose-dependently, +0.91 / +1.17 / +2.14 Hz at amp100/180/250, on global ch181) — are
+the one place where "is this pickup-manufactured?" can't be answered by direction
+alone. So we ran the strongest spike-level artifact test there is, the same one you
+would read in Phy: the **autocorrelogram (ACG)**. Script:
+[unit87_phy_view_dec4.py](../analysis/unit87_phy_view_dec4.py); figure:
+[`unit87_phy_view.png`](../analysis/outputs/dec4/artifact_check_50hz/unit87_phy_view.png).
+
+Logic: a 50 Hz fake-spike source fires every **20 ms**, so it would grow a **20/40 ms
+comb** in the ACG **during ON**. Unit 87 does not — its ACG 20 ms ratio is **0.80 ON
+/ 0.81 OFF** (identical, no comb), with a clean refractory period (**0.31 % ISI <
+2 ms**) and a real spike waveform. **Comprehensive screen: 0 of 8** up-going
+responsive units (both regions) develops an ON-specific 50 Hz comb
+(`up_unit_50hz_periodicity_screen.json`).
+
+**Reading (careful):** unit 87 — and every up-going unit — **passes the strongest
+spike-artifact screen we have so far**; the specific worry that 50 Hz pickup is
+*manufacturing* these spikes is now **much weaker** (not absolutely eliminated — the
+ACG kills *periodic* pickup, not a hypothetical broadband noise-floor increase, which
+the clean refractory period and stable waveform argue against but don't fully
+exclude). **The remaining caveat for the up-going units is therefore arousal/state,
+n = 1, and indirect sensory-network effects — i.e. direct 50 Hz circuit modulation
+vs an indirect sensory/state cascade — *not* 50 Hz pickup.**
 
 ## Why the next round fixes it
 This is precisely what the **recorded analog stimulus** (PVDF force sensor on the
@@ -103,6 +143,10 @@ true phase-entrainment test. See
 [HARDWARE_ENG_MESSAGE_NEXT_ROUND.md](HARDWARE_ENG_MESSAGE_NEXT_ROUND.md).
 
 ## One-line takeaway
-Disconnected LEC electrodes pick up **more** 50 Hz during ON than tissue does, with
+Disconnected LEC electrodes pick up **~6× more** 50 Hz during ON than tissue, with
 ~0 ms cross-region lag → there is a **real non-neural 50 Hz component** in the LEC
-LFP; rely on the **single-unit rate change**, not the LFP, as the neural readout.
+LFP (LEC-dominant; dHPC leaks ~5× less, only at amp250). Rely on the **single-unit
+rate change**, not the LFP — and that spike evidence survives a direct check: the
+autocorrelogram screen clears **0/8** up-going units of pickup, so the residual
+caveat is arousal/state, n=1, and indirect sensory-network effects, **not** 50 Hz
+pickup manufacturing spikes.
