@@ -81,8 +81,10 @@ anywhere *else*. The structural safeguards hold, but two honest caveats remain.
 
 **Accounted for:**
 - **Sorting excluded the dead channels.** Kilosort ran on dHPC `channel_map`=127 and
-  LEC=83 (global 136–223); the dead 128–135 / 224–255 blocks were removed *before*
-  sorting, so KS whitening/CAR never saw them and no units sit on them.
+  LEC=83 (global 136–223 — this is *pre*-ch142 exclusion, so it includes ch142, which
+  hosts no good unit; the 50 Hz region-means use the 82-good partition); the
+  disconnected 128–135 / 224–255 blocks were removed *before* sorting, so KS
+  whitening/CAR never saw them and no units sit on them.
 - **References exclude bad channels** (group-median LFP ref "bad ch excluded";
   coordination/artifact region-means over good channels only).
 - **50 Hz is below the spike band** — the sort's ~300 Hz high-pass removes it before

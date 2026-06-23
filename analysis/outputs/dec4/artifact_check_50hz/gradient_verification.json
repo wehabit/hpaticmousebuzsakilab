@@ -1,7 +1,8 @@
 {
   "dHPC": {
     "n_good": 127,
-    "n_dead": 1,
+    "n_disconnected_dead": 1,
+    "n_hot_excluded": 0,
     "good_50Hz_ON_minus_OFF": {
       "mean": -0.99,
       "median": -0.62,
@@ -20,14 +21,15 @@
   },
   "LEC": {
     "n_good": 82,
-    "n_dead": 46,
+    "n_disconnected_dead": 45,
+    "n_hot_excluded": 1,
     "good_50Hz_ON_minus_OFF": {
       "mean": 4.96,
       "median": 0.3,
       "max": 18.91,
       "n_channels_gt_5": 28
     },
-    "dead_50Hz_ON_minus_OFF_mean": 27.79,
+    "dead_50Hz_ON_minus_OFF_mean": 28.4,
     "n_hot_channels_z50_gt4": 31,
     "frac_hot": 0.378,
     "depth_profile_mean_50Hz_ON_minus_OFF": {

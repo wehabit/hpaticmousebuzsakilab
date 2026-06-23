@@ -22,8 +22,13 @@ z = np.load(D / "artifact_check_arrays.npz")
 env_on, env_off = z["env_on"], z["env_off"]
 diff = env_on - env_off                      # 50 Hz ON-OFF, per channel (256,)
 bad = json.load(open("analysis/bad_channels_dec4.json"))
+# clean 3-way partition: 'dead' = disconnected only (ch142 is hot-but-live, excluded
+# from BOTH good and dead). good = everything not in the full bad list.
+HOT_EXCLUDED = {142}
 dhpc_dead = sorted(set(bad["port_a_dHPC_bad"]))
-lec_dead = sorted(set(bad["port_b_LEC_bad"]))
+dhpc_excluded = set(bad["port_a_dHPC_bad"])
+lec_dead = sorted(set(bad["port_b_LEC_bad"]) - HOT_EXCLUDED)   # 45 disconnected
+lec_excluded = set(bad["port_b_LEC_bad"])                      # 46 (incl ch142) -> defines good
 
 
 def robz(x, idx):
@@ -42,13 +47,15 @@ def depth_bins(good, lo, hi, nbins=4):
 
 
 report = {}
-for name, rng_, dead in [("dHPC", range(0, 128), dhpc_dead), ("LEC", range(128, 256), lec_dead)]:
+for name, rng_, dead, excluded in [("dHPC", range(0, 128), dhpc_dead, dhpc_excluded),
+                                   ("LEC", range(128, 256), lec_dead, lec_excluded)]:
     chans = list(rng_)
-    good = [c for c in chans if c not in dead]
+    good = [c for c in chans if c not in excluded]   # ch142 excluded from good (LEC)
     zpow = robz(env_on, good)               # robust-z of 50 Hz amplitude among good ch
     hot = [c for c in good if zpow[c] > 4]
     report[name] = {
-        "n_good": len(good), "n_dead": len(dead),
+        "n_good": len(good), "n_disconnected_dead": len(dead),
+        "n_hot_excluded": len(excluded) - len(dead),
         "good_50Hz_ON_minus_OFF": {"mean": round(float(diff[good].mean()), 2),
                                     "median": round(float(np.median(diff[good])), 2),
                                     "max": round(float(diff[good].max()), 2),
@@ -73,17 +80,21 @@ print(json.dumps(report, indent=2))
 # ---- figure: dHPC vs LEC, matched y-axis ----
 fig, axes = plt.subplots(1, 2, figsize=(13, 4.6), sharey=True)
 ymax = max(diff[128:256].max(), diff[0:128].max()) * 1.05
-for ax, name, chans, dead in [(axes[0], "dHPC (0–127)", range(0, 128), dhpc_dead),
-                              (axes[1], "LEC (128–255)", range(128, 256), lec_dead)]:
+for ax, name, chans, dead in [(axes[0], "dHPC (0–127)", range(0, 128), set(dhpc_dead)),
+                              (axes[1], "LEC (128–255)", range(128, 256), set(lec_dead))]:
+    good_col = "#4C78A8" if name.startswith("dHPC") else "#2ca02c"
     for c in chans:
-        col = "#d62728" if c in dead else ("#4C78A8" if name.startswith("dHPC") else "#2ca02c")
+        col = "#d62728" if c in dead else ("#ff7f0e" if c in HOT_EXCLUDED else good_col)
         ax.bar(c, diff[c], width=1.0, color=col)
     ax.axhline(0, color="#333", lw=0.8)
     ax.set_xlabel("channel"); ax.set_title(name, fontsize=11)
-    g = [c for c in chans if c not in dead]
-    ax.text(0.03, 0.95, f"good mean {diff[g].mean():+.1f}\nhot ch (z>4): {report['dHPC' if name.startswith('dHPC') else 'LEC']['n_hot_channels_z50_gt4']}\n"
-            f"dead mean {diff[dead].mean():+.1f}" if dead else f"good mean {diff[g].mean():+.1f}",
-            transform=ax.transAxes, va="top", fontsize=8.5, color="#333")
+    r = report["dHPC" if name.startswith("dHPC") else "LEC"]
+    txt = f"good mean {r['good_50Hz_ON_minus_OFF']['mean']:+.1f}\nhot ch (z>4): {r['n_hot_channels_z50_gt4']}"
+    if r["dead_50Hz_ON_minus_OFF_mean"] is not None:
+        txt += f"\ndisconnected-dead mean {r['dead_50Hz_ON_minus_OFF_mean']:+.1f}"
+    if name.startswith("LEC"):
+        txt += "\n(orange = ch142 hot-excluded)"
+    ax.text(0.03, 0.95, txt, transform=ax.transAxes, va="top", fontsize=8.5, color="#333")
 axes[0].set_ylabel("50 Hz envelope  ON − OFF")
 axes[0].set_ylim(min(-3, diff[0:128].min() * 1.1), ymax)
 fig.suptitle("Is the 50 Hz pickup gradient LEC-only?  dHPC (left): flat, ~0, no hot channels, dead ch clean.  "

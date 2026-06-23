@@ -48,12 +48,16 @@ the two probes' robust-z masks the real bad channels). See
   ({5,6,7,32,33,34,43,66,67}) are **no longer flagged** by Dec 4 QC (their per-probe
   robust-z ≈ 1.6, well below threshold), consistent with the pre-Dec-4 hardware fix,
   so they are **not carried over / not excluded** on Dec 4.
-- **LEC (Port B): 45 / 128 channels bad**, dominated by a **contiguous dead block
-  224–255** (all high/extreme noise — most likely a connector/hardware issue on that
-  half-shank) plus 128–141. **83 good LEC channels remain.** LEC results below use
-  only good channels.
+- **LEC (Port B): 45 disconnected-dead channels**, dominated by a **contiguous dead
+  block 224–255** (all high/extreme noise — most likely a connector/hardware issue on
+  that half-shank) plus 128–141. A post-hoc QC sweep later excluded **1 more**
+  (ch142 — broadband-hot but *live*, 50 Hz rise ≈0, hosts no good unit). So LEC
+  partitions **82 good / 45 disconnected-dead / 1 hot-excluded**. LEC results below
+  use only good channels.
 
-Total Dec 4 bad channels = 46 ([121] on dHPC + 45 on LEC).
+Total Dec 4 excluded channels = 47 — dHPC 1 (ch121) + LEC 45 disconnected-dead +
+LEC 1 hot-excluded (ch142). The older "46 dead" count lumped ch142 into "dead";
+the precise framing keeps it separate (live, not disconnected).
 
 ## Headline findings
 

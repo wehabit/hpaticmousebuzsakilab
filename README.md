@@ -82,7 +82,8 @@ histograms** — all with trial-level bootstrap 95% confidence intervals.
 6. Conclusions are **robust** to referencing scheme and to excluding
    movement-contaminated trials. Hardware note: the dHPC probe was improved before
    Dec 4 (the nine Dec-3 bad channels are clean on Dec 4); the LEC probe is
-   noisier (45/128 bad, incl. a dead block 224–255). Methods follow Buzsáki-lab
+   noisier (LEC: 82 good / 45 disconnected-dead incl. the dead block 224–255 / 1
+   hot-excluded ch142). Methods follow Buzsáki-lab
    tooling (buzcode / CellExplorer / Kilosort) and Cohen (2014).
    → [reference-scheme sensitivity](results/dec3/09_Reference_Sensitivity/reference_condition_summary.png),
    [movement: excluded vs kept trials](results/dec3/03_Movement_DataCleaning/excluded_vs_kept_examples.png)
