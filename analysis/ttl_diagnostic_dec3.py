@@ -53,28 +53,29 @@ tt = (np.arange(z0, z1) - z0) / FS * 1000
 ax[0].step(tt, ch7[z0:z1], where="post", color="#2c3e9e", lw=1.3)
 ax[0].set_ylim(-0.2, 1.2); ax[0].set_yticks([0, 1]); ax[0].set_yticklabels(["LOW", "HIGH"])
 ax[0].set_xlabel("time (ms)"); ax[0].set_title(
-    f"A. ACTUAL ch7 TTL — the densest 1 s in the whole session (t≈{t0:.0f}s). Irregular toggling, no fixed period.", fontsize=10)
+    f"A. BEST CASE (cherry-picked to FAVOR a carrier): the DENSEST 1 s in the whole session (t≈{t0:.0f}s, "
+    f"{counts[k]} edges vs ~78 for a real 26 Hz trial). Even here: irregular, no fixed period.", fontsize=9.5)
 
 # B: what a 26 Hz tactor cycle looks like over the same 1 s
 ref = (np.sign(np.sin(2 * np.pi * TACTOR_HZ * tt / 1000)) > 0).astype(int)
 ax[1].step(tt, ref, where="post", color="#c0392b", lw=1.0)
 ax[1].set_ylim(-0.2, 1.2); ax[1].set_yticks([0, 1]); ax[1].set_yticklabels(["down", "up"])
 ax[1].set_xlabel("time (ms)")
-ax[1].set_title(f"B. What a 26 Hz tactor would look like (period {period_ms:.0f} ms, up/down every ~19 ms) — 26 cycles in this 1 s.", fontsize=10)
+ax[1].set_title(f"B. What a 26 Hz tactor would look like (period {period_ms:.0f} ms, up/down every ~19 ms) — 26 cycles in the same 1 s.", fontsize=10)
 
 # C: inter-edge interval histogram with the tactor period marked
 ax[2].hist(iri[iri < 500], bins=np.linspace(0, 500, 120), color="#7f8c8d")
 ax[2].axvline(period_ms, color="#c0392b", lw=2)
 ax[2].text(period_ms + 5, ax[2].get_ylim()[1] * 0.8, f"26 Hz tactor period\n({period_ms:.0f} ms)", color="#c0392b", fontsize=8)
 ax[2].axvline(np.median(iri), color="#2c3e9e", lw=2, ls="--")
-ax[2].text(np.median(iri) + 5, ax[2].get_ylim()[1] * 0.55, f"ch7 median\n({np.median(iri):.0f} ms)", color="#2c3e9e", fontsize=8)
+ax[2].text(np.median(iri) + 5, ax[2].get_ylim()[1] * 0.55, f"whole-session\ntypical ({np.median(iri):.0f} ms)\n= 6× the tactor period", color="#2c3e9e", fontsize=8)
 ax[2].set_xlabel("ch7 inter-edge interval (ms)"); ax[2].set_ylabel("count")
-ax[2].set_title("C. ch7 intervals cluster far slower than the tactor period; only "
-                f"{100*stats['frac_intervals_within_10pct_of_38.5ms']:.1f}% land near 38.5 ms (and never in a sustained run).", fontsize=10)
+ax[2].set_title("C. ALL intervals, whole session (NOT cherry-picked): typical gap is 231 ms — 6× slower than the "
+                f"tactor. Only {100*stats['frac_intervals_within_10pct_of_38.5ms']:.1f}% land near 38.5 ms, never in a sustained run.", fontsize=9.5)
 
-fig.suptitle("Dec 3 TTL cannot recover tactor phase: ch7 toggles ~%.0f×/s (irregular); a 26 Hz tactor toggles 26×/s. "
-             "Between two ch7 edges the tactor completes ~%.0f full up/down cycles." % (1000/np.median(iri), stats["tactor_cycles_missed_between_ch7_edges"]),
-             fontsize=11)
+fig.suptitle("Dec 3 TTL cannot recover tactor phase. Panel A is the BEST/densest window (cherry-picked to favor a carrier); Panel C is ALL data (typical). "
+             "ch7 toggles ~%.0f×/s; a 26 Hz tactor toggles 26×/s → tactor does ~%.0f full up/down cycles between ch7 edges." % (1000/np.median(iri), stats["tactor_cycles_missed_between_ch7_edges"]),
+             fontsize=10.5)
 fig.savefig(OUT / "ttl_cannot_recover_tactor_phase.png", dpi=120)
 print("wrote", OUT / "ttl_cannot_recover_tactor_phase.png")
 plt.close(fig)
