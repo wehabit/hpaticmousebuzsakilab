@@ -327,7 +327,7 @@ Reports:
    Main point: when we restrict to the cleanest automated KS-good units, the
    spike response does not show a robust ON > OFF firing-rate increase. This
    means the current spike analysis does not mirror the strong LFP response.
-   The honest interpretation is: strong LFP effect, but no clean
+   The interpretation is: strong LFP effect, but no clean
    high-confidence single-unit firing-rate effect yet.
 
 8. If there is time, show

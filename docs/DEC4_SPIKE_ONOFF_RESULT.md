@@ -35,11 +35,18 @@ mean ON−OFF **+0.79 Hz**) — highest frequency × highest amplitude.
   responses also pile up at 50 Hz / high amplitude — in LEC *and* dHPC. Different
   measurement (spikes vs LFP), same frequency/amplitude regime.
 
-## Honest caveats
+## Caveats
 - It is a **modest fraction** of tests (≈7–11%), and BH controls FDR at 5%, so a
   few of those are expected false — but the **concentration at 50 Hz** (15/19 and
   8/13) is far from the uniform spread chance would give, so the *50 Hz signal*
   is real even if individual units aren't all real.
+- **Stimulus-fidelity confound (low frequencies).** The delivered vibration was
+  **not a clean sine wave at 5 / 10 / 26 Hz** (the actuator did not produce clean
+  low-frequency sinusoids; 50 Hz was delivered more cleanly). So the concentration at
+  50 Hz is **partly confounded with stimulus quality** — we cannot fully separate "the
+  brain prefers 50 Hz" from "50 Hz was the best-delivered stimulus." (All four
+  frequencies have data — 600 trials each at 5 / 10 / 26 / 50 Hz; **10 Hz, like 5 Hz,
+  was null** — 0 responsive single units.)
 - **Direction is mixed** (a subset of units go up, a subset down; e.g. amp250_freq50
   dHPC = 8 up / 7 down with a few strong up-units dominating the mean). This is
   *selective modulation of a subset*, not a uniform population drive.

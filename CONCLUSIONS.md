@@ -36,7 +36,7 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
    the ACG/ISI/waveform screens argue against pickup-manufactured spikes, so this is
    the cleanest evidence. It also explains the Dec 3 single-unit null: Dec 3 only
    tested 5/26 Hz, where there is no effect.
-   *Honesty:* responders are a **modest fraction** (~7–11% of tests) and FDR allows a
+   *Note:* responders are a **modest fraction** (~7–11% of tests) and FDR allows a
    few false positives — so the trustworthy claim is the **concentration at 50 Hz**
    (15/19 and 8/13, far above the uniform spread chance would give), not that every
    flagged unit is real. →
@@ -74,10 +74,17 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
 - The LEC **50 Hz LFP** is **not** clean neural signal (pickup-contaminated).
 - The two regions do **not** demonstrably **work together** at 50 Hz.
 
-## Honest limits
+## Limitations
 - **Single animal**, single session per region pairing.
-- **No recorded stimulus phase** → a true entrainment (phase-following) test is
-  impossible this session; "no entrainment" is partly a *measurement* limit.
+- **Our hardware was not equipped to test entrainment.** No stimulus-phase reference
+  was recorded — free-running actuator, no analog stimulus copy, and the digital sync
+  channel never captured the carrier (TTL diagnostic). So phase-following was
+  **untestable, not negative** — a hardware limitation, not a neural result.
+- **Stimulus fidelity at low frequencies.** Post hoc, the delivered vibration was
+  **not a clean sine wave at 5 / 10 / 26 Hz** (the actuator did not produce clean
+  sinusoids at low frequencies). So the apparent frequency-specificity (effect at
+  50 Hz) is **partly confounded with stimulus quality** — 50 Hz was delivered more
+  cleanly than the lower carriers.
 - ON-vs-OFF is a within-trial contrast (OFF = post-stim, not neutral baseline). A
   strong-stimulus **arousal/state** component could ride along with the **whole** 50 Hz
   rate effect (amp250_freq50 is the most intense buzz), not just unit 87. The defense
@@ -98,7 +105,12 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
   **indirect sensory-network effects** (direct 50 Hz circuit modulation vs an indirect
   sensory/state cascade), **not** 50 Hz pickup manufacturing spikes. See
   [DEC4_50HZ_ARTIFACT_CHECK.md](docs/DEC4_50HZ_ARTIFACT_CHECK.md).
-- Probe geometry / channel order not yet confirmed for laminar/anatomical claims.
+- **Anatomical targeting is known** (surgeon's coordinates: dHPC = H12_2 @
+  AP 1.8 / ML 1.5 / depth 1–1.8 mm, Port A; LEC = H15 @ AP 3.8 / ML 3.8 / 5°, Port B).
+  What's still **provisional** is the electrode **channel-map** — the Cambridge
+  NeuroTech site map (`.prb`) for H12_2 / H15 + adapter wiring; the analysis uses a
+  linear placeholder. This gates only **depth / laminar / subregion** claims; the
+  region-level (dHPC vs LEC) findings are unaffected.
 
 ## What the next recording must add (external, can't be done on this data)
 1. **Continuous analog copy of the delivered vibration** (thin PVDF force sensor in
@@ -106,7 +118,8 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
    true **phase-entrainment** test *and* lets you **regress out the 50 Hz artifact**.
 2. **Per-cycle + per-trial digital sync lines** for exact stimulus timing (no TTL
    this session; timing came from the controller log).
-3. Confirm probe geometry / channel map.
+3. The electrode **channel-map** (Cambridge NeuroTech `.prb` for H12_2 / H15 +
+   adapter wiring) — needed only for depth / laminar / subregion analyses.
 
 → Hardware spec: [HARDWARE_ENG_MESSAGE_NEXT_ROUND.md](docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md),
 [PVDF_CHARGE_AMP_SPEC.md](docs/PVDF_CHARGE_AMP_SPEC.md).

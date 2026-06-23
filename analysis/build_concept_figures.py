@@ -172,6 +172,51 @@ def fix():
     save(fig, "fix.png")
 
 
+# ---------------- Part 1 vision figures ----------------
+def vision_chain():
+    fig, ax = plt.subplots(figsize=(12, 3.4)); ax.axis("off"); ax.set_xlim(0, 12); ax.set_ylim(0, 3.4)
+    ax.text(6, 3.15, "The proposal — a mechanism hypothesis to test", ha="center", fontsize=14, weight="bold", color=NAVY)
+    boxes = [("Wearable\nvibrotactile\nstimulation", TEAL), ("Brain rhythms\n(entrainment)", NAVY),
+             ("Glymphatic\nclearance ↑", GREEN), ("Amyloid-β /\ntau cleared", GOLD)]
+    w, gap, y, h = 2.4, 0.7, 1.05, 1.5
+    xs = [0.15 + k * (w + gap) for k in range(4)]
+    for (lab, col), x in zip(boxes, xs):
+        box(ax, x, y, w, h, lab, col, fs=12)
+    for k in range(3):
+        arrow(ax, (xs[k] + w, y + h / 2), (xs[k + 1], y + h / 2), color=GREY, lw=2.6)
+    ax.text(6, 0.45, "a mechanism hypothesis — to be tested, not yet a treatment claim",
+            ha="center", fontsize=10.5, style="italic", color=GREY)
+    save(fig, "vision_chain.png")
+
+
+def whitespace():
+    fig, ax = plt.subplots(figsize=(11, 4.2)); ax.axis("off"); ax.set_xlim(0, 11); ax.set_ylim(0, 4.2)
+    ax.text(5.5, 3.95, "Vibrotactile is the open frontier — next to light & sound", ha="center", fontsize=14, weight="bold", color=NAVY)
+    box(ax, 0.5, 1.0, 4.4, 2.3, "", LIGHT, ec=GREY, lw=1.5)
+    ax.text(2.7, 2.95, "Audiovisual 40 Hz (GENUS)", ha="center", fontsize=13, weight="bold", color=GREY)
+    ax.text(2.7, 1.85, "developed, evidence base —\nbut lab-bound, hard to wear\ndaily, not sleep-friendly", ha="center", va="center", fontsize=10.5, color=GREY)
+    box(ax, 6.1, 1.0, 4.4, 2.3, "", LIGHT, ec=RED, lw=2.6)
+    ax.text(8.3, 2.95, "Vibrotactile (this program)", ha="center", fontsize=13, weight="bold", color=RED)
+    ax.text(8.3, 1.85, "wearable · sleep-compatible\n· pairs with sensing", ha="center", va="center", fontsize=10.5, color=NAVY)
+    ax.text(8.3, 0.55, "← the white space", ha="center", fontsize=11.5, weight="bold", color=RED)
+    save(fig, "whitespace.png")
+
+
+def landscape():
+    fig, ax = plt.subplots(figsize=(11.5, 3.6)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 3.6)
+    ax.text(5.75, 3.35, "Approaches to Alzheimer's — and the open frontier", ha="center", fontsize=14, weight="bold", color=NAVY)
+    items = [("Pharmacology", "limited efficacy so far", GREY),
+             ("Lifestyle / multidomain", "strongest non-drug evidence\n(FINGER, US POINTER)", GREEN),
+             ("Non-invasive\nneuromodulation", "largely unproven —\nthe open frontier  ← we are here", RED)]
+    w, gap, y, h = 3.4, 0.5, 1.2, 1.55
+    xs = [0.4 + k * (w + gap) for k in range(3)]
+    for (title, sub, col), x in zip(items, xs):
+        box(ax, x, y, w, h, "", LIGHT, ec=col, lw=2.6 if col == RED else 1.5)
+        ax.text(x + w / 2, y + h - 0.38, title, ha="center", fontsize=12.5, weight="bold", color=col)
+        ax.text(x + w / 2, y + 0.55, sub, ha="center", va="center", fontsize=9.8, color=(NAVY if col != GREY else GREY))
+    save(fig, "landscape.png")
+
+
 # ---------------- mouse silhouette (species cue for the title slide) ----------------
 def mouse(col="white", name="mouse_white.png"):
     fig, ax = plt.subplots(figsize=(2.6, 1.7)); ax.axis("off")
@@ -188,4 +233,5 @@ def mouse(col="white", name="mouse_white.png"):
 
 if __name__ == "__main__":
     stadium(); two_regions(); experiment(); entrainment(); trap(); fix()
+    vision_chain(); whitespace(); landscape()
     mouse("white", "mouse_white.png"); mouse("#53565A", "mouse_grey.png")

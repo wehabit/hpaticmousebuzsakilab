@@ -6,7 +6,7 @@
 Structure: Part 1 vision -> Part 2 literature & parameters -> Part 3 current study
 -> Part 4 limits & next -> Part 5 fit. Register: scientifically literate, not
 neuroscience-specialist; lead with precise terms, analogies as intuition, and keep
-the 'mechanism != proven' honesty the lit review insists on. Narration in .pptx notes.
+the 'mechanism != proven' discipline the lit review insists on. Narration in .pptx notes.
 Vision/lit content grounded in ~/Documents/LitretureReview_Github (papers by handle).
 """
 from __future__ import annotations
@@ -30,13 +30,13 @@ SLIDES = [
 
     # ===================== PART 1 — VISION =====================
     dict(kind="section", title="Part 1 · The vision — clearing the brain with vibrotactile stimulation"),
-    dict(kind="content", kicker="the problem", title="Alzheimer's resists drugs — non-invasive neuromodulation is an open frontier",
+    dict(kind="content", kicker="the problem", title="Alzheimer's resists drugs — non-invasive neuromodulation is an open frontier", fig=f"{CF}/landscape.png",
          take="The strongest non-drug clinical evidence today is multidomain lifestyle (FINGER, US POINTER). Non-invasive stimulation is largely unproven — which is the opportunity.",
          notes="Framing the gap. Pharmacology for Alzheimer's has struggled; the most credible non-drug clinical evidence is multidomain lifestyle intervention (FINGER, US POINTER). Non-invasive neuromodulation — light, sound, touch — is an emerging but mostly unproven frontier. The question is what a wearable, vibrotactile approach could add, and we should hold it to the bar those lifestyle trials set."),
-    dict(kind="content", kicker="the thesis", title="The proposal: use vibrotactile stimulation to engage brain rhythms and drive clearance",
+    dict(kind="content", kicker="the thesis", title="The proposal: use vibrotactile stimulation to engage brain rhythms and drive clearance", fig=f"{CF}/vision_chain.png",
          take="Wearable vibrotactile stimulation → entrain brain rhythms → engage glymphatic clearance of amyloid-β / tau. A mechanism hypothesis — explicitly not yet a treatment claim.",
          notes="The core chain. The glymphatic system is the brain's waste-clearance pathway — CSF/interstitial-fluid exchange that removes amyloid-β and tau. The hypothesis: if we can drive the right rhythms or brain-states from the skin, we may enhance that clearance. This is a mechanism hypothesis to test, not a clinical claim — I'll be explicit about that distinction the whole way through."),
-    dict(kind="content", kicker="why vibrotactile", title="Why vibrotactile, and why wearable: the white space next to light and sound",
+    dict(kind="content", kicker="why vibrotactile", title="Why vibrotactile, and why wearable: the white space next to light and sound", fig=f"{CF}/whitespace.png",
          take="40 Hz light/sound (GENUS) is the developed approach but hard to wear daily. Vibrotactile stimulation is the open frontier — wearable, sleep-compatible, and pairs naturally with sensing.",
          notes="The niche. The established sensory-stimulation approach is audiovisual 40 Hz (GENUS). Its practical limits are daily wearability, comfort, and sleep use — exactly when clearance peaks. Vibrotactile stimulation is comparatively unexplored, is wearable, can run during sleep, and integrates with the wearable-sensing ecosystem (the Snyder-lab angle). That combination is the white space this program targets."),
 
@@ -45,9 +45,9 @@ SLIDES = [
     dict(kind="content", kicker="evidence · 40 Hz gamma", title="40 Hz sensory stimulation lowers amyloid and drives clearance — animals, and early humans",
          take="GENUS / Tsai 2016: 40 Hz light/sound lowers amyloid. Murdock 2024 (Nature): 40 Hz gamma drives glymphatic Aβ clearance. Human gamma-sensory is safe with target engagement (Chan 2022).",
          notes="The anchor evidence chain. In mice, 40 Hz visual/auditory stimulation (GENUS, Tsai lab 2016) reduces amyloid and engages microglia; Murdock 2024 in Nature shows 40 Hz gamma drives CSF influx and amyloid clearance, AQP4-dependent — the gamma-to-glymphatic bridge. Early human trials (Chan 2022) report safety, neural entrainment, and good compliance. This is why 40 Hz is the canonical frequency to start from."),
-    dict(kind="content", kicker="the honest caveat", title="But a steady-state response is not the same as entraining the brain's own rhythm",
+    dict(kind="content", kicker="the key caveat", title="But a steady-state response is not the same as entraining the brain's own rhythm",
          take="A driven 40 Hz response ≠ engaging native gamma (Buzsáki/Soula; some studies find 40 Hz light fails to entrain native gamma in AD-model mice). We separate target engagement from disease modification.",
-         notes="Essential for credibility — especially at Stanford. The Buzsáki lab and others caution that an evoked steady-state response at the stimulus frequency is not the same as entraining the brain's endogenous oscillator; some studies find 40 Hz light does not entrain native gamma in AD models. So the program holds two questions apart: did we engage the circuit, versus did we change the disease. Building that honesty in is part of the design, not a footnote."),
+         notes="Essential for credibility — especially at Stanford. The Buzsáki lab and others caution that an evoked steady-state response at the stimulus frequency is not the same as entraining the brain's endogenous oscillator; some studies find 40 Hz light does not entrain native gamma in AD models. So the program holds two questions apart: did we engage the circuit, versus did we change the disease. Building that discipline in is part of the design, not a footnote."),
     dict(kind="content", kicker="evidence · clearance", title="Clearance is actively driven by neural, vascular & sleep dynamics — so 'brain-state' stimulation is plausible",
          take="CSF flow tracks NREM slow waves (Fultz 2019) and EEG delta (Hablitz 2019); neuronal dynamics actively direct CSF perfusion (Jiang-Xie–Kipnis 2024, Nature); human sleep clearance moves plasma Aβ/tau (Dagum 2026).",
          notes="Why targeting clearance via brain-state is reasonable. Glymphatic/CSF flow isn't passive: it's driven by neural activity, vascular pulsation, and especially sleep slow waves — Fultz 2019 (human, NREM slow waves drive CSF oscillations), Hablitz 2019 (influx tracks EEG delta), Mestre 2018 (arterial pulsation), and Jiang-Xie–Kipnis 2024 in Nature (neuronal ionic waves actively direct CSF perfusion). In humans, sleep clearance raises morning plasma Aβ/tau (Dagum 2026). So if stimulation can shape brain state, engaging clearance is mechanistically plausible — and this points to slow / sleep-band stimulation, not only 40 Hz."),
@@ -106,8 +106,8 @@ SLIDES = [
     # ===================== PART 4 — LIMITS & NEXT =====================
     dict(kind="section", title="Part 4 · Limits, and the next study"),
     dict(kind="content", kicker="the limitation", title="Entrainment was untestable — a measurement gap, not a null",
-         take="Phase-locking to the stimulus requires a recorded, time-aligned stimulus-phase reference. We lacked one — so entrainment is untestable here, not negative.",
-         notes="Testing entrainment (phase-locking) requires a time-aligned reference for the stimulus phase. We didn't record a usable one — so 'no entrainment shown' is a measurement gap, not evidence of absence. The power/periodicity negatives are real; only the phase-locking claim is gated by the missing reference."),
+         take="Our acquisition was not equipped to test entrainment: no time-aligned stimulus-phase reference was recorded — so phase-following is untestable here, not negative.",
+         notes="Testing entrainment (phase-locking) requires a time-aligned reference for the stimulus phase. We didn't record a usable one — so 'no entrainment shown' is a measurement gap, not evidence of absence. The power/periodicity negatives are real; only the phase-locking claim is gated by the missing reference. Separately, we found post hoc that the lower-frequency stimuli (5/10/26 Hz) were not clean sine waves — so the 50 Hz frequency-specificity is partly confounded with stimulus quality; recording the delivered waveform fixes that too."),
     dict(kind="content", kicker="diagnosis", title="The digital sync channel never captured the carrier", fig=TTL,
          take="The recorded sync line updated at ~4 Hz, independent of carrier (identical pulse counts at 5 vs 26 Hz; ~78 expected at 26 Hz). No phase reference exists in the data.",
          notes="Verified from the raw digital stream: the sync channel updated at ~4 Hz irrespective of carrier (same ~6 pulses/trial for 5 and 26 Hz; ~78 expected at 26 Hz), never sustained a run at the carrier period, and was misaligned with the schedule. Undersampled and decoupled — phase unrecoverable. A ~4 Hz observer can't resolve a 26 Hz oscillation."),
@@ -122,7 +122,7 @@ SLIDES = [
          notes="How it fits. The program's hardest objection (Part 2) is whether sensory stimulation engages the relevant circuits or just produces a surface steady-state. This study answers it for vibrotactile stimulation: peripheral vibration drives frequency-specific single-unit responses in hippocampus and entorhinal cortex — AD-relevant medial-temporal circuits — and they're frequency-tuned, peaking near 50 Hz. That converts 'vibrotactile 40 Hz' from an assumption into a measured, tunable target-engagement parameter — the prerequisite before any clearance or clinical claim, and it sharpens the parameter list (40 vs 50 vs slow) for the next studies."),
     dict(kind="content", kicker="key references", title="Key references",
          take="GENUS / Tsai 2016 · Murdock 2024 (gamma → glymphatic) · Suk 2023 (40 Hz tactile) · Jiang-Xie–Kipnis 2024 (neural dynamics → CSF) · + Buzsáki / Soula (steady-state ≠ entrainment).",
-         notes="The five anchors: the origin of sensory-gamma (Tsai 2016); the gamma→glymphatic bridge (Murdock 2024); the vibrotactile anchor (Suk 2023); the mechanism legitimizing brain-state stimulation of clearance (Jiang-Xie–Kipnis 2024); and the guardrail that keeps us honest (Buzsáki/Soula: a steady-state response is not entrainment). Full lit-review repository available on request."),
+         notes="The five anchors: the origin of sensory-gamma (Tsai 2016); the gamma→glymphatic bridge (Murdock 2024); the vibrotactile anchor (Suk 2023); the mechanism legitimizing brain-state stimulation of clearance (Jiang-Xie–Kipnis 2024); and the guardrail that keeps us rigorous (Buzsáki/Soula: a steady-state response is not entrainment). Full lit-review repository available on request."),
     dict(kind="closing", title="Thank you — questions",
          sub="Happy to go into any figure, the artifact controls, the parameter plan, or the next-round instrumentation.",
          notes="Anticipated questions. 'Is 50 Hz special or just strongest?' — strongest clean single-unit effect of the carriers tested; the LFP transient was largest at 26 Hz but that's the artifact-prone measure. 'Could it be arousal?' — possible, but frequency-specific (50 ≫ 26 at matched amplitude); an indirect sensory/state pathway isn't excluded. 'Why distrust the 50 Hz LFP?' — disconnected channels carry it at ~6× tissue. 'Is this a treatment?' — no; this is target-engagement evidence for a mechanism hypothesis, deliberately separated from any clinical claim."),

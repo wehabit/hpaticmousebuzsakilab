@@ -77,7 +77,7 @@ fake than the LFP) was already flat — consistent with this finding.
 
 ## Channel-QC audit: are the dead channels otherwise accounted for?
 A follow-up audit checked whether dead/marginal channels contaminate results
-anywhere *else*. The structural safeguards hold, but two honest caveats remain.
+anywhere *else*. The structural safeguards hold, but two caveats remain.
 
 **Accounted for:**
 - **Sorting excluded the dead channels.** Kilosort ran on dHPC `channel_map`=127 and

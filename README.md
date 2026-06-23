@@ -89,20 +89,37 @@ histograms** — all with trial-level bootstrap 95% confidence intervals.
    → [reference-scheme sensitivity](results/dec3/09_Reference_Sensitivity/reference_condition_summary.png),
    [movement: excluded vs kept trials](results/dec3/03_Movement_DataCleaning/excluded_vs_kept_examples.png)
 
-**Important caveat (stimulus delivery / entrainment).** Neither session recorded a
-usable **analog copy of the delivered vibration**, and the actuator's phase was
-never reset, so the stimulus's instantaneous phase is **unrecoverable**. The "no
-entrainment" result is therefore partly a **measurement limitation, not a purely
-neural one** — you can measure band power, but you cannot test phase-following
-without a phase reference. The next recording fixes this by capturing the
-**delivered vibration as a continuous analog waveform** — a thin PVDF force sensor
-in the tactor→skin path, into an Intan analog input on the shared 20 kHz clock —
-plus per-cycle and per-trial digital sync lines, making a genuine entrainment test
-possible (see [docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md](docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md)).
+**Caveat — our hardware was not equipped to test entrainment.** Neither session
+recorded a usable **analog copy of the delivered vibration**, the actuator ran
+free-running (phase never reset), and the digital sync channel **never captured the
+carrier** (it toggled at ~4 Hz regardless of drive frequency — see the
+[TTL diagnostic](analysis/outputs/dec3/ttl_diagnostic/ttl_cannot_recover_tactor_phase.png)).
+So the stimulus's instantaneous phase is **unrecoverable**, and "no entrainment" is a
+**hardware/measurement limitation, not a neural result** — band power is measurable,
+but phase-following cannot be tested without a phase reference.
+
+**Caveat — stimulus fidelity at low frequencies.** We also determined, after the
+study, that the delivered vibration was **not a clean sine wave at the lower carriers
+(5 / 10 / 26 Hz)** — the actuator did not produce clean sinusoids at low frequencies.
+This limits interpretation of those conditions, and means the apparent
+frequency-specificity (effect concentrated at 50 Hz) is **partly confounded with
+stimulus quality**: 50 Hz was delivered more cleanly than 5/10/26 Hz, so we cannot
+fully separate "the brain prefers 50 Hz" from "50 Hz was the best-delivered stimulus."
+
+The next recording fixes both by capturing the **delivered vibration as a continuous
+analog waveform** — a thin PVDF force sensor in the tactor→skin path, into an Intan
+analog input on the shared 20 kHz clock — plus per-cycle and per-trial digital sync
+lines, making a genuine entrainment test (and stimulus-fidelity check) possible (see
+[docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md](docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md)).
 
 **Status.** Both Dec 3 and Dec 4 are fully processed through LFP analysis and
-**spike sorting + curation**. Remaining items are external: confirming probe
-geometry / channel order for laminar/anatomical claims, and the analog stimulus
+**spike sorting + curation**. **Anatomical targeting is known** (surgeon's
+coordinates: dHPC = **H12_2** @ AP 1.8 / ML 1.5 / depth 1–1.8 mm, Port A; LEC =
+**H15** @ AP 3.8 / ML 3.8 / 5°, Port B). What remains is the exact **electrode
+channel-map** — the Cambridge NeuroTech site map (`.prb`) for H12_2 and H15 plus the
+adapter/headstage wiring — which is still **provisional** in the analysis (a linear
+placeholder). That gates only **depth / laminar / subregion** claims; the
+**region-level** findings (dHPC vs LEC) are unaffected. Plus the analog stimulus
 recording above (see [docs/DEC3_EXTERNAL_BLOCKERS.md](docs/DEC3_EXTERNAL_BLOCKERS.md)).
 
 ## Start Here
