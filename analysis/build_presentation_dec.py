@@ -18,7 +18,7 @@ F = "results/dec4"
 CF = "presentation/concept_figs"   # schematic illustrations (build_concept_figures.py)
 TTL = "analysis/outputs/dec3/ttl_diagnostic/ttl_cannot_recover_tactor_phase.png"
 TRIAL = "results/dec3/13_Teaching_and_Methods/trial_window_diagram.png"
-NAVY, TEAL, GREY, PANEL = "#1A1A2E", "#1C6E8C", "#555555", "#F2F5F7"
+NAVY, TEAL, GREY, PANEL = "#2E2D29", "#8C1515", "#53565A", "#F4F4F4"   # Stanford: Black, Cardinal, Cool Grey, Fog
 
 # ---------------------------------------------------------------- content
 SLIDES = [
@@ -155,14 +155,14 @@ def build_pptx(slides, out):
             bar(s, 0, 0, SW, SH, NV); bar(s, 0, 5.0, SW, 0.08, TL)
             txt(s, 1, 2.0 if k == "title" else 3.0, SW - 2, 1.6, sl["title"], 34, bold=True, color=WH, anchor=MSO_ANCHOR.MIDDLE)
             if sl.get("sub"):
-                txt(s, 1, 3.7 if k == "title" else 4.2, SW - 2, 1.2, sl["sub"], 18, color=rgb("#BFD0DA"))
+                txt(s, 1, 3.7 if k == "title" else 4.2, SW - 2, 1.2, sl["sub"], 18, color=rgb("#D7D2CB"))
             if sl.get("footer"):
-                txt(s, 1, 5.3, SW - 2, 0.8, sl["footer"], 16, color=rgb("#9AA8B5"))
+                txt(s, 1, 5.3, SW - 2, 0.8, sl["footer"], 16, color=rgb("#9A958C"))
         elif k == "section":
             bar(s, 0, 0, SW, SH, TL)
             txt(s, 1, 2.7, SW - 2, 1.5, sl["title"], 36, bold=True, color=WH, anchor=MSO_ANCHOR.MIDDLE)
             if sl.get("sub"):
-                txt(s, 1, 4.1, SW - 2, 1.0, sl["sub"], 19, color=rgb("#D8E8EE"))
+                txt(s, 1, 4.1, SW - 2, 1.0, sl["sub"], 19, color=rgb("#EDDDDD"))
         else:
             bar(s, 0, 0, SW, 0.18, TL); y = 0.45
             if sl.get("kicker"):
@@ -207,14 +207,14 @@ def build_pdf(slides, out):
                 fig.patch.set_facecolor(NAVY)
                 fig.text(0.07, 0.58, wrap(sl["title"], 34), fontsize=32, color="white", weight="bold", va="center")
                 if sl.get("sub"):
-                    fig.text(0.07, 0.38, wrap(sl["sub"], 78), fontsize=15, color="#BFD0DA")
+                    fig.text(0.07, 0.38, wrap(sl["sub"], 78), fontsize=15, color="#D7D2CB")
                 if sl.get("footer"):
-                    fig.text(0.07, 0.16, sl["footer"], fontsize=13, color="#9AA8B5")
+                    fig.text(0.07, 0.16, sl["footer"], fontsize=13, color="#9A958C")
             elif k == "section":
                 fig.patch.set_facecolor(TEAL)
                 fig.text(0.08, 0.56, wrap(sl["title"], 32), fontsize=33, color="white", weight="bold", va="center")
                 if sl.get("sub"):
-                    fig.text(0.08, 0.40, wrap(sl["sub"], 64), fontsize=17, color="#E2F0F4")
+                    fig.text(0.08, 0.40, wrap(sl["sub"], 64), fontsize=17, color="#EDDDDD")
             else:
                 fig.patch.set_facecolor("white")
                 fig.add_artist(plt.Rectangle((0, 0.975), 1, 0.025, color=TEAL, transform=fig.transFigure))

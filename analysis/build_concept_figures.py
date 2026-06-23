@@ -11,8 +11,8 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle, Rectangle, Arc, Polygon
 
 OUT = Path("presentation/concept_figs"); OUT.mkdir(parents=True, exist_ok=True)
-NAVY, TEAL, GOLD, RED, GREEN = "#1A1A2E", "#1C6E8C", "#B58600", "#C0392B", "#2E8B57"
-GREY, LIGHT = "#666666", "#EAF1F4"
+NAVY, TEAL, GOLD, RED, GREEN = "#2E2D29", "#007C92", "#E98300", "#8C1515", "#175E54"   # Stanford: Black, Bay, Poppy, Cardinal, Palo Alto
+GREY, LIGHT = "#53565A", "#F4F4F4"   # Stanford Cool Grey, Fog
 
 
 def box(ax, x, y, w, h, text, fc, tc="white", fs=12, ec=None, lw=1.5):
@@ -62,9 +62,9 @@ def two_regions():
     fig, ax = newfig(11, 4.4)
     H = 10 * 4.4 / 11
     box(ax, 0.6, H / 2 - 0.9, 3.4, 1.8, "Entorhinal cortex", TEAL, fs=15)
-    ax.text(2.3, H / 2 - 1.25, "the brain's main INPUT hub\n(where senses arrive)", ha="center", va="top", fontsize=10.5, color=GREY)
+    ax.text(2.3, H / 2 - 1.25, "principal cortical input\nto the hippocampus", ha="center", va="top", fontsize=10.5, color=GREY)
     box(ax, 6.0, H / 2 - 0.9, 3.4, 1.8, "Hippocampus", NAVY, fs=15)
-    ax.text(7.7, H / 2 - 1.25, "the inner GPS & memory-maker", ha="center", va="top", fontsize=10.5, color=GREY)
+    ax.text(7.7, H / 2 - 1.25, "spatial navigation &\nepisodic memory", ha="center", va="top", fontsize=10.5, color=GREY)
     arrow(ax, (4.05, H / 2), (5.95, H / 2), color=GOLD, text="main input", fs=11, dy=0.15)
     ax.text(5, H - 0.4, "Two connected regions, recorded simultaneously", ha="center", fontsize=14, weight="bold", color=NAVY)
     save(fig, "two_regions.png")
