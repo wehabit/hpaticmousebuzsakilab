@@ -5,5 +5,8 @@
   "ch7_edges_in_densest_3s": 50,
   "edges_a_26Hz_trial_would_have": 156,
   "tactor_cycles_missed_between_ch7_edges": 6.0,
-  "frac_intervals_within_10pct_of_38.5ms": 0.0242
+  "frac_intervals_within_10pct_of_38.5ms": 0.0242,
+  "best_consecutive_26Hz_intervals": 3,
+  "max_near38.5ms_intervals_in_0.5s": 4,
+  "a_real_26Hz_signal_would_have_in_0.5s": 13
 }

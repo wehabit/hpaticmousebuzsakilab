@@ -77,3 +77,45 @@ fig.suptitle("Dec 3 TTL cannot recover tactor phase: ch7 toggles ~%.0f×/s (irre
              fontsize=11)
 fig.savefig(OUT / "ttl_cannot_recover_tactor_phase.png", dpi=120)
 print("wrote", OUT / "ttl_cannot_recover_tactor_phase.png")
+plt.close(fig)
+
+# ===== BEST-CASE: the half-second anywhere in the session closest to 26 Hz =====
+lo, hi = 0.9 * period_ms, 1.1 * period_ms          # within +/-10% of 38.5 ms
+inband = (iri >= lo) & (iri < hi)
+# longest run of CONSECUTIVE near-38.5ms intervals
+bb = np.concatenate(([0], inband.view(np.int8), [0]))
+edges_b = np.flatnonzero(np.diff(bb))
+run_starts, run_ends = edges_b[0::2], edges_b[1::2]
+run_len = (run_ends - run_starts) if len(run_starts) else np.array([0])
+best_run = int(run_len.max()) if len(run_len) else 0
+# 0.5 s window containing the MOST near-38.5ms intervals (densest 26Hz-like cluster)
+mid = rt[1:]                                       # time of each interval (use right edge)
+W = 0.5
+incount = np.array([inband[(mid >= t) & (mid < t + W)].sum() for t in mid[::5]])
+bi = int(np.argmax(incount)) * 5
+tb = mid[bi]
+stats["best_consecutive_26Hz_intervals"] = best_run
+stats["max_near38.5ms_intervals_in_0.5s"] = int(incount.max())
+stats["a_real_26Hz_signal_would_have_in_0.5s"] = int(round(0.5 * TACTOR_HZ))
+(OUT / "ttl_diagnostic_summary.json").write_text(json.dumps(stats, indent=2) + "\n")
+
+fig2, ax2 = plt.subplots(1, 1, figsize=(13, 4.2))
+fig2.subplots_adjust(top=0.80, bottom=0.16, left=0.06, right=0.98)
+zb0 = int((tb - 0.05) * FS); zb1 = zb0 + int(0.6 * FS)
+ttb = (np.arange(zb0, zb1) - zb0) / FS * 1000
+ax2.step(ttb, ch7[zb0:zb1], where="post", color="#2c3e9e", lw=1.6, label="actual ch7 TTL")
+# 26 Hz reference, phase-aligned to the first rising edge in the window (most charitable)
+w_rise = rt[(rt >= tb - 0.05) & (rt < tb - 0.05 + 0.6)]
+phase0 = (w_rise[0] - (tb - 0.05)) * 1000 if len(w_rise) else 0
+ref2 = (np.sin(2 * np.pi * TACTOR_HZ * (ttb - phase0) / 1000) > 0).astype(int)
+ax2.step(ttb, ref2 * 0.92 + 0.04, where="post", color="#c0392b", lw=1.0, alpha=0.7, label="26 Hz tactor (aligned to 1st edge)")
+ax2.set_ylim(-0.2, 1.25); ax2.set_yticks([0, 1]); ax2.set_yticklabels(["LOW", "HIGH"])
+ax2.set_xlabel("time (ms)"); ax2.legend(fontsize=9, loc="upper right", frameon=False)
+ax2.set_title("BEST CASE — the 0.5 s anywhere in the session with the MOST near-38.5 ms intervals "
+              f"({stats['max_near38.5ms_intervals_in_0.5s']} of them; a real 26 Hz trial would have ~13).\n"
+              f"Longest run of consecutive ~26 Hz intervals in the WHOLE session = {best_run} "
+              f"(i.e. it never sustains even ~3 tactor cycles). The red 26 Hz reference drifts off ch7 within 1–2 cycles.",
+              fontsize=10)
+fig2.savefig(OUT / "ttl_best_26hz_match.png", dpi=120)
+print("wrote", OUT / "ttl_best_26hz_match.png")
+print(json.dumps({k: stats[k] for k in ["best_consecutive_26Hz_intervals", "max_near38.5ms_intervals_in_0.5s", "a_real_26Hz_signal_would_have_in_0.5s"]}, indent=2))
