@@ -1,0 +1,211 @@
+{
+  "pickup_by_amp": {
+    "dHPC_tissue": {
+      "100": -6.05,
+      "180": -3.67,
+      "250": 6.74
+    },
+    "dHPC_dead_121": {
+      "100": -3.19,
+      "180": 0.2,
+      "250": 8.64
+    },
+    "LEC_dead": {
+      "100": 11.1,
+      "180": 31.12,
+      "250": 41.13
+    },
+    "ch181_unit87": {
+      "100": 3.26,
+      "180": 9.14,
+      "250": 18.6
+    },
+    "ch120_unit126": {
+      "100": -3.32,
+      "180": 0.06,
+      "250": 8.77
+    }
+  },
+  "unit87_LEC_rate_by_amp": {
+    "100": {
+      "on": 7.37,
+      "off": 6.46
+    },
+    "180": {
+      "on": 7.87,
+      "off": 6.7
+    },
+    "250": {
+      "on": 8.6,
+      "off": 6.46
+    }
+  },
+  "unit126_dHPC_rate_by_amp": {
+    "100": {
+      "on": 13.02,
+      "off": 12.64
+    },
+    "180": {
+      "on": 14.03,
+      "off": 12.93
+    },
+    "250": {
+      "on": 16.98,
+      "off": 13.0
+    }
+  },
+  "dHPC_per_unit_delta": [
+    {
+      "cluster_id": 0,
+      "delta": -0.503,
+      "responsive": true
+    },
+    {
+      "cluster_id": 78,
+      "delta": -0.19,
+      "responsive": false
+    },
+    {
+      "cluster_id": 82,
+      "delta": -0.282,
+      "responsive": true
+    },
+    {
+      "cluster_id": 86,
+      "delta": 0.987,
+      "responsive": true
+    },
+    {
+      "cluster_id": 90,
+      "delta": 0.274,
+      "responsive": false
+    },
+    {
+      "cluster_id": 104,
+      "delta": 0.678,
+      "responsive": true
+    },
+    {
+      "cluster_id": 109,
+      "delta": -0.039,
+      "responsive": false
+    },
+    {
+      "cluster_id": 113,
+      "delta": -0.086,
+      "responsive": false
+    },
+    {
+      "cluster_id": 125,
+      "delta": -0.664,
+      "responsive": true
+    },
+    {
+      "cluster_id": 126,
+      "delta": 1.819,
+      "responsive": true
+    },
+    {
+      "cluster_id": 130,
+      "delta": -0.021,
+      "responsive": false
+    },
+    {
+      "cluster_id": 135,
+      "delta": -0.298,
+      "responsive": true
+    },
+    {
+      "cluster_id": 137,
+      "delta": 0.199,
+      "responsive": true
+    },
+    {
+      "cluster_id": 139,
+      "delta": 1.119,
+      "responsive": true
+    },
+    {
+      "cluster_id": 149,
+      "delta": 0.349,
+      "responsive": true
+    }
+  ],
+  "LEC_per_unit_delta": [
+    {
+      "cluster_id": 38,
+      "delta": -0.226,
+      "responsive": false
+    },
+    {
+      "cluster_id": 69,
+      "delta": 0.12,
+      "responsive": false
+    },
+    {
+      "cluster_id": 71,
+      "delta": -0.137,
+      "responsive": false
+    },
+    {
+      "cluster_id": 72,
+      "delta": -1.3,
+      "responsive": true
+    },
+    {
+      "cluster_id": 73,
+      "delta": -0.071,
+      "responsive": false
+    },
+    {
+      "cluster_id": 74,
+      "delta": -0.018,
+      "responsive": false
+    },
+    {
+      "cluster_id": 76,
+      "delta": -0.093,
+      "responsive": true
+    },
+    {
+      "cluster_id": 77,
+      "delta": -0.085,
+      "responsive": false
+    },
+    {
+      "cluster_id": 80,
+      "delta": 0.18,
+      "responsive": false
+    },
+    {
+      "cluster_id": 81,
+      "delta": -0.246,
+      "responsive": false
+    },
+    {
+      "cluster_id": 82,
+      "delta": -0.723,
+      "responsive": true
+    },
+    {
+      "cluster_id": 85,
+      "delta": 0.0,
+      "responsive": false
+    },
+    {
+      "cluster_id": 87,
+      "delta": 1.405,
+      "responsive": true
+    },
+    {
+      "cluster_id": 88,
+      "delta": 0.077,
+      "responsive": true
+    },
+    {
+      "cluster_id": 91,
+      "delta": -0.047,
+      "responsive": false
+    }
+  ]
+}
