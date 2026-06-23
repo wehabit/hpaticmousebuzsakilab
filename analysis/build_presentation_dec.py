@@ -92,7 +92,7 @@ bar(s, 0, 0, SW, SH, NAVY)
 bar(s, 0, 5.0, SW, 0.08, ACCENT)
 txt(s, 1, 2.0, SW - 2, 1.6, "Can we talk to the brain through the skin?", 38, bold=True, color=WHITE)
 txt(s, 1, 3.6, SW - 2, 1.0, "What happens in the brain when we buzz the body at different rhythms", 20, color=RGBColor(0xBF, 0xD0, 0xDA))
-txt(s, 1, 5.3, SW - 2, 0.8, "Buzsáki Lab  ·  haptic-stimulation electrophysiology  ·  [your name]", 16, color=RGBColor(0x9A, 0xA8, 0xB5))
+txt(s, 1, 5.3, SW - 2, 0.8, "Pardis Miri  ·  Buzsáki Lab  ·  haptic-stimulation electrophysiology", 16, color=RGBColor(0x9A, 0xA8, 0xB5))
 s.notes_slide.notes_text_frame.text = (
     "Welcome. Today: a simple-sounding question with a surprisingly subtle answer. If you buzz someone's "
     "skin, does it actually change what their brain is doing — and can the brain 'tune in' to the rhythm of the buzz? "
