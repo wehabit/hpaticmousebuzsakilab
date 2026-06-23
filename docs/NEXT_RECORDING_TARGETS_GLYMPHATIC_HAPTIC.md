@@ -20,6 +20,136 @@ chain:
 Electrophysiology can answer points 2-4. It cannot, by itself, prove
 glymphatic clearance.
 
+## Realistic Plan If Sleeping Stimulation Is Not Feasible
+
+Vibrating a naturally sleeping mouse is likely to wake the animal or make sleep
+scoring difficult. Do not make that the first experiment.
+
+Use a stepwise plan instead.
+
+### Step 1: awake target-engagement and state-shift experiment
+
+Question:
+
+> Does haptic stimulation reliably enter the somatosensory system and change
+> memory-relevant circuits or brain state while the mouse is awake/quiet?
+
+Record:
+
+- actual actuator motion with PVDF or accelerometer;
+- S1 plus dHPC if possible;
+- cortical EEG/LFP;
+- EMG, video/movement, and ideally heart rate or respiration.
+
+Test:
+
+- sham/no stimulation;
+- 40 Hz;
+- 50 Hz;
+- 1 Hz or 8 Hz as slow-wave/theta-inspired comparisons;
+- 26 Hz for continuity with Dec 3/Dec 4.
+
+Positive result:
+
+- S1 confirms clean haptic sensory engagement;
+- dHPC response replicates or changes predictably;
+- stimulation changes delta/theta/arousal markers without merely causing
+  movement or distress.
+
+This experiment does not prove glymphatic flow. It tells us whether the
+stimulation has the right target engagement and state effects to justify a
+tracer experiment.
+
+### Step 2: awake/offline CSF tracer influx experiment
+
+Question:
+
+> After haptic stimulation in awake or quiet-wake mice, does more CSF tracer
+> enter brain tissue?
+
+Design:
+
+- use cisterna magna tracer delivery, ideally through a prepared/chronic route
+  or with brief anesthesia followed by recovery;
+- deliver haptic stimulation while the animal is awake/resting;
+- collect brain tissue after a fixed tracer circulation window;
+- quantify fluorescent tracer distribution offline.
+
+Readouts:
+
+- whole-brain tracer intensity;
+- region-specific tracer signal in S1, dHPC, entorhinal cortex, cortex and
+  perivascular spaces;
+- sleep/wake/movement state during the stimulation window.
+
+Interpretation:
+
+- If tracer increases without sleep increase, that supports an awake
+  neurovascular/CSF-flow mechanism.
+- If tracer only increases when the mouse becomes sleepier or more delta-rich,
+  that supports a sleep-state route.
+- If neurons respond but tracer does not change, the stimulation has target
+  engagement but not measurable glymphatic effect under those conditions.
+
+### Step 3: post-stimulation sleep carryover experiment
+
+Question:
+
+> Does awake haptic stimulation change the following sleep period in a way that
+> improves clearance?
+
+This avoids vibrating the mouse during sleep.
+
+Design:
+
+- stimulate during an awake/pre-sleep period;
+- then allow undisturbed natural sleep;
+- record EEG/EMG to score NREM/REM and slow-wave power;
+- measure tracer influx/clearance during the following sleep window.
+
+Positive result:
+
+- more NREM sleep;
+- higher 0.5-4 Hz slow-wave/delta power;
+- lower movement/EMG and calmer autonomic state;
+- increased tracer influx or improved clearance.
+
+This is realistic and biologically aligned with the sleep/glymphatic literature.
+
+### Step 4: anesthesia model as a positive control, not the main therapy claim
+
+Ketamine/xylazine can create a clearance-permissive, slow-wave-like state, but
+it is not natural NREM sleep. Use it to validate the assay, not to prove the
+wearable/haptic therapy story.
+
+Use anesthesia to ask:
+
+> Can our tracer protocol detect a known high-glymphatic state?
+
+Do not overinterpret:
+
+> Haptic stimulation worked under ketamine, therefore it will work in awake
+> animals.
+
+That would be too strong.
+
+## Minimal Practical Experiment
+
+If resources are limited, do this:
+
+1. Record awake/quiet haptic target engagement with S1 + dHPC + EEG/EMG +
+   stimulus sensor.
+2. Pick the best two frequencies from that session, probably 50 Hz and a
+   slow/theta comparator such as 1 Hz or 8 Hz.
+3. Run an offline CSF tracer influx experiment with sham vs those two
+   frequencies.
+4. Quantify tracer distribution and sleep/arousal state.
+
+This gives a realistic answer to:
+
+> Does haptic stimulation affect circuits and fluid-entry markers under
+> runnable mouse conditions?
+
 ## Best Next Recording Design
 
 ### First priority: contralateral primary somatosensory cortex
