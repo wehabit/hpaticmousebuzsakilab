@@ -1,0 +1,9 @@
+{
+  "tactor_freq_hz": 26.0,
+  "tactor_period_ms": 38.5,
+  "ch7_median_interval_ms": 230.9,
+  "ch7_edges_in_densest_3s": 50,
+  "edges_a_26Hz_trial_would_have": 156,
+  "tactor_cycles_missed_between_ch7_edges": 6.0,
+  "frac_intervals_within_10pct_of_38.5ms": 0.0242
+}
