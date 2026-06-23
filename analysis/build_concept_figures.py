@@ -41,7 +41,7 @@ def save(fig, name):
 # ---------------- 7. STADIUM: LFP vs spikes ----------------
 def stadium():
     fig, ax = plt.subplots(figsize=(11, 5.2)); ax.axis("off"); ax.set_xlim(0, 10); ax.set_ylim(0, 5.2)
-    ax.text(5, 4.95, "One electrode hears TWO things", ha="center", fontsize=16, weight="bold", color=NAVY)
+    ax.text(5, 4.95, "One electrode, two readouts: LFP vs. single-unit activity", ha="center", fontsize=16, weight="bold", color=NAVY)
     t = np.linspace(0, 10, 2000); rng = np.random.default_rng(1)
     ax.text(0.0, 4.45, "CROWD ROAR  (field potential, LFP)", fontsize=13, weight="bold", color=TEAL)
     lfp = 0.5 * np.sin(2 * np.pi * 0.45 * t) + 0.27 * np.sin(2 * np.pi * 0.23 * t + 1) + 0.05 * rng.standard_normal(t.size)
@@ -66,7 +66,7 @@ def two_regions():
     box(ax, 6.0, H / 2 - 0.9, 3.4, 1.8, "Hippocampus", NAVY, fs=15)
     ax.text(7.7, H / 2 - 1.25, "the inner GPS & memory-maker", ha="center", va="top", fontsize=10.5, color=GREY)
     arrow(ax, (4.05, H / 2), (5.95, H / 2), color=GOLD, text="main input", fs=11, dy=0.15)
-    ax.text(5, H - 0.4, "Two connected listening posts — we recorded both", ha="center", fontsize=14, weight="bold", color=NAVY)
+    ax.text(5, H - 0.4, "Two connected regions, recorded simultaneously", ha="center", fontsize=14, weight="bold", color=NAVY)
     save(fig, "two_regions.png")
 
 
@@ -74,7 +74,7 @@ def two_regions():
 def experiment():
     fig, ax = newfig(11, 5.0)
     H = 10 * 5.0 / 11
-    ax.text(5, H - 0.35, "The experiment", ha="center", fontsize=16, weight="bold", color=NAVY)
+    ax.text(5, H - 0.35, "Parametric design: carrier frequency × amplitude", ha="center", fontsize=16, weight="bold", color=NAVY)
     # body + tactor
     box(ax, 0.4, H - 2.6, 3.0, 1.5, "Tactor on the body\n(a buzzing motor)", TEAL, fs=12)
     arrow(ax, (3.5, H - 1.85), (4.5, H - 1.85), color=GOLD, text="at the\nsame time", fs=9, dy=0.18)
@@ -99,7 +99,7 @@ def experiment():
 def entrainment():
     fig, ax = newfig(11, 4.6)
     H = 10 * 4.6 / 11
-    ax.text(5, H - 0.35, "Entrainment = the brain 'marching in step' with the buzz", ha="center", fontsize=15, weight="bold", color=NAVY)
+    ax.text(5, H - 0.35, "Entrainment: phase-locking of neural activity to the stimulus", ha="center", fontsize=15, weight="bold", color=NAVY)
     # swing on the left
     cx, cy = 1.9, H - 0.9
     ax.plot([cx, cx - 0.9], [cy, cy - 1.9], color=GREY, lw=1.5)
@@ -128,7 +128,7 @@ def entrainment():
 # ---------------- 14. THE TRAP (mic + speaker) ----------------
 def trap():
     fig, ax = plt.subplots(figsize=(11, 4.9)); ax.axis("off"); ax.set_xlim(0, 11); ax.set_ylim(0, 4.9)
-    ax.text(5.5, 4.6, "The trap: the machine has its OWN 50 Hz hum", ha="center", fontsize=15, weight="bold", color=NAVY)
+    ax.text(5.5, 4.6, "The confound: stimulator-coupled 50 Hz electrical artifact", ha="center", fontsize=15, weight="bold", color=NAVY)
     midy, mx, sx = 2.85, 5.5, 8.3
     # mic in middle
     ax.add_patch(FancyBboxPatch((mx - 0.35, midy - 0.05), 0.7, 1.0, boxstyle="round,pad=0.02,rounding_size=0.3", fc=NAVY, ec=NAVY))
@@ -151,7 +151,7 @@ def trap():
 # ---------------- 23. THE FIX (block diagram) ----------------
 def fix():
     fig, ax = plt.subplots(figsize=(12, 6.2)); ax.axis("off"); ax.set_xlim(0, 12); ax.set_ylim(0, 6.2)
-    ax.text(6, 5.9, "The fix: record the buzz 3 ways, all on the brain's clock", ha="center", fontsize=16, weight="bold", color=NAVY)
+    ax.text(6, 5.9, "Fix: record the stimulus 3 ways on the acquisition clock", ha="center", fontsize=16, weight="bold", color=NAVY)
     srcs = [("Firmware: sync pin\n(1 edge per buzz cycle)", TEAL),
             ("Firmware: trial gate\n(ON / OFF)", TEAL),
             ("Force sensor on skin\n(the REAL vibration)", GOLD),

@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-"""Build the 35-min non-neuroscientist talk in TWO formats from one source of truth:
+"""Build the ~35-min talk (mixed-researcher audience) in TWO formats from one source:
   - presentation/haptic_brain_talk.pptx  (editable; open in PowerPoint/Keynote, or
     upload to Google Drive -> 'Open with Google Slides')
   - presentation/haptic_brain_talk.pdf   (renders images everywhere; safe fallback)
 
-Assertion-evidence style; full narration (with analogies) is in the .pptx speaker
-notes. The PDF is the visual deck only.
+Register: scientifically literate but not neuroscience-specialist. Lead with precise
+terminology, define only the neuro-specific terms, keep analogies as intuition.
+Full narration is in the .pptx speaker notes; the PDF is the visual deck.
+Uses real figures from results/ where they exist; schematics only for concepts.
 """
 from __future__ import annotations
 from pathlib import Path
@@ -15,96 +17,98 @@ OUT = Path("presentation"); OUT.mkdir(exist_ok=True)
 F = "results/dec4"
 CF = "presentation/concept_figs"   # schematic illustrations (build_concept_figures.py)
 TTL = "analysis/outputs/dec3/ttl_diagnostic/ttl_cannot_recover_tactor_phase.png"
+TRIAL = "results/dec3/13_Teaching_and_Methods/trial_window_diagram.png"
 NAVY, TEAL, GREY, PANEL = "#1A1A2E", "#1C6E8C", "#555555", "#F2F5F7"
 
 # ---------------------------------------------------------------- content
 SLIDES = [
-    dict(kind="title", title="Can we talk to the brain through the skin?",
-         sub="What happens in the brain when we buzz the body at different rhythms",
+    dict(kind="title", title="Can we drive the brain through the skin?",
+         sub="Single-unit and LFP responses to amplitude- and frequency-varied haptic stimulation in hippocampus & entorhinal cortex",
          footer="Pardis Miri  ·  Buzsáki Lab  ·  haptic-stimulation electrophysiology",
-         notes="Welcome. Today: a simple-sounding question with a surprisingly subtle answer. If you buzz someone's skin, does it actually change what their brain is doing — and can the brain 'tune in' to the rhythm of the buzz? No neuroscience background needed; I'll build up every idea with an analogy. (~35 min, stop me with questions.)"),
-    dict(kind="content", title="The dream: wearables that gently 'nudge' the brain through touch",
-         take="To build that, we first have to answer a basic question: does a buzz on the body actually reach and change the brain?",
-         notes="Big picture first. There's huge interest in wearables that touch your skin to shift a brain state — to help you sleep, focus, calm down, or aid therapy after injury. The skin is the easiest, safest door to the nervous system. But before any of that, we need the unglamorous groundwork: if I buzz the body, (1) does the brain even notice, (2) does it matter how FAST I buzz, and (3) can the brain lock onto the rhythm of the buzz? That third one — 'marching in step' with the stimulus — is the holy grail, because that's how you'd drive a brain rhythm on purpose."),
-    dict(kind="content", title="The experiment, in one picture", fig=f"{CF}/experiment.png",
-         take="Buzz the body in 3-second bursts at different speeds; listen to the brain at the same time; repeat 200×.",
-         notes="Here's the whole setup in plain terms. We put a little vibrating motor — a 'tactor', like the buzz in your phone — on the body. We buzz it for 3 seconds, then rest 3 seconds, over and over. We try different buzz SPEEDS: 5, 10, 26, and 50 buzzes per second. And different strengths. While that happens, we listen to the brain with fine electrodes. Then we ask: what changed in the brain during the buzz versus the rest? [Tip: drop a setup photo here.]"),
-    dict(kind="content", title="Three questions",
-         take="(1) Does the brain notice?    (2) Does the buzz SPEED matter?    (3) Does the brain march in step with the buzz?",
-         notes="Keep these three questions in your head — the whole talk answers them. One: does the brain register the buzz at all? Two: does it care how fast we buzz — is 50/sec different from 26/sec? Three, the big one: does the brain 'entrain' — literally oscillate in lockstep with the buzz, like marching to a drumbeat? Spoiler: yes, yes-ish, and 'we couldn't fully test it' — and WHY we couldn't is one of the most useful things we learned."),
+         notes="The question: does peripheral haptic stimulation produce a measurable, frequency-specific response in central circuits, and can it entrain neural activity? I'll define the few neuroscience-specific terms (LFP, single units, entrainment, spike sorting) as they come up; everything else assumes general research literacy. ~35 min — please interrupt."),
+    dict(kind="content", title="Motivation: peripheral routes to non-invasive neuromodulation",
+         take="Before targeting brain states via the skin, we need to know whether — and how — a cutaneous stimulus is represented centrally.",
+         notes="There's growing interest in modulating brain state non-invasively through the periphery — the skin is the most accessible, lowest-risk interface. But the foundational, under-characterized question is whether peripheral haptic input produces a reliable, frequency-specific central response, and whether it can entrain endogenous activity (the precondition for 'driving' a rhythm). This study characterizes that response at two levels — field potentials and single neurons — and, importantly, the controls needed to interpret it."),
+    dict(kind="content", title="Design: parametric haptic stimulation with simultaneous electrophysiology",
+         fig=TRIAL,
+         take="3 s ON / 3 s OFF blocks across four carrier frequencies (5/10/26/50 Hz) and three amplitudes; ~200 repeats/condition; dual-region linear-probe recording.",
+         notes="A tactor delivers a sinusoidal vibration in 3 s ON / 3 s OFF blocks (figure shows the trial structure and the analysis windows we use). We vary carrier frequency — 5, 10, 26, 50 Hz — and amplitude, ~200 trials per condition, while recording extracellularly with linear silicon probes in two regions simultaneously. Each analysis window is referenced to the 1 s pre-stimulus baseline; 100 ms margins isolate onset/offset transients from sustained activity."),
+    dict(kind="content", title="Three questions, increasing in strength of claim",
+         take="(1) Is there a central response?   (2) Is it frequency-specific?   (3) Does it entrain neural activity (phase-locking)?",
+         notes="Three levels: detection (any response?), tuning (specific to stimulus frequency/amplitude?), and entrainment (do neural signals phase-lock to the stimulus waveform?). Entrainment is the strongest claim and the one that would justify peripheral rhythm-driving — and, as you'll see, the one we could not test, for an instructive instrumentation reason."),
 
-    dict(kind="section", title="Part 1 — How do you 'listen' to a brain?", sub="Two ideas you need, both with analogies"),
-    dict(kind="content", title="We listened in two neighboring brain regions", fig=f"{CF}/two_regions.png",
-         take="Hippocampus = the brain's inner GPS & memory.   Entorhinal cortex = its main input hub. Two listening posts.",
-         notes="We recorded from two spots that talk to each other: the hippocampus — think of it as the brain's inner GPS and memory-maker — and right next to it the entorhinal cortex, which is the hippocampus's main inbox, where a lot of sensory information arrives. So: two listening posts in a circuit that handles where-you-are and what-just-happened. Don't worry about the names; just 'two connected regions.'"),
-    dict(kind="content", kicker="concept · analogy", title="THE key idea: a brain recording has two very different signals", fig=f"{CF}/stadium.png",
-         take="Stadium analogy → the CROWD MURMUR (the field potential) vs. INDIVIDUAL VOICES (single neurons firing).",
-         notes="This is the single most important idea in the talk. Imagine a microphone over a packed stadium. You hear TWO things. First, the low ROAR of the whole crowd — that's the 'field potential' (LFP): the blended, slow electrical hum of thousands of cells. Second, individual people SHOUTING — sharp, brief, distinct. Those are 'spikes': single neurons firing, each a crisp ~1-millisecond blip. The crowd murmur is easy to hear but vague; the individual voices are harder to pick out but tell you exactly who said what. We use BOTH — and the difference between them is the whole plot."),
-    dict(kind="content", kicker="concept", title="Why single neurons are the gold standard",
-         take="A real neuron firing is unambiguous — much harder for noise or equipment to fake than the crowd hum.",
-         notes="Why care about the hard-to-hear individual voices? Because they're trustworthy. The crowd murmur can be contaminated by background noise — a passing truck, a buzzing speaker. But an identified shout is a real event from a real person. Same in the brain: a sorted single-neuron spike is a genuine cell, and it's much harder for the equipment's electrical noise to fake one. Hold that thought; it becomes the hero of the story."),
+    dict(kind="section", title="Part 1 — Two readouts, two regions", sub="The minimum background, with the key methodological distinction"),
+    dict(kind="content", title="Recording sites: hippocampus and entorhinal cortex", fig=f"{CF}/two_regions.png",
+         take="Entorhinal cortex = principal cortical input to hippocampus; hippocampus = spatial/mnemonic processing. A connected circuit, recorded simultaneously.",
+         notes="For non-neuroscientists: the hippocampus supports spatial navigation and episodic memory; the entorhinal cortex is its principal cortical input/output interface. They form a tightly coupled circuit, so recording both lets us ask not only whether each responds but whether they interact."),
+    dict(kind="content", kicker="key methodological distinction", title="One electrode yields two readouts: LFP and single-unit activity", fig=f"{CF}/stadium.png",
+         take="LFP = low-frequency aggregate field (synaptic/transmembrane currents of many cells). Spikes = action potentials of individual, sorted neurons. They differ in what can fake them.",
+         notes="An extracellular electrode captures two regimes. The local field potential (LFP) is the low-frequency aggregate of synaptic and transmembrane currents from many neurons — large and easy to measure, but spatially non-specific and susceptible to volume-conducted or instrumental noise. Single-unit activity is the spiking of individual neurons, isolated by spike sorting — sparser and harder to extract, but each spike is a discrete, unambiguous biological event. Intuition: a stadium microphone hears both the crowd's aggregate roar (LFP) and individual shouts (spikes); the roar is loud but can be contaminated by, say, a PA hum, whereas an identified shout is real. This LFP-vs-single-unit distinction is the crux of the entire talk."),
+    dict(kind="content", kicker="why it matters", title="Single units are the more conservative readout",
+         take="A sorted action potential is a discrete biological event; the LFP can be mimicked by volume-conducted electrical artifact. Spikes constrain interpretation far more tightly.",
+         notes="The asymmetry that drives the whole analysis: an electrical artifact can add power to the LFP at the stimulus frequency, but it cannot make a waveform-isolated, sorted neuron emit an action potential. So when we want to claim a genuine neural effect — rather than instrumental pickup — single-unit firing-rate changes are the evidence that survives scrutiny. Keep this asymmetry in mind; it resolves the central twist of the results."),
 
-    dict(kind="section", title="Part 2 — What the brain actually did"),
-    dict(kind="content", kicker="finding 1 · analogy", title="Yes — the brain notices the buzz. But it reacts to the START and STOP",
+    dict(kind="section", title="Part 2 — Results"),
+    dict(kind="content", kicker="finding 1", title="A robust LFP response — transition-weighted, not a sustained oscillation",
          fig=f"{F}/07_Broadband_OFFcontrol_TrialStats/transition_index_condition.png",
-         take="Like a doorbell: the brain responds to the EVENT of the buzz turning on/off — not by humming along with it.",
-         notes="First result. The crowd-murmur signal clearly changes when we buzz — so yes, the brain notices. But HOW: it mostly reacts to the buzz turning ON and OFF, not by settling into its rhythm. Analogy: a doorbell. Your attention spikes when it RINGS and when it STOPS, but you don't start vibrating at the doorbell's pitch. So the brain registers the event, but isn't obviously 'tuning in.'"),
-    dict(kind="content", kicker="concept · analogy", title="'Marching in step' has a name: entrainment", fig=f"{CF}/entrainment.png",
-         take="Pushing a swing in rhythm → if the brain entrains, its own waves line up with the buzz's beat.",
-         notes="The dream is 'entrainment': the brain's own waves locking onto the buzz's rhythm. Analogy: pushing a swing. If you push exactly in time, it goes higher and higher — your rhythm drives its rhythm. If the brain entrained to a 50-per-second buzz, we'd see brain activity ticking at 50 per second. That would mean you can DIAL IN a brain rhythm from the skin. So: does the brain hum along at the buzz frequency?"),
-    dict(kind="content", kicker="finding 2", title="The hippocampus does NOT hum along — at any buzz speed",
+         take="The broadband LFP responds at stimulus onset/offset (an evoked transient), not as a sustained rhythm at the carrier frequency.",
+         notes="The broadband LFP shows a clear, amplitude-graded response — but it is concentrated at the ON and OFF transitions: an evoked transient, not a sustained oscillation at the drive frequency. Conceptually it's the difference between responding to the event of stimulation versus tracking its rhythm. So 'there is a response' — but not yet frequency-following."),
+    dict(kind="content", kicker="definition", title="Entrainment, defined: phase-locking of neural activity to the stimulus", fig=f"{CF}/entrainment.png",
+         take="Entrainment = endogenous activity aligns to the stimulus phase (a driven-oscillator relationship). The strong claim — and the most useful, if true.",
+         notes="Entrainment here means neural activity phase-locks to the periodic stimulus — a driven-oscillator relationship, analogous to resonantly pumping a pendulum. If these circuits entrained to a 50 Hz drive, we'd see neural power and spike timing organized at 50 Hz. That is the result that would justify driving a brain rhythm from the periphery. So: is there frequency-following?"),
+    dict(kind="content", kicker="finding 2", title="No frequency-following in hippocampus at any carrier",
          fig=f"{F}/05_Frequency_Spectral/spectral_slope_itpc_dec4.png",
-         take="No matter the buzz speed (5–50/sec), we see no matching brain rhythm above the normal background.",
-         notes="If the brain hummed at the buzz speed, we'd see a sharp spike of energy at that exact frequency, above the brain's normal background. We don't — at any speed. So in the hippocampus, no frequency-following: it notices the buzz but doesn't oscillate in step. And this replicated across two sessions. The swing isn't catching the push."),
-    dict(kind="content", kicker="finding 3", title="Plot twist: the OTHER region shows a 50-per-second signal",
+         take="No narrowband spectral peak above the 1/f background, and inter-trial phase consistency at chance — across 5/10/26/50 Hz, replicated across sessions.",
+         notes="The test: frequency-following predicts a narrowband peak at the carrier above the 1/f aperiodic background, and above-chance inter-trial phase clustering (ITPC). We see neither, at any carrier, replicated across two sessions on the same probe. So no power- or phase-based frequency-following in hippocampus."),
+    dict(kind="content", kicker="finding 3", title="Entorhinal cortex shows an amplitude-graded 50 Hz LFP increase",
          fig=f"{F}/05_Frequency_Spectral/driven_power_change_by_analysis_group.png",
-         take="In the entorhinal region a 50 Hz signal appears in the crowd murmur — and it grows with buzz strength. Exciting!",
-         notes="Now it gets interesting. In the entorhinal inbox, a signal at exactly 50 per second DOES show up in the crowd murmur, and it grows as we buzz harder. We were excited — maybe THIS region entrains at 50! But there's a trap, and a careful scientist has to check it. Let me teach you the trap."),
-    dict(kind="content", kicker="concept · analogy", title="The trap: the machine has its OWN electrical hum", fig=f"{CF}/trap.png",
-         take="A microphone can pick up the speaker's buzz, not just the crowd. Electrical equipment leaks its own signal.",
-         notes="Analogy: you're recording the crowd, but the stadium PA speaker hums at 50 Hz and your mic picks up THAT. Now your recording shows a clean 50 Hz — but it's the speaker, not the crowd. Same risk: the buzzing motor and its electronics can leak a 50-per-second electrical signal into our wires. That would look like a '50 Hz brain signal' but be pure equipment artifact. How do you tell brain from machine? We found a clean test."),
-    dict(kind="content", kicker="finding 3b · the killer test", title="That 50 Hz is mostly the machine — the dead-electrode test proves it",
+         take="A narrowband 50 Hz LFP power increase, scaling with amplitude — the candidate entrainment signal. But the LFP is exactly the readout most vulnerable to artifact.",
+         notes="In entorhinal cortex there is a narrowband 50 Hz LFP power increase that scales with stimulus amplitude — superficially the entrainment signal we want. But recall the asymmetry: the LFP is precisely the readout that electrical pickup can mimic. So before interpreting it as neural, we have to exclude a stimulator-coupled artifact."),
+    dict(kind="content", kicker="the confound", title="The confound: stimulator-coupled 50 Hz electrical artifact", fig=f"{CF}/trap.png",
+         take="An electromechanical actuator can inject a 50 Hz electrical artifact directly into the recording — indistinguishable from a neural 50 Hz in the LFP alone.",
+         notes="The actuator and its drive electronics can couple a 50 Hz signal into the recording — volume-conducted through tissue or via the wiring. In the LFP that is indistinguishable from a neural 50 Hz oscillation (the PA-hum case of the stadium analogy). We need a discriminator the artifact cannot fool."),
+    dict(kind="content", kicker="finding 3, controlled", title="Disconnected channels carry the 50 Hz — so it is largely pickup",
          fig=f"{F}/12_ChannelQC_Traces/50hz_pickup_gradient_dhpc_vs_lec.png",
-         take="Broken electrodes that CAN'T hear neurons still pick up the 50 Hz — ~6× more than the live ones. So it's pickup.",
-         notes="The trick: some electrodes were broken/disconnected — they physically can't hear neurons. Dead microphones. If a dead mic still records a loud 50 Hz, that CANNOT be the brain — only the machine's hum leaking in. And that's what we saw: the dead electrodes picked up about SIX TIMES MORE 50 Hz than the live, in-brain ones (right panel, red). Verdict: the entorhinal '50 Hz brain wave' is largely equipment pickup. The crowd murmur fooled us — good thing we checked."),
-    dict(kind="content", kicker="finding 4 · the headline", title="The real result: individual neurons change their firing at 50 Hz",
+         take="QC-failed/disconnected electrodes (which cannot record neural signal) show ~6× more 50 Hz than in-tissue channels. The entorhinal 50 Hz LFP is substantially artifact.",
+         notes="The discriminator: broken/disconnected channels cannot record neural activity but still act as antennas for electrical pickup. If they carry the 50 Hz, it is instrumental, not neural. They do — ~6× the in-tissue channels — so the entorhinal 50 Hz LFP is largely (not necessarily entirely) stimulator artifact. The headline LFP result is mostly the machine. This is the central twist."),
+    dict(kind="content", kicker="finding 4 — the robust result", title="Frequency-specific single-unit rate modulation at 50 Hz",
          fig=f"{F}/11_Spikes/spike_onoff_cross_dataset.png",
-         take="Single neurons fire differently during the 50 Hz buzz — in BOTH regions. Equipment hum can't fake a neuron firing.",
-         notes="Now the hero arrives: the individual voices. Tracking single, identified neurons, they genuinely change how much they fire during the strong 50-per-second buzz — in BOTH regions. Why trustworthy when the crowd murmur wasn't? The machine's hum can make a recording wiggle, but it can't make a real, identified neuron decide to fire. This is the clean result: 50 Hz, strong buzz, is where the brain's actual cells respond — far more than at slower speeds. So question 2 — does speed matter? — yes: 50 is special."),
-    dict(kind="content", kicker="concept · analogy", title="How do we KNOW it's neurons and not the machine? Two filters",
+         take="Sorted single units change firing rate during 50 Hz / high-amplitude stimulation, in both regions — an effect electrical pickup cannot produce.",
+         notes="Now the artifact-resistant readout: sorted single units change firing rate during the high-amplitude 50 Hz condition, in both regions, and far more than at lower carriers. Because pickup cannot drive a sorted neuron's spike train, this is the clean evidence. Question 2 — frequency specificity — is answered: 50 Hz is privileged, and the Dec-3 single-unit null is explained (Dec 3 only tested 5/26 Hz, where there is no effect)."),
+    dict(kind="content", kicker="controls", title="Controls: high-pass separation + autocorrelogram / ISI screens",
          fig=f"{F}/11_Spikes/unit87_acg_artifact_screen.png",
-         take="(1) Strip out the slow hum to find the sharp spikes.   (2) Check the neuron isn't 'ticking like a clock' at 50 Hz.",
-         notes="Two safeguards. First: to find spikes we throw away the slow part and keep only the fast, sharp blips — like turning up the treble to hear finger-snaps over a rumble. The 50 Hz hum is a slow rumble, so it's gone before we ever count a spike. Second: if the hum WERE sneaking in as fake spikes, the neuron would look like a metronome — ticking exactly every 1/50th of a second. We checked: NO such 50 Hz ticking, and it looks the same during buzz and rest. So these are real neurons. (This was the unit we scrutinized hardest; it passed.)"),
-    dict(kind="content", kicker="finding 4b · analogy", title="Same buzz, opposite reactions — the brain is PROCESSING, not echoing",
+         take="Spikes are detected >~300 Hz (50 Hz pickup is removed pre-detection); units show no stimulus-locked 50 Hz periodicity and no ON-rise in refractory violations.",
+         notes="Two controls against residual artifact. (1) Spike detection operates on the >~300 Hz band, so the 50 Hz LFP/pickup is filtered out before a spike is detected. (2) Were pickup nonetheless injecting spurious spikes at 50 Hz, the spike-train autocorrelogram would develop 20 ms periodicity during stimulation — it does not, and is identical ON vs OFF; refractory-violation rates also do not rise during ON. So the rate modulation is genuine single-unit activity. (Unit 87, the most exposed up-going unit, passes both screens.)"),
+    dict(kind="content", kicker="finding 5", title="Region-specific, bidirectional modulation — not a passive relay",
          fig=f"{F}/11_Spikes/spike_50hz_interpretation.png",
-         take="One region revs a subset of cells UP; the other quiets DOWN. A passive echo would look the same everywhere.",
-         notes="The satisfying part: the two regions react to the SAME buzz in OPPOSITE directions — hippocampus revs a subset up, entorhinal mostly quiets down. Analogy: two people hearing the same news, one excited, one goes quiet. That difference means they're actively PROCESSING the input, not passively echoing it. (Bonus: the quieting-down is itself strong evidence it's real — equipment pickup can only ADD fake blips, it can't make a neuron go silent.)"),
-    dict(kind="content", kicker="finding 5 · analogy", title="Do the two regions 'work together' at 50 Hz? Not clearly",
+         take="Hippocampus: a driven-up subset. Entorhinal cortex: net-suppressed. Opposite transformations of identical input argue for active, circuit-specific processing.",
+         notes="The two regions transform the same input in opposite directions: a hippocampal subset increases firing (a few strongly driven units carry the positive mean), while entorhinal cortex is net-suppressed (~10/15 units down). Opposite-signed responses to identical input are inconsistent with a passive, volume-conducted relay and consistent with circuit-specific processing. The suppression is also intrinsically artifact-resistant — additive pickup adds, it cannot remove, spikes."),
+    dict(kind="content", kicker="finding 6", title="No clear cross-regional coordination at 50 Hz",
          fig=f"{F}/11_Spikes/coordination_50hz_pooled.png",
-         take="Two orchestras can SOUND synced because of a hallway metronome (a shared hum) — not because they play together.",
-         notes="Do they coordinate, like partners in a conversation? The crowd murmur made them look in sync. But analogy: two orchestras in separate rooms can SEEM synchronized just because both hear the same metronome in the hallway — not because they listen to each other. The trustworthy test is whether the actual MUSICIANS (neurons) time to the other room — they don't, not more during the buzz. So the apparent 'sync' is the shared hum (that 50 Hz pickup again), not teamwork. Honest answer: no clear coordination."),
+         take="LFP–LFP coherence rises, but the artifact-resistant cross-region spike–field measure does not — parsimoniously a shared signal, not interaction.",
+         notes="Do the regions interact at 50 Hz? LFP–LFP coherence increases — but a shared pickup inflates coherence, so that's the artifact-prone measure. The spike–field measure (one region's spikes vs the other region's LFP phase), which a shared LFP artifact cannot fake as easily, does not increase with stimulation. So the apparent coupling is most parsimoniously a shared signal, not genuine coordination."),
 
-    dict(kind="section", title="Part 3 — The one thing we couldn't test (and how we fix it)"),
-    dict(kind="content", kicker="the honest limit · analogy", title="We could NOT test 'marching in step' — and it's not the brain's fault",
-         take="It's like judging whether a dancer is on-beat when you forgot to record the music. The reference was missing.",
-         notes="Back to the holy-grail question — does the brain entrain? We genuinely could not test it, for an honest reason. Analogy: to judge whether a dancer is on the beat, you need to have recorded the MUSIC. We recorded the dancer (the brain) beautifully — but never properly recorded the music (the exact timing of the buzz). No beat, no scoring. So 'we didn't show entrainment' is NOT 'the brain failed to entrain' — it's 'we were missing the measurement.'"),
-    dict(kind="content", kicker="the diagnosis", title="Why: the wire meant to record the buzz never captured it",
+    dict(kind="section", title="Part 3 — The entrainment question, and an instrumentation limit"),
+    dict(kind="content", kicker="the limitation", title="Entrainment was untestable — a measurement gap, not a null",
+         take="Phase-locking to the stimulus requires a recorded, time-aligned stimulus-phase reference. We lacked one — so entrainment is untestable here, not negative.",
+         notes="Critically: testing entrainment (phase-locking) requires a time-aligned reference for the stimulus phase. We did not record a usable one — so 'no entrainment shown' is a measurement gap, not evidence of absence. Distinguishing 'untestable' from 'tested-and-negative' is essential for honest claims. (Note: the power/periodicity negatives above are real and testable; only the phase-locking claim is gated by the missing reference.)"),
+    dict(kind="content", kicker="diagnosis", title="The digital sync channel never captured the carrier",
          fig=TTL,
-         take="It updated ~4×/sec while the tactor buzzed 26×/sec — like checking a hummingbird's wings 4 times a second.",
-         notes="I proved this from the data. The signal that should have marked each buzz cycle updated only ~4 times a second — but the tactor buzzed 26 times a second. Analogy: tracking a hummingbird's wingbeats by glancing 4 times a second — between glances the wings flapped 6 times; you can't recover the motion. (Top: the actual recorded line, slow and irregular. Middle: what a real 26-per-second buzz looks like. Bottom: the gaps are ~6× too long.) So the 'music track' was effectively blank. That one missing signal is the main limitation of the study."),
-    dict(kind="content", title="The fix is concrete — next round records the buzz properly", fig=f"{CF}/fix.png",
-         take="A per-cycle marker from the firmware + a tiny force sensor that measures the ACTUAL vibration, on the same clock.",
-         notes="The good news: a wiring problem, not a dead end, and we've designed the fix. Next round we record the music three ways at once, all on the brain's clock: (1) a clean marker the buzzer's software emits once per cycle; (2) a tiny force sensor between tactor and skin measuring the ACTUAL vibration — proving the buzz happened and giving its exact beat; (3) a copy of the drive signal as backup. Plus a 2-minute test recording to CONFIRM it works before real data — the check that would have caught this. Then entrainment is directly testable."),
+         take="The recorded sync line updated at ~4 Hz, independent of carrier (identical pulse counts at 5 vs 26 Hz; ~78 expected at 26 Hz). No phase reference exists in the data.",
+         notes="I verified this directly from the raw digital stream: the channel intended as a sync updated at ~4 Hz irrespective of carrier (the same ~6 pulses/trial for 5 and 26 Hz; ~78 expected at 26 Hz), never sustained a run at the carrier period anywhere in the 3 h session, and was misaligned with the trial schedule. It is undersampled and decoupled from the stimulus — so phase is unrecoverable. Sampling intuition: a ~4 Hz observer cannot resolve a 26 Hz oscillation."),
+    dict(kind="content", kicker="the fix", title="Fix: redundant, clock-shared stimulus references", fig=f"{CF}/fix.png",
+         take="Firmware per-cycle sync + a transduced force/accelerometer signal + a drive-signal copy, all on the acquisition clock — cross-checked, with pre-session verification.",
+         notes="The fix is design, not analysis: record the stimulus three ways on the acquisition clock — a firmware-emitted per-cycle marker (now implemented), a transduced measurement of the delivered vibration (PVDF or accelerometer, which also verifies delivery and captures mechanical phase), and a copy of the drive signal — then cross-validate, plus a short verification recording before the session. With redundancy on a shared clock, any single failed reference is caught immediately rather than months later in analysis."),
 
-    dict(kind="content", kicker="takeaways", title="The big picture, in plain words",
-         take="Buzzing the body DOES change the brain — most clearly as single-neuron activity at 50 Hz — but 'driving a brain rhythm' isn't shown yet.",
-         notes="Three plain-language takeaways. ONE: a buzz on the body really does change the brain — real, not trivial. TWO: the most trustworthy effect is at the level of individual neurons, specifically at the fast 50-per-second buzz, and the two regions handle it differently — active processing, not a passive echo. THREE: the flashy 'brain wave at 50 Hz' was mostly the machine's hum, and whether the brain truly 'marches in step' we couldn't test yet — because the stimulus timing wasn't recorded. We know exactly how to fix that."),
-    dict(kind="content", kicker="the road ahead", title="Why it matters",
-         take="If we can verify entrainment, we move toward wearables that gently and non-invasively steer brain states through touch.",
-         notes="Why should a non-neuroscientist care? If the next round shows the brain CAN be entrained through the skin, that's a foundation for safe, non-invasive wearables that nudge brain states — for sleep, focus, calm, rehabilitation — without surgery or drugs. This study did the honest groundwork: found a real neural effect, caught itself when a result was actually equipment noise, and pinpointed the one measurement we must add to ask the biggest question properly."),
-    dict(kind="closing", title="Thank you — questions?",
-         sub="Happy to dig into any figure, the analogies, or the next-round design.",
-         notes="Likely questions: 'Is 50 Hz special or just strongest?' (strongest clean single-unit effect of the speeds tested). 'Could it be arousal — they just felt a strong buzz?' (possible; but it's frequency-specific — 50 beats 26 at the same strength — which argues against pure arousal). 'Why not trust the 50 Hz brain wave?' (dead electrodes picked it up → largely machine pickup)."),
+    dict(kind="content", kicker="summary", title="Summary",
+         take="Genuine central response to haptic stimulation; cleanest evidence is frequency-specific, region-specific single-unit modulation at 50 Hz; the 50 Hz LFP is largely artifact; entrainment untestable here.",
+         notes="To summarize: (1) peripheral haptic stimulation produces a genuine central response; (2) the most rigorous evidence is frequency-specific, region-specific single-unit rate modulation at 50 Hz / high amplitude — driven-up subset in hippocampus, net suppression in entorhinal cortex; (3) the entorhinal 50 Hz LFP is largely stimulator artifact, established by the disconnected-channel control; (4) entrainment was untestable for want of a stimulus-phase reference — a fixable instrumentation gap, not a biological null. Caveats: single animal; modest responder fraction; an arousal/indirect-pathway contribution can't be fully excluded."),
+    dict(kind="content", kicker="implications", title="Implications & next step",
+         take="Establishes a measurable central readout of peripheral haptic input and the controls to interpret it; with the instrumentation fix, entrainment becomes directly testable.",
+         notes="Implications: this establishes that peripheral haptic stimulation has a measurable, frequency-specific central signature — and, equally important, the methodological controls needed to separate neural signal from stimulator artifact (the disconnected-channel test, the high-pass/ACG/ISI spike screens). With the shared-clock stimulus recording, entrainment becomes directly testable — the gateway question for closed-loop peripheral neuromodulation."),
+    dict(kind="closing", title="Thank you — questions",
+         sub="Happy to go into any figure, the artifact controls, or the next-round instrumentation.",
+         notes="Anticipated questions. 'Is 50 Hz special or just strongest?' — strongest clean single-unit effect of the carriers tested; the LFP transient was largest at 26 Hz but that's the artifact-prone/non-specific measure. 'Could it be arousal?' — possible, but it's frequency-specific (50 ≫ 26 at matched amplitude), which argues against pure intensity-driven arousal; an indirect sensory/state pathway is not excluded. 'Why distrust the 50 Hz LFP?' — disconnected channels carry it at ~6× tissue levels."),
 ]
 
 
@@ -149,26 +153,26 @@ def build_pptx(slides, out):
         s = prs.slides.add_slide(BL); k = sl["kind"]
         if k in ("title", "closing"):
             bar(s, 0, 0, SW, SH, NV); bar(s, 0, 5.0, SW, 0.08, TL)
-            txt(s, 1, 2.0 if k == "title" else 3.0, SW - 2, 1.6, sl["title"], 36, bold=True, color=WH, anchor=MSO_ANCHOR.MIDDLE)
+            txt(s, 1, 2.0 if k == "title" else 3.0, SW - 2, 1.6, sl["title"], 34, bold=True, color=WH, anchor=MSO_ANCHOR.MIDDLE)
             if sl.get("sub"):
-                txt(s, 1, 3.6 if k == "title" else 4.2, SW - 2, 1.0, sl["sub"], 19, color=rgb("#BFD0DA"))
+                txt(s, 1, 3.7 if k == "title" else 4.2, SW - 2, 1.2, sl["sub"], 18, color=rgb("#BFD0DA"))
             if sl.get("footer"):
                 txt(s, 1, 5.3, SW - 2, 0.8, sl["footer"], 16, color=rgb("#9AA8B5"))
         elif k == "section":
             bar(s, 0, 0, SW, SH, TL)
-            txt(s, 1, 2.7, SW - 2, 1.5, sl["title"], 38, bold=True, color=WH, anchor=MSO_ANCHOR.MIDDLE)
+            txt(s, 1, 2.7, SW - 2, 1.5, sl["title"], 36, bold=True, color=WH, anchor=MSO_ANCHOR.MIDDLE)
             if sl.get("sub"):
-                txt(s, 1, 4.1, SW - 2, 1.0, sl["sub"], 20, color=rgb("#D8E8EE"))
+                txt(s, 1, 4.1, SW - 2, 1.0, sl["sub"], 19, color=rgb("#D8E8EE"))
         else:
             bar(s, 0, 0, SW, 0.18, TL); y = 0.45
             if sl.get("kicker"):
                 txt(s, 0.6, y, SW - 1.2, 0.4, sl["kicker"].upper(), 14, bold=True, color=TL); y += 0.45
-            txt(s, 0.6, y, SW - 1.2, 1.1, sl["title"], 26, bold=True, color=NV)
+            txt(s, 0.6, y, SW - 1.2, 1.1, sl["title"], 24, bold=True, color=NV)
             if sl.get("fig"):
                 pic(s, sl["fig"], SW - 1.6, SH - (y + 1.4) - 0.9, top=y + 1.25)
             if sl.get("take"):
-                bar(s, 0, SH - 0.85, SW, 0.85, PN)
-                txt(s, 0.6, SH - 0.82, SW - 1.2, 0.8, sl["take"], 16, bold=True, color=TL, anchor=MSO_ANCHOR.MIDDLE)
+                bar(s, 0, SH - 0.9, SW, 0.9, PN)
+                txt(s, 0.6, SH - 0.87, SW - 1.2, 0.85, sl["take"], 15, bold=True, color=TL, anchor=MSO_ANCHOR.MIDDLE)
         if sl.get("notes"):
             s.notes_slide.notes_text_frame.text = sl["notes"]
     prs.save(out)
@@ -185,7 +189,7 @@ def build_pdf(slides, out):
     def wrap(t, w):
         return "\n".join(textwrap.fill(line, w) for line in t.split("\n"))
 
-    def place(fig, path, box):  # box = (x0,y0,w,h) fig-fraction
+    def place(fig, path, box):
         if not Path(path).exists():
             fig.text(0.5, box[1] + box[3] / 2, f"[missing: {path}]", ha="center", color=GREY); return
         img = mpimg.imread(path); ar = img.shape[1] / img.shape[0]
@@ -201,28 +205,28 @@ def build_pdf(slides, out):
             fig = plt.figure(figsize=(13.333, 7.5)); k = sl["kind"]
             if k in ("title", "closing"):
                 fig.patch.set_facecolor(NAVY)
-                fig.text(0.07, 0.58, wrap(sl["title"], 34), fontsize=34, color="white", weight="bold", va="center")
+                fig.text(0.07, 0.58, wrap(sl["title"], 34), fontsize=32, color="white", weight="bold", va="center")
                 if sl.get("sub"):
-                    fig.text(0.07, 0.40, wrap(sl["sub"], 70), fontsize=17, color="#BFD0DA")
+                    fig.text(0.07, 0.38, wrap(sl["sub"], 78), fontsize=15, color="#BFD0DA")
                 if sl.get("footer"):
-                    fig.text(0.07, 0.18, sl["footer"], fontsize=13, color="#9AA8B5")
+                    fig.text(0.07, 0.16, sl["footer"], fontsize=13, color="#9AA8B5")
             elif k == "section":
                 fig.patch.set_facecolor(TEAL)
-                fig.text(0.08, 0.56, wrap(sl["title"], 30), fontsize=34, color="white", weight="bold", va="center")
+                fig.text(0.08, 0.56, wrap(sl["title"], 32), fontsize=33, color="white", weight="bold", va="center")
                 if sl.get("sub"):
-                    fig.text(0.08, 0.40, wrap(sl["sub"], 60), fontsize=18, color="#E2F0F4")
+                    fig.text(0.08, 0.40, wrap(sl["sub"], 64), fontsize=17, color="#E2F0F4")
             else:
                 fig.patch.set_facecolor("white")
                 fig.add_artist(plt.Rectangle((0, 0.975), 1, 0.025, color=TEAL, transform=fig.transFigure))
                 yt = 0.93
                 if sl.get("kicker"):
                     fig.text(0.05, 0.945, sl["kicker"].upper(), fontsize=12, color=TEAL, weight="bold"); yt = 0.90
-                fig.text(0.05, yt, wrap(sl["title"], 64), fontsize=22, color=NAVY, weight="bold", va="top")
+                fig.text(0.05, yt, wrap(sl["title"], 70), fontsize=21, color=NAVY, weight="bold", va="top")
                 if sl.get("fig"):
-                    place(fig, sl["fig"], (0.05, 0.17, 0.90, 0.62))
+                    place(fig, sl["fig"], (0.05, 0.18, 0.90, 0.60))
                 if sl.get("take"):
-                    fig.add_artist(plt.Rectangle((0, 0), 1, 0.11, color=PANEL, transform=fig.transFigure))
-                    fig.text(0.05, 0.055, wrap(sl["take"], 110), fontsize=14, color=TEAL, weight="bold", va="center")
+                    fig.add_artist(plt.Rectangle((0, 0), 1, 0.12, color=PANEL, transform=fig.transFigure))
+                    fig.text(0.05, 0.06, wrap(sl["take"], 120), fontsize=13, color=TEAL, weight="bold", va="center")
             pdf.savefig(fig, facecolor=fig.get_facecolor()); plt.close(fig)
 
 
