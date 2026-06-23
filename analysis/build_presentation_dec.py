@@ -18,13 +18,14 @@ F = "results/dec4"
 CF = "presentation/concept_figs"   # schematic illustrations (build_concept_figures.py)
 TTL = "analysis/outputs/dec3/ttl_diagnostic/ttl_cannot_recover_tactor_phase.png"
 TRIAL = "results/dec3/13_Teaching_and_Methods/trial_window_diagram.png"
+LOGO_W = "presentation/som_logo_white.png"   # Stanford School of Medicine, white (for dark slides)
 NAVY, TEAL, GREY, PANEL = "#2E2D29", "#8C1515", "#53565A", "#F4F4F4"   # Stanford: Black, Cardinal, Cool Grey, Fog
 
 # ---------------------------------------------------------------- content
 SLIDES = [
     dict(kind="title", title="Can we drive the brain through the skin?",
          sub="Single-unit and LFP responses to amplitude- and frequency-varied haptic stimulation in hippocampus & entorhinal cortex",
-         footer="Pardis Miri  ·  Buzsáki Lab  ·  haptic-stimulation electrophysiology",
+         footer="Pardis Miri  ·  a Snyder Lab (Stanford) × Buzsáki Lab (NYU) collaboration  ·  haptic-stimulation electrophysiology",
          notes="The question: does peripheral haptic stimulation produce a measurable, frequency-specific response in central circuits, and can it entrain neural activity? I'll define the few neuroscience-specific terms (LFP, single units, entrainment, spike sorting) as they come up; everything else assumes general research literacy. ~35 min — please interrupt."),
     dict(kind="content", title="Motivation: peripheral routes to non-invasive neuromodulation",
          take="Before targeting brain states via the skin, we need to know whether — and how — a cutaneous stimulus is represented centrally.",
@@ -149,17 +150,22 @@ def build_pptx(slides, out):
             ih, iw = maxh, maxh * ar
         s.shapes.add_picture(str(path), Inches((SW - iw) / 2), Inches(top), width=Inches(iw), height=Inches(ih))
 
-    for sl in slides:
+    def logo(s, x=0.55, top=0.5, width=3.3):
+        if Path(LOGO_W).exists():
+            w, h = Image.open(LOGO_W).size
+            s.shapes.add_picture(LOGO_W, Inches(x), Inches(top), width=Inches(width), height=Inches(width * h / w))
+
+    for i, sl in enumerate(slides):
         s = prs.slides.add_slide(BL); k = sl["kind"]
         if k in ("title", "closing"):
-            bar(s, 0, 0, SW, SH, NV); bar(s, 0, 5.0, SW, 0.08, TL)
+            bar(s, 0, 0, SW, SH, NV); bar(s, 0, 5.0, SW, 0.08, TL); logo(s, width=3.6)
             txt(s, 1, 2.0 if k == "title" else 3.0, SW - 2, 1.6, sl["title"], 34, bold=True, color=WH, anchor=MSO_ANCHOR.MIDDLE)
             if sl.get("sub"):
                 txt(s, 1, 3.7 if k == "title" else 4.2, SW - 2, 1.2, sl["sub"], 18, color=rgb("#D7D2CB"))
             if sl.get("footer"):
                 txt(s, 1, 5.3, SW - 2, 0.8, sl["footer"], 16, color=rgb("#9A958C"))
         elif k == "section":
-            bar(s, 0, 0, SW, SH, TL)
+            bar(s, 0, 0, SW, SH, TL); logo(s, width=2.9)
             txt(s, 1, 2.7, SW - 2, 1.5, sl["title"], 36, bold=True, color=WH, anchor=MSO_ANCHOR.MIDDLE)
             if sl.get("sub"):
                 txt(s, 1, 4.1, SW - 2, 1.0, sl["sub"], 19, color=rgb("#EDDDDD"))
@@ -175,6 +181,9 @@ def build_pptx(slides, out):
                 txt(s, 0.6, SH - 0.87, SW - 1.2, 0.85, sl["take"], 15, bold=True, color=TL, anchor=MSO_ANCHOR.MIDDLE)
         if sl.get("notes"):
             s.notes_slide.notes_text_frame.text = sl["notes"]
+        if k != "title":   # page number, top-right (clear of the bottom takeaway panel)
+            txt(s, SW - 1.8, 0.27, 1.4, 0.4, f"{i + 1} / {len(slides)}", 11,
+                color=(WH if k in ("section", "closing") else GR), align=PP_ALIGN.RIGHT)
     prs.save(out)
 
 
@@ -200,18 +209,25 @@ def build_pdf(slides, out):
         ax = fig.add_axes([box[0] + (box[2] - wf) / 2, box[1] + (box[3] - hf) / 2, wf, hf])
         ax.imshow(img); ax.axis("off")
 
+    def logo(fig, x=0.05, top=0.93, w=0.27):
+        if not Path(LOGO_W).exists():
+            return
+        img = mpimg.imread(LOGO_W); ar = img.shape[1] / img.shape[0]
+        fw, fh = fig.get_size_inches(); hf = (w * fw / ar) / fh
+        ax = fig.add_axes([x, top - hf, w, hf]); ax.imshow(img); ax.axis("off")
+
     with PdfPages(out) as pdf:
-        for sl in slides:
+        for i, sl in enumerate(slides):
             fig = plt.figure(figsize=(13.333, 7.5)); k = sl["kind"]
             if k in ("title", "closing"):
-                fig.patch.set_facecolor(NAVY)
+                fig.patch.set_facecolor(NAVY); logo(fig, w=0.30)
                 fig.text(0.07, 0.58, wrap(sl["title"], 34), fontsize=32, color="white", weight="bold", va="center")
                 if sl.get("sub"):
                     fig.text(0.07, 0.38, wrap(sl["sub"], 78), fontsize=15, color="#D7D2CB")
                 if sl.get("footer"):
                     fig.text(0.07, 0.16, sl["footer"], fontsize=13, color="#9A958C")
             elif k == "section":
-                fig.patch.set_facecolor(TEAL)
+                fig.patch.set_facecolor(TEAL); logo(fig, w=0.24)
                 fig.text(0.08, 0.56, wrap(sl["title"], 32), fontsize=33, color="white", weight="bold", va="center")
                 if sl.get("sub"):
                     fig.text(0.08, 0.40, wrap(sl["sub"], 64), fontsize=17, color="#EDDDDD")
@@ -227,6 +243,9 @@ def build_pdf(slides, out):
                 if sl.get("take"):
                     fig.add_artist(plt.Rectangle((0, 0), 1, 0.12, color=PANEL, transform=fig.transFigure))
                     fig.text(0.05, 0.06, wrap(sl["take"], 120), fontsize=13, color=TEAL, weight="bold", va="center")
+            if k != "title":   # page number, top-right
+                fig.text(0.955, 0.955, f"{i + 1} / {len(slides)}", ha="right", va="top", fontsize=11,
+                         color=("white" if k in ("section", "closing") else GREY))
             pdf.savefig(fig, facecolor=fig.get_facecolor()); plt.close(fig)
 
 
