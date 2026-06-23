@@ -6,6 +6,9 @@ frequencies. Curated, de-duplicated figures grouped by analysis type. Rebuild wi
 
 ## Headline figures (start here)
 - [combined_explainer.png](10_Biological_Summary/combined_explainer.png) - the whole Dec 4 story: dHPC follows no frequency (same probe as Dec 3); LEC shows induced 50 Hz power that grows with amplitude but is not phase-locked
+- [spike_onoff_cross_dataset.png](11_Spikes/spike_onoff_cross_dataset.png) - the cleanest neural result: single-unit ON/OFF firing — Dec 3 null at 5/26 Hz, Dec 4 50 Hz/high-amp responders in BOTH dHPC and LEC
+- [unit87_acg_artifact_screen.png](11_Spikes/unit87_acg_artifact_screen.png) - the soft-spot unit 87 passes the ACG + ISI artifact screens: its 50 Hz rate increase is a real neuron, not pickup
+- [explainer_2_evidence.png](13_Teaching_and_Methods/explainer_2_evidence.png) - how we know the 50 Hz spike result is neural, not artifact: direction test + dose-response + the ACG resolution + the trust hierarchy
 - [spectral_slope_itpc_dec4.png](05_Frequency_Spectral/spectral_slope_itpc_dec4.png) - entrainment test: a real narrowband 50 Hz peak above 1/f in LEC (amplitude-graded), but ITPC at chance
 - [driven_power_change_by_analysis_group.png](05_Frequency_Spectral/driven_power_change_by_analysis_group.png) - driven-frequency power by probe-group across all 12 conditions
 - [reference_condition_summary.png](09_Reference_Sensitivity/reference_condition_summary.png) - the 50 Hz LEC effect survives every reference scheme
@@ -78,17 +81,32 @@ _Dec 4 in one figure: dHPC null at all frequencies; LEC induced, amplitude-grade
 - [LEC_amp250_freq50_sustained_vs_offset_explained.png](10_Biological_Summary/LEC_amp250_freq50_sustained_vs_offset_explained.png)
 
 ### 11_Spikes
-_SpikeInterface raw-trace sanity check (256 ch). Full Kilosort/PETH = Modal/GPU next step._
+_Kilosort4 + curation done (15 good units/probe). Single-unit ON/OFF (50 Hz/high-amp responders in both regions), cross-region 50 Hz coordination, and the unit-87 ACG/ISI artifact screen. See docs/DEC4_SPIKE_ONOFF_RESULT.md, DEC4_COORDINATION_50HZ.md._
 
 - [spikeinterface_trace_sanity.png](11_Spikes/spikeinterface_trace_sanity.png)
+- [spike_onoff_cross_dataset.png](11_Spikes/spike_onoff_cross_dataset.png)
+- [spike_50hz_interpretation.png](11_Spikes/spike_50hz_interpretation.png)
+- [dHPC_condition_mean_on_minus_off.png](11_Spikes/dHPC_condition_mean_on_minus_off.png)
+- [dHPC_unit_condition_heatmap.png](11_Spikes/dHPC_unit_condition_heatmap.png)
+- [dHPC_peth_onset_good_units.png](11_Spikes/dHPC_peth_onset_good_units.png)
+- [LEC_condition_mean_on_minus_off.png](11_Spikes/LEC_condition_mean_on_minus_off.png)
+- [LEC_unit_condition_heatmap.png](11_Spikes/LEC_unit_condition_heatmap.png)
+- [LEC_peth_onset_good_units.png](11_Spikes/LEC_peth_onset_good_units.png)
+- [coordination_50hz_pooled.png](11_Spikes/coordination_50hz_pooled.png)
+- [coordination_50hz_amp250.png](11_Spikes/coordination_50hz_amp250.png)
+- [unit87_acg_artifact_screen.png](11_Spikes/unit87_acg_artifact_screen.png)
 
 ### 12_ChannelQC_Traces
-_Per-channel noise QC (pooled view; per-probe bad lists are in analysis/bad_channels_dec4.json)._
+_Per-channel noise QC (pooled view; per-probe bad lists in analysis/bad_channels_dec4.json). Plus the 50 Hz LFP artifact check: disconnected LEC electrodes pick up ~6x more 50 Hz than tissue; dHPC is much cleaner (LEC: 82 good / 45 disconnected-dead / 1 hot-excluded ch142)._
 
 - [channel_qc_metrics.png](12_ChannelQC_Traces/channel_qc_metrics.png)
+- [50hz_artifact_check.png](12_ChannelQC_Traces/50hz_artifact_check.png)
+- [50hz_pickup_gradient_dhpc_vs_lec.png](12_ChannelQC_Traces/50hz_pickup_gradient_dhpc_vs_lec.png)
 
 ### 13_Teaching_and_Methods
-_Artifact-margin (+/-100 ms) robustness test, per probe._
+_Artifact-margin robustness test, plus the 50 Hz 'is it pickup or neural?' explainers (contamination + evidence). See docs/DEC4_50HZ_ARTIFACT_CHECK.md._
 
 - [margin_exclusion_test.png](13_Teaching_and_Methods/margin_exclusion_test.png)
 - [LEC_amp250_freq50_margin_exclusion_test.png](13_Teaching_and_Methods/LEC_amp250_freq50_margin_exclusion_test.png)
+- [explainer_1_contamination.png](13_Teaching_and_Methods/explainer_1_contamination.png)
+- [explainer_2_evidence.png](13_Teaching_and_Methods/explainer_2_evidence.png)

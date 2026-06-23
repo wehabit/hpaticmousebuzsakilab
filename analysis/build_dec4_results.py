@@ -152,33 +152,64 @@ MAP = {
     ],
     "spikes": [
         "spikeinterface_setup/spikeinterface_trace_sanity.png",
+        # single-unit ON/OFF result (curated good units), cross-dataset (paths via ../)
+        ("../cross_dataset_spike_compare/spike_onoff_cross_dataset.png", None),
+        ("../cross_dataset_spike_compare/spike_50hz_interpretation.png", None),
+        # per-probe ON/OFF PETH + heatmaps
+        ("spike_peth_on_off_dhpc/condition_mean_on_minus_off.png", "dHPC_condition_mean_on_minus_off.png"),
+        ("spike_peth_on_off_dhpc/unit_condition_on_minus_off_heatmap_ks_good.png", "dHPC_unit_condition_heatmap.png"),
+        ("spike_peth_on_off_dhpc/peth_onset_ks_good_units.png", "dHPC_peth_onset_good_units.png"),
+        ("spike_peth_on_off_lec/condition_mean_on_minus_off.png", "LEC_condition_mean_on_minus_off.png"),
+        ("spike_peth_on_off_lec/unit_condition_on_minus_off_heatmap_ks_good.png", "LEC_unit_condition_heatmap.png"),
+        ("spike_peth_on_off_lec/peth_onset_ks_good_units.png", "LEC_peth_onset_good_units.png"),
+        # cross-region 50 Hz coordination + the soft-spot ACG/ISI artifact screen
+        ("coordination_50hz/coordination_50hz.png", "coordination_50hz_pooled.png"),
+        ("coordination_50hz_amp250/coordination_50hz.png", "coordination_50hz_amp250.png"),
+        ("artifact_check_50hz/unit87_phy_view.png", "unit87_acg_artifact_screen.png"),
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",
+        # 50 Hz LFP artifact check (dead-channel pickup) + dHPC-vs-LEC gradient
+        ("artifact_check_50hz/artifact_check_50hz.png", "50hz_artifact_check.png"),
+        ("artifact_check_50hz/gradient_dhpc_vs_lec.png", "50hz_pickup_gradient_dhpc_vs_lec.png"),
     ],
     "teaching": [
         "methods/dHPC_amp180_freq26/margin_exclusion_test.png",
         "methods/LEC_amp250_freq50/margin_exclusion_test.png",
+        # the 50 Hz "is it pickup?" explainers
+        ("artifact_check_50hz/explainer_1_contamination.png", None),
+        ("artifact_check_50hz/explainer_2_evidence.png", None),
     ],
 }
 
 BLURB = {
     "movement": "LFP-based movement proxy (no accelerometer this session) and the data-cleaning robustness check.",
     "adaptation": "How the response changes over the 200 repeats (early/middle/late + slope).",
-    "spikes": "SpikeInterface raw-trace sanity check (256 ch). Full Kilosort/PETH = Modal/GPU next step.",
-    "teaching": "Artifact-margin (+/-100 ms) robustness test, per probe.",
+    "spikes": "Kilosort4 + curation done (15 good units/probe). Single-unit ON/OFF (50 Hz/high-amp "
+              "responders in both regions), cross-region 50 Hz coordination, and the unit-87 ACG/ISI "
+              "artifact screen. See docs/DEC4_SPIKE_ONOFF_RESULT.md, DEC4_COORDINATION_50HZ.md.",
+    "teaching": "Artifact-margin robustness test, plus the 50 Hz 'is it pickup or neural?' explainers "
+                "(contamination + evidence). See docs/DEC4_50HZ_ARTIFACT_CHECK.md.",
     "event_lfp": "Event-aligned broadband LFP per condition, by channel and by probe (Port A dHPC, Port B LEC).",
     "frequency": "Power at the driven 5/10/26/50 Hz frequency, frequency specificity, time-frequency, and the 1/f + ITPC entrainment test.",
     "phase": "Phase locking (PLV/ITPC) per condition and probe vs the within-trial pre window.",
     "broadband": "Onset/sustained/offset broadband windows, OFF-control, and trial-level bootstrap CIs.",
     "reference": "Robustness of the driven-power result to the referencing scheme (raw / probe / group median).",
     "biological": "Dec 4 in one figure: dHPC null at all frequencies; LEC induced, amplitude-graded 50 Hz power without phase locking.",
-    "channelqc": "Per-channel noise QC (pooled view; per-probe bad lists are in analysis/bad_channels_dec4.json).",
+    "channelqc": "Per-channel noise QC (pooled view; per-probe bad lists in analysis/bad_channels_dec4.json). "
+                 "Plus the 50 Hz LFP artifact check: disconnected LEC electrodes pick up ~6x more 50 Hz than "
+                 "tissue; dHPC is much cleaner (LEC: 82 good / 45 disconnected-dead / 1 hot-excluded ch142).",
 }
 
 HEADLINE = [
     ("10_Biological_Summary/combined_explainer.png",
      "the whole Dec 4 story: dHPC follows no frequency (same probe as Dec 3); LEC shows induced 50 Hz power that grows with amplitude but is not phase-locked"),
+    ("11_Spikes/spike_onoff_cross_dataset.png",
+     "the cleanest neural result: single-unit ON/OFF firing — Dec 3 null at 5/26 Hz, Dec 4 50 Hz/high-amp responders in BOTH dHPC and LEC"),
+    ("11_Spikes/unit87_acg_artifact_screen.png",
+     "the soft-spot unit 87 passes the ACG + ISI artifact screens: its 50 Hz rate increase is a real neuron, not pickup"),
+    ("13_Teaching_and_Methods/explainer_2_evidence.png",
+     "how we know the 50 Hz spike result is neural, not artifact: direction test + dose-response + the ACG resolution + the trust hierarchy"),
     ("05_Frequency_Spectral/spectral_slope_itpc_dec4.png",
      "entrainment test: a real narrowband 50 Hz peak above 1/f in LEC (amplitude-graded), but ITPC at chance"),
     ("05_Frequency_Spectral/driven_power_change_by_analysis_group.png",
@@ -198,12 +229,13 @@ def main() -> None:
     for cat, files in MAP.items():
         d = RES / CATEGORIES[cat]
         d.mkdir(parents=True, exist_ok=True)
-        for rel in files:
+        for entry in files:
+            rel, dest = (entry, None) if isinstance(entry, str) else entry  # optional rename
             src = BASE / rel
             if src.exists():
-                name = src.name
+                name = dest or src.name
                 if (d / name).exists():  # collision (e.g. two sustained_vs_offset_explained.png)
-                    name = f"{src.parent.name}_{src.name}"
+                    name = f"{src.parent.name}_{Path(name).name}"
                 shutil.copy2(src, d / name)
                 copied_files.setdefault(cat, []).append(name)
                 copied += 1
