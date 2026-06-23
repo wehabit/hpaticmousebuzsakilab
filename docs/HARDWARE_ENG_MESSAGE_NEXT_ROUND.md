@@ -1,37 +1,95 @@
 # Message to hardware engineer (Volodymyr) — stimulus recording for next round
 
 Final, ready-to-send version. Full wiring/firmware detail is in
-[STIMULUS_SYNC_RECORDING_SPEC.md](STIMULUS_SYNC_RECORDING_SPEC.md). The key change
-from last round: capture the delivered vibration as a **continuous analog
-waveform** (not a 1-bit TTL), so stimulus **phase** is recoverable.
+[STIMULUS_SYNC_RECORDING_SPEC.md](STIMULUS_SYNC_RECORDING_SPEC.md), and the PVDF
+front-end design is in [PVDF_CHARGE_AMP_SPEC.md](PVDF_CHARGE_AMP_SPEC.md). The key
+change from last round: capture the delivered vibration as a **continuous analog
+waveform** on the Intan clock, so stimulus **phase** is recoverable.
 
 ---
 
-**Subject: Firmware + sensor changes for the next study (recording the actuator's phase & delivery)**
+**Subject: Stimulus sync + delivered-vibration recording for the next study**
 
 Hi Volodymyr,
 
-For the next study I need an updated firmware, plus one added sensor, so we can record exactly what the actuator is doing — time-aligned with the brain electrodes in the human or animal. Context: we drive the tactor in trials (3 s ON at a set frequency + amplitude, then 3 s OFF), and we want to align the recorded brain signal against the actual stimulus — both its timing and its phase. That needs three signals: **two digital lines** into our neural recording system (Intan), and **one analog sensor**.
+I want to frame the next firmware/sensor changes around what the data actually
+showed, so this is diagnostic context rather than fault-finding.
 
-**1) Per-cycle phase pin (digital).** A GPIO that gives one clean edge per sine cycle (a square wave at the drive frequency). This is our phase reference — it lets us recover where in the sine cycle the stimulus is at any instant.
+In the last study, we recorded no usable copy of the delivered stimulus. The
+accelerometer/sync signal that was recorded did not capture the carrier vibration.
+One digital channel was completely dead, and the other toggled slowly and
+irregularly: it gave about the same ~6 pulses per trial regardless of whether the
+commanded stimulus was 5 Hz or 26 Hz. A real per-cycle marker should have given
+~15 cycles in a 3 s, 5 Hz trial and ~78 cycles in a 3 s, 26 Hz trial. In the
+best-case 26 Hz check, the longest run of near-26 Hz intervals was only 3 cycles.
 
-**2) Trial ON/OFF pin (digital).** A GPIO that's HIGH for the whole 3 s ON window and LOW during the 3 s OFF. This marks trial timing precisely (right now we infer it from logs).
+Scientifically, this means we can still analyze coarse stimulus responsiveness
+using ON/OFF timing from the controller log, for example whether firing rate or
+LFP power changes during the buzz. But we cannot test whether neurons lock to the
+phase of the vibration, because the vibration phase was never recorded. That is
+the main limitation of the previous dataset.
 
-Both come from the nRF52 firmware. I've drafted a modified `actuator.cpp` that implements both, with the two pin numbers left as placeholders (`SYNC_CYCLE_PIN`, `TRIAL_GATE_PIN`) for you to assign to free GPIOs and wire to the Intan digital inputs. I'll attach the file. (These two are genuinely digital, so TTL is correct here.)
+That is why I am being specific this round. I think we need three signals recorded
+on the Intan:
 
-**3) Delivered-vibration sensor (the important one — analog, not digital).** An ADXL335 / chip-on-board can't mount cleanly on the moving tactor and would mass-load it. Better idea: a thin **PVDF piezo film** (e.g. piezopvdf.com) sandwiched between the tactor and the contact point. It's thin and light, so it barely loads the actuator, and sitting in the force path it measures the vibration actually transmitted to the subject — the ground truth of what they feel, which is what we compare against the brain signal. Three key points:
+**1) Per-cycle sync pin from the firmware.** This is now implemented in
+`actuator.cpp` as `SYNC_CYCLE_PIN`: one clean edge per carrier cycle, emitted by
+the waveform engine itself. This fixes the specific failure mode where the
+recorded digital line was not actually the carrier. Because the pin is generated
+from the same waveform/timer logic that drives the tactor, it is the command-side
+phase reference.
 
-- **Analog and continuous.** It must be recorded as a continuous analog waveform, *not* a TTL. A 1-bit threshold discards the waveform and makes phase unrecoverable — that's exactly what bit us last round (we logged a comparator version of the sensor). We need the full analog waveform to extract instantaneous phase offline.
-- **It needs a small front-end board.** PVDF is a high-impedance charge source, so it needs a tiny charge-amp board (op-amp + feedback cap `Cf` and resistor `Rf`) that outputs a clean analog voltage scaled into the recording system's input range. Two phase-critical constraints: keep the high-pass corner well below our lowest carrier (≤0.5 Hz — e.g. `Rf·Cf` of 1 GΩ × 1 nF ≈ 0.16 Hz), and set the gain so the loudest amplitude condition fills the input range without clipping while the quietest stays above the noise floor. I'll send a schematic + component table.
-- **Clock and storage.** I'd record it on an Intan analog input so it shares the Intan's 20 kHz clock — that's what keeps it sample-aligned to the brain data — and it never goes through the actuator MCU, so it can't add delay or jitter to the stimulus. Storage is small: one analog channel over a 5 h session is only ~0.7 GB (1–3 GB for a few channels), so it fits on the existing recording — no separate disk needed. (If we ever have to log it on a standalone board/disk instead, we can, but then we'd need to record a shared sync line on both systems to re-align them offline — happy to discuss.)
+**2) Trial gate pin from the firmware.** This is `TRIAL_GATE_PIN`: HIGH for the
+whole 3 s ON window and LOW during the 3 s OFF. This gives precise trial timing
+on the same clock as the neural data, instead of reconstructing timing only from
+the controller log.
 
-**The two sine tables — your call.** While editing I found two 256-point sine tables in `actuator.cpp`: a standard mid-rise one (starts at the midpoint / rising zero-crossing) and a "start-at-zero" one (starts at the minimum). The start-at-zero one was active. In the draft I switched to the standard mid-rise table, for two reasons: (a) for our phase pin, index 0 then lands on the rising zero-crossing — the conventional definition of phase 0° and the steepest, most precise marker; and (b) I'd rather not ship a leftover "test" table in a real study. For a free-running oscillator we never reset, the starting point doesn't change the vibration itself, so I don't think start-at-zero was doing anything for us — but you know the driver: was it there for a reason, e.g. a soft-start to avoid an inrush/click when the driver enables? If so, let's keep it; otherwise I'll go with standard mid-rise. Either way, please confirm and explain the tradeoff so I understand it.
+**3) Delivered-vibration sensor as a continuous analog signal.** This is the most
+important piece scientifically. The firmware sync pin tells us what the firmware
+commanded, but it cannot prove the tactor actually moved, had the right amplitude,
+or had the expected mechanical phase. A dead or mechanically disconnected tactor
+would still produce a perfect firmware sync pin. So we need a transduced analog
+copy of the vibration delivered to the body: ideally a thin PVDF piezo film in the
+tactor-to-contact force path, with a small charge-amp front end, recorded into an
+Intan analog input. If you think a tiny accelerometer is mechanically better, I am
+open to that, but the key requirement is that the signal be analog and continuous,
+not thresholded TTL.
 
-**Questions back to you:**
+The reason for recording everything on the Intan is that the digital inputs,
+analog input, and neural data all share the same 20 kHz clock. That removes
+cross-device drift and lets us compare neural phase directly against the measured
+stimulus phase.
 
-1. Which free GPIOs should the two digital pins use?
-2. PVDF sensor: best way to integrate it in the tactor→contact path (rigid in the force path, minimal added mass) and build the charge-amp front end so its **analog** output lands in the recording system's input range. Confirm it won't load or delay the actuator.
-3. Sine table: standard mid-rise vs start-at-zero — your call + reasoning.
+Before the real study, I also want to do a short verification recording and check
+the data directly. For each test frequency/amplitude, we should confirm:
+
+1. The per-cycle sync pin has the right edge rate, e.g. ~5 edges/s at 5 Hz and
+   ~26 edges/s at 26 Hz.
+2. The trial gate is HIGH for the full ON window and LOW during OFF.
+3. The analog delivered-vibration sensor shows the commanded carrier frequency,
+   with no clipping and enough signal at the lowest amplitude.
+4. The firmware sync pin and the delivered-vibration sensor are phase-consistent.
+
+This verification step is what keeps us from discovering months later, during
+analysis, that a line was dead or was not the carrier.
+
+My concrete asks:
+
+1. Please confirm the two free GPIOs and wiring to Intan digital inputs. Current
+   firmware labels are `SYNC_CYCLE_PIN` and `TRIAL_GATE_PIN`; proposed board labels
+   are `P1.04 / OUT1` for cycle sync and `P1.06 / OUT2` for trial gate, if those are
+   correct for this board.
+2. Please review the PVDF/analog sensor plan and tell me the best mechanical
+   integration: thin sensor in the tactor-to-contact path, minimal added mass,
+   rigid enough to measure transmitted vibration, and a front-end scaled to the
+   Intan 0-3.3 V analog input.
+3. Please help run or enable a short pre-session verification recording before we
+   collect neural data.
+
+I am happy to share the diagnostic plots from the previous recording if useful.
+The main point is not that "the sync was bad" in a vague way; it is that the
+recorded line demonstrably never captured the carrier, and each fix above is
+aimed at one specific failure mode.
 
 Thanks!
 
