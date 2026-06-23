@@ -37,6 +37,45 @@ Thanks!
 
 ---
 
+## Why — what the Dec 3 digital sync actually recorded (context for Volodymyr)
+
+This is where the requirements above come from. I went back and analyzed the Dec 3
+`digitalin.dat` to see if we could recover the stimulus phase after the fact. We
+can't, and the reason drives every item below.
+
+Two digital channels were active:
+- **ch15 — completely dead** (0 edges in the entire ~3 h recording).
+- **ch7 — ~9,000 edges, but it does not track the tactor.** It toggles slowly and
+  irregularly (median interval ~231 ms ≈ 4 Hz, HIGH ~58 % of the time). The actuator
+  ran at 5 and 26 Hz, but ch7 fired the **same ~6 pulses per trial regardless of
+  frequency**. A real per-cycle marker would give ~78 edges per 3 s trial at 26 Hz
+  and ~15 at 5 Hz; ch7 gave ~6 either way — so it is not the carrier.
+
+Best-case checks confirm it: across the whole session the longest run of consecutive
+~38.5 ms (26 Hz) intervals is **3** — it never sustains even three tactor cycles in a
+row; even the single densest 1 s window is irregular, nothing like a 26 Hz square
+wave; and ch7's edges don't line up with the trial schedule (0 edges inside the first
+20 scheduled 26 Hz windows), so it wasn't reliable for trial timing either. Put
+concretely: between two ch7 edges the tactor completed ~6 full up/down cycles — far
+too coarse to see the motion at all.
+
+**Net result: we recorded no usable copy of the stimulus.** We can still show the
+brain's firing *rate* changes during the buzz (that only needs coarse ON/OFF timing,
+which we reconstructed from the controller log) — but we **cannot** test whether
+neurons phase-lock to the vibration (entrainment), because the vibration's phase was
+never recorded. That one missing signal is the main scientific limitation of the
+study, which is why I'm being specific now:
+- the **per-cycle sync pin** (now in firmware) fixes "ch7 wasn't the carrier" — it's
+  emitted by the waveform engine itself, so it can't be the wrong signal;
+- the **transduced analog sensor** gives the *delivered* phase **and proves the tactor
+  actually moved** — the firmware pin alone can't tell us a tactor was dead, the same
+  way nobody noticed ch15 was dead until now;
+- **shared clock + a pre-session verification recording** means we confirm each line
+  shows the right edges/sec at each frequency *before* we trust it — instead of
+  finding out in analysis, months later, that it was useless.
+
+(Diagnostic plots: `analysis/outputs/dec3/ttl_diagnostic/`. Happy to walk through them.)
+
 ## Hardware-readiness: firmware ✓ vs wiring ☐ (internal prep)
 
 **What the firmware already does (verified in `firmware/actuator.cpp`).** Two
