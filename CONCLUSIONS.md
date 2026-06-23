@@ -64,11 +64,13 @@ should not be read as entrainment.
   173–214; none in the clean shallow region), so unit location and pickup location
   can't be spatially separated. The rate result still holds: ≈300 Hz high-pass
   removes 50 Hz pre-detection; the LEC population *leans down* during ON (10/15 units,
-  pickup can't remove spikes); and the **autocorrelogram screen clears 0/8 up-going
-  units** of pickup (no ON 50 Hz comb; unit 87 incl.). So the up-going units **pass
-  the strongest spike-artifact screen we have** — the remaining caveat is
-  arousal/state, n=1, and **indirect sensory-network effects** (direct 50 Hz circuit
-  modulation vs an indirect sensory/state cascade), **not** 50 Hz pickup. See
+  pickup can't remove spikes); and two spike-artifact screens clear **0/8 up-going
+  units** — no ON 50 Hz ACG comb, and no ON rise in ISI<2ms violations (unit 87 incl.;
+  closing both the periodic-pickup and broadband-noise-floor loopholes). So the
+  up-going units **pass the spike-artifact screens** (clean refractory, no comb,
+  stable ON/OFF violation rate) — the remaining caveats are n=1, arousal/state, and
+  **indirect sensory-network effects** (direct 50 Hz circuit modulation vs an indirect
+  sensory/state cascade), **not** 50 Hz pickup manufacturing spikes. See
   [DEC4_50HZ_ARTIFACT_CHECK.md](docs/DEC4_50HZ_ARTIFACT_CHECK.md).
 - Probe geometry / channel order not yet confirmed for laminar/anatomical claims.
 

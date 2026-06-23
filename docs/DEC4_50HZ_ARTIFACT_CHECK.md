@@ -65,13 +65,15 @@ the LEC 50 Hz *LFP* effect as clean neural evidence.** (Note the in-tissue *rela
 rise ≈12% slightly exceeds the dead-channel relative rise ≈6%, so a neural component
 is not excluded — but it is no longer separable here.)
 
-**Unchanged — the clean evidence:** **single-unit firing-rate changes are immune
-to this.** A floating electrode picking up 50 Hz cannot make a **sorted neuron**
-fire more or less. The Dec 4 single-unit ON/OFF result (50 Hz / high-amplitude
-rate modulation in both regions; see
+**Unchanged — the clean evidence:** **single-unit firing-rate changes are much
+harder for LFP pickup to fake**, and the ACG / ISI / waveform screens (below) argue
+against pickup-manufactured spikes: a 50 Hz LFP component is removed by the ~300 Hz
+spike high-pass, and a curated unit's *rate* change is not something a floating
+electrode readily produces. The Dec 4 single-unit ON/OFF result (50 Hz /
+high-amplitude rate modulation in both regions; see
 [DEC4_SPIKE_ONOFF_RESULT.md](DEC4_SPIKE_ONOFF_RESULT.md)) therefore **stands as the
-cleanest neural signature**, exactly as argued. The artifact-robust cross-region
-**spike** test was already flat — consistent with this finding.
+cleanest neural signature**. The artifact-robust cross-region **spike** test was
+already flat — consistent with this finding.
 
 ## Channel-QC audit: are the dead channels otherwise accounted for?
 A follow-up audit checked whether dead/marginal channels contaminate results
@@ -119,21 +121,25 @@ would read in Phy: the **autocorrelogram (ACG)**. Script:
 [unit87_phy_view_dec4.py](../analysis/unit87_phy_view_dec4.py); figure:
 [`unit87_phy_view.png`](../analysis/outputs/dec4/artifact_check_50hz/unit87_phy_view.png).
 
-Logic: a 50 Hz fake-spike source fires every **20 ms**, so it would grow a **20/40 ms
-comb** in the ACG **during ON**. Unit 87 does not — its ACG 20 ms ratio is **0.80 ON
-/ 0.81 OFF** (identical, no comb), with a clean refractory period (**0.31 % ISI <
-2 ms**) and a real spike waveform. **Comprehensive screen: 0 of 8** up-going
-responsive units (both regions) develops an ON-specific 50 Hz comb
-(`up_unit_50hz_periodicity_screen.json`).
+**Screen 1 — the 20 ms comb.** A 50 Hz fake-spike source fires every **20 ms**, so
+it would grow a **20/40 ms comb** in the ACG **during ON**. Unit 87 does not — its
+ACG 20 ms ratio is **0.80 ON / 0.81 OFF** (identical, no comb), with a clean
+refractory period (**0.31 % ISI < 2 ms**) and a real spike waveform. **0 of 8**
+up-going responsive units (both regions) develops an ON-specific 50 Hz comb.
 
-**Reading (careful):** unit 87 — and every up-going unit — **passes the strongest
-spike-artifact screen we have so far**; the specific worry that 50 Hz pickup is
-*manufacturing* these spikes is now **much weaker** (not absolutely eliminated — the
-ACG kills *periodic* pickup, not a hypothetical broadband noise-floor increase, which
-the clean refractory period and stable waveform argue against but don't fully
-exclude). **The remaining caveat for the up-going units is therefore arousal/state,
-n = 1, and indirect sensory-network effects — i.e. direct 50 Hz circuit modulation
-vs an indirect sensory/state cascade — *not* 50 Hz pickup.**
+**Screen 2 — the broadband loophole.** The ACG kills *periodic* pickup; a *broadband*
+noise-floor rise during ON could instead add **randomly-timed** false spikes (no
+comb). Those would land inside the refractory period, raising ISI < 2 ms violations
+during ON. They don't: across all 8 up-units, **0/8** show an ON rise in refractory
+violations (unit 87: **0.45 % ON vs 0.26 % OFF**, both ≪ 1 %). Both screens:
+`up_unit_50hz_periodicity_screen.json`.
+
+**Reading (the strong, defensible version):** unit 87 — and every up-going unit —
+**passes the spike-artifact screens: clean refractory period, no ON-specific 50 Hz
+ACG comb, and a stable ON/OFF refractory-violation rate.** The remaining caveats are
+**n = 1, arousal/state, and indirect sensory-network effects** (direct 50 Hz circuit
+modulation vs an indirect sensory/state cascade) — **not** evidence that 50 Hz pickup
+manufactured the spikes.
 
 ## Why the next round fixes it
 This is precisely what the **recorded analog stimulus** (PVDF force sensor on the

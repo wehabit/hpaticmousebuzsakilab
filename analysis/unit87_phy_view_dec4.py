@@ -48,7 +48,8 @@ def acg(t, maxlag=0.05, b=0.001):
     return (edges[:-1] + b / 2) * 1000, c  # ms
 
 
-# --- batch artifact screen: 50 Hz-periodicity ON vs OFF for ALL up-going responsive units ---
+# --- batch artifact screens for ALL up-going responsive units ---
+# (1) 50 Hz-periodicity ON vs OFF (comb test); (2) ISI<2ms ON vs OFF (noise-floor test)
 def periodicity(t):
     if len(t) < 50:
         return None
@@ -56,6 +57,17 @@ def periodicity(t):
     p20 = c[(np.abs(lg) >= 19) & (np.abs(lg) <= 21)].mean()
     base = c[(np.abs(lg) >= 30) & (np.abs(lg) <= 45)].mean()
     return float(p20 / max(base, 1e-9))
+
+
+def isi_viol_within(t, starts, ends, refr_ms=2.0):
+    """% ISI < refr_ms, computed WITHIN each window (no cross-window gaps)."""
+    viol = tot = 0
+    for s, e in zip(starts, ends):
+        w = np.sort(t[(t >= s) & (t < e)])
+        if len(w) >= 2:
+            d = np.diff(w) * 1000.0
+            viol += int((d < refr_ms).sum()); tot += len(d)
+    return (100.0 * viol / tot) if tot else None
 
 
 up_units = {"dhpc": [86, 104, 126, 137, 139, 149], "lec": [87, 88]}
@@ -67,13 +79,22 @@ for reg, units in up_units.items():
     o2 = inmask(s2, tw50.on_start_s.values, tw50.on_end_s.values)
     f2 = inmask(s2, tw50.off_start_s.values, tw50.off_end_s.values)
     for u in units:
-        rON, rOFF = periodicity(s2[(c2 == u) & o2]), periodicity(s2[(c2 == u) & f2])
-        screen[f"{reg}_{u}"] = {"ON": round(rON, 2) if rON else None, "OFF": round(rOFF, 2) if rOFF else None,
-                                "artifact_comb": bool(rON and rOFF and rON > 1.3 and rON - rOFF > 0.3)}
-n_flag = sum(v["artifact_comb"] for v in screen.values())
-(OUT / "up_unit_50hz_periodicity_screen.json").write_text(
-    json.dumps({"n_up_units": len(screen), "n_with_ON_50Hz_comb": n_flag, "per_unit": screen}, indent=2) + "\n")
-print(f"ON-specific 50 Hz comb: {n_flag}/{len(screen)} up-going responsive units")
+        t = s2[c2 == u]
+        rON, rOFF = periodicity(t[o2[c2 == u]]), periodicity(t[f2[c2 == u]])
+        iON = isi_viol_within(t, tw50.on_start_s.values, tw50.on_end_s.values)
+        iOFF = isi_viol_within(t, tw50.off_start_s.values, tw50.off_end_s.values)
+        screen[f"{reg}_{u}"] = {
+            "comb_ON": round(rON, 2) if rON else None, "comb_OFF": round(rOFF, 2) if rOFF else None,
+            "artifact_comb": bool(rON and rOFF and rON > 1.3 and rON - rOFF > 0.3),
+            "isi2ms_ON_pct": round(iON, 2) if iON is not None else None,
+            "isi2ms_OFF_pct": round(iOFF, 2) if iOFF is not None else None,
+            "isi_ON_higher": bool(iON and iOFF and iON - iOFF > 0.5 and iON > 1.0)}
+n_comb = sum(v["artifact_comb"] for v in screen.values())
+n_isi = sum(v["isi_ON_higher"] for v in screen.values())
+(OUT / "up_unit_50hz_periodicity_screen.json").write_text(json.dumps(
+    {"n_up_units": len(screen), "n_with_ON_50Hz_comb": n_comb, "n_with_ON_isi_rise": n_isi,
+     "per_unit": screen}, indent=2) + "\n")
+print(f"ON-specific 50 Hz comb: {n_comb}/{len(screen)} ; ON ISI<2ms rise: {n_isi}/{len(screen)}")
 
 CID = 87
 t87 = st[sc == CID]
@@ -82,6 +103,10 @@ _, c_on = acg(st[(sc == CID) & on])
 _, c_off = acg(st[(sc == CID) & off])
 isi = np.diff(np.sort(t87)) * 1000
 viol = (isi < 2).mean() * 100
+isi_on = screen["lec_87"]["isi2ms_ON_pct"]; isi_off = screen["lec_87"]["isi2ms_OFF_pct"]
+# save unit-87 ACG (ON/OFF, rate-normalised) for the explainer figure
+np.savez(OUT / "unit87_acg.npz", lags=lags, c_on=c_on / max(c_on.sum(), 1),
+         c_off=c_off / max(c_off.sum(), 1), isi_on=isi_on, isi_off=isi_off, viol=viol)
 
 fig, ax = plt.subplots(1, 4, figsize=(16.5, 4.3))
 fig.subplots_adjust(bottom=0.18, top=0.78, left=0.05, right=0.99, wspace=0.30)
@@ -125,8 +150,8 @@ a.set_title(f"4. ISI: only {viol:.2f}% < 2 ms (red)\n= a clean, real single unit
 
 fig.suptitle("UNIT 87 — the 'Phy view', computed: the soft-spot LEC unit is a REAL neuron, and its 50 Hz ON rate increase "
              "is NOT 50 Hz pickup (its autocorrelogram grows no 50 Hz periodicity during ON).\n"
-             f"Comprehensive screen: {n_flag} / {len(screen)} up-going responsive units (both regions) show an ON-specific 50 Hz comb "
-             "⇒ the up-going rate increases are genuine, not pickup.", fontsize=10)
+             f"Comprehensive screen: {n_comb}/{len(screen)} up-going units show an ON 50 Hz comb, and {n_isi}/{len(screen)} show an ON "
+             "ISI<2ms rise ⇒ the up-going rate increases are genuine, not pickup.", fontsize=10)
 fig.savefig(OUT / "unit87_phy_view.png", dpi=120)
 print("wrote", OUT / "unit87_phy_view.png")
 print(f"unit 87: {len(t87)} spikes, ISI<2ms {viol:.2f}%")

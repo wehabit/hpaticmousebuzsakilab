@@ -116,12 +116,11 @@ for row, reg in [(1, "dHPC"), (0, "LEC")]:
     a.scatter(deltas, ys, c=cols, s=42, edgecolor="#333", lw=0.4, zorder=3)
     lab = f"{reg}:  {dn} down / {up} up" + (f" / {zero}≈0" if zero else "")
     a.text(-2.85, row + 0.36, lab, fontsize=9.5, fontweight="bold")
-    for i, u in enumerate(units):   # highlight 87 and 126 (the units expanded in panels 2 & 3)
-        if u["cluster_id"] in (87, 126):
+    for i, u in enumerate(units):   # highlight unit 87 — the soft spot expanded in panels 2 & 3
+        if u["cluster_id"] == 87:
             a.scatter([u["delta"]], [ys[i]], s=230, facecolors="none", edgecolors="#6a51a3", lw=2.2, zorder=4)
-            pnl = "panel 2" if u["cluster_id"] == 87 else "panel 3"
-            a.annotate(f"#{u['cluster_id']} → {pnl}", (u["delta"], ys[i]), fontsize=8.5, fontweight="bold",
-                       xytext=(u["delta"] + 0.15, ys[i] - 0.34), color="#6a51a3",
+            a.annotate("#87 → panels 2-3\n(the soft spot)", (u["delta"], ys[i]), fontsize=8.5, fontweight="bold",
+                       xytext=(u["delta"] + 0.35, ys[i] - 0.40), color="#6a51a3", ha="center",
                        arrowprops=dict(arrowstyle="->", color="#6a51a3", lw=1.2))
 a.axvline(0, color="#333", lw=1)
 a.set_xlim(-3.1, 3.3); a.set_ylim(-0.7, 1.8)
@@ -130,31 +129,42 @@ a.set_xlabel("per-unit 50 Hz firing-rate change  ON − OFF (Hz)")
 a.set_title("1. The direction test — each dot = one unit (top row dHPC, bottom row LEC)\n"
             "LEFT of 0 (blue): pickup CANNOT explain — can't remove spikes | RIGHT (red): pickup could mimic", fontsize=9.5)
 
-# --- 2.2 & 2.3 dose-response: unit 87 (ambiguous) vs unit 126 (clean at low amp) ---
-for a, reg, cid, ch, verdict, vcol in [
-        (ax[0, 1], "unit87_LEC", 87, "ch181", "AMBIGUOUS: rate & pickup rise together", "#b30000"),
-        (ax[1, 0], "unit126_dHPC", 126, "ch120", "CLEANER: rate rises at amp100/180 where pickup is ≤0", "#1a7a1a")]:
-    rate = dat[reg + "_rate_by_amp"]
-    on = [rate[str(am)]["on"] for am in amps]; off = [rate[str(am)]["off"] for am in amps]
-    pick = by(dat["pickup_by_amp"][ch + ("_unit87" if cid == 87 else "_unit126")])
-    l1, = a.plot(amps, on, "-o", color="#d62728", lw=2.2, label="firing rate ON")
-    l2, = a.plot(amps, off, "-o", color="#9aa0a6", lw=2.2, label="firing rate OFF")
-    a.set_xticks(amps); a.set_xlabel("stimulus amplitude"); a.set_ylabel("firing rate (Hz)", color="#b30000")
-    a2 = a.twinx()
-    l3, = a2.plot(amps, pick, "--D", color="#6a51a3", lw=2, label="50 Hz pickup on its channel")
-    a2.axhline(0, color="#bbb", lw=0.8)
-    a2.set_ylabel("50 Hz pickup ON−OFF (µV)", color="#6a51a3")
-    a.legend(handles=[l1, l2, l3], fontsize=8, frameon=False, loc="upper left")  # all three together, top-left
-    a.set_title(f"{'2' if cid==87 else '3'}. Unit {cid} ({reg.split('_')[1]}, {ch}) dose-response  ★\n{verdict}",
-                fontsize=10, color=vcol)
+# --- 2.2 dose-response of unit 87: WHY it looks ambiguous (rate & pickup rise together) ---
+a = ax[0, 1]
+rate = dat["unit87_LEC_rate_by_amp"]
+on = [rate[str(am)]["on"] for am in amps]; off = [rate[str(am)]["off"] for am in amps]
+pick = by(dat["pickup_by_amp"]["ch181_unit87"])
+l1, = a.plot(amps, on, "-o", color="#d62728", lw=2.2, label="firing rate ON")
+l2, = a.plot(amps, off, "-o", color="#9aa0a6", lw=2.2, label="firing rate OFF")
+a.set_xticks(amps); a.set_xlabel("stimulus amplitude"); a.set_ylabel("firing rate (Hz)", color="#b30000")
+a2 = a.twinx()
+l3, = a2.plot(amps, pick, "--D", color="#6a51a3", lw=2, label="50 Hz pickup on its channel")
+a2.axhline(0, color="#bbb", lw=0.8); a2.set_ylabel("50 Hz pickup ON−OFF (µV)", color="#6a51a3")
+a.legend(handles=[l1, l2, l3], fontsize=8, frameon=False, loc="upper left")
+a.set_title("2. Unit 87 (LEC, ch181) dose-response — looks AMBIGUOUS\nrate & pickup rise together  →  resolved in panel 3",
+            fontsize=10, color="#b3860b")
+
+# --- 2.3 the RESOLUTION: unit 87's autocorrelogram grows no 20 ms comb during ON ---
+a = ax[1, 0]
+acg = np.load(D / "unit87_acg.npz")
+a.plot(acg["lags"], acg["c_on"], color="#d62728", lw=1.8, label="ON (50 Hz buzz)")
+a.plot(acg["lags"], acg["c_off"], color="#9aa0a6", lw=1.8, label="OFF")
+for L in (-40, -20, 20, 40):
+    a.axvline(L, color="#b59", ls=":", lw=0.9)
+a.text(20, a.get_ylim()[1] * 0.93, "50 Hz\n= 20 ms", fontsize=7.5, color="#a14", ha="center")
+a.set_xlabel("autocorrelogram lag (ms)"); a.set_ylabel("normalised count")
+a.legend(fontsize=8, frameon=False, loc="lower center")
+a.set_title("3. RESOLVED: unit 87's ACG grows NO 20 ms comb during ON\n"
+            "(ISI<2ms stable: %.2f%% ON / %.2f%% OFF)  →  spikes are NOT pickup" % (acg["isi_on"], acg["isi_off"]),
+            fontsize=10, color="#1a7a1a")
 
 # --- 2.4 the hierarchy ladder ---
 a = ax[1, 1]; a.axis("off")
 tiers = [
     ("#1a7a1a", "CLEANEST", "Suppressed units (ON<OFF), both regions + dHPC up-units at amp100/180.\nPickup can only ADD apparent spikes — it cannot cause suppression."),
     ("#7cb342", "STRONG", "LEC population leans down at 50 Hz (10 of 15 units down, mean −0.08 Hz).\nA net loss of spikes can't be additive artifact."),
-    ("#3a7fc1", "CLEARED BY ACG", "amp250 up-going increases: pickup is present in both probes, BUT the\nautocorrelogram screen clears 0/8 — no ON 50 Hz comb (incl. unit 87)."),
-    ("#d62728", "CONTAMINATED / RESIDUAL", "50 Hz LFP power (LEC strongly; dHPC only at amp250) = NOT neural evidence.\nResidual caveat is arousal/state & n=1 — NOT 50 Hz pickup."),
+    ("#3a7fc1", "CLEARED BY ACG + ISI", "amp250 up-going increases: pickup present in both probes, BUT 0/8 units show\nan ON 50 Hz comb OR an ON refractory-violation rise (incl. unit 87)."),
+    ("#d62728", "CONTAMINATED / RESIDUAL", "50 Hz LFP power (LEC strongly; dHPC only at amp250) = NOT neural evidence.\nResidual caveat: arousal/state, n=1 & indirect sensory-network effects — NOT pickup."),
 ]
 a.text(0.5, 1.02, "4. The trust hierarchy", ha="center", fontsize=11, fontweight="bold", transform=a.transAxes)
 for i, (col, lab, txt) in enumerate(tiers):
@@ -166,8 +176,9 @@ for i, (col, lab, txt) in enumerate(tiers):
 a.text(0.5, -0.06, "humility: n = 1 animal · ~7–11% of tests responsive (some expected false) · arousal/state not fully excluded",
        ha="center", fontsize=7.6, style="italic", color="#666", transform=a.transAxes)
 
-fig.suptitle("THE EVIDENCE — direction (not magnitude) is what defeats the artifact: pickup can ADD apparent spikes but never REMOVE them.\n"
-             "So suppression is clean; amp250 increases need the high-pass argument; unit 87 is the one genuinely soft data point.",
-             fontsize=11)
+fig.suptitle("THE EVIDENCE — direction defeats the artifact (pickup can ADD apparent spikes, never REMOVE them), so suppression is clean;\n"
+             "and the up-going units — incl. unit 87 — PASS the ACG + ISI spike-artifact screens. Residual caveat: arousal/state, n=1, "
+             "indirect sensory-network effects — NOT 50 Hz pickup.",
+             fontsize=10.5)
 fig.savefig(D / "explainer_2_evidence.png", dpi=120)
 print("wrote", D / "explainer_2_evidence.png")
