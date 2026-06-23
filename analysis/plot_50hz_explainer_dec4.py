@@ -19,10 +19,11 @@ D = Path("analysis/outputs/dec4/artifact_check_50hz")
 dat = json.load(open(D / "explainer_data.json"))
 z = np.load(D / "artifact_check_arrays.npz")
 amps = [100, 180, 250]
+UV = 0.195  # Intan RHD 0.195 uV per ADC bit (standard); sort used uncalibrated units
 
 
-def by(d):  # dict {"100":x,...} -> [x at 100,180,250]
-    return [d[str(a)] for a in amps]
+def by(d):  # dict {"100":x,...} -> [x at 100,180,250] in uV
+    return [d[str(a)] * UV for a in amps]
 
 
 # ============================== FIGURE 1 ==============================
@@ -36,24 +37,30 @@ a.axhline(0, color="#999", lw=0.8)
 a.plot(amps, by(p["LEC_dead"]), "-o", color="#d62728", lw=2.4, label="LEC dead (disconnected)")
 a.plot(amps, by(p["dHPC_dead_121"]), "-s", color="#9467bd", lw=2, label="dHPC dead (ch121)")
 a.plot(amps, by(p["dHPC_tissue"]), "-^", color="#4C78A8", lw=2, label="dHPC tissue (good)")
-a.set_xticks(amps); a.set_xlabel("stimulus amplitude"); a.set_ylabel("50 Hz envelope  ON − OFF")
+a.set_xticks(amps); a.set_xlabel("stimulus amplitude")
+a.set_ylabel("50 Hz amplitude  ON − OFF  (µV)")
 a.legend(fontsize=8, frameon=False, loc="upper left")
-a.set_title("1. Pickup grows with amplitude — LEC huge, dHPC small\n"
-            "dHPC dead ≥ dHPC tissue at amp250 ⇒ that bump is PICKUP too", fontsize=10)
-a.annotate("dHPC only\nleaks at amp250\n(~5× < LEC)", xy=(250, 8), xytext=(170, 22),
-           fontsize=8, color="#333", arrowprops=dict(arrowstyle="->", color="#666"))
+a.set_title("1. WHEN/HOW MUCH: pickup scales with drive — LEC huge, dHPC small\n"
+            "dHPC dead ≥ dHPC tissue at amp250 ⇒ that bump is PICKUP too", fontsize=9.5)
+a.annotate("dHPC only\nleaks at amp250\n(~5× < LEC)", xy=(250, p["dHPC_dead_121"]["250"] * UV),
+           xytext=(168, 4.4), fontsize=8, color="#333", arrowprops=dict(arrowstyle="->", color="#666"))
 
 # --- 1.2 spatial: where the 50 Hz lives ---
 a = ax[1]
-diff = z["diff"]
+diff = z["diff"] * UV
 lec_dead = set(int(c) for c in z["lec_dead"])
 for c in range(256):
     col = "#d62728" if (c in lec_dead or c == 121) else ("#4C78A8" if c < 128 else "#2ca02c")
     a.bar(c, diff[c], width=1.0, color=col)
 a.axvline(128, color="#888", ls="--", lw=1); a.axhline(0, color="#333", lw=0.8)
-a.set_xlabel("channel  (0–127 dHPC | 128–255 LEC)"); a.set_ylabel("50 Hz envelope  ON − OFF (pooled)")
-a.set_title("2. Where it lives: dHPC flat; LEC piles up\nat the dead blocks (red) and deep good ch", fontsize=10)
-a.text(20, diff.max() * 0.75, "dHPC\nflat ≈ 0", fontsize=8.5, color="#4C78A8")
+a.set_xlabel("channel  (0–127 dHPC | 128–255 LEC)"); a.set_ylabel("50 Hz amplitude  ON − OFF  (µV, pooled)")
+a.set_title("2. WHERE: dHPC flat; LEC piles up at the dead\nblocks (red) AND the deep 'good' channels (green)", fontsize=9.5)
+a.text(20, diff.max() * 0.72, "dHPC\nflat ≈ 0", fontsize=8.5, color="#4C78A8")
+a.annotate("deep LEC 'good' ch (green)\nnext to the dead block —\nalso pick up", xy=(214, diff[214]),
+           xytext=(150, diff.max() * 0.82), fontsize=7.6, color="#1a7a1a",
+           arrowprops=dict(arrowstyle="->", color="#2ca02c"))
+a.annotate("dead blocks\n(red)", xy=(245, diff[245]), xytext=(243, diff.max() * 0.5),
+           fontsize=7.6, color="#b30000", ha="center")
 
 # --- 1.3 high-pass barrier ---
 a = ax[2]
@@ -61,18 +68,24 @@ f = z["fvec"]
 a.loglog(f[1:], z["pon_dh"][1:], color="#4C78A8", lw=1.4, label="dHPC LFP (ON)")
 a.loglog(f[1:], z["pon_lec"][1:], color="#2ca02c", lw=1.4, label="LEC LFP (ON)")
 a.axvspan(f[1], 300, color="#f2dede", alpha=0.5)
+a.axvspan(300, 625, color="#dce8dc", alpha=0.6)
 a.axvline(300, color="#b30000", lw=2)
+ytop = z["pon_dh"].max()
 for f0 in (50, 100, 150):
     a.axvline(f0, color="#444", ls=":", lw=0.9)
-a.set_xlim(2, 625); a.set_xlabel("frequency (Hz)"); a.set_ylabel("LFP power")
-a.legend(fontsize=8, frameon=False)
-a.set_title("3. The high-pass barrier: 50 Hz pickup (pink) is\nREMOVED before spikes are detected (>300 Hz)", fontsize=10)
-a.text(8, z["pon_lec"].max() * 0.5, "pickup\n50/100/150 Hz\nlives here", fontsize=8, color="#a33")
-a.text(330, z["pon_lec"].max() * 0.5, "spikes\ndetected\n→ (off chart,\n300 Hz–5 kHz)", fontsize=8, color="#b30000")
+    a.text(f0, ytop * 1.15, f"{f0}", fontsize=7.5, color="#444", ha="center")
+a.text(300, ytop * 1.5, "~300 Hz\nhigh-pass", fontsize=7.5, color="#b30000", ha="center")
+a.set_xlim(2, 625); a.set_ylim(top=ytop * 2.2)
+a.set_xlabel("frequency (Hz)"); a.set_ylabel("LFP power (a.u.)")
+a.legend(fontsize=8, frameon=False, loc="lower left")
+a.set_title("3. WHY IT CAN'T MAKE SPIKES: pickup (50/100/150 Hz) is in\nthe LFP band — REMOVED by the ~300 Hz spike high-pass", fontsize=9.5)
+a.text(6, ytop * 0.06, "pickup lives\nhere (pink) —\nLFP band,\ndiscarded", fontsize=7.6, color="#a33")
+a.text(330, ytop * 0.10, "spikes detected\nin this band →\n(300 Hz–5 kHz, on\nthe 20 kHz raw\nfile, off chart)", fontsize=7.3, color="#1a5a1a")
 
-fig.suptitle("THE CONTAMINATION — the 50 Hz LFP is pickup (LEC strongly, dHPC only at amp250), "
-             "but it lives below the spike-detection band, so it cannot DIRECTLY create spikes.",
-             fontsize=11)
+fig.suptitle("THE CONTAMINATION — three independent 'tells' that the LFP 50 Hz is electrical PICKUP, not neural:\n"
+             "(1) it scales with drive & appears on DEAD electrodes,  (2) it sits ON the dead electrodes spatially,  "
+             "(3) but it lives below the spike band, so it can't DIRECTLY make spikes.",
+             fontsize=10.5)
 fig.savefig(D / "explainer_1_contamination.png", dpi=120)
 print("wrote", D / "explainer_1_contamination.png")
 plt.close(fig)
@@ -118,7 +131,7 @@ for a, reg, cid, ch, verdict, vcol in [
     a2 = a.twinx()
     a2.plot(amps, pick, "--D", color="#6a51a3", lw=2, label="50 Hz pickup on its channel")
     a2.axhline(0, color="#bbb", lw=0.8)
-    a2.set_ylabel("50 Hz pickup ON−OFF", color="#6a51a3")
+    a2.set_ylabel("50 Hz pickup ON−OFF (µV)", color="#6a51a3")
     a2.legend(fontsize=8, frameon=False, loc="lower right")
     a.set_title(f"{'2' if cid==87 else '3'}. Unit {cid} ({reg.split('_')[1]}, {ch}) dose-response\n{verdict}",
                 fontsize=10, color=vcol)
