@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle, Rectangle, Arc, Polygon
+from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle, Rectangle, Arc, Polygon, Ellipse
 
 OUT = Path("presentation/concept_figs"); OUT.mkdir(parents=True, exist_ok=True)
 NAVY, TEAL, GOLD, RED, GREEN = "#2E2D29", "#007C92", "#E98300", "#8C1515", "#175E54"   # Stanford: Black, Bay, Poppy, Cardinal, Palo Alto
@@ -172,5 +172,20 @@ def fix():
     save(fig, "fix.png")
 
 
+# ---------------- mouse silhouette (species cue for the title slide) ----------------
+def mouse(col="white", name="mouse_white.png"):
+    fig, ax = plt.subplots(figsize=(2.6, 1.7)); ax.axis("off")
+    ax.set_xlim(0, 2.6); ax.set_ylim(0, 1.7); ax.set_aspect("equal")
+    tx = np.linspace(0, 1, 60)                       # curled tail behind the body
+    ax.plot(1.9 + 0.72 * tx, 0.55 + 0.62 * tx ** 2, color=col, lw=3.4, solid_capstyle="round")
+    ax.add_patch(Ellipse((1.35, 0.72), 1.35, 0.92, fc=col, ec="none"))   # body
+    ax.add_patch(Circle((0.62, 0.64), 0.40, fc=col, ec="none"))          # head
+    ax.add_patch(Circle((0.52, 1.00), 0.26, fc=col, ec="none"))          # ear
+    ax.add_patch(Polygon([(0.30, 0.70), (0.06, 0.58), (0.30, 0.48)], closed=True, fc=col, ec="none"))  # snout
+    fig.savefig(OUT / name, dpi=200, transparent=True, bbox_inches="tight"); plt.close(fig)
+    print("wrote", name)
+
+
 if __name__ == "__main__":
     stadium(); two_regions(); experiment(); entrainment(); trap(); fix()
+    mouse("white", "mouse_white.png"); mouse("#53565A", "mouse_grey.png")
