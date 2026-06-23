@@ -217,6 +217,40 @@ def landscape():
     save(fig, "landscape.png")
 
 
+# ---------------- glymphatic bridge figures (slide 3->4 story) ----------------
+def glymphatic():
+    fig, ax = plt.subplots(figsize=(11.5, 4.9)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 4.9)
+    ax.text(5.75, 4.65, "The glymphatic system — the brain's waste-clearance pathway", ha="center", fontsize=14, weight="bold", color=NAVY)
+    ax.add_patch(Ellipse((5.6, 2.75), 4.4, 2.1, fc=LIGHT, ec=NAVY, lw=1.5))
+    ax.text(5.6, 3.5, "brain", ha="center", fontsize=11, color=GREY)
+    rng = np.random.default_rng(3)
+    for _ in range(15):
+        ax.add_patch(Circle((5.6 + rng.uniform(-1.7, 1.7), 2.65 + rng.uniform(-0.6, 0.45)), 0.07, fc=RED, ec="none"))
+    ax.text(8.05, 2.0, "amyloid-β / tau", fontsize=9.5, color=RED)
+    for x in (4.6, 5.6, 6.6):                       # CSF in (top)
+        arrow(ax, (x, 4.3), (x, 3.7), color=TEAL, lw=2.4)
+    ax.text(8.45, 4.05, "CSF in\n(along vessels)", fontsize=10, color=TEAL, va="center")
+    arrow(ax, (5.6, 1.6), (5.6, 1.0), color=GREEN, lw=2.8)   # waste out -> lymph
+    box(ax, 4.2, 0.35, 2.8, 0.6, "cervical lymph nodes", GREEN, fs=10)
+    ax.text(7.45, 1.25, "waste out →", fontsize=10, color=GREEN)
+    ax.text(0.25, 2.75, "boosted by\nsleep &\nvascular\npulsation\n(AQP4)", fontsize=9.5, color=GREY, va="center")
+    ax.text(5.75, 0.05, "impaired clearance → Aβ/tau accumulate — an active but still-unsettled AD hypothesis", ha="center", fontsize=9.5, style="italic", color=GREY)
+    save(fig, "glymphatic.png")
+
+
+def driving_clearance():
+    fig, ax = plt.subplots(figsize=(11.5, 3.9)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 3.9)
+    ax.text(5.75, 3.65, "Clearance can be driven non-invasively — in animals", ha="center", fontsize=14, weight="bold", color=NAVY)
+    box(ax, 0.4, 2.05, 3.0, 0.95, "40 Hz light + sound\n(GENUS)", NAVY, fs=11)
+    arrow(ax, (3.45, 2.525), (4.3, 2.525), color=GREY, lw=2.4)
+    box(ax, 4.35, 2.05, 6.75, 0.95, "~4× CSF influx · ~30% less amyloid · AQP4-dependent\n(Murdock 2024, Nature)", GREEN, fs=10.5)
+    box(ax, 0.4, 0.75, 3.0, 0.95, "Focused ultrasound\n(Stanford)", TEAL, fs=11)
+    arrow(ax, (3.45, 1.225), (4.3, 1.225), color=GREY, lw=2.4)
+    box(ax, 4.35, 0.75, 6.75, 0.95, "↑ CSF influx · faster debris clearance\n(Aryal 2022 · Azadian 2025, Nat Biotech)", GOLD, fs=10.5)
+    ax.text(5.75, 0.25, "open question: can a WEARABLE modality do it?", ha="center", fontsize=11, weight="bold", color=RED)
+    save(fig, "driving_clearance.png")
+
+
 # ---------------- mouse silhouette (species cue for the title slide) ----------------
 def mouse(col="white", name="mouse_white.png"):
     fig, ax = plt.subplots(figsize=(2.6, 1.7)); ax.axis("off")
@@ -234,4 +268,5 @@ def mouse(col="white", name="mouse_white.png"):
 if __name__ == "__main__":
     stadium(); two_regions(); experiment(); entrainment(); trap(); fix()
     vision_chain(); whitespace(); landscape()
+    glymphatic(); driving_clearance()
     mouse("white", "mouse_white.png"); mouse("#53565A", "mouse_grey.png")
