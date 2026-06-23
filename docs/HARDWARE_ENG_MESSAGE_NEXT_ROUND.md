@@ -34,3 +34,54 @@ Both come from the nRF52 firmware. I've drafted a modified `actuator.cpp` that i
 3. Sine table: standard mid-rise vs start-at-zero — your call + reasoning.
 
 Thanks!
+
+---
+
+## Hardware-readiness: firmware ✓ vs wiring ☐ (internal prep)
+
+**What the firmware already does (verified in `firmware/actuator.cpp`).** Two
+**digital** references, generated deterministically and sample-accurately — the
+marker is written in the *same* timer ISR as each PWM sample, off the same
+`g_sine_index`, so it **cannot drift from the carrier** (it *is* the carrier):
+- **`SYNC_CYCLE_PIN`** — one clean rising edge per carrier cycle (currently anchored
+  at sine index 0; that's the **trough** for the start-at-zero table or the **rising
+  zero-crossing** for mid-rise — i.e. the phase-zero convention follows the Q3
+  sine-table decision). Fires only while delivering (`g_pwm_active && output>0`),
+  parked LOW when idle.
+- **`TRIAL_GATE_PIN`** — HIGH for the whole ON window, LOW otherwise.
+
+**The catch — these are *command-side*.** They report what the firmware *intends*,
+not what the tactor *delivers*. A dead, mis-amplitude, or mechanically phase-lagged
+actuator would still emit a perfect sync pin. So they're necessary but **not
+sufficient**: the delivered signal and an independent cross-check are **wiring, not
+firmware**.
+
+**Why redundancy (the Dec-3 lesson).** Last round we had a single digital line that
+(a) never actually captured the carrier and (b) was unverified — so we only found out
+it was useless during analysis, months later. Recording **2–3 independent references
+on the shared Intan 20 kHz clock** and cross-checking them removes that single point
+of failure: if one is wrong, the others disagree and you catch it *before* the
+session.
+
+## What to ask Volodymyr to wire in (checklist)
+1. **Both firmware digital lines → Intan DIGITAL inputs**, on the Intan's own 20 kHz
+   clock: `SYNC_CYCLE_PIN` and `TRIAL_GATE_PIN` (assign the two free GPIOs — Q1).
+2. **Analog copy of the drive signal → Intan ANALOG input.** A buffered/divided copy
+   of the actual tactor drive voltage, scaled to the input range. A near-free *second*
+   phase reference — continuous, command-side — that cross-checks the sync pin.
+3. **Delivered-vibration sensor → Intan ANALOG input.** PVDF in the tactor→skin force
+   path + charge-amp ([PVDF_CHARGE_AMP_SPEC.md](PVDF_CHARGE_AMP_SPEC.md)), **or** a
+   small accelerometer on the tactor (26/50 Hz is well in-band). This is the delivery
+   ground-truth and catches mechanical phase lag. **Analog & continuous, never a TTL.**
+4. **Everything on the shared Intan clock** — no separate logger. If anything must live
+   on another device, also record a common sync line on both to re-align offline.
+5. **Acceptance test BEFORE the neural session (the step Dec 3 skipped).** In a short
+   test recording, verify *in the data*: (a) the sync pin shows the **right number of
+   edges per second** at each frequency (e.g. ~26/s at 26 Hz — the exact check ch7
+   failed in Dec 3), (b) the gate is HIGH for the full ON window, (c) the analog
+   sensor shows the carrier, (d) the sync pin and the delivered sensor are
+   phase-consistent. Fix any disagreement before recording brain data.
+
+**Minimum viable:** items **1 + 3** (digital sync + one transduced analog sensor) make
+entrainment testable. Items **2 + 5** are the cheap insurance that turns "we hope it
+worked" into "we verified it worked" — exactly what was missing last round.
