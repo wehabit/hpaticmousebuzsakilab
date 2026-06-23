@@ -54,7 +54,16 @@ mean ON−OFF **+0.79 Hz**) — highest frequency × highest amplitude.
   timing would *blur* effects, not create a frequency-specific concentration, so
   the 50 Hz pattern is trustworthy.
 - Still an ON-vs-OFF contrast; the OFF window is the within-trial control, not a
-  neutral baseline.
+  neutral baseline. We now checked this directly against the **true pre-experiment
+  baseline and post-study** windows (25–46 min each, always in the recording; see
+  [DEC_BASELINE_POSTSTUDY_STATES.md](DEC_BASELINE_POSTSTUDY_STATES.md)). The ON/OFF
+  contrast is a *local* (adjacent 3 s) measure and is **immune to the slow,
+  session-long firing drift** the baseline reference exposes — so this result
+  stands. The baseline reference also **strengthens** the dHPC up-drive (ON sits
+  **+1.05 Hz above baseline** at amp250_freq50, amplitude-graded) and shows the LEC
+  50 Hz suppression is **sustained into the OFF window** (so ON−OFF *under*-reports
+  it) — though LEC also drifts down ~26 % over the session, so its below-baseline
+  level is partly drift.
 
 ## Interpretation: what the 50 Hz response actually means
 Figure: `analysis/outputs/cross_dataset_spike_compare/spike_50hz_interpretation.png`.

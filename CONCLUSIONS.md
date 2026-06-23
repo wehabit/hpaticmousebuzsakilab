@@ -93,6 +93,16 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
   **indirect sensory/state mechanisms remain possible**. The screens rule out
   pickup-manufactured spikes, **not** the direct-circuit-modulation-vs-indirect-cascade
   distinction.
+- **Checked against true baseline & post-study.** The ON/OFF result was re-tested
+  against the **pre-experiment baseline and post-study** windows (25–46 min each;
+  [DEC_BASELINE_POSTSTUDY_STATES.md](docs/DEC_BASELINE_POSTSTUDY_STATES.md)). ON/OFF is
+  a drift-immune *local* contrast, so it survives — and dHPC's up-drive is confirmed
+  **above baseline** (+1.05 Hz at amp250_freq50). But the baseline reference exposes a
+  **session-long downward firing drift**: mild in dHPC (−4 to −6 %), **substantial in
+  LEC (−26 %)**. The LEC 50 Hz suppression is sustained into the OFF window (so ON−OFF
+  under-reports it) but is partly entangled with that drift — a state-stability caveat
+  for any non-local comparison, and another reason the **local** ON/OFF and the
+  recorded-stimulus next round are the right measures.
 - All 15 curated good **LEC** units sit in the 50 Hz **pickup zone** (peak channels
   173–214; none in the clean shallow region), so unit location and pickup location
   can't be spatially separated. The rate result still holds: ≈300 Hz high-pass

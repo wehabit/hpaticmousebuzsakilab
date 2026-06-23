@@ -1,0 +1,68 @@
+[
+  {
+    "dataset": "dec3_dHPC",
+    "n_curated_good": 29,
+    "mean_baseline_hz": 6.461,
+    "mean_off_hz": 6.152,
+    "mean_on_hz": 6.012,
+    "mean_post_hz": 6.079,
+    "mean_OFF_minus_base_hz": -0.309,
+    "mean_post_minus_base_hz": -0.383,
+    "n_units_OFF_ne_baseline_q05": 23,
+    "n_units_post_ne_baseline_q05": 23,
+    "baseline_window_s": [
+      60.0,
+      1510.0
+    ],
+    "post_window_s": [
+      8770.0,
+      10614.4
+    ],
+    "n_baseline_epochs": 483,
+    "n_post_epochs": 614
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "n_curated_good": 15,
+    "mean_baseline_hz": 5.584,
+    "mean_off_hz": 5.739,
+    "mean_on_hz": 5.782,
+    "mean_post_hz": 5.387,
+    "mean_OFF_minus_base_hz": 0.155,
+    "mean_post_minus_base_hz": -0.197,
+    "n_units_OFF_ne_baseline_q05": 13,
+    "n_units_post_ne_baseline_q05": 12,
+    "baseline_window_s": [
+      60.0,
+      2756.8
+    ],
+    "post_window_s": [
+      17216.8,
+      18105.6
+    ],
+    "n_baseline_epochs": 898,
+    "n_post_epochs": 296
+  },
+  {
+    "dataset": "dec4_LEC",
+    "n_curated_good": 15,
+    "mean_baseline_hz": 3.987,
+    "mean_off_hz": 3.383,
+    "mean_on_hz": 3.376,
+    "mean_post_hz": 2.961,
+    "mean_OFF_minus_base_hz": -0.604,
+    "mean_post_minus_base_hz": -1.026,
+    "n_units_OFF_ne_baseline_q05": 13,
+    "n_units_post_ne_baseline_q05": 10,
+    "baseline_window_s": [
+      60.0,
+      2756.8
+    ],
+    "post_window_s": [
+      17216.8,
+      18105.6
+    ],
+    "n_baseline_epochs": 898,
+    "n_post_epochs": 296
+  }
+]

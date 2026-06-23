@@ -1,0 +1,4 @@
+dataset,n_curated_good,mean_baseline_hz,mean_off_hz,mean_on_hz,mean_post_hz,mean_OFF_minus_base_hz,mean_post_minus_base_hz,n_units_OFF_ne_baseline_q05,n_units_post_ne_baseline_q05,baseline_window_s,post_window_s,n_baseline_epochs,n_post_epochs
+dec3_dHPC,29,6.461,6.152,6.012,6.079,-0.309,-0.383,23,23,"[60.0, 1510.0]","[8770.0, 10614.4]",483,614
+dec4_dHPC,15,5.584,5.739,5.782,5.387,0.155,-0.197,13,12,"[60.0, 2756.8]","[17216.8, 18105.6]",898,296
+dec4_LEC,15,3.987,3.383,3.376,2.961,-0.604,-1.026,13,10,"[60.0, 2756.8]","[17216.8, 18105.6]",898,296
