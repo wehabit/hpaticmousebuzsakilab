@@ -67,7 +67,7 @@ bars(axes[1],
      [("dHPC→LEC", pu("cross:dhpc_spikes_x_lec_phase:ON"), pu("cross:dhpc_spikes_x_lec_phase:OFF")),
       ("LEC→dHPC", pu("cross:lec_spikes_x_dhpc_phase:ON"), pu("cross:lec_spikes_x_dhpc_phase:OFF"))],
      None, "spike–field PLV (mean ± 95% CI)",
-     "2. SPIKES vs the OTHER region's rhythm\n(the decisive, artifact-proof test)", highlight=True)
+     "2. SPIKES vs the OTHER region's rhythm\n(the key test — harder for pickup to fake)", highlight=True)
 
 on = r["LFP_coherence_dHPC_LEC_50Hz:ON"]["per_trial_coherence"]
 off = r["LFP_coherence_dHPC_LEC_50Hz:OFF"]["per_trial_coherence"]

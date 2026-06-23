@@ -70,8 +70,9 @@ histograms** — all with trial-level bootstrap 95% confidence intervals.
    demonstrably coordinate.** It is not a passive echo (dHPC shows a driven-up
    subset, LEC mostly suppresses; an echo would look the same everywhere). But a
    coordination test found **no clear cross-region "working together"**: the
-   artifact-robust cross-region spike–field coupling does **not** rise with
-   stimulation, so the parallel rise in LFP coherence is best explained by a
+   cross-region spike–field coupling (harder for pickup to fake than the LFP) does
+   **not** rise with stimulation, so the parallel rise in LFP coherence is best
+   explained by a
    **shared 50 Hz signal** — and a **dedicated artifact check then confirmed a real
    non-neural 50 Hz pickup** (disconnected electrodes pick up ~6× more than tissue,
    ~0 ms cross-region lag), making the single-unit *rate* change the cleanest

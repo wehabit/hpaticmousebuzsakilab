@@ -5,8 +5,8 @@ Tests whether the 50 Hz single-unit response reflects **cross-region coordinatio
 windows vs the matched OFF windows:
 1. **within-region spike–field** locking (spikes vs own-region 50 Hz LFP phase),
 2. **cross-region spike–field** locking (one region's spikes vs the *other*
-   region's 50 Hz phase — *artifact-robust*, because sorted spikes won't lock to a
-   pure LFP artifact),
+   region's 50 Hz phase — *harder for an LFP artifact to fake*, since a pure LFP
+   artifact is much less able to phase-lock sorted spikes than to inflate the LFP),
 3. **cross-region LFP–LFP 50 Hz coherence**.
 
 Script: [spike_field_coordination_dec4.py](../analysis/spike_field_coordination_dec4.py);
@@ -25,7 +25,7 @@ figure: `analysis/outputs/dec4/coordination_50hz/coordination_50hz.png`.
 There's an apparent contradiction, and it resolves cleanly:
 - **The LFP–LFP coherence *rises* during 50 Hz ON** (0.16 vs 0.09) — which *looks*
   like the two regions coupling.
-- **But the artifact-robust test disagrees:** sorted neurons in one region show
+- **But the harder-to-fake spike test disagrees:** sorted neurons in one region show
   only **very weak** locking to the *other* region's 50 Hz rhythm, and that locking
   **does not increase** during stimulation (ON ≈ OFF).
 
@@ -66,6 +66,6 @@ amplitude — at most a weak hint that needs more data / the recorded stimulus.
   (next round).
 
 ## One-line takeaway
-dHPC and LEC each respond at 50 Hz, but the **artifact-robust cross-region spike
+dHPC and LEC each respond at 50 Hz, but the **harder-to-fake cross-region spike
 test shows no coordination** — the rise in LFP coherence is best explained by a
 **shared 50 Hz signal**, not the regions "working together."

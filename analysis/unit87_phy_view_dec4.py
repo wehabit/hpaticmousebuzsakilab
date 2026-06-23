@@ -138,7 +138,7 @@ for L in (-40, -20, 20, 40):
 a.text(20, a.get_ylim()[1] * 0.92, "50 Hz\n=20 ms", fontsize=7.5, color="#a14", ha="center")
 a.set_xlabel("lag (ms)"); a.set_ylabel("normalised count")
 a.legend(fontsize=8, frameon=False)
-a.set_title("3. DECISIVE: ON vs OFF identical — NO peak grows\nat 20 ms ⇒ extra ON spikes are NOT 50 Hz pickup",
+a.set_title("3. ON vs OFF identical — NO peak grows at 20 ms\n⇒ extra ON spikes are not explained by 50 Hz pickup",
             fontsize=10, color="#b30000")
 
 # 4. ISI histogram
@@ -149,9 +149,9 @@ a.set_xlabel("inter-spike interval (ms)"); a.set_ylabel("count")
 a.set_title(f"4. ISI: only {viol:.2f}% < 2 ms (red)\n= a clean, real single unit", fontsize=10)
 
 fig.suptitle("UNIT 87 — the 'Phy view', computed: the soft-spot LEC unit is a REAL neuron, and its 50 Hz ON rate increase "
-             "is NOT 50 Hz pickup (its autocorrelogram grows no 50 Hz periodicity during ON).\n"
+             "is not explained by 50 Hz pickup (its autocorrelogram grows no 50 Hz periodicity during ON).\n"
              f"Comprehensive screen: {n_comb}/{len(screen)} up-going units show an ON 50 Hz comb, and {n_isi}/{len(screen)} show an ON "
-             "ISI<2ms rise ⇒ the up-going rate increases are genuine, not pickup.", fontsize=10)
+             "ISI<2ms rise ⇒ the up-going rate increases are not explained by 50 Hz pickup.", fontsize=10)
 fig.savefig(OUT / "unit87_phy_view.png", dpi=120)
 print("wrote", OUT / "unit87_phy_view.png")
 print(f"unit 87: {len(t87)} spikes, ISI<2ms {viol:.2f}%")

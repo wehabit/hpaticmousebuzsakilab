@@ -78,7 +78,7 @@ ax.set_title("4. Cross-region lag ≈ 0  (%.1f°, %.2f ms)\ncoh %.2f → shared 
 
 fig.suptitle("Dedicated 50 Hz LFP artifact check — disconnected LEC electrodes show a LARGER 50 Hz ON-rise than tissue, "
              "with ~0 cross-region lag  ⇒  the LEC 50 Hz LFP has a real non-neural pickup component.\n"
-             "Single-unit firing-rate changes are immune to this and remain the clean neural evidence.",
+             "Single-unit firing-rate changes are much harder for this pickup to fake and remain the cleaner neural evidence.",
              fontsize=10.5)
 out = D / "artifact_check_50hz.png"
 fig.savefig(out, dpi=120)

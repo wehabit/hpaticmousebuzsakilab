@@ -3,7 +3,7 @@
 
 Fig 1 (contamination): how much 50 Hz pickup, where it lives, why it can't directly
                        become spikes (high-pass barrier).
-Fig 2 (evidence):      the direction test (suppression is bulletproof), the unit-87
+Fig 2 (evidence):      the direction test (suppression is hard for additive pickup to fake), the unit-87
                        vs unit-126 dose-response ambiguity, and the trust hierarchy.
 """
 from __future__ import annotations
@@ -87,13 +87,13 @@ a.text(300, -0.155, "~300 Hz high-pass", transform=tr3, fontsize=7.3, color="#b3
 a.set_xlim(2, 625); a.set_ylim(top=ytop * 1.4)
 a.set_xlabel("frequency (Hz)", labelpad=18); a.set_ylabel("LFP power (a.u.)")
 a.legend(fontsize=8, frameon=False, loc="lower left")
-a.set_title("3. WHY IT CAN'T MAKE SPIKES: pickup (50/100/150 Hz) is in\nthe LFP band — REMOVED by the ~300 Hz spike high-pass", fontsize=9.5)
+a.set_title("3. PICKUP IS REMOVED BEFORE SPIKE DETECTION: 50/100/150 Hz\nare in the LFP band, cut by the ~300 Hz spike high-pass", fontsize=9.5)
 a.text(6, ytop * 0.06, "pickup lives\nhere (pink) —\nLFP band,\ndiscarded", fontsize=7.6, color="#a33")
 a.text(330, ytop * 0.10, "spikes detected\nin this band →\n(300 Hz–5 kHz, on\nthe 20 kHz raw\nfile, off chart)", fontsize=7.3, color="#1a5a1a")
 
 fig.suptitle("THE CONTAMINATION — three independent 'tells' that the LFP 50 Hz is electrical PICKUP, not neural:\n"
              "(1) it scales with drive & appears on DEAD electrodes,  (2) it sits ON the dead electrodes spatially,  "
-             "(3) but it lives below the spike band, so it can't DIRECTLY make spikes.",
+             "(3) but it lives below the spike band, so it is removed before spike detection.",
              fontsize=10.5)
 fig.savefig(D / "explainer_1_contamination.png", dpi=120)
 print("wrote", D / "explainer_1_contamination.png")
@@ -105,7 +105,7 @@ fig.subplots_adjust(bottom=0.07, top=0.90, left=0.07, right=0.97, wspace=0.24, h
 
 # --- 2.1 direction test ---
 a = ax[0, 0]
-a.axvspan(-100, 0, color="#dbe7f3", alpha=0.7)   # down = bulletproof
+a.axvspan(-100, 0, color="#dbe7f3", alpha=0.7)   # down = hard for additive pickup to fake
 a.axvspan(0, 100, color="#f7dede", alpha=0.7)     # up = pickup-could-mimic
 for row, reg in [(1, "dHPC"), (0, "LEC")]:
     units = dat[reg + "_per_unit_delta"]
@@ -127,7 +127,7 @@ a.set_xlim(-3.1, 3.3); a.set_ylim(-0.7, 1.8)
 a.set_yticks([0, 1]); a.set_yticklabels(["LEC\n(bottom row)", "dHPC\n(top row)"], fontsize=9, fontweight="bold")
 a.set_xlabel("per-unit 50 Hz firing-rate change  ON − OFF (Hz)")
 a.set_title("1. The direction test — each dot = one unit (top row dHPC, bottom row LEC)\n"
-            "LEFT of 0 (blue): pickup CANNOT explain — can't remove spikes | RIGHT (red): pickup could mimic", fontsize=9.5)
+            "LEFT of 0 (blue): a DROP — additive pickup adds, not removes, spikes | RIGHT (red): a RISE — pickup could mimic", fontsize=9.5)
 
 # --- 2.2 dose-response of unit 87: WHY it looks ambiguous (rate & pickup rise together) ---
 a = ax[0, 1]
@@ -155,7 +155,7 @@ a.text(20, a.get_ylim()[1] * 0.93, "50 Hz\n= 20 ms", fontsize=7.5, color="#a14",
 a.set_xlabel("autocorrelogram lag (ms)"); a.set_ylabel("normalised count")
 a.legend(fontsize=8, frameon=False, loc="lower center")
 a.set_title("3. RESOLVED: unit 87's ACG grows NO 20 ms comb during ON\n"
-            "(ISI<2ms stable: %.2f%% ON / %.2f%% OFF)  →  spikes are NOT pickup" % (acg["isi_on"], acg["isi_off"]),
+            "(ISI<2ms stable: %.2f%% ON / %.2f%% OFF)  →  not explained by 50 Hz pickup" % (acg["isi_on"], acg["isi_off"]),
             fontsize=10, color="#1a7a1a")
 
 # --- 2.4 the hierarchy ladder ---
@@ -176,9 +176,9 @@ for i, (col, lab, txt) in enumerate(tiers):
 a.text(0.5, -0.06, "humility: n = 1 animal · ~7–11% of tests responsive (some expected false) · arousal/state not fully excluded",
        ha="center", fontsize=7.6, style="italic", color="#666", transform=a.transAxes)
 
-fig.suptitle("THE EVIDENCE — direction defeats the artifact (pickup can ADD apparent spikes, never REMOVE them), so suppression is clean;\n"
-             "and the up-going units — incl. unit 87 — PASS the ACG + ISI spike-artifact screens. Residual caveat: arousal/state, n=1, "
-             "indirect sensory-network effects — NOT 50 Hz pickup.",
+fig.suptitle("THE EVIDENCE — direction is the discriminator (additive pickup ADDS apparent spikes, doesn't remove them), so suppression is hard to fake;\n"
+             "and the up-going units — incl. unit 87 — PASS the ACG + ISI spike-artifact screens. So the spike-rate effect is not explained by 50 Hz pickup.\n"
+             "Residual caveat: arousal/state, n=1, indirect sensory-network effects.",
              fontsize=10.5)
 fig.savefig(D / "explainer_2_evidence.png", dpi=120)
 print("wrote", D / "explainer_2_evidence.png")

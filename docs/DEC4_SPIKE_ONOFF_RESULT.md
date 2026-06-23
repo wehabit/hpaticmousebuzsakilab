@@ -56,9 +56,12 @@ The question is whether the 50 Hz "response" is just the stimulus being **passiv
 relayed/echoed** into the brain, or whether the brain is **actively responding**.
 Walking the inference ladder:
 
-1. **Not electrical/mechanical artifact.** Sorted single units change their firing
-   *rate* during 50 Hz ON vs OFF — electrical pickup cannot make a curated neuron
-   fire more/less. So there is a genuine neural response.
+1. **Not (simply) electrical/mechanical artifact.** Sorted single units change their
+   firing *rate* during 50 Hz ON vs OFF. The ~300 Hz spike high-pass removes the slow
+   50 Hz LFP pickup before detection, and a curated unit's *rate* change is much
+   harder for pickup to fake; the ACG / ISI / waveform screens (see
+   [DEC4_50HZ_ARTIFACT_CHECK.md](DEC4_50HZ_ARTIFACT_CHECK.md)) argue against
+   pickup-manufactured spikes. So there is a genuine neural response.
 2. **Not a simple passive echo.** A passive relay would look the **same everywhere**.
    Instead the two regions respond with **different distributions** — at 50 Hz,
    **LEC units are predominantly suppressed** (~67% fire less; mean −0.08 Hz) while
@@ -71,9 +74,9 @@ Walking the inference ladder:
 **Does it show "the regions working together"? — We tested this; the answer is no
 clear coordination.** Follow-up analysis (spike–field locking + cross-region 50 Hz
 coherence; see [DEC4_COORDINATION_50HZ.md](DEC4_COORDINATION_50HZ.md)) found that
-the **artifact-robust** test — whether sorted neurons in one region lock to the
-*other* region's 50 Hz rhythm — shows only very weak coupling that **does not
-increase** with stimulation. Cross-region *LFP* coherence does rise during ON, but
+the **harder-to-fake spike** test — whether sorted neurons in one region lock to the
+*other* region's 50 Hz rhythm (much harder for an LFP artifact to fake than the LFP
+itself) — shows only very weak coupling that **does not increase** with stimulation. Cross-region *LFP* coherence does rise during ON, but
 that is best explained by a **shared 50 Hz signal** (plausibly stimulus artifact),
 not coordination. So: each region responds, but they do **not** demonstrably
 coordinate. True stimulus phase-locking still needs the recorded stimulus (next

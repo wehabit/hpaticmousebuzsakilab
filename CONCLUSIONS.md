@@ -30,16 +30,19 @@ should not be read as entrainment.
 4. **The clean neural result is single-unit (Dec 4).** Sorted, curated units change
    their **firing rate** during 50 Hz / high-amplitude ON vs OFF, in **both** regions
    (dHPC 19/180 unit-conditions, LEC 13/180; concentrated at 50 Hz: 15/19 and 8/13).
-   Electrical pickup cannot change a sorted neuron's rate, so this is genuine. It
-   also explains the Dec 3 single-unit null: Dec 3 only tested 5/26 Hz, where there
-   is no effect. → [DEC4_SPIKE_ONOFF_RESULT.md](docs/DEC4_SPIKE_ONOFF_RESULT.md).
+   The ~300 Hz spike high-pass removes the slow 50 Hz pickup before detection, and
+   the ACG/ISI/waveform screens argue against pickup-manufactured spikes, so this is
+   the cleanest evidence. It also explains the Dec 3 single-unit null: Dec 3 only
+   tested 5/26 Hz, where there is no effect. →
+   [DEC4_SPIKE_ONOFF_RESULT.md](docs/DEC4_SPIKE_ONOFF_RESULT.md).
 5. **The response is active & region-specific, not a passive echo.** A passive relay
    would look identical everywhere; instead **LEC is predominantly suppressed**
    (~67% of modulated units fire less) while **dHPC has a driven-up subset**. The
    50 Hz input is *transformed differently by each circuit*.
-6. **But the regions do not demonstrably coordinate.** The artifact-robust
-   cross-region **spike–field** test (do one region's neurons lock to the *other*
-   region's rhythm?) is weak and **does not rise** during stimulation. The LFP
+6. **But the regions do not demonstrably coordinate.** The cross-region
+   **spike–field** test (do one region's neurons lock to the *other* region's
+   rhythm? — harder for pickup to fake than the LFP) is weak and **does not rise**
+   during stimulation. The LFP
    coherence rise is the foolable measure (inflated by the shared 50 Hz pickup from
    #3). → [DEC4_COORDINATION_50HZ.md](docs/DEC4_COORDINATION_50HZ.md).
 

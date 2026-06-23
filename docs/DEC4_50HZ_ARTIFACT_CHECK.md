@@ -72,8 +72,8 @@ spike high-pass, and a curated unit's *rate* change is not something a floating
 electrode readily produces. The Dec 4 single-unit ON/OFF result (50 Hz /
 high-amplitude rate modulation in both regions; see
 [DEC4_SPIKE_ONOFF_RESULT.md](DEC4_SPIKE_ONOFF_RESULT.md)) therefore **stands as the
-cleanest neural signature**. The artifact-robust cross-region **spike** test was
-already flat — consistent with this finding.
+cleanest neural signature**. The cross-region **spike** test (harder for pickup to
+fake than the LFP) was already flat — consistent with this finding.
 
 ## Channel-QC audit: are the dead channels otherwise accounted for?
 A follow-up audit checked whether dead/marginal channels contaminate results
@@ -87,8 +87,10 @@ anywhere *else*. The structural safeguards hold, but two honest caveats remain.
   whitening/CAR never saw them and no units sit on them.
 - **References exclude bad channels** (group-median LFP ref "bad ch excluded";
   coordination/artifact region-means over good channels only).
-- **50 Hz is below the spike band** — the sort's ~300 Hz high-pass removes it before
-  detection, so pickup cannot *create* spikes. No good channel flatlines.
+- **50 Hz is below the spike band** — the sort's ~300 Hz high-pass removes the slow
+  50 Hz waveform before detection, so 50 Hz pickup is much harder to turn into spikes
+  (sharp transients / broadband leakage are the residual route, closed by the
+  ACG/ISI screens below). No good channel flatlines.
 
 **Caveat 1 — the 50 Hz pickup is a spatial gradient, not confined to flagged-dead
 channels.** **~30 of the 82** "good" LEC channels (the deep half, **173–223**) carry
@@ -101,10 +103,11 @@ that the LEC 50 Hz **LFP** should not be read as neural.
 173–214; **zero** in the clean shallow region 136–172). We cannot spatially separate
 "where the LEC units are" from "where the 50 Hz pickup is." This does **not**
 invalidate the single-unit rate result, for three reasons: (i) the ~300 Hz high-pass
-removes 50 Hz before detection; (ii) the LEC population **leans down** at 50 Hz (10 of
-15 units, mean −0.08 Hz) — additive pickup cannot *remove* spikes; and (iii) the
-**autocorrelogram screen** below clears the up-going units directly. It is a
-disclosure, not a refutation.
+removes the slow 50 Hz before detection; (ii) the LEC population **leans down** at
+50 Hz (10 of 15 units, mean −0.08 Hz) — additive pickup *adds*, not removes, apparent
+spikes, so it does not naturally produce suppression; and (iii) the **autocorrelogram
++ ISI screens** below clear the up-going units directly. It is a disclosure, not a
+refutation.
 
 **Minor:** an independent robust-z RMS sweep flagged one extra hot LEC channel,
 **ch142** (RMS ~3.5× median, z=4.6), that escaped the original auto pass; it hosts
