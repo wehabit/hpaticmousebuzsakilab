@@ -214,29 +214,36 @@ final probe map and histology.
 ## Repository Layout
 
 ```text
-results/                       Curated result figures, ONE FOLDER PER SESSION
-  README.md                    Parent index (lists sessions)
-  dec3/                        Dec 3 session
-    01_Session_Timeline/ … 13_Teaching_and_Methods/
-    README.md                  Per-figure index for Dec 3
-  dec4/                        Dec 4 session (two probes: dHPC + LEC)
+README.md                      Front-page study summary and navigation
+CONCLUSIONS.md                 One-page scientific synthesis across Dec 3 + Dec 4
+
+results/                       Curated presentation figures
+  README.md                    Session list
+  dec3/README.md               Dec 3 figure index
+  dec4/README.md               Dec 4 figure index
 
 analysis/
-  *.py                         Reusable, session-agnostic analysis scripts
-  build_results_folder.py      Rebuilds results/<session>/ from the raw outputs
-  DEC3_SUPERVISOR_SUMMARY.md   Main Dec 3 summary for presentation
-  DEC3_*.md                    Dec 3 notes (Dec 4 gets parallel DEC4_*.md)
-  outputs/dec3/                Raw per-step working files for Dec 3
-  outputs/dec4/                Raw per-step working files for Dec 4 (dHPC + LEC)
+  README.md                    Map of scripts, outputs, and analysis entry points
+  *.py                         Timing, LFP, spike, state, artifact, and plotting scripts
+  envs/                        Environment setup helpers
+  outputs/dec3/                Dec 3 working outputs and generated reports
+  outputs/dec4/                Dec 4 working outputs and generated reports
+  outputs/cross_dataset_*/     Combined Dec 3/Dec 4 analyses
 
 docs/
-  RERUN_PIPELINE.md            How to process a new session
-  STUDY_NOTES.md               Experimental notes moved out of front page
-  RESOURCES_AND_GUIDANCE.md    External links and collaborator guidance
+  DEC3_SUPERVISOR_SUMMARY.md   Dec 3 presentation-facing summary
+  DEC4_SUPERVISOR_SUMMARY.md   Dec 4 presentation-facing summary
+  DEC4_SPIKE_ONOFF_RESULT.md   Main Dec 4 single-unit result
+  DEC4_50HZ_ARTIFACT_CHECK.md  LEC 50 Hz artifact control
+  DEC*_*.md                    Supporting result, method, and teaching notes
+
+resources/                     Reference papers, workshop material, probe docs
+firmware/                      Stimulator firmware snippet used for timing/phase audit
 ```
 
-Large raw/intermediate arrays are intentionally kept out of GitHub. The repo
-tracks code, Markdown summaries, CSV/JSON summaries, HTML reports, and
+Raw Intan recordings, large sorter arrays, local virtual environments, and the
+draft presentation are intentionally kept out of GitHub. The repo tracks code,
+Markdown summaries, CSV/JSON summaries, HTML reports, reference resources, and
 normal-sized PNG/JPG figures.
 
 ## Analysis Pipeline Overview

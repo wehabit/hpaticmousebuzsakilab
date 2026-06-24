@@ -6,7 +6,7 @@ below.
 
 ## Bottom line
 Haptic stimulation affects the brain. Dec 3 showed a broadband, **transition-weighted**
-dHPC response but **no clean entrainment**. Dec 4's clean readout is **single-unit
+dHPC response but **no proven entrainment**. Dec 4's clean readout is **single-unit
 firing**: 50 Hz, high-amplitude stimulation produces the **strongest frequency-specific
 rate effect**, with a **driven-up subset in dHPC** and **net suppression in LEC**. The
 LEC 50 Hz **LFP** is pickup-contaminated, so **spikes are the trustworthy measure**.
@@ -130,8 +130,9 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
 1. **Continuous analog copy of the delivered vibration** (thin PVDF force sensor in
    the tactor→skin path → Intan analog input on the shared 20 kHz clock). Enables a
    true **phase-entrainment** test *and* lets you **regress out the 50 Hz artifact**.
-2. **Per-cycle + per-trial digital sync lines** for exact stimulus timing (no TTL
-   this session; timing came from the controller log).
+2. **Per-cycle + per-trial digital sync lines** for exact stimulus timing. This is
+   especially important for the Dec 4-style two-probe recording, where timing came
+   from the controller log because no TTL/stimulus channel was shared.
 3. The electrode **channel-map + histology** — the Cambridge NeuroTech `.prb` for
    H12_2 / H15 + adapter wiring, **and post-hoc histology** confirming site order and
    layer (CA1 pyramidal / DG). Needed for any **depth / laminar / subregion** claim
