@@ -180,6 +180,10 @@ MAP = {
         ("../cross_dataset_spike_compare/celltype/dec4_celltype_vs_50hz.png", "dec4_celltype_vs_50hz.png"),
         ("../cross_dataset_spike_compare/celltype/celltype_classification.png", "celltype_classification_pooled.png"),
         ("../cross_dataset_spike_compare/celltype/celltype_acg_examples.png", "celltype_acg_examples.png"),
+        # sharp-wave ripples across states (exploratory, dHPC, CA1 provisional)
+        ("../cross_dataset_spike_compare/ripples/ripple_rate_by_state.png", "ripple_rate_by_state.png"),
+        ("../cross_dataset_spike_compare/ripples/ripple_participation_by_celltype.png", "ripple_participation_by_celltype.png"),
+        ("../cross_dataset_spike_compare/ripples/ripple_examples.png", "ripple_examples.png"),
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",

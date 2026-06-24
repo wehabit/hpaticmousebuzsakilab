@@ -141,5 +141,6 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
 - [DEC_BASELINE_POSTSTUDY_STATES.md](docs/DEC_BASELINE_POSTSTUDY_STATES.md) — ON/OFF vs true baseline & post-study (drift)
 - [DEC_CELLTYPE_CLASSIFICATION.md](docs/DEC_CELLTYPE_CLASSIFICATION.md) — putative pyr/interneuron types; 50 Hz response by type
 - [DEC_LFP_APERIODIC_STATES.md](docs/DEC_LFP_APERIODIC_STATES.md) — 1/f slope across baseline/ON/OFF/post; real bump vs broad shift
+- [DEC_RIPPLE_STATES.md](docs/DEC_RIPPLE_STATES.md) — sharp-wave ripples across states; participation by cell type (exploratory)
 - [DEC4_SUPERVISOR_SUMMARY.md](docs/DEC4_SUPERVISOR_SUMMARY.md) /
   [DEC3_SUPERVISOR_SUMMARY.md](docs/DEC3_SUPERVISOR_SUMMARY.md)

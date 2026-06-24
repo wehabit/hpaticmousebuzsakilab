@@ -1,0 +1,18 @@
+[
+  {
+    "session": "dec3_dHPC",
+    "ripple_channel": 8,
+    "n_ripples": 5854,
+    "median_amp_z": 6.28,
+    "median_dur_ms": 49.6,
+    "note": "data-driven channel; CA1 layer provisional; ON has 50 Hz-harmonic caveat"
+  },
+  {
+    "session": "dec4_dHPC",
+    "ripple_channel": 7,
+    "n_ripples": 10393,
+    "median_amp_z": 6.29,
+    "median_dur_ms": 50.4,
+    "note": "data-driven channel; CA1 layer provisional; ON has 50 Hz-harmonic caveat"
+  }
+]
