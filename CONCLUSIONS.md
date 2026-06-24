@@ -128,8 +128,24 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
    true **phase-entrainment** test *and* lets you **regress out the 50 Hz artifact**.
 2. **Per-cycle + per-trial digital sync lines** for exact stimulus timing (no TTL
    this session; timing came from the controller log).
-3. The electrode **channel-map** (Cambridge NeuroTech `.prb` for H12_2 / H15 +
-   adapter wiring) — needed only for depth / laminar / subregion analyses.
+3. The electrode **channel-map + histology** — the Cambridge NeuroTech `.prb` for
+   H12_2 / H15 + adapter wiring, **and post-hoc histology** confirming site order and
+   layer (CA1 pyramidal / DG). Needed for any **depth / laminar / subregion** claim
+   and to move the **ripple / dentate-spike** work
+   ([DEC_RIPPLE_STATES.md](docs/DEC_RIPPLE_STATES.md)) from exploratory (data-driven
+   channel) to a confirmed CA1-layer analysis. Region-level (dHPC vs LEC) findings are
+   unaffected.
+4. **Replication in more animals / sessions.** Everything here is **one animal**
+   (dHPC + LEC), so n = 1 at the subject level. The single-unit counts are also small
+   (29 / 15 / 15 good units), which is why the **ACG-type cell classification**
+   ([DEC_ACG_TYPE_CLASSIFICATION.md](docs/DEC_ACG_TYPE_CLASSIFICATION.md)) is
+   under-powered (low-rate units give unreliable τ_rise). More animals/sessions — and
+   denser/longer recordings per unit — are required before any effect is treated as
+   general rather than a single-session observation.
+5. **Stricter low-frequency stimulus fidelity** — deliver clean sinusoids at 5 / 10 /
+   26 Hz (this session's low carriers were not clean sines), so frequency-specificity
+   is not confounded with stimulus quality. (Subsumed by #1: recording the delivered
+   waveform also measures this.)
 
 → Hardware spec: [HARDWARE_ENG_MESSAGE_NEXT_ROUND.md](docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md),
 [PVDF_CHARGE_AMP_SPEC.md](docs/PVDF_CHARGE_AMP_SPEC.md).
