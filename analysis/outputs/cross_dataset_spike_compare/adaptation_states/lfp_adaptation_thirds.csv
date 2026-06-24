@@ -1,0 +1,10 @@
+session,region,freq,amp,third,dB_vs_baseline,ci_lo,ci_hi,n_ch
+dec3,dHPC,26,180,early,0.064,0.019,0.11,119
+dec3,dHPC,26,180,middle,-0.315,-0.368,-0.263,119
+dec3,dHPC,26,180,late,-0.393,-0.439,-0.348,119
+dec4,LEC,50,250,early,2.883,2.765,2.995,82
+dec4,LEC,50,250,middle,2.342,2.208,2.465,82
+dec4,LEC,50,250,late,1.263,1.187,1.332,82
+dec4,dHPC,50,250,early,-0.318,-0.424,-0.209,127
+dec4,dHPC,50,250,middle,-0.272,-0.39,-0.15,127
+dec4,dHPC,50,250,late,-0.438,-0.539,-0.335,127

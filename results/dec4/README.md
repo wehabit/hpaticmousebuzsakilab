@@ -70,6 +70,8 @@ _How the response changes over the 200 repeats (early/middle/late + slope)._
 - [adaptation_epoch_summary.png](08_Adaptation/adaptation_epoch_summary.png)
 - [adaptation_slope_summary.png](08_Adaptation/adaptation_slope_summary.png)
 - [adaptation_timecourses.png](08_Adaptation/adaptation_timecourses.png)
+- [spike_adaptation_50hz.png](08_Adaptation/spike_adaptation_50hz.png)
+- [lfp_adaptation_driven.png](08_Adaptation/lfp_adaptation_driven.png)
 
 ### 09_Reference_Sensitivity
 _Robustness of the driven-power result to the referencing scheme (raw / probe / group median)._

@@ -84,6 +84,8 @@ MAP = {
         "adaptation_analysis/adaptation_epoch_summary.png",
         "adaptation_analysis/adaptation_slope_summary.png",
         "adaptation_analysis/adaptation_timecourses.png",
+        # early/middle/late anchored to baseline (26 Hz habituation; OFF drift)
+        "../cross_dataset_spike_compare/adaptation_states/lfp_adaptation_driven.png",
     ],
     "reference": [
         "reference_sensitivity_lfp/reference_condition_summary.png",

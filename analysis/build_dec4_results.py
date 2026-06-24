@@ -150,6 +150,9 @@ MAP = {
         "adaptation_analysis/adaptation_epoch_summary.png",
         "adaptation_analysis/adaptation_slope_summary.png",
         "adaptation_analysis/adaptation_timecourses.png",
+        # early/middle/late anchored to baseline (50 Hz spike sustained; LFP driven adapts)
+        ("../cross_dataset_spike_compare/adaptation_states/spike_adaptation_50hz.png", "spike_adaptation_50hz.png"),
+        ("../cross_dataset_spike_compare/adaptation_states/lfp_adaptation_driven.png", "lfp_adaptation_driven.png"),
     ],
     "biological": [
         "biological_summary/combined_explainer.png",

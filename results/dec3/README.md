@@ -94,6 +94,7 @@ _How the response changes over the course of the trials._
 - [adaptation_epoch_summary.png](08_Adaptation/adaptation_epoch_summary.png)
 - [adaptation_slope_summary.png](08_Adaptation/adaptation_slope_summary.png)
 - [adaptation_timecourses.png](08_Adaptation/adaptation_timecourses.png)
+- [lfp_adaptation_driven.png](08_Adaptation/lfp_adaptation_driven.png)
 
 ### 09_Reference_Sensitivity
 _Robustness of the LFP results to the referencing scheme._
