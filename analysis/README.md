@@ -1,75 +1,210 @@
-# Haptic Mouse Analysis
+# Analysis Code And Outputs
 
-This folder contains lightweight Python entry points for the Intan haptic stimulation
-recordings. The first pass focuses on metadata, digital TTL pulse trains, and the
-randomized stimulus schedule before loading the large `amplifier.dat` trace.
+This folder contains the runnable analysis code and generated working outputs for
+the Dec 3 and Dec 4 haptic electrophysiology sessions.
 
-## Key Docs
+Use this folder for **how the analyses were run**. Use the root
+[`README.md`](../README.md), [`CONCLUSIONS.md`](../CONCLUSIONS.md), and the
+supervisor summaries for **what the results mean**.
 
-For future sessions and reruns, start from:
+## What Lives Here
 
-- `../docs/RERUN_PIPELINE.md`
+- `*.py`: reusable and session-specific analysis scripts.
+- `outputs/dec3/`: Dec 3 working outputs, reports, tables, and intermediate figures.
+- `outputs/dec4/`: Dec 4 working outputs, reports, tables, and intermediate figures.
+- `outputs/cross_dataset_spike_compare/`: analyses that combine Dec 3 and Dec 4.
+- `envs/`, `modal_*.py`, `stage_*_for_modal.sh`: spike-sorting environment and
+  Modal/GPU helpers.
 
-For Dec 3 presentation and interpretation, use:
+Large raw files and large sorter arrays are intentionally not part of Git. The
+tracked outputs here are small summaries, CSV/JSON metadata, HTML reports, and
+normal-sized figures.
 
-For a supervisor-facing summary of findings, figures, tools, and pipeline, use:
+## Current Analysis Story
 
-- `docs/DEC3_SUPERVISOR_SUMMARY.md`
-- `analysis/outputs/dec3/RESULTS_DASHBOARD.html`
+The current analysis is complete through LFP, spike sorting, curation/merges,
+baseline/post-study comparisons, drift checks, cell-type/ACG summaries, ripple
+state summaries, and Dec 4 50 Hz artifact/coordination controls.
 
-For original study context and collaborator links, use:
+Presentation-safe interpretation:
 
-- `../docs/STUDY_NOTES.md`
-- `../docs/RESOURCES_AND_GUIDANCE.md`
+- Dec 3: clear dHPC LFP response, especially around 26 Hz conditions, but no
+  curated single-unit ON/OFF firing-rate effect at 5/26 Hz.
+- Dec 4: dHPC again shows no clean frequency-following evidence; LEC has an
+  artifact-suspect 50 Hz LFP peak; the cleanest neural result is the curated
+  50 Hz single-unit firing-rate modulation in both regions.
+- True stimulus-phase entrainment was not directly testable because the delivered
+  vibration phase was not recorded.
 
-## Dec 3 quick start
+For the final written story, start here:
 
-From the repository root:
+- [`../CONCLUSIONS.md`](../CONCLUSIONS.md)
+- [`../docs/DEC3_SUPERVISOR_SUMMARY.md`](../docs/DEC3_SUPERVISOR_SUMMARY.md)
+- [`../docs/DEC4_SUPERVISOR_SUMMARY.md`](../docs/DEC4_SUPERVISOR_SUMMARY.md)
+- [`../results/dec3/README.md`](../results/dec3/README.md)
+- [`../results/dec4/README.md`](../results/dec4/README.md)
+
+## Main Outputs To Open
+
+- Dec 3 dashboard: [`outputs/dec3/RESULTS_DASHBOARD.html`](outputs/dec3/RESULTS_DASHBOARD.html)
+- Dec 3 curated spike result: [`../docs/DEC3_CURATED_SPIKE_RESULT.md`](../docs/DEC3_CURATED_SPIKE_RESULT.md)
+- Dec 4 spike result: [`../docs/DEC4_SPIKE_ONOFF_RESULT.md`](../docs/DEC4_SPIKE_ONOFF_RESULT.md)
+- Dec 4 artifact check: [`../docs/DEC4_50HZ_ARTIFACT_CHECK.md`](../docs/DEC4_50HZ_ARTIFACT_CHECK.md)
+- Cross-dataset state analyses:
+  [`../docs/DEC_BASELINE_POSTSTUDY_STATES.md`](../docs/DEC_BASELINE_POSTSTUDY_STATES.md),
+  [`../docs/DEC_DRIFT_CORRECTED_MODEL.md`](../docs/DEC_DRIFT_CORRECTED_MODEL.md),
+  [`../docs/DEC_LFP_APERIODIC_STATES.md`](../docs/DEC_LFP_APERIODIC_STATES.md),
+  [`../docs/DEC_LFP_BANDPOWER_STATES.md`](../docs/DEC_LFP_BANDPOWER_STATES.md),
+  [`../docs/DEC_RIPPLE_STATES.md`](../docs/DEC_RIPPLE_STATES.md)
+
+## Pipeline Map
+
+These are the script families, in the order they matter for reruns.
+
+### 1. Session Timing And Trial Tables
+
+- Dec 3: `intan_haptic_summary.py`, `ttl_on_off_audit_dec3.py`,
+  `plot_ttl_lfp_overview_dec3.py`
+- Dec 4: `intan_haptic_summary_dec4.py`
+
+Important outputs:
+
+- `outputs/dec3/dec3_condition_sequence.csv`
+- `outputs/dec4/dec4_condition_sequence.csv`
+- `outputs/*/spike_sorting_prep/trial_windows.csv`
+
+The schedule-derived condition sequence is the source of truth for ON/OFF trial
+windows. Dec 3 TTL files are QC for delivery/timing. Dec 4 has no shared TTL or
+stimulus waveform, so timing comes from the controller log and recording-start
+offset.
+
+### 2. Channel QC And LFP Extraction
+
+- `channel_qc.py`
+- `channel_qc_perprobe_dec4.py`
+- `channel_qc_posthoc_dec4.py`
+- `extract_lfp.py`
+
+The Dec 4 LEC probe is noisier than dHPC, so Dec 4 QC is handled per probe.
+
+### 3. LFP Analyses
+
+Core LFP scripts:
+
+- `event_aligned_lfp.py`
+- `artifact_aware_lfp.py`
+- `frequency_lfp.py`
+- `time_frequency_lfp.py`
+- `phase_locking_lfp.py`
+- `reference_sensitivity_lfp.py`
+- `trial_level_stats_dec3.py`
+- `off_control_broadband_dec3.py`
+- `broadband_transition_stats_dec3.py`
+- `adaptation_analysis_dec3.py`
+- `run_dec4_lfp_pipeline.py`
+- `spectral_slope_itpc_dec4.py`
+
+Cross-session/state LFP scripts:
+
+- `lfp_aperiodic_states_dec.py`
+- `lfp_bandpower_states_dec.py`
+- `adaptation_states_dec.py`
+- `drift_corrected_model_dec.py`
+
+Interpretation rule: broadband LFP response, driven-frequency power, 1/f residuals,
+and phase consistency are different evidence levels. Do not treat a broadband
+response as proof that the brain is oscillating at the drive frequency.
+
+### 4. Spike Sorting, Curation, And PETHs
+
+Prep and sorting:
+
+- `prepare_spike_sorting_dec3.py`
+- `build_dec4_spike_prep.py`
+- `setup_spikeinterface_dec3.py`
+- `run_spikeinterface_test_sort_dec3.py`
+- `stage_dec3_for_modal.sh`, `stage_dec4_for_modal.sh`
+- `modal_kilosort_dec3.py`, `modal_kilosort_dec4.py`
+
+Post-sort analysis:
+
+- `cluster_quality_dec3.py`
+- `cluster_merge_candidates_dec3.py`
+- `propose_curation.py`
+- `apply_cluster_merges.py`
+- `spike_peth_on_off_dec3.py`
+- `spike_peth_high_confidence_dec3.py`
+- `spike_peth_curated_dec3.py`
+- `spike_curated_compare_dec.py`
+- `spike_baseline_poststudy_compare_dec.py`
+- `spike_celltype_classify_dec.py`
+- `spike_acg_type_classify_dec.py`
+
+Pynapple bridge:
+
+- `export_pynapple_dec3.py`
+- `export_kilosort_pynapple_dec3.py`
+
+The early Kilosort/PETH folders are useful triage views. Final presentation claims
+should use the curated/merged spike outputs and the linked docs above.
+
+### 5. Dec 4 50 Hz Artifact And Coordination Checks
+
+- `artifact_check_50hz_dec4.py`
+- `deep_diag_50hz_dec4.py`
+- `verify_50hz_gradient_dhpc_vs_lec.py`
+- `spike_field_coordination_dec4.py`
+- `plot_artifact_check_50hz.py`
+- `plot_coordination_50hz.py`
+
+These scripts are why the LEC 50 Hz LFP is treated cautiously: it is a real
+measured narrowband peak, but disconnected electrodes and near-zero cross-region
+lag show pickup contamination. The spike firing-rate result is the cleaner neural
+readout.
+
+### 6. Results Folder Builders
+
+- `build_results_folder.py`
+- `build_dec4_results.py`
+- `plot_biological_summary_dec3.py`
+- `build_dec4_interpretation.py`
+
+These copy curated, presentation-sized outputs into `../results/dec3/` and
+`../results/dec4/`.
+
+## Rerunning
+
+For a full checklist, use [`../docs/RERUN_PIPELINE.md`](../docs/RERUN_PIPELINE.md).
+
+For a quick orientation:
 
 ```bash
+# Dec 3 timing/QC
 python analysis/intan_haptic_summary.py \
   --session-dir "Haptic_Stim_session1_251203_143031" \
   --config "Haptic_Stim_session1_251203_143031/My log/cmd_config_1_Dec3rd.json" \
   --recording-start-offset-s 640 \
   --output-dir analysis/outputs/dec3
+
+# Dec 4 timing/QC
+python analysis/intan_haptic_summary_dec4.py \
+  --session-dir "Haptic_Stim_session2_251204_131403" \
+  --config "Haptic_Stim_session2_251204_131403/My log/cmd_config_1_Dec4th_randomized_all.json" \
+  --log "Haptic_Stim_session2_251204_131403/My log/log" \
+  --output-dir analysis/outputs/dec4
 ```
 
-Outputs:
+Run from the repository root so relative paths resolve correctly.
 
-- `session_summary.json`: recording size, XML metadata, active digital channels, and
-  stimulus alignment summary.
-- `stimulus_config_schedule.csv`: one row per nonzero command from the randomized
-  stimulus config.
-- `stimulation_events.csv`: detected TTL pulse bursts with config columns joined by
-  row order. For Dec 3 this is QC only; use `dec3_condition_sequence.csv` as the
-  authoritative condition/trial table.
-- `dec3_condition_sequence.csv`: authoritative schedule-derived ON/OFF trial
-  table after applying the recording offset.
-- `digital_edges_ch*.csv`: rising/falling sample indices for each parsed digital
-  channel.
+## What To Ignore For Final Claims
 
-## Spike sorting and Pynapple
+- `outputs/*/spike_peth_on_off*/`: initial Kilosort ON/OFF triage, not final
+  curated biology.
+- `outputs/*/cluster_quality*/`: automated review triage, not cell-type or anatomy
+  proof.
+- `outputs/dec3/provisional_final_pass/`: historical Dec 3 pass retained for audit.
+- Any figure based on onset-aligned PLV/ITPC alone: useful as a limitation check,
+  but not a true entrainment test without recorded stimulus phase.
 
-Kilosort/Pynapple setup notes are tracked in:
-
-- `docs/KILOSORT_PYNAPPLE_PLAN.md`
-
-Clean Kilosort4 environment files:
-
-- `analysis/envs/kilosort4_dec3_gpu.yml`
-- `analysis/envs/setup_kilosort4_dec3_gpu.sh`
-
-Modal Kilosort files:
-
-- `analysis/stage_dec3_for_modal.sh`
-- `analysis/modal_kilosort_dec3.py`
-
-Dec 3 trial timing can be exported as Pynapple intervals with:
-
-```bash
-python analysis/export_pynapple_dec3.py
-```
-
-Outputs go to:
-
-- `analysis/outputs/dec3/pynapple_intervals/`
+When in doubt, use `../CONCLUSIONS.md` and the supervisor summaries as the
+presentation source of truth.

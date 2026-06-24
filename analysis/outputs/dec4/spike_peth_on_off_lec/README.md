@@ -1,6 +1,9 @@
-# Dec 3 Provisional Spike PETH / ON-vs-OFF
+# Dec 4 LEC Initial Spike PETH / ON-vs-OFF
 
-This folder contains the first spike analysis from the Modal Kilosort4 output.
+This folder contains the initial Dec 4 LEC spike ON/OFF analysis from the
+Kilosort4 output. It is useful for audit and triage; final presentation claims
+should use the curated/merged Dec 4 spike writeup in
+[`DEC4_SPIKE_ONOFF_RESULT.md`](../../../../docs/DEC4_SPIKE_ONOFF_RESULT.md).
 
 ## Inputs
 
@@ -30,6 +33,6 @@ This folder contains the first spike analysis from the Modal Kilosort4 output.
 
 ## Caveat
 
-This is exploratory and uncurated. Use it to decide what to inspect in Phy and
-what spike/LFP hypotheses to test next. Do not make final unit or anatomical
-claims until Phy curation and exact probe geometry are resolved.
+This is the initial Kilosort-label view, not the final curated-unit result.
+Curation/merge outputs are in `analysis/outputs/dec4/curated_merged_lec/`.
+Exact probe geometry is still provisional for depth/layer claims.
