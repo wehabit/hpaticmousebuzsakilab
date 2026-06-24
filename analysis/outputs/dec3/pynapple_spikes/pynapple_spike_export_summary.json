@@ -1,5 +1,5 @@
 {
-  "kilosort_dir": "analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results",
+  "kilosort_dir": "analysis/outputs/dec3/curated_merged",
   "trial_windows": "analysis/outputs/dec3/spike_sorting_prep/trial_windows.csv",
   "output_dir": "analysis/outputs/dec3/pynapple_spikes",
   "fs_hz": 20000.0,
@@ -13,12 +13,5 @@
     "ks_good_units": "kilosort_ks_good_units_tsgroup.npz",
     "metadata": "cluster_metadata.csv"
   },
-  "local_artifact_status": "Pynapple .npz spike exports are missing from this checkout.",
-  "required_to_regenerate": [
-    "spike_times.npy",
-    "spike_clusters.npy",
-    "templates.npy",
-    "related Kilosort waveform/template arrays"
-  ],
-  "caveat": "Uncurated Kilosort4 output with provisional geometry. Restore missing Kilosort arrays before local spike-export reruns."
+  "caveat": "Pynapple exports are convenience spike-time objects. The KS-good TsGroup follows Kilosort KSLabel, while final presentation claims should use the curated/merged ON/OFF analyses. Probe geometry remains provisional for depth/layer claims."
 }

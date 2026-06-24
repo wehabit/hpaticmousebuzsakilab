@@ -1,6 +1,6 @@
 # Analysis Foundations For Dec 3
 
-This note summarizes the outside material Nick and Mishi suggested, translated
+This note summarizes the outside material Nick and Misi suggested, translated
 into concrete choices for the Dec 3 haptic stimulation analysis.
 
 ## Why These Materials Matter

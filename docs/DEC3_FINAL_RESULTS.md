@@ -1,6 +1,6 @@
 # Dec 3 — Final Results (Locked)
 
-Status date: 2026-06-17. This is the locked, claim-graded summary of the Dec 3
+Status date: 2026-06-24. This is the claim-graded summary of the Dec 3
 haptic-stimulation recording. It states what is **confirmed**, what is
 **suggestive**, what is **provisional**, and what is **blocked on external
 input**. For the narrative version with figure links see
@@ -40,12 +40,14 @@ list at the end of this file.
   should be reported separately, not pooled.
 
 ### Not supported as a strong claim
-- **Clean, sustained 26 Hz entrainment.** 26 Hz-band power and phase-locking
-  (PLV) do not show a robust, corrected, sustained following response. Present
-  this as "strong LFP response at a 26 Hz stimulation condition," **not** "26 Hz
-  entrainment."
+- **Clean, sustained 26 Hz frequency-following / entrainment.** 26 Hz-band power
+  and onset-aligned phase consistency (PLV) do not show a robust, corrected,
+  sustained following response. Present this as "strong LFP response at a 26 Hz
+  stimulation condition," **not** "26 Hz entrainment." True stimulus-phase
+  entrainment was not directly testable because the delivered vibration phase was
+  not recorded.
 
-### Provisional (pre-Phy-curation — do not present as final single-unit results)
+### Confirmed spike result after curation
 - Kilosort4 produced **194 clusters/templates**, **28** auto-labeled `good`,
   **7,311,421** spikes. Automated QC triage flagged **19** high-confidence
   KS-good clusters.
@@ -62,20 +64,16 @@ list at the end of this file.
   neurons — only 4–7% spike overlap — a correction the metric caught that the
   eye did not.)
 - The high-confidence subset shows **no BH-corrected ON-vs-OFF firing-rate
-  effect**. So there is currently no clean single-unit evidence that
-  stimulation increases firing during ON.
-- **No human Phy curation has been done yet** (`cluster_group.tsv` is byte-
-  identical to `cluster_KSLabel.tsv` — pure auto-labels). Spike claims stay
-  provisional until curation. The Modal noVNC Phy desktop is set up and ready;
-  see [PHY_DEC3_SETUP.md](PHY_DEC3_SETUP.md).
+  effect**.
+- The current curated/merged analysis confirms the null: **29 curated good units,
+  174 unit-condition tests, 0 responsive at q<0.05**. So Dec 3 has no clean
+  single-unit ON/OFF firing-rate effect at 5/26 Hz.
 
 ### Not assigned (needs external input — see blockers)
 - Subregion anatomy (CA1/DG/medial/lateral). Refer only to channel groups or
   provisional physical shanks until orientation + histology are confirmed.
 
 ## What would change a grade
-- Phy curation could promote spike results from provisional to final (in either
-  direction — confirming or ruling out an ON effect).
 - A confirmed `H12_2` site-order / shank-orientation map would enable shank- and
   depth-resolved claims and any anatomical interpretation.
 - A recorded stimulus copy (absent in Dec 3/Dec 4) would let entrainment be

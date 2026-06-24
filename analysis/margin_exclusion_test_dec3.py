@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Margin-exclusion test (Mishi step 9, artifact-aware windows).
+"""Margin-exclusion test (Misi step 9, artifact-aware windows).
 
 For the sustained-window LFP measures we drop a +/-100 ms margin at the START and
 END of each 3 s ON window, so onset/offset transients can't leak into the

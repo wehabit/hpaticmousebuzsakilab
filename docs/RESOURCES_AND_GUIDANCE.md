@@ -5,7 +5,7 @@ live in the root README.
 
 ## Workshop
 
-Mishi's ephys workshop:
+Misi's ephys workshop:
 
 - https://github.com/misiVoroslakos/Ephys_workshop
 
@@ -17,7 +17,7 @@ Mishi's ephys workshop:
   https://agencyenterprise.github.io/AnalyzingNeuralTimeSeries-Python/chapter02.html
 - Book by Mike Cohen
 
-## Mishi's Suggestions
+## Misi's Suggestions
 
 From Mihaly Voroslakos, Dec 4, 2025:
 

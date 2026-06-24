@@ -12,7 +12,7 @@ Images from the experiment:
 
 ## December 4: One Mouse, Two Shanks Implanted
 
-Data shared by Mishi:
+Data shared by Misi:
 
 - https://drive.google.com/drive/u/3/folders/11S4fJvwI5_ZltETXopUXOIprmO7udT9G
 
@@ -43,7 +43,7 @@ Timing:
 
 Original note:
 
-- Mishi was going to send `amplifier.dat`.
+- Misi was going to send `amplifier.dat`.
 - Other files were noted here:
   https://drive.google.com/drive/u/2/folders/1KCHj2yOEkNIjX9bO9ZMiSj2WCGB7mrga
 

@@ -130,7 +130,12 @@ def main() -> None:
             "ks_good_units": "kilosort_ks_good_units_tsgroup.npz",
             "metadata": "cluster_metadata.csv",
         },
-        "caveat": "Uncurated Kilosort4 output with provisional geometry.",
+        "caveat": (
+            "Pynapple exports are convenience spike-time objects. The KS-good "
+            "TsGroup follows Kilosort KSLabel, while final presentation claims "
+            "should use the curated/merged ON/OFF analyses. Probe geometry remains "
+            "provisional for depth/layer claims."
+        ),
     }
     (args.output_dir / "pynapple_spike_export_summary.json").write_text(
         json.dumps(summary, indent=2) + "\n"
@@ -138,13 +143,16 @@ def main() -> None:
 
     readme = f"""# Dec 3 Pynapple Spike Export
 
-Kilosort spike trains exported as Pynapple `TsGroup` objects.
+Kilosort spike trains exported as Pynapple `TsGroup` objects. These files are
+convenience objects for interval-count and PETH-style analyses; the final
+presentation spike claim comes from the curated/merged ON/OFF analysis, not from
+the KS-good export alone.
 
 ## Files
 
 - `kilosort_all_units_tsgroup.npz`: all `{n_clusters}` Kilosort clusters.
-- `kilosort_ks_good_units_tsgroup.npz`: `{len(good_cluster_ids)}` KS-good clusters.
-- `cluster_metadata.csv`: Kilosort labels, contamination, amplitude, and good flag.
+- `kilosort_ks_good_units_tsgroup.npz`: `{len(good_cluster_ids)}` historical KS-good clusters.
+- `cluster_metadata.csv`: Kilosort labels, optional curated `group`, contamination, amplitude, and good flag.
 - `pynapple_spike_export_summary.json`: export summary.
 
 ## Example
@@ -157,8 +165,10 @@ on = nap.load_file("../pynapple_intervals/all_on_intervals.npz")
 counts = spikes.count(3.0, ep=on)
 ```
 
-Caveat: these spike trains are not Phy-curated yet and use the provisional
-probe geometry/channel order.
+Caveat: the KS-good `TsGroup` follows Kilosort `KSLabel`. The final Dec 3
+presentation result uses the curated/merged spike analyses: 29 curated good units
+and 0/174 responsive unit-conditions. Probe geometry/channel order remains
+provisional for depth/layer claims.
 """
     (args.output_dir / "README.md").write_text(readme)
 

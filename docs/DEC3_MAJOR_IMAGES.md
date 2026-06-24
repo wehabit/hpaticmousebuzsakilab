@@ -67,8 +67,9 @@ Supervisor-facing summary:
 
 10. [PLV condition summary](../analysis/outputs/dec3/phase_locking_lfp/plv_condition_summary.png)
 
-    Phase-locking summary. Current interpretation: first PLV pass does not show
-    strong trial-to-trial phase entrainment.
+    Phase-locking summary. Current interpretation: PLV does not show strong
+    trial-onset-aligned phase consistency; true stimulus-phase locking was not
+    directly testable without a recorded vibration phase reference.
 
 11. [PLV time courses](../analysis/outputs/dec3/phase_locking_lfp/plv_timecourses.png)
 

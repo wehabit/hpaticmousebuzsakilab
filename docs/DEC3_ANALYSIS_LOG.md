@@ -1,6 +1,6 @@
 # Dec 3 Analysis Log
 
-This log tracks the Python version of the Dec 3 pipeline, following Mishi's
+This log tracks the Python version of the Dec 3 pipeline, following Misi's
 Buzcode/CellExplorer workflow while keeping the raw files unchanged unless noted.
 
 Note: this is a historical run log. Some commands below preserve the older
@@ -446,8 +446,9 @@ Interpretation:
 - Baseline and sustained PLV values are around `0.05-0.07`, close to the
   expected finite-trial floor for 200 trials rather than strong entrainment.
 - Current conclusion: the Dec 3 LFP has condition-dependent amplitude/power
-  responses, but this first PLV pass does not show strong trial-to-trial
-  phase-locking to the stimulus rhythm.
+  responses, but the PLV analysis does not show strong trial-onset-aligned
+  phase consistency. A true stimulus-phase test was not possible because the
+  delivered vibration phase was not recorded.
 
 ## Trial-Level Bootstrap Statistics
 
@@ -924,10 +925,10 @@ GUI status:
 Conclusion:
 
 - Phy/Kilosort file validation passes.
-- Manual Phy curation is blocked by local GUI/OpenGL compatibility, not by the
-  Dec 3 data.
-- Spike analyses remain provisional until curation is completed on a compatible
-  Phy setup.
+- This section records an earlier local GUI/OpenGL issue, not the current final
+  spike conclusion.
+- The current curated/merged Dec 3 spike result is documented in
+  `docs/DEC3_CURATED_SPIKE_RESULT.md`.
 
 ## Conservative Phy Environment Attempt
 

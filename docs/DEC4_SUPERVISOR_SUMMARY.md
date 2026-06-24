@@ -14,8 +14,8 @@ Same mouse, same headstage settings, same probes — Dec 4 simply records a
 | | Dec 3 | Dec 4 |
 |---|---|---|
 | Probes | dHPC only (128 ch, Port A) | **dHPC (Port A, 0–127) + LEC (Port B, 128–255)** = 256 ch |
-| Drive frequencies | 5, 26 Hz | **5, 10, 26, 50 Hz** |
-| Amplitudes | 100, 180, 250 | 100, 180, 250 (same) |
+| Drive frequencies | `5, 26` Hz | **`5, 10, 26, 50` Hz** |
+| Amplitudes | `{100, 180, 250}` | `{100, 180, 250}` (same) |
 | Conditions × repeats | 6 × 200 = 1200 trials | **12 × 200 = 2400 trials** |
 | Stimulation block | 120 min | **240 min** (15 min pre + 240 + 15 post; ~5 h total) |
 | Timing source | controller schedule + accelerometer TTL | controller schedule + **log START offset** (no `digitalin.dat` shared) |
@@ -61,26 +61,31 @@ the precise framing keeps it separate (live, not disconnected).
 
 ## Headline findings
 
-1. **dHPC does not follow any drive frequency — replicating Dec 3 on the same probe.**
+1. **dHPC shows no clean frequency-following evidence at any drive frequency —
+   replicating Dec 3 on the same probe.**
    Driven-frequency power change is near zero/negative at 5, 10, 26 *and* 50 Hz, and
    inter-trial phase locking (ITPC) sits at the finite-trial chance floor. The 1/f
    decomposition shows no robust narrowband peak (only a small, non-amplitude-graded
-   50 Hz residual). This both **replicates Dec 3's "no frequency-following in dHPC"**
-   on the identical probe and **extends it to the two new frequencies**.
+   50 Hz residual). This both **replicates Dec 3's "no clean frequency-following
+   evidence in dHPC"** on the identical probe and **extends it to the two new
+   frequencies**.
 
-2. **LEC shows a real, amplitude-graded narrowband 50 Hz power increase — but it is
-   *induced*, not phase-locked.**
+2. **LEC shows a real, amplitude-graded narrowband 50 Hz power increase, but the
+   LFP is artifact-suspect and is not proof of entrainment.**
    - Driven-power change at 50 Hz in LEC grows monotonically with amplitude:
      **+0.28 → +0.71 → +1.26 log2** (group-median ref; ≈ 1.2× → 2.4× power) and is
      **robust across all reference schemes** (raw 0.18/0.47/0.83; probe-median
      0.32/0.76/1.37). No comparable effect at 5/10/26 Hz, and none in dHPC.
-   - The 1/f decomposition confirms this is a **genuine narrowband peak above the
-     aperiodic background** at 50 Hz (residual above 1/f **+0.35 → +0.48 → +0.64**,
-     amplitude-graded), not a broadband shift.
+   - The 1/f decomposition confirms this is a **real measured narrowband peak above
+     the aperiodic background** at 50 Hz (residual above 1/f
+     **+0.35 → +0.48 → +0.64**, amplitude-graded), not a broadband shift. Later
+     artifact controls mean "real measured LFP peak" should not be translated into
+     "clean neural oscillation."
    - **But ITPC at 50 Hz stays at the chance floor** (≈0.05–0.08 vs floor 0.063; all
      below the Rayleigh p<0.05 threshold of 0.122). So the 50 Hz power is **not
-     consistently phase-locked to stimulus onset across trials** → induced 50 Hz
-     power, not onset-locked entrainment.
+     consistently phase-locked to trial onset across trials**. Because the stimulus
+     phase was free-running, this does not rule out all stimulus following; it only
+     means this dataset does not prove stimulus-phase entrainment.
 
 3. **Broadband response is onset/transient and amplitude-graded** (mostly dHPC):
    onset-window broadband increases scale with amplitude and are largest at amp250,
@@ -98,36 +103,35 @@ the precise framing keeps it separate (live, not disconnected).
    Figure: `analysis/outputs/cross_dataset_spike_compare/spike_onoff_cross_dataset.png`.
 
 **One-figure version:** `results/dec4/10_Biological_Summary/combined_explainer.png`.
-**Entrainment test:** `results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png`.
+**1/f + onset-ITPC check:** `results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png`.
 
 ## How Dec 4 answers Dec 3 open questions (`docs/OPEN_QUESTIONS.md`)
 
 - **Recording Metadata Q1–Q2 (were both probes present; which port = which probe?)**
   → **Answered.** Both probes exist; Port A = dHPC (H12_2), Port B = LEC (H15).
   Dec 3's 128-ch recording was the dHPC probe (Port A) alone.
-- **The README's central caveat (was Dec 3's "no entrainment" neural or a
-  stimulus-delivery limitation at 5/26 Hz?)** → **Partially answered.** With four
-  frequencies and a second region we *do* find a frequency-specific narrowband
-  response, but only at **50 Hz** and only in **LEC**, and it is induced power rather
-  than phase-locked entrainment. dHPC remains non-following at 5/26 Hz on the same
-  probe, so that null is reproduced rather than overturned.
+- **The README's central caveat (was Dec 3's lack of frequency-following evidence
+  neural or a stimulus-delivery limitation at 5/26 Hz?)** → **Partially answered.**
+  With four frequencies and a second region we *do* find a frequency-specific
+  narrowband LFP response, but only at **50 Hz** and only in **LEC**; it is not a
+  proven entrainment result and later artifact controls show the LFP is
+  contaminated by pickup. dHPC still shows no clean frequency-following evidence
+  at 5/26 Hz on the same probe, so that null is reproduced rather than overturned.
 - **Stimulation Q1/Q4 (timing source / 3 s ON-OFF exactness)** → the controller
   schedule is the source of truth; ON/OFF windows come from it (no TTL this session).
 - **Analysis-choice Q4 (which metric)** → with 4 frequencies, the driven-frequency
-  1/f-residual + ITPC test is the decisive entrainment metric and is now in the
-  pipeline (`spectral_slope_itpc_dec4.py`).
+  1/f-residual + onset-ITPC check is the right LFP target-engagement screen and is
+  now in the pipeline (`spectral_slope_itpc_dec4.py`). A true entrainment test still
+  requires a recorded stimulus phase reference.
 
 ## Caveats (read before over-interpreting the 50 Hz LEC effect)
 
-- **Artifact vs neural is not yet settled.** A 50 Hz, amplitude-graded, region-
-  specific power increase is consistent with induced neural gamma-band power, but
-  also with a 50 Hz stimulation/vibration artifact coupling preferentially into the
-  (noisier) LEC analog path. Arguments *for* neural: it is amplitude-graded with the
-  *stimulus drive* (not constant like mains), LEC-specific (a global electrical
-  artifact should hit both probes — dHPC's 50 Hz peak is much smaller and not
-  amplitude-graded), and a true narrowband peak above 1/f. Arguments *for* artifact:
-  LEC is the damaged/noisy probe; 50 Hz is the highest driven rate; no analog stimulus
-  monitor was saved to verify the delivered waveform.
+- **The LEC 50 Hz LFP is contaminated by pickup.** A later dedicated artifact check
+  found disconnected LEC electrodes picking up much more 50 Hz than tissue and
+  near-zero cross-region lag. So the LEC 50 Hz LFP should be presented as a real
+  stimulus-state narrowband peak, but not as clean neural evidence. The cleanest
+  neural evidence is the curated single-unit firing-rate result, supported by the
+  ACG/ISI spike-artifact screens.
 - **Deep diagnostic (analysis/outputs/dec4/deep_diag/).** A direct look at the raw
   spectra confirms the analysis is sound (50 Hz and the 60 Hz mains line are cleanly
   separate; the LEC 50 Hz rises 1.8× over baseline; no aliasing/mislabeling) but
@@ -142,8 +146,10 @@ the precise framing keeps it separate (live, not disconnected).
   entirely 0xFF (the headstage accelerometer was not recorded), and there is no
   `digitalin.dat`/analog-in. So there is **no independent stimulus or movement monitor**
   this session; physical 50 Hz delivery / head vibration cannot be verified from the
-  data. The decisive remaining neural-vs-artifact test is therefore **spike sorting**
-  (do LEC single units phase-lock to 50 Hz?), which needs the Modal/GPU run.
+  data. Spike sorting/curation is now complete and provides the cleaner neural
+  evidence: a curated 50 Hz ON/OFF firing-rate effect. But true spike or LFP
+  phase-locking to the actual vibration cycle still cannot be tested without a
+  recorded stimulus waveform.
 - **"Not phase-locked" ≠ "not neural."** ITPC requires the stimulus phase to be reset
   at trial onset. If the actuator's 50 Hz phase is not onset-locked, even true
   entrainment would show chance ITPC. Low ITPC rules out *onset-locked* entrainment,
@@ -152,25 +158,29 @@ the precise framing keeps it separate (live, not disconnected).
   cannot be audited as it was for Dec 3.
 - An **LFP-based movement proxy** (no accelerometer) was added: the driven-power
   results are robust to excluding the highest-movement trials (full-vs-excluded
-  r = 0.90), so they are not driven by movement. Spikes are prepped but not yet
-  sorted (Kilosort = Modal/GPU step).
+  r = 0.90), so they are not driven by movement. Kilosort/curation and the
+  single-unit ON/OFF analyses are now complete for both Dec 4 probes.
 
 ## Remaining Dec 3 analyses now also run for Dec 4
 
 All Dec 3 LFP analyses have been reproduced for Dec 4 (same verified modules):
 event-aligned LFP, frequency/driven power, time-frequency, phase locking,
 trial-level bootstrap, broadband-transition, OFF-control, reference sensitivity,
-artifact-aware, 1/f + ITPC entrainment test, **adaptation over repeats**,
+artifact-aware, 1/f + onset-ITPC check, **adaptation over repeats**,
 **per-channel broadband CI**, **sustained-vs-offset explainer** (per probe),
 **artifact-margin robustness** (per probe), an **LFP movement proxy + robustness
 check**, a **per-probe condition-interpretation table**
 (`condition_interpretation/`), **Pynapple ON/OFF/baseline intervals**, and
-**spike-sorting prep + a SpikeInterface recording/trace-sanity** check.
+**spike-sorting prep + a SpikeInterface recording/trace-sanity** check. The later
+spike pass adds curated ON/OFF firing-rate results, PETHs, cell-type/ACG typing,
+baseline/post-study drift checks, and 50 Hz coordination/artifact controls.
 
 Dec 3 steps that are **not applicable** to Dec 4: the TTL audits, the session/TTL
 timeline, and the onset-jitter ("cohen-corrected") analysis — all require the
-accelerometer TTL, which was not shared this session. Full **Kilosort/Phy + spike
-PETH / cluster-quality** remain the Modal/GPU step (provisional on Dec 3 too).
+accelerometer TTL, which was not shared this session. Full **Kilosort/curated
+spike PETH / cluster-quality** outputs are now present; the remaining caveats are
+n=1, no recorded stimulus phase, LEC 50 Hz LFP pickup, stimulus-fidelity limits,
+and provisional probe geometry for depth/layer claims.
 
 ## Stimulus is FREE-RUNNING (firmware) — this confounds onset-ITPC entrainment tests
 
@@ -212,9 +222,11 @@ narrowband 50 Hz **power** increase in LEC (power does not depend on phase).
    locking to the *actual stimulus waveform* (free-running is then a non-issue, and
    you also verify delivery). This is the standard solution and was already the plan
    for the "next" recording.
-2. **Spike–field locking** (works on the data we have): do LEC single units fire at a
-   consistent phase of the *local* 50 Hz LFP? Independent of stimulus phase and trial
-   timing entirely — the Kilosort step sets this up.
+2. **Spike-field locking** (possible on the data we have): ask whether LEC units
+   fire at a consistent phase of the *local* 50 Hz LFP. This is independent of
+   trial-onset phase, and Kilosort/curation makes it possible, but it is still not a
+   substitute for locking to the recorded stimulus because the local 50 Hz LFP is
+   artifact-suspect.
 3. (Optional firmware change) reset `sine_index1 = 0` at each ON to make onset-ITPC
    valid — but a hard phase reset injects an onset transient ("click") every trial and
    entangles the evoked edge with the entrainment response, so recording a sync
@@ -238,7 +250,7 @@ python analysis/channel_qc.py --dat .../amplifier.dat --n-channels 256 --compute
 PYTHONPATH=analysis python analysis/channel_qc_perprobe_dec4.py
 # 4. core LFP analyses (re-uses verified Dec 3 modules via channel_groups_dec4)
 PYTHONPATH=analysis python analysis/run_dec4_lfp_pipeline.py
-# 5. entrainment test + results folder
+# 5. 1/f + onset-ITPC check + results folder
 PYTHONPATH=analysis python analysis/spectral_slope_itpc_dec4.py --lfp .../amplifier.lfp \
   --sequence analysis/outputs/dec4/dec4_condition_sequence.csv \
   --bad-channels-json analysis/bad_channels_dec4.json \
@@ -248,25 +260,25 @@ PYTHONPATH=analysis python analysis/build_dec4_results.py
 
 ## Reproducibility / where the data lives (so analyses can be re-run later)
 
-- **Local, sufficient to re-run everything except spike sorting:** raw `amplifier.dat`
+- **Local, sufficient to re-run the documented analyses:** raw `amplifier.dat`
   (185 GB), the `amplifier_lec.dat` LEC slice (93 GB), `amplifier.lfp` (11.6 GB),
   `dec4_condition_sequence.csv`, `bad_channels_dec4.json`, the
-  `spike_sorting_prep/` channel maps, and all analysis scripts. → LFP analyses and a
-  Kilosort *re-sort* need nothing from Modal.
-- **Only on Modal (download after the sort):** the Kilosort output
-  `/dec4/kilosort4_results_lec/` on the **persistent named volume** `dec4-kilosort-data`.
-  Pull it with `PROBE=lec bash analysis/download_dec4_kilosort.sh` →
-  `analysis/outputs/dec4/modal_kilosort4_results_lec/` (full folder incl. `temp_wh.dat`,
-  for re-running spike PETH / phase-locking without re-sorting). The volume is not
-  deleted automatically, so this can be done any time.
+  `spike_sorting_prep/` channel maps, the downloaded Kilosort output folders
+  (`kilosort4_results_dhpc/`, `kilosort4_results_lec/`), the curated/merged folders,
+  and all analysis scripts.
+- **Modal provenance:** the Kilosort outputs came from persistent Modal volumes and
+  are now represented locally under `analysis/outputs/dec4/`. If a local Kilosort
+  folder is missing, re-download it from Modal or re-sort from the local raw data.
 - **Redundant on Modal (safe to delete to save storage after download):** `lec_chunks/`
   and `amplifier_lec.dat` (both reproducible from the local raw slice).
 
 ## Suggested next steps
 
-1. **Settle artifact vs neural for the LEC 50 Hz effect:** check the `auxiliary.dat`
-   accelerometer for a 50 Hz vibration component; test whether the LFP 50 Hz phase
-   tracks the accelerometer; compare good vs bad LEC channels; look for the effect in
-   OFF windows.
-2. **Spike sorting** on both probes (Kilosort) — the Dec 3 spike pipeline scripts apply.
-3. Confirm Port A = dHPC / Port B = LEC anatomy from surgery notes/probe orientation.
+1. **Future-session stimulus reference:** record the vibration/drive waveform or
+   zero-crossing TTL so spike/LFP phase-locking can be tested against the actual
+   stimulus cycle.
+2. **Keep the current LEC 50 Hz LFP caveat explicit:** it is a real measured
+   narrowband ON-state peak, but pickup/artifact controls prevent a clean neural-LFP
+   claim.
+3. Confirm Port A = dHPC / Port B = LEC anatomy from surgery notes/probe orientation
+   before making layer/depth claims.

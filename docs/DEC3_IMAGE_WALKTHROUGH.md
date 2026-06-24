@@ -462,9 +462,10 @@ These are the best top-level results figures.
 
 ## I. Spikes
 
-Spike results are pre-Phy-curation. That means Kilosort grouped candidate
-spikes, but a human has not yet inspected/merged/split/rejected clusters in
-Phy. Treat these as provisional triage, not final single-unit claims.
+The earlier Kilosort/PETH figures are triage views. The current presentation-safe
+Dec 3 spike result uses the curated/merged `29` good units and shows `0/174`
+responsive unit-conditions after correction, so there is no clean Dec 3
+single-unit ON/OFF firing-rate effect at 5/26 Hz.
 
 - [cluster_quality/cluster_quality_label_counts.png](../analysis/outputs/dec3/cluster_quality/cluster_quality_label_counts.png)
 
@@ -659,5 +660,5 @@ These are mostly sanity/QC figures, not final biological claims.
 3. Then learn the caution: time-frequency grid, driven power CIs, and PLV.
 4. Then learn adaptation: timecourses and slope summary.
 5. End with spikes: cluster quality first, then high-confidence PETH/heatmaps,
-   always saying these are pre-Phy-curation.
-
+   then the curated/merged conclusion: Dec 3 has an LFP response but no curated
+   single-unit ON/OFF firing-rate effect at 5/26 Hz.

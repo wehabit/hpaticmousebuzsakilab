@@ -13,9 +13,10 @@ wideband / 1.25 kHz LFP) and recorded during controlled **vibrotactile
   conditions: amplitude `{100, 180, 250}` × frequency `{5, 26}` Hz, ~200 each.
 - **Dec 4** — the **same mouse and dHPC probe** plus a **second probe in lateral
   entorhinal cortex** (**LEC**, Port B) = **256 channels**, with two added drive
-  frequencies. **2,400 trials** (12 conditions: 3 amplitudes × **{5, 10, 26, 50}
-  Hz**) over a ~5-hour session. Port A is the identical dHPC probe/channel map as
-  Dec 3, so dHPC is **directly comparable across sessions**.
+  frequencies. **2,400 trials** (12 conditions: amplitude `{100, 180, 250}` ×
+  frequency `{5, 10, 26, 50}` Hz, ~200 each) over a ~5-hour session. Port A is
+  the identical dHPC probe/channel map as Dec 3, so dHPC is **directly comparable
+  across sessions**.
 
 The delivered vibration was logged only as crude QC (a 1-bit accelerometer TTL on
 Dec 3; no stimulus channel shared on Dec 4), and the actuator ran as a
@@ -23,13 +24,16 @@ free-running oscillator — see the stimulus caveat below. Trial timing comes fr
 the randomized controller schedule, validated against the recording-start offset.
 
 The central questions are whether neural activity (i) **responds** to the stimulus
-and (ii) **entrains** to its drive frequency. Both sessions use the **same
-pipeline**: event-aligned LFP, broadband and frequency-specific power,
-time-frequency and 1/f spectral-slope decomposition, inter-trial phase locking
-(PLV/ITPC) tested against an analytic chance floor, within-trial OFF-window and
-reference-scheme controls, an LFP-based movement proxy, and **Kilosort spike
-sorting with over-split/merge detection, curation, and peri-event time
-histograms** — all with trial-level bootstrap 95% confidence intervals.
+and (ii) shows evidence consistent with **frequency-following / entrainment**. The
+second question is limited by the hardware: the delivered vibration phase was not
+recorded, so true stimulus-phase entrainment cannot be proven or ruled out from
+these sessions. Both sessions use the **same pipeline**: event-aligned LFP,
+broadband and frequency-specific power, time-frequency and 1/f spectral-slope
+decomposition, onset-aligned inter-trial phase consistency (PLV/ITPC) tested
+against an analytic chance floor, within-trial OFF-window and reference-scheme
+controls, an LFP-based movement proxy, and **Kilosort spike sorting with
+over-split/merge detection, curation, and peri-event time histograms** — all with
+trial-level bootstrap 95% confidence intervals.
 
 **Key findings.** (each links to the figure(s) that show it)
 1. A **real, amplitude-graded broadband LFP response**, strongest for the
@@ -39,20 +43,23 @@ histograms** — all with trial-level bootstrap 95% confidence intervals.
    `amp250_freq26` (CI excludes 0) and marginal at `amp180_freq26`.
    → [condition × channel heatmap](results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png),
    [transition index](results/dec3/07_Broadband_OFFcontrol_TrialStats/transition_index_condition.png)
-2. **No frequency-following in dHPC at any tested frequency** (5/10/26/50 Hz): no
-   narrowband peak above the 1/f background, phase locking at chance. This
-   **replicates across Dec 3 and Dec 4 on the identical probe** and extends to the
-   two new frequencies.
+2. **No clean frequency-following evidence in dHPC at any tested frequency**
+   (5/10/26/50 Hz): no sustained narrowband peak above the 1/f background, and
+   onset-aligned phase consistency sits near chance. This **replicates across
+   Dec 3 and Dec 4 on the identical probe** and extends to the two new
+   frequencies. True stimulus-phase locking remains untestable without a recorded
+   vibration phase reference.
    → [Dec 3 spectral-slope decomposition](results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png),
    [Dec 3 phase-locking null floor](results/dec3/06_Phase_Locking/phase_locking_null_floor.png),
    [Dec 4 spectral slope + ITPC](results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png)
-3. **LEC (Dec 4) shows an amplitude-graded narrowband 50 Hz LFP power increase that
-   is *induced*, not phase-locked** (ITPC at chance) — with no comparable effect at
-   5/10/26 Hz or in dHPC. **But a dedicated artifact check shows this LFP effect is
-   contaminated by non-neural pickup:** disconnected LEC electrodes (which can't
-   record neurons) pick up **~6× more** 50 Hz during ON than tissue, and the
-   cross-region 50 Hz lag is ~0 ms (a shared signal). So the LEC 50 Hz *LFP* is not
-   clean neural evidence — the single-unit rate change (finding 4) is.
+3. **LEC (Dec 4) shows an amplitude-graded narrowband 50 Hz LFP power increase**
+   with no comparable effect at 5/10/26 Hz or in dHPC. Onset-aligned ITPC sits near
+   chance, so this is a stimulus-state power peak, **not a proven entrainment
+   result**. **But a dedicated artifact check shows this LFP effect is contaminated
+   by non-neural pickup:** disconnected LEC electrodes (which can't record neurons)
+   pick up **~6× more** 50 Hz during ON than tissue, and the cross-region 50 Hz lag
+   is ~0 ms (a shared signal). So the LEC 50 Hz *LFP* is not clean neural evidence
+   — the single-unit rate change (finding 4) is.
    → [driven-power change by region](results/dec4/05_Frequency_Spectral/driven_power_change_by_analysis_group.png),
    [50 Hz artifact check](analysis/outputs/dec4/artifact_check_50hz/artifact_check_50hz.png),
    [writeup](docs/DEC4_50HZ_ARTIFACT_CHECK.md)
@@ -94,9 +101,11 @@ recorded a usable **analog copy of the delivered vibration**, the actuator ran
 free-running (phase never reset), and the digital sync channel **never captured the
 carrier** (it toggled at ~4 Hz regardless of drive frequency — see the
 [TTL diagnostic](analysis/outputs/dec3/ttl_diagnostic/ttl_cannot_recover_tactor_phase.png)).
-So the stimulus's instantaneous phase is **unrecoverable**, and "no entrainment" is a
-**hardware/measurement limitation, not a neural result** — band power is measurable,
-but phase-following cannot be tested without a phase reference.
+So the stimulus's instantaneous phase is **unrecoverable**. The correct conclusion
+is **not** "the brain cannot entrain"; it is "we do not have evidence of
+entrainment in these data, and the definitive phase-following test was not
+possible." Band power is measurable, but phase-following cannot be tested without a
+phase reference.
 
 **Caveat — stimulus fidelity at low frequencies.** We also determined, after the
 study, that the delivered vibration was **not a clean sine wave at the lower carriers
@@ -131,10 +140,10 @@ recording above (see [docs/DEC3_EXTERNAL_BLOCKERS.md](docs/DEC3_EXTERNAL_BLOCKER
 - [Dec 3 Supervisor Summary](docs/DEC3_SUPERVISOR_SUMMARY.md): clean
   findings, figure links, methods, caveats, and suggested presentation order.
 - [**Dec 4 Supervisor Summary**](docs/DEC4_SUPERVISOR_SUMMARY.md): two-probe
-  (dHPC + LEC) session, four drive frequencies. Headline: dHPC follows no
-  frequency (replicating Dec 3 on the same probe); LEC shows an induced,
-  amplitude-graded 50 Hz power increase that is **not** phase-locked. Figures in
-  [`results/dec4/`](results/dec4/README.md).
+  (dHPC + LEC) session, four drive frequencies. Headline: dHPC shows no clean
+  frequency-following evidence (replicating Dec 3 on the same probe); LEC shows an
+  amplitude-graded 50 Hz LFP power peak that is artifact-suspect and not a proven
+  entrainment result. Figures in [`results/dec4/`](results/dec4/README.md).
 - [Dec 3 Results Dashboard](analysis/outputs/dec3/RESULTS_DASHBOARD.html):
   clickable local HTML dashboard of result pages and figures.
 - [Dec 3 Major Images](docs/DEC3_MAJOR_IMAGES.md): figure-by-figure guide.
@@ -150,7 +159,7 @@ recording above (see [docs/DEC3_EXTERNAL_BLOCKERS.md](docs/DEC3_EXTERNAL_BLOCKER
 - [Experiment Setup Photos](https://photos.app.goo.gl/NzK9YqrbCPufYTYV8):
   Google Photos album showing the study/experiment setup.
 - [Resources And Guidance](docs/RESOURCES_AND_GUIDANCE.md): links from Nick,
-  Mishi, Buzcode, CellExplorer, Pynapple, Kilosort, and related references.
+  Misi, Buzcode, CellExplorer, Pynapple, Kilosort, and related references.
 
 ## Results — Every Figure
 
@@ -172,33 +181,34 @@ index with descriptions.
 
 **Headline figures (Dec 3 — start here):**
 
-- [The whole story in one figure](results/dec3/10_Biological_Summary/combined_explainer.png) — reacts to the buzz (yes, at 26 Hz) but does **not** follow its frequency.
+- [The whole story in one figure](results/dec3/10_Biological_Summary/combined_explainer.png) — reacts to the buzz (yes, especially around 26 Hz) but does **not** show clean frequency-following evidence.
 - [Session timeline](results/dec3/01_Session_Timeline/session_timeline.png) — baseline / stimulation / post.
 - [Condition × channel response](results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) — `amp180_freq26` strongest.
 - [Broadband, not oscillation](results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png) — 1/f spectral-slope test.
-- [No entrainment](results/dec3/06_Phase_Locking/phase_locking_null_floor.png) — phase locking at chance.
+- [No clean onset-locked phase evidence](results/dec3/06_Phase_Locking/phase_locking_null_floor.png) — onset-aligned phase consistency sits near chance; true stimulus-phase entrainment was not testable.
 - [Spike firing flat ON vs OFF](results/dec3/11_Spikes/peth_onset_ks_good_units.png) — no single-unit effect (confirmed after curation; 29 good units).
 
 **Headline figures (Dec 4 — two probes, four frequencies):**
 
 - [Driven-power change by region](results/dec4/05_Frequency_Spectral/driven_power_change_by_analysis_group.png) — LEC's amplitude-graded **50 Hz** increase; dHPC flat at all frequencies.
-- [Spectral slope + ITPC](results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png) — the 50 Hz power is a real narrowband peak, but **induced, not phase-locked**.
-- [Phase locking by condition](results/dec4/06_Phase_Locking/plv_condition_summary.png) — ITPC at the chance floor, including LEC 50 Hz.
+- [Spectral slope + ITPC](results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png) — the LEC 50 Hz power is a real narrowband peak during ON, but not a proven entrainment result.
+- [Phase locking by condition](results/dec4/06_Phase_Locking/plv_condition_summary.png) — onset-aligned ITPC is near the chance floor, including LEC 50 Hz.
 - [Full Dec 4 supervisor summary](docs/DEC4_SUPERVISOR_SUMMARY.md) and [Dec 4 figure index](results/dec4/README.md).
 
 ## Current Takeaway (Dec 3 + Dec 4)
 
 **Dec 3 (dHPC).** Clear stimulation-related LFP effects — a broadband and
-recovery-period response around `amp180_freq26` — but **no clean frequency
-entrainment** (26 Hz-band power and PLV sit at chance). After spike sorting **and
+recovery-period response around `amp180_freq26` — but **no clean
+frequency-following evidence** (26 Hz-band power is not a sustained narrowband
+effect, and onset-aligned PLV sits near chance). After spike sorting **and
 curation** (29 good single units), there is **no ON-vs-OFF firing-rate effect**;
 that null now holds *post*-curation, not just provisionally.
 
-**Dec 4 (dHPC + LEC).** On the same dHPC probe, the **no-frequency-following
+**Dec 4 (dHPC + LEC).** On the same dHPC probe, the **no-clean-frequency-following
 result replicates** and extends to 10 and 50 Hz. The new region, **LEC**, shows a
-genuine **amplitude-graded 50 Hz power increase that is *induced*, not
-phase-locked** — a frequency-specific power change without onset entrainment.
-Both probes are sorted and curated (dHPC 15, LEC 15 good units). And at the
+genuine **amplitude-graded 50 Hz power increase** during ON, but this LFP peak is
+artifact-suspect and is **not proof of entrainment**. Both probes are sorted and
+curated (dHPC 15, LEC 15 good units). And at the
 **single-unit** level, **50 Hz / high-amplitude** stimulation modulates a subset
 of units in **both** regions (absent at 5/26 Hz) — coherent with the 50 Hz LFP
 effect. This response is **active and region-specific** (not a passive echo), but
@@ -207,10 +217,10 @@ at 50 Hz (the cross-region LFP coherence rise is best explained by a shared sign
 not neural coordination) ([details](docs/DEC4_COORDINATION_50HZ.md)).
 
 **Across both:** the brain *registers* the stimulus (broadband; and in LEC, 50 Hz
-power) but does **not entrain** to its rhythm — with the important caveat that
-entrainment could not be properly tested because the delivered vibration was never
-recorded as an analog phase reference (fixed in the next round). Laminar/anatomical
-claims await probe-geometry confirmation.
+power), but these recordings do **not** prove entrainment. The important caveat is
+that entrainment could not be properly tested because the delivered vibration was
+never recorded as an analog phase reference (fixed in the next round).
+Laminar/anatomical claims await probe-geometry confirmation.
 
 ## Study Protocol & Recording Phases (Dec 3)
 
@@ -326,7 +336,8 @@ guide.
 
 ## GitHub Notes
 
-Both the Dec 3 and Dec 4 analyses (LFP + sorted/curated spikes) are pushed to
-`main`. Raw data, large sorter arrays (`*.npy`/`*.npz`), and the curated-merge
+The GitHub repository tracks the Dec 3 and Dec 4 analysis code, summaries,
+CSV/JSON tables, and normal-sized figures for LFP + sorted/curated spike
+results. Raw data, large sorter arrays (`*.npy`/`*.npz`), and curated-merge
 working copies are intentionally **not** committed; rerunning the full pipeline
 requires local access to those files.

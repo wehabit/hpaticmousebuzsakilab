@@ -82,8 +82,10 @@ Walking the inference ladder:
    Instead the two regions respond with **different distributions** — at 50 Hz,
    **LEC units are predominantly suppressed** (~67% fire less; mean −0.08 Hz) while
    **dHPC shows a driven-up subset** (mean +0.22 Hz, a few units strongly increased).
-   And the LFP 50 Hz is **induced, not phase-locked**. Both point to the input being
-   *transformed differently by each circuit*, not mirrored.
+   The LFP 50 Hz peak is a stimulus-state power increase rather than proof of
+   entrainment, and it is artifact-suspect. Together with the opposite spike-rate
+   directions, this points to the input being *transformed differently by each
+   circuit*, not mirrored.
 3. **→ Active, region-specific processing** is the supported reading: the 50 Hz
    input is handled differently by hippocampus vs entorhinal cortex.
 

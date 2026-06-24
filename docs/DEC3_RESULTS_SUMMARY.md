@@ -165,10 +165,12 @@ strongest" story.
    - `amp100_freq26` becomes positive with median referencing.
    - `amp180_freq26` and `amp250_freq26` remain near-zero/negative in
      driven-frequency power.
-6. Phase-locking/entrainment is not strong in the first PLV pass.
+6. Phase-locking does not support strong onset-locked entrainment.
    - PLV values are close to the expected finite-trial baseline.
    - No condition shows a large sustained increase in phase consistency over
      the pre-stim period.
+   - True stimulus-phase locking was not directly testable because the delivered
+     vibration phase was not recorded.
 7. Current channel labels should remain conservative:
    - Physical Shank A: channels `0-63`
    - Physical Shank B: channels `64-127`
@@ -263,8 +265,10 @@ Phase-locking value (PLV), sustained minus pre:
 | `amp250_freq26` | `-0.010` |
 | `amp100_freq5` | `-0.013` |
 
-Interpretation: these PLV changes are tiny. This first PLV pass does not show
-strong trial-to-trial phase-locking to 5 Hz or 26 Hz stimulation.
+Interpretation: these PLV changes are tiny. The PLV analysis does not show
+strong trial-onset-aligned phase consistency at 5 Hz or 26 Hz. It should not be
+overstated as a definitive stimulus-phase test because the delivered vibration
+phase was not recorded.
 
 Trial-level bootstrap confidence intervals, corrected equal spectral windows:
 
@@ -484,7 +488,7 @@ Outputs:
   `cluster_group.tsv`, `cluster_KSLabel.tsv`, `cluster_ContamPct.tsv`,
   and `params.py`.
 
-## Provisional Spike ON-vs-OFF Analysis
+## Initial Kilosort Spike ON-vs-OFF Triage
 
 Script:
 
@@ -519,7 +523,7 @@ Method:
 
 Main result:
 
-- This first uncurated spike pass does **not** show a clean KS-good-unit
+- This initial Kilosort spike pass does **not** show a clean KS-good-unit
   ON-spiking increase.
 - Across the `28` KS-good clusters, condition-average ON-minus-OFF deltas are
   small or negative:
@@ -538,13 +542,13 @@ Main result:
 
 Interpretation:
 
-- The spike result is not yet aligned with a simple "stimulation increases good
-  unit firing during ON" story.
+- The initial spike result is not aligned with a simple "stimulation increases
+  good unit firing during ON" story.
 - The LFP `amp180_freq26` broadband/recovery effect may reflect local field
   synchrony, subthreshold/synaptic activity, movement/artifact/recovery
-  dynamics, or multiunit structure that needs Phy inspection.
-- Next step is Phy curation and then rerunning the same ON-vs-OFF analysis on
-  curated units.
+  dynamics, or multiunit structure.
+- This triage pass is superseded for presentation by the curated/merged result
+  below.
 
 ## Automated Cluster Quality Pre-Curation
 
@@ -578,14 +582,13 @@ Current automated counts:
 
 Important interpretation:
 
-- This is not final curation. It is a triage list for Phy.
-- `phy_review_priority.csv` should be used as the first manual curation
-  checklist.
+- This was not final curation. It was a triage list for cluster review.
+- `phy_review_priority.csv` was used as a review/merge checklist.
 - The first clusters to review are KS-good clusters with the largest
   condition-linked ON-minus-OFF changes, followed by ambiguous high-response
   MUA/noise-labeled clusters.
-- After Phy labels are saved, rerun the PETH/on-off analysis using curated
-  `good` units only.
+- The current presentation-safe spike claim comes from the curated/merged result
+  below.
 
 ## High-Confidence Spike ON-vs-OFF Subset
 
@@ -625,10 +628,32 @@ Interpretation:
 - The spike story remains unlike the LFP story: Dec 3 has clear LFP effects,
   but good/high-confidence single units do not show a robust ON > OFF firing
   increase under the current analysis.
-- The high-confidence subset is still pre-Phy-curation, but it is now the best
-  conservative spike-analysis view until manual curation is completed.
+- The high-confidence subset agrees with the later curated/merged result: no
+  robust Dec 3 single-unit ON/OFF firing-rate effect at 5/26 Hz.
 
-## Phy Curation Setup Status
+## Curated/Merged Spike Conclusion (Current)
+
+Current writeup:
+
+- `docs/DEC3_CURATED_SPIKE_RESULT.md`
+
+Current presentation-safe result:
+
+- `29` curated good units.
+- `174` unit-condition ON-vs-OFF tests.
+- `0` responsive unit-conditions after BH correction at `q < 0.05`.
+
+Interpretation:
+
+- The Dec 3 spike conclusion is now a curated null result, not just a provisional
+  Kilosort screen.
+- This does not erase the LFP response; it means the Dec 3 5/26 Hz LFP effect did
+  not translate into a detectable single-unit firing-rate change in the curated
+  unit set.
+- Remaining spike-related caveats are anatomy/layer/probe-geometry claims, not the
+  ON/OFF firing-rate result itself.
+
+## Historical Phy Setup Status
 
 Setup note:
 
@@ -665,14 +690,9 @@ Current blocker:
 
 Interpretation:
 
-- Dec 3 Kilosort output is ready for Phy from a file/data perspective.
-- Manual curation is still pending because the local GUI rendering layer is not
-  usable yet.
-- Until curation is completed, all spike-level biological interpretations stay
-  provisional.
-- A Modal noVNC fallback was added in `analysis/modal_phy_dec3.py`; the first
-  run successfully exposed a browser desktop endpoint, but still needs visual
-  confirmation that Phy renders correctly inside that remote desktop.
+- These notes document the earlier local GUI/Modal setup issue.
+- The current scientific conclusion should use the curated/merged spike result
+  above, not this historical setup status.
 
 ## Current One-Sentence Takeaway
 
@@ -682,8 +702,7 @@ amplitude for `180 amplitude / 26 Hz`. The most supported story is a
 `180 / 26 Hz` has reliable ON and OFF-period broadband increases, but late
 repeats become OFF-dominant; `250 / 26 Hz` adapts downward strongly across
 repeats. Frequency-specific power patterns are suggestive, but corrected
-trial-level confidence intervals cross zero, and the first PLV pass does not
-show strong trial-to-trial phase-locking. The first uncurated Kilosort spike
-analysis does not show a clean KS-good-unit ON firing-rate increase; the
-strongest positive `amp180_freq26` spike effects are currently MUA-labeled and
-need Phy review.
+trial-level confidence intervals cross zero, and PLV does not show strong
+trial-onset-aligned phase consistency. The current curated/merged spike analysis
+also shows no Dec 3 ON/OFF firing-rate effect: `29` curated good units, `174`
+unit-condition tests, `0` responsive after correction.

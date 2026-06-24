@@ -23,9 +23,10 @@ simple "26 Hz entrainment" story. The strongest and most reliable signal is a
 broadband LFP/recovery response around `amp180_freq26`, including elevated
 activity during the following 3 s OFF-control period. Frequency-specific power
 and phase-locking analyses are more cautious: they do not show a robust,
-corrected, sustained 26 Hz entrainment effect. Spike sorting has run, but the
-cleanest high-confidence single-unit subset does not show a robust ON-period
-firing-rate increase; spike claims remain provisional until Phy curation.
+corrected, sustained 26 Hz frequency-following effect. Spike sorting and the
+current curated/merged analysis are complete for this dataset: **29 curated good
+units, 174 unit-condition tests, 0 responsive at q<0.05**. So Dec 3 has a clear
+LFP response, but no curated single-unit ON/OFF firing-rate effect at 5/26 Hz.
 
 ## Main Findings
 
@@ -62,12 +63,14 @@ Key figures:
 - [Frequency specificity by group](../analysis/outputs/dec3/frequency_lfp/frequency_specificity_by_group.png)
 - [Driven-power confidence intervals](../analysis/outputs/dec3/trial_level_stats_equal_spectral_windows/driven_power_ci.png)
 
-### 3. Phase-Locking Does Not Support Strong Entrainment Yet
+### 3. Phase-Locking Does Not Support Strong Onset-Locked Entrainment
 
-- The first PLV analysis does not show a strong sustained increase in
-  trial-to-trial phase consistency.
+- The PLV analysis does not show a strong sustained increase in trial-to-trial
+  phase consistency aligned to trial onset.
 - This supports the current interpretation that `amp180_freq26` is a strong
   broadband/recovery LFP response, not clean sustained 26 Hz locking.
+- True stimulus-phase entrainment was not directly testable because the delivered
+  vibration phase was not recorded.
 
 Key figures:
 
@@ -87,7 +90,7 @@ Key figures:
 - [Adaptation slope summary](../analysis/outputs/dec3/adaptation_analysis/adaptation_slope_summary.png)
 - [Transition index](../analysis/outputs/dec3/broadband_transition/transition_index_condition.png)
 
-### 5. Spike Results Are Provisional And Do Not Yet Match The LFP Story
+### 5. Curated Spike Results Do Not Match The LFP Story
 
 - Kilosort produced `194` clusters/templates (an over-count: an automated
   over-split detector found templates `{90, 91, 92, 97, 104}` are one neuron
@@ -95,11 +98,13 @@ Key figures:
   are validated as distinct from each other).
 - Kilosort labeled `28` clusters as `good`.
 - Automated quality triage identified `19` high-confidence KS-good clusters.
-- The high-confidence subset shows no BH-corrected ON-vs-OFF unit/condition
-  firing-rate effects.
-- Therefore, there is no clean current evidence that stimulation increases
-  high-confidence single-unit firing during ON.
-- Manual Phy curation is still needed before final spike claims.
+- The curated/merged final Dec 3 set has `29` curated good units.
+- The high-confidence subset and the curated/merged set both show no
+  BH-corrected ON-vs-OFF unit/condition firing-rate effects.
+- Therefore, there is no clean Dec 3 evidence that stimulation changes
+  single-unit firing during ON at 5/26 Hz.
+- The remaining spike caveat is not the ON/OFF result; it is anatomy/layer
+  interpretation, which still needs confirmed probe geometry/histology.
 
 Key figures:
 
@@ -109,6 +114,7 @@ Key figures:
 - [High-confidence spike heatmap](../analysis/outputs/dec3/spike_peth_high_confidence/high_confidence_unit_condition_heatmap.png)
 - [High-confidence onset PETH](../analysis/outputs/dec3/spike_peth_high_confidence/peth_onset_high_confidence_units.png)
 - [High-confidence offset PETH](../analysis/outputs/dec3/spike_peth_high_confidence/peth_offset_high_confidence_units.png)
+- [Curated Dec 3 spike result](DEC3_CURATED_SPIKE_RESULT.md)
 
 ## Methods And Pipeline
 
@@ -198,7 +204,7 @@ Tools used:
 
 - Kilosort4 on Modal GPU
 - SpikeInterface for raw binary loading and smoke-test sorting
-- Phy setup attempted locally and through Modal noVNC
+- Phy-compatible review plus over-split/merge correction for curated-unit labels
 - Pynapple used for interval/spike export compatibility
 
 Scripts:
@@ -219,18 +225,18 @@ Reports:
 - [SpikeInterface setup](../analysis/outputs/dec3/spikeinterface_setup/README.md)
 - [Kilosort output summary](../analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/README.md)
 - [Cluster quality](../analysis/outputs/dec3/cluster_quality/index.html)
-- [Uncurated spike ON/OFF](../analysis/outputs/dec3/spike_peth_on_off/index.html)
+- [Initial Kilosort spike ON/OFF triage](../analysis/outputs/dec3/spike_peth_on_off/index.html)
 - [High-confidence spike ON/OFF](../analysis/outputs/dec3/spike_peth_high_confidence/index.html)
-- [Phy setup status](PHY_DEC3_SETUP.md)
+- [Curated Dec 3 spike conclusion](DEC3_CURATED_SPIKE_RESULT.md)
+- [Historical Phy setup status](PHY_DEC3_SETUP.md)
 
 ## Important Caveats
 
-- Spike results are pre-Phy-curation. This means Kilosort has detected and
-  grouped candidate spike clusters, but a human has not yet inspected those
-  clusters in Phy to decide which are true single units, which are multiunit
-  activity, which are duplicates/merge candidates, and which are noise. The
-  current spike figures are therefore useful for triage and hypothesis
-  generation, but they should not be presented as final single-neuron results.
+- Spike sorting and the current curated/merged analysis are complete for the
+  Dec 3 ON/OFF firing-rate question. The final presentation-safe result is:
+  `29` curated good units, `174` unit-condition tests, and `0` responsive at
+  q<0.05. The remaining spike caveat is anatomical interpretation, not whether
+  the Dec 3 ON/OFF null has been checked.
 
 - Probe *identity* is now confirmed: the Dec 4 two-probe recording established
   that this Dec 3 128-ch recording is the dHPC probe (Cambridge NeuroTech
@@ -318,30 +324,31 @@ Reports:
    [PLV condition summary](../analysis/outputs/dec3/phase_locking_lfp/plv_condition_summary.png).
 
    Main point: PLV asks whether the LFP phase is consistent across trials at
-   the stimulation frequency. The first PLV pass does not show strong sustained
-   phase-locking, which further weakens a final entrainment claim.
+   the stimulation frequency. The PLV analysis does not show strong sustained
+   onset-aligned phase-locking, which weakens a final entrainment claim. The true
+   stimulus-phase test still requires a recorded vibration phase reference.
 
-7. Show spike caveat with
+7. Show spike result with
    [High-confidence spike unit-set comparison](../analysis/outputs/dec3/spike_peth_high_confidence/condition_mean_on_minus_off_unit_set_comparison.png).
 
-   Main point: when we restrict to the cleanest automated KS-good units, the
-   spike response does not show a robust ON > OFF firing-rate increase. This
-   means the current spike analysis does not mirror the strong LFP response.
-   The interpretation is: strong LFP effect, but no clean
-   high-confidence single-unit firing-rate effect yet.
+   Main point: when we restrict to the cleanest automated KS-good units, and again
+   when we use the curated/merged 29-unit set, the spike response does not show a
+   robust ON > OFF firing-rate increase. The interpretation is: strong LFP effect,
+   but no clean Dec 3 single-unit firing-rate effect at 5/26 Hz.
 
 8. If there is time, show
    [Cluster quality scatter](../analysis/outputs/dec3/cluster_quality/cluster_quality_scatter.png)
    or
    [Cluster label counts](../analysis/outputs/dec3/cluster_quality/cluster_quality_label_counts.png).
 
-   Main point: these explain why spike claims are provisional. Kilosort found
-   194 clusters, but only 28 were KS-good and 19 passed the conservative
-   automated high-confidence screen. This motivates manual Phy curation.
+   Main point: these explain why we started cautiously. Kilosort found 194
+   clusters, but only 28 were KS-good and 19 passed the conservative automated
+   high-confidence screen. The later curated/merged analysis resolves the Dec 3
+   spike conclusion as a null at 5/26 Hz.
 
 9. End with next steps.
 
    Main point: the next scientific step is not another broad exploratory plot.
-   It is targeted cleanup: complete Phy curation, confirm final probe geometry
-   and channel order, then rerun the spike ON/OFF analysis on curated good units
-   and keep anatomy labels conservative until probe orientation is confirmed.
+   It is targeted cleanup for future claims: confirm final probe geometry/channel
+   order and record the delivered vibration phase in the next experiment. Keep
+   anatomy labels conservative until probe orientation is confirmed.
