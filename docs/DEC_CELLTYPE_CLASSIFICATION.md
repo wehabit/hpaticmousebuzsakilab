@@ -11,7 +11,8 @@ outputs in `analysis/outputs/cross_dataset_spike_compare/celltype/`.
 - **Waveform (peak channel):** trough-to-peak width (ms), half-width (ms),
   peak/trough asymmetry — from `templates.npy`.
 - **Firing rate (Hz):** spikes / recording duration.
-- **ACG / ISI:** burst %, refractory-violation %, CV2 of ISI.
+- **ACG / ISI (descriptive only):** burst %, refractory-violation %, CV2 of ISI —
+  reported per unit, **not** used as a classification axis (see the ACG note below).
 
 ## Classification
 A 2-component **Gaussian mixture** on [trough-to-peak, log10 firing rate] over the
@@ -20,6 +21,11 @@ interneuron-like. A literature trough-to-peak cut (0.5 ms) is shown for referenc
 **the data-driven GMM boundary lands essentially on it**, and the width histogram is
 clearly **bimodal** (`celltype_classification.png`). So the split is robust, not an
 arbitrary threshold.
+
+**The classification axis is waveform width + firing rate only.** We did **not**
+perform a full CellExplorer-style autocorrelogram-*type* classification (the
+triple-exponential ACG fit → τ_rise → bursty / wide / narrow ACG classes). So this
+is a width/rate typing, not an ACG-type typing — don't describe it as the latter.
 
 | dataset | n | pyramidal-like | interneuron-like | median TtP pyr / int | median rate pyr / int |
 |---|---|---|---|---|---|
@@ -48,15 +54,39 @@ Read together: 50 Hz vibrotactile drive **recruits dHPC interneurons** while
 **suppressing LEC principal cells** — an excitation/inhibition-balance pattern, the
 kind of mechanism the bare "dHPC up / LEC down" result couldn't resolve.
 
+## Autocorrelogram: what we did and did NOT do
+To avoid overstating the ACG work:
+
+**What we have** — refractory-violation %, burst %, CV2 (per unit, descriptive);
+example ACGs (`celltype_acg_examples.png`); and the **50 Hz artifact screen** in
+[DEC4_50HZ_ARTIFACT_CHECK.md](DEC4_50HZ_ARTIFACT_CHECK.md): the up-going 50 Hz units
+show **no ON-specific 20 ms ACG comb**, so a 20 ms-periodic (50 Hz) electrical/
+movement artifact is **not** manufacturing those spikes.
+
+**What we did NOT do** — a full CellExplorer-style **autocorrelogram-type
+classification** (τ_rise / bursty-vs-wide ACG classes used as a typing axis). So the
+ACG result is: *the 50 Hz spike-rate effect does not look like a simple 50 Hz
+artifact in the spike times* — **not** "we classified ACG cell types." The safest
+claim remains **50 Hz firing-rate modulation**, not ACG-type or ripple modulation.
+
 ## Caveats (state plainly)
 - **Putative types only** — waveform + spiking, not molecularly or
   optogenetically validated.
 - **Small n**, especially **LEC interneurons (n = 2)** — that group's bootstrap CI
   is wide and not interpretable.
-- **Ripple participation is deferred.** It is one of the standard CellExplorer
-  features, but it requires ripple detection, which is **gated by the provisional
-  channel-map** (ripples are a CA1-pyramidal-layer event). See the ripple/dentate
-  work, which stays secondary until the channel-map is confirmed.
+- **Ripple participation is NOT done** (a standard CellExplorer feature). We cannot
+  yet say whether any unit participates in sharp-wave ripples, is ripple-modulated,
+  or changes ripple firing during stimulation — and we make **no** hippocampal-memory
+  or SWR claims. Doing it properly is a **separate** analysis, gated by the provisional
+  channel-map:
+  1. pick likely **CA1 ripple channels**;
+  2. detect ripple events (~100–250 Hz envelope threshold);
+  3. compare ripple **rate / amplitude / duration** across baseline / ON / OFF / post;
+  4. ask **which units fire during ripples**;
+  5. compare ripple participation **by cell type** (pyramidal- vs interneuron-like).
+
+  Until then it stays secondary. The safest current claim is **50 Hz firing-rate
+  modulation**, not ripple modulation.
 - The LEC 50 Hz pyramidal suppression carries the same **session-drift** caveat as
   the parent analysis (LEC drifts −26 %); the **local ON/OFF** contrast remains the
   drift-immune measure.
