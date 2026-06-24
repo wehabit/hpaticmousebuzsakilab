@@ -54,6 +54,10 @@ MAP = {
         "time_frequency_lfp/driven_frequency_timecourses.png",
         "time_frequency_lfp/time_frequency_condition_grid.png",
         "comprehensive/spectral_slope_decomposition.png",      # NEW (#1)
+        # aperiodic 1/f across states (baseline/ON/OFF/post): broad-shift vs real-bump
+        "../cross_dataset_spike_compare/lfp_aperiodic_states/dec3_aperiodic_states.png",
+        "../cross_dataset_spike_compare/lfp_aperiodic_states/dec3_bump_vs_broadshift.png",
+        "../cross_dataset_spike_compare/lfp_aperiodic_states/state_spectra_loglog.png",
     ],
     "phase": [
         "phase_locking_lfp/plv_condition_summary.png",

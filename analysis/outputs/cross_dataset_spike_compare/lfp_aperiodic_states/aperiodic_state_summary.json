@@ -1,0 +1,642 @@
+[
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "aperiodic_slope",
+    "mean": -1.9298,
+    "ci_lo": -1.9701,
+    "ci_hi": -1.8872,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "aperiodic_offset",
+    "mean": 6.2467,
+    "ci_lo": 6.1322,
+    "ci_hi": 6.3538,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "aperiodic_slope",
+    "mean": -1.9294,
+    "ci_lo": -1.9708,
+    "ci_hi": -1.887,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "aperiodic_offset",
+    "mean": 6.2109,
+    "ci_lo": 6.0978,
+    "ci_hi": 6.3195,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "aperiodic_slope",
+    "mean": -1.9242,
+    "ci_lo": -1.9648,
+    "ci_hi": -1.8827,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "aperiodic_offset",
+    "mean": 6.2324,
+    "ci_lo": 6.1263,
+    "ci_hi": 6.3409,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "aperiodic_slope",
+    "mean": -1.9427,
+    "ci_lo": -1.9825,
+    "ci_hi": -1.9018,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "aperiodic_offset",
+    "mean": 6.2285,
+    "ci_lo": 6.1175,
+    "ci_hi": 6.3343,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "residual_5hz_log10",
+    "mean": -0.3388,
+    "ci_lo": -0.3675,
+    "ci_hi": -0.3082,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "residual_5hz_log10",
+    "mean": -0.2887,
+    "ci_lo": -0.3168,
+    "ci_hi": -0.2588,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "residual_5hz_log10",
+    "mean": -0.3515,
+    "ci_lo": -0.3808,
+    "ci_hi": -0.3185,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "residual_5hz_log10",
+    "mean": -0.319,
+    "ci_lo": -0.3493,
+    "ci_hi": -0.2863,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "residual_26hz_log10",
+    "mean": 0.0379,
+    "ci_lo": 0.0301,
+    "ci_hi": 0.0457,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "residual_26hz_log10",
+    "mean": 0.0319,
+    "ci_lo": 0.024,
+    "ci_hi": 0.0394,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "residual_26hz_log10",
+    "mean": 0.0647,
+    "ci_lo": 0.0573,
+    "ci_hi": 0.0718,
+    "n_ch": 119
+  },
+  {
+    "session": "dec3",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "residual_26hz_log10",
+    "mean": 0.0446,
+    "ci_lo": 0.0367,
+    "ci_hi": 0.0523,
+    "n_ch": 119
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "aperiodic_slope",
+    "mean": -1.9184,
+    "ci_lo": -1.9581,
+    "ci_hi": -1.8778,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "aperiodic_offset",
+    "mean": 6.243,
+    "ci_lo": 6.1404,
+    "ci_hi": 6.3465,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "aperiodic_slope",
+    "mean": -1.9133,
+    "ci_lo": -1.9546,
+    "ci_hi": -1.872,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "aperiodic_offset",
+    "mean": 6.2135,
+    "ci_lo": 6.1094,
+    "ci_hi": 6.3194,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "aperiodic_slope",
+    "mean": -1.9417,
+    "ci_lo": -1.9797,
+    "ci_hi": -1.9007,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "aperiodic_offset",
+    "mean": 6.2975,
+    "ci_lo": 6.1921,
+    "ci_hi": 6.3945,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "aperiodic_slope",
+    "mean": -1.9443,
+    "ci_lo": -1.9861,
+    "ci_hi": -1.9042,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "aperiodic_offset",
+    "mean": 6.2655,
+    "ci_lo": 6.1671,
+    "ci_hi": 6.3643,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "residual_5hz_log10",
+    "mean": -0.3854,
+    "ci_lo": -0.4111,
+    "ci_hi": -0.3589,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "residual_5hz_log10",
+    "mean": -0.3352,
+    "ci_lo": -0.3633,
+    "ci_hi": -0.3063,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "residual_5hz_log10",
+    "mean": -0.3499,
+    "ci_lo": -0.3782,
+    "ci_hi": -0.3223,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "residual_5hz_log10",
+    "mean": -0.3014,
+    "ci_lo": -0.3301,
+    "ci_hi": -0.2717,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "residual_10hz_log10",
+    "mean": -0.0359,
+    "ci_lo": -0.0487,
+    "ci_hi": -0.0229,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "residual_10hz_log10",
+    "mean": -0.0094,
+    "ci_lo": -0.0201,
+    "ci_hi": 0.0012,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "residual_10hz_log10",
+    "mean": -0.0112,
+    "ci_lo": -0.0197,
+    "ci_hi": -0.0024,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "residual_10hz_log10",
+    "mean": 0.0022,
+    "ci_lo": -0.0088,
+    "ci_hi": 0.0133,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "residual_26hz_log10",
+    "mean": 0.1045,
+    "ci_lo": 0.0959,
+    "ci_hi": 0.1137,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "residual_26hz_log10",
+    "mean": 0.0727,
+    "ci_lo": 0.0648,
+    "ci_hi": 0.0809,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "residual_26hz_log10",
+    "mean": 0.0318,
+    "ci_lo": 0.0233,
+    "ci_hi": 0.0402,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "residual_26hz_log10",
+    "mean": 0.022,
+    "ci_lo": 0.0144,
+    "ci_hi": 0.0293,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "baseline",
+    "quantity": "residual_50hz_log10",
+    "mean": 0.1657,
+    "ci_lo": 0.1561,
+    "ci_hi": 0.1752,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "ON",
+    "quantity": "residual_50hz_log10",
+    "mean": 0.1554,
+    "ci_lo": 0.1472,
+    "ci_hi": 0.1635,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "OFF",
+    "quantity": "residual_50hz_log10",
+    "mean": 0.1319,
+    "ci_lo": 0.1245,
+    "ci_hi": 0.139,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "dHPC",
+    "state": "post",
+    "quantity": "residual_50hz_log10",
+    "mean": 0.1361,
+    "ci_lo": 0.1256,
+    "ci_hi": 0.1462,
+    "n_ch": 127
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "baseline",
+    "quantity": "aperiodic_slope",
+    "mean": -1.4903,
+    "ci_lo": -1.519,
+    "ci_hi": -1.4612,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "baseline",
+    "quantity": "aperiodic_offset",
+    "mean": 4.4134,
+    "ci_lo": 4.3243,
+    "ci_hi": 4.5061,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "ON",
+    "quantity": "aperiodic_slope",
+    "mean": -1.5025,
+    "ci_lo": -1.5298,
+    "ci_hi": -1.4748,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "ON",
+    "quantity": "aperiodic_offset",
+    "mean": 4.43,
+    "ci_lo": 4.3436,
+    "ci_hi": 4.5254,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "OFF",
+    "quantity": "aperiodic_slope",
+    "mean": -1.5169,
+    "ci_lo": -1.5463,
+    "ci_hi": -1.4881,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "OFF",
+    "quantity": "aperiodic_offset",
+    "mean": 4.4468,
+    "ci_lo": 4.3592,
+    "ci_hi": 4.5426,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "post",
+    "quantity": "aperiodic_slope",
+    "mean": -1.5011,
+    "ci_lo": -1.5298,
+    "ci_hi": -1.4705,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "post",
+    "quantity": "aperiodic_offset",
+    "mean": 4.4148,
+    "ci_lo": 4.326,
+    "ci_hi": 4.5095,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "baseline",
+    "quantity": "residual_5hz_log10",
+    "mean": 0.075,
+    "ci_lo": 0.0405,
+    "ci_hi": 0.1102,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "ON",
+    "quantity": "residual_5hz_log10",
+    "mean": 0.1142,
+    "ci_lo": 0.0834,
+    "ci_hi": 0.1444,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "OFF",
+    "quantity": "residual_5hz_log10",
+    "mean": 0.1008,
+    "ci_lo": 0.071,
+    "ci_hi": 0.1314,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "post",
+    "quantity": "residual_5hz_log10",
+    "mean": 0.125,
+    "ci_lo": 0.097,
+    "ci_hi": 0.1526,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "baseline",
+    "quantity": "residual_10hz_log10",
+    "mean": -0.1564,
+    "ci_lo": -0.1767,
+    "ci_hi": -0.1363,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "ON",
+    "quantity": "residual_10hz_log10",
+    "mean": -0.1188,
+    "ci_lo": -0.1391,
+    "ci_hi": -0.0993,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "OFF",
+    "quantity": "residual_10hz_log10",
+    "mean": -0.138,
+    "ci_lo": -0.1584,
+    "ci_hi": -0.1186,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "post",
+    "quantity": "residual_10hz_log10",
+    "mean": -0.1279,
+    "ci_lo": -0.1482,
+    "ci_hi": -0.1076,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "baseline",
+    "quantity": "residual_26hz_log10",
+    "mean": -0.1239,
+    "ci_lo": -0.1327,
+    "ci_hi": -0.1155,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "ON",
+    "quantity": "residual_26hz_log10",
+    "mean": -0.1135,
+    "ci_lo": -0.1219,
+    "ci_hi": -0.1055,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "OFF",
+    "quantity": "residual_26hz_log10",
+    "mean": -0.1409,
+    "ci_lo": -0.1506,
+    "ci_hi": -0.131,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "post",
+    "quantity": "residual_26hz_log10",
+    "mean": -0.1338,
+    "ci_lo": -0.1423,
+    "ci_hi": -0.1254,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "baseline",
+    "quantity": "residual_50hz_log10",
+    "mean": 0.1284,
+    "ci_lo": 0.1062,
+    "ci_hi": 0.1524,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "ON",
+    "quantity": "residual_50hz_log10",
+    "mean": 0.3226,
+    "ci_lo": 0.303,
+    "ci_hi": 0.342,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "OFF",
+    "quantity": "residual_50hz_log10",
+    "mean": 0.0975,
+    "ci_lo": 0.0786,
+    "ci_hi": 0.1184,
+    "n_ch": 82
+  },
+  {
+    "session": "dec4",
+    "region": "LEC",
+    "state": "post",
+    "quantity": "residual_50hz_log10",
+    "mean": 0.125,
+    "ci_lo": 0.1069,
+    "ci_hi": 0.1441,
+    "n_ch": 82
+  }
+]
