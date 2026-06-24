@@ -18,9 +18,16 @@ directly comparable in Hz. For every curated 'good' unit we then ask:
   3. post vs baseline   — session-long DRIFT control: did firing return to
                           baseline after the whole study?
 
-Tests are Mann-Whitney U (unpaired; firing rates are non-normal), BH-corrected
-within each dataset x comparison family. Outputs land in
-analysis/outputs/cross_dataset_spike_compare/baseline_poststudy/.
+Two inferential layers:
+  * per-unit  : Mann-Whitney U (unpaired), BH-corrected within dataset x family.
+  * population: PERCENTILE BOOTSTRAP 95% CIs (resampling the units, B=10000) on
+                every population mean / delta — these are the error bars on the
+                figures and the CIs in population_bootstrap.csv.
+
+Result figures (-> results/dec*/11_Spikes via the manifest builders):
+  dec3_states_vs_baseline.png, dec4_states_vs_baseline.png,
+  dec4_freq50_vs_baseline.png
+Outputs land in analysis/outputs/cross_dataset_spike_compare/baseline_poststudy/.
 """
 from __future__ import annotations
 
@@ -43,6 +50,10 @@ WIN = 3.0                 # epoch length (s) — matches ON/OFF window
 START_MARGIN = 60.0       # skip first 60 s (amplifier/probe settling)
 GAP = 30.0                # gap between baseline/post and the nearest trial
 END_MARGIN = 30.0         # skip last 30 s (end-of-file effects)
+B_BOOT = 10_000           # bootstrap resamples
+RNG = np.random.default_rng(0)
+
+CARD, GOLD, GREY, BLUE = "#d1495b", "#e9c46a", "#6c757d", "#457b9d"
 
 # (name, curated kilosort dir, trial windows csv, dir holding on/off count npys)
 DATASETS = [
@@ -79,11 +90,27 @@ def mwu(a: np.ndarray, b: np.ndarray) -> float:
         return 1.0
 
 
+def boot_ci(values: np.ndarray, b: int = B_BOOT, alpha: float = 0.05) -> tuple[float, float, float]:
+    """Percentile bootstrap of the MEAN of `values` (resampling units)."""
+    v = np.asarray(values, float)
+    v = v[np.isfinite(v)]
+    if len(v) == 0:
+        return (np.nan, np.nan, np.nan)
+    if len(v) == 1:
+        return (float(v[0]), float(v[0]), float(v[0]))
+    idx = RNG.integers(0, len(v), size=(b, len(v)))
+    means = v[idx].mean(axis=1)
+    lo, hi = np.percentile(means, [100 * alpha / 2, 100 * (1 - alpha / 2)])
+    return (float(v.mean()), float(lo), float(hi))
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     overview = []
-    long_rows = []        # per-unit per-comparison (incl. per-condition)
+    long_rows = []          # per-unit per-comparison (incl. per-condition)
+    boot_rows = []          # population bootstrap CIs
     wide_frames = []
+    perunit = {}            # name -> dict of per-unit state vectors (for figures)
 
     for name, ksdir, tw_csv, peth in DATASETS:
         ksdir = Path(ksdir); peth = Path(peth)
@@ -111,8 +138,16 @@ def main() -> None:
         cond_of_trial = tw["condition"].to_numpy()
         conditions = sorted(tw["condition"].unique())
 
+        # ---- per-unit mean rates (vectors over good units) for population stats ----
+        g = good_ids
+        base_u = bl_rate[:, g].mean(0)
+        post_u = po_rate[:, g].mean(0)
+        on_u = on_rate[:, g].mean(0)
+        off_u = off_rate[:, g].mean(0)
+        perunit[name] = dict(baseline=base_u, on=on_u, off=off_u, post=post_u)
+
+        # ---- per-unit table + per-unit Mann-Whitney comparisons ----
         wide = []
-        # collect p-values per comparison family for BH within this dataset
         fam = {"ON_all_vs_baseline": [], "OFF_all_vs_baseline": [], "post_vs_baseline": [],
                "ON_vs_baseline": [], "OFF_vs_baseline": []}
         fam_rowidx = {k: [] for k in fam}
@@ -120,24 +155,19 @@ def main() -> None:
         for cid in good_ids:
             base = bl_rate[:, cid]; post = po_rate[:, cid]
             on_all = on_rate[:, cid]; off_all = off_rate[:, cid]
-            base_mean = float(base.mean()); base_sd = float(base.std(ddof=1)) if len(base) > 1 else np.nan
-            post_mean = float(post.mean())
-            drift_pct = float(100 * (post_mean - base_mean) / base_mean) if base_mean > 0 else np.nan
-
+            base_mean = float(base.mean())
             wide.append({
                 "dataset": name, "cluster_id": int(cid),
-                "baseline_hz": round(base_mean, 4), "baseline_sd_hz": round(base_sd, 4),
-                "post_hz": round(post_mean, 4),
+                "baseline_hz": round(base_mean, 4),
+                "baseline_sd_hz": round(float(base.std(ddof=1)) if len(base) > 1 else np.nan, 4),
+                "post_hz": round(float(post.mean()), 4),
                 "on_all_hz": round(float(on_all.mean()), 4),
                 "off_all_hz": round(float(off_all.mean()), 4),
                 "off_minus_baseline_hz": round(float(off_all.mean()) - base_mean, 4),
                 "on_minus_baseline_hz": round(float(on_all.mean()) - base_mean, 4),
-                "post_minus_baseline_hz": round(post_mean - base_mean, 4),
-                "drift_post_vs_base_pct": round(drift_pct, 1) if np.isfinite(drift_pct) else np.nan,
+                "post_minus_baseline_hz": round(float(post.mean()) - base_mean, 4),
                 "n_baseline_epochs": int(len(base)), "n_post_epochs": int(len(post)),
             })
-
-            # pooled (all-condition) tests
             for famkey, vec in (("ON_all_vs_baseline", on_all),
                                 ("OFF_all_vs_baseline", off_all),
                                 ("post_vs_baseline", post)):
@@ -149,8 +179,6 @@ def main() -> None:
                                   "delta_hz": round(float(np.mean(vec)) - base_mean, 4),
                                   "p_value": p})
                 fam[famkey].append(p); fam_rowidx[famkey].append(len(long_rows) - 1)
-
-            # per-condition ON-vs-baseline and OFF-vs-baseline
             for cond in conditions:
                 m = cond_of_trial == cond
                 for famkey, vec in (("ON_vs_baseline", on_rate[m, cid]),
@@ -164,7 +192,6 @@ def main() -> None:
                                       "p_value": p})
                     fam[famkey].append(p); fam_rowidx[famkey].append(len(long_rows) - 1)
 
-        # BH within each (dataset, family)
         for famkey, ps in fam.items():
             if not ps:
                 continue
@@ -175,127 +202,130 @@ def main() -> None:
         wide_df = pd.DataFrame(wide)
         wide_frames.append(wide_df)
 
-        # ---- dataset-level summary ----
-        n = len(good_ids)
-        off_base = wide_df["off_minus_baseline_hz"]
-        post_base = wide_df["post_minus_baseline_hz"]
-        # how many units have OFF significantly != baseline (pooled), and post != baseline
-        ld = pd.DataFrame(long_rows)
-        ld = ld[ld["dataset"] == name]
-        off_sig = ld[(ld["comparison"] == "OFF_all_vs_baseline")]
-        post_sig = ld[(ld["comparison"] == "post_vs_baseline")]
-        n_off_ne_base = int((off_sig["q_value_bh"] < 0.05).sum())
-        n_post_ne_base = int((post_sig["q_value_bh"] < 0.05).sum())
+        # ---- population BOOTSTRAP CIs (resampling units) ----
+        def add_boot(quantity, vals, condition="(all)"):
+            pt, lo, hi = boot_ci(vals)
+            boot_rows.append({"dataset": name, "quantity": quantity, "condition": condition,
+                              "mean": round(pt, 4), "ci_lo": round(lo, 4), "ci_hi": round(hi, 4),
+                              "n_units": int(len(vals))})
+            return pt, lo, hi
+
+        add_boot("baseline_hz", base_u)
+        add_boot("on_hz", on_u)
+        add_boot("off_hz", off_u)
+        add_boot("post_hz", post_u)
+        _, dlo, dhi = add_boot("post_minus_baseline_hz", post_u - base_u)
+        _, olo, ohi = add_boot("off_minus_baseline_hz", off_u - base_u)
+        # per-condition ON/OFF minus baseline (for the 50 Hz figure & table)
+        for cond in conditions:
+            msk = cond_of_trial == cond
+            on_c = on_rate[msk][:, g].mean(0)
+            off_c = off_rate[msk][:, g].mean(0)
+            add_boot("ON_minus_baseline_hz", on_c - base_u, condition=cond)
+            add_boot("OFF_minus_baseline_hz", off_c - base_u, condition=cond)
+
+        # ---- dataset summary (with bootstrap CI on the headline numbers) ----
+        ld = pd.DataFrame(long_rows); ld = ld[ld["dataset"] == name]
+        n_off_ne = int((ld[ld.comparison == "OFF_all_vs_baseline"]["q_value_bh"] < 0.05).sum())
+        n_post_ne = int((ld[ld.comparison == "post_vs_baseline"]["q_value_bh"] < 0.05).sum())
         overview.append({
-            "dataset": name, "n_curated_good": int(n),
-            "mean_baseline_hz": round(float(wide_df["baseline_hz"].mean()), 3),
-            "mean_off_hz": round(float(wide_df["off_all_hz"].mean()), 3),
-            "mean_on_hz": round(float(wide_df["on_all_hz"].mean()), 3),
-            "mean_post_hz": round(float(wide_df["post_hz"].mean()), 3),
-            "mean_OFF_minus_base_hz": round(float(off_base.mean()), 3),
-            "mean_post_minus_base_hz": round(float(post_base.mean()), 3),
-            "n_units_OFF_ne_baseline_q05": n_off_ne_base,
-            "n_units_post_ne_baseline_q05": n_post_ne_base,
+            "dataset": name, "n_curated_good": int(len(good_ids)),
+            "mean_baseline_hz": round(float(base_u.mean()), 3),
+            "mean_on_hz": round(float(on_u.mean()), 3),
+            "mean_off_hz": round(float(off_u.mean()), 3),
+            "mean_post_hz": round(float(post_u.mean()), 3),
+            "drift_post_minus_base_hz": round(float((post_u - base_u).mean()), 3),
+            "drift_ci95_hz": [round(dlo, 3), round(dhi, 3)],
+            "drift_pct": round(100 * float((post_u - base_u).mean()) / float(base_u.mean()), 1),
+            "OFF_minus_base_hz": round(float((off_u - base_u).mean()), 3),
+            "OFF_minus_base_ci95_hz": [round(olo, 3), round(ohi, 3)],
+            "n_units_OFF_ne_baseline_q05": n_off_ne,
+            "n_units_post_ne_baseline_q05": n_post_ne,
             "baseline_window_s": [round(bl_start, 1), round(bl_end, 1)],
             "post_window_s": [round(po_start, 1), round(po_end, 1)],
             "n_baseline_epochs": int(len(bl_s)), "n_post_epochs": int(len(po_s)),
         })
 
-        _plot_dataset(name, wide_df, OUT)
-
-    wide_all = pd.concat(wide_frames, ignore_index=True)
-    long_all = pd.DataFrame(long_rows)
-    wide_all.to_csv(OUT / "state_rates_by_unit.csv", index=False)
-    long_all.to_csv(OUT / "state_comparisons_long.csv", index=False)
+    # ---- write tables ----
+    pd.concat(wide_frames, ignore_index=True).to_csv(OUT / "state_rates_by_unit.csv", index=False)
+    pd.DataFrame(long_rows).to_csv(OUT / "state_comparisons_long.csv", index=False)
+    boot_df = pd.DataFrame(boot_rows)
+    boot_df.to_csv(OUT / "population_bootstrap.csv", index=False)
     ov = pd.DataFrame(overview)
     ov.to_csv(OUT / "state_overview.csv", index=False)
     (OUT / "state_overview.json").write_text(json.dumps(overview, indent=2) + "\n")
 
-    _plot_overview_states(wide_all, OUT)
-    _plot_50hz_vs_baseline(long_all, OUT)
+    # ---- figures (bootstrap 95% CI error bars) ----
+    _fig_states("dec3_states_vs_baseline.png", ["dec3_dHPC"], perunit, boot_df, OUT,
+                "Dec 3 dHPC — single-unit firing vs true baseline & post-study (95% bootstrap CI)")
+    _fig_states("dec4_states_vs_baseline.png", ["dec4_dHPC", "dec4_LEC"], perunit, boot_df, OUT,
+                "Dec 4 — single-unit firing vs true baseline & post-study (95% bootstrap CI)")
+    _fig_freq50("dec4_freq50_vs_baseline.png", ["dec4_dHPC", "dec4_LEC"], boot_df, OUT)
 
-    print("=== Single-unit firing vs baseline & post-study ===")
+    print("=== Single-unit firing vs baseline & post-study (bootstrap CIs) ===")
     print(ov.to_string(index=False))
 
 
-def _plot_dataset(name: str, wide: pd.DataFrame, out: Path) -> None:
-    """Per-unit baseline/ON/OFF/post rates + OFF-vs-baseline scatter."""
-    fig, axes = plt.subplots(1, 2, figsize=(13, 5))
-    # (a) population: paired lines baseline -> ON -> OFF -> post for each unit
-    ax = axes[0]
-    states = ["baseline_hz", "on_all_hz", "off_all_hz", "post_hz"]
-    labels = ["baseline", "ON (all)", "OFF (all)", "post"]
-    X = np.arange(4)
-    for _, r in wide.iterrows():
-        ax.plot(X, [r[s] for s in states], color="#999", lw=0.7, alpha=0.5, marker="o", ms=3)
-    ax.plot(X, [wide[s].mean() for s in states], color="#264653", lw=2.6, marker="o",
-            ms=8, label="mean", zorder=5)
-    ax.set_xticks(X); ax.set_xticklabels(labels)
-    ax.set_ylabel("Firing rate (Hz)")
-    ax.set_title(f"{name}: per-unit rate by state")
-    ax.legend()
-    # (b) OFF vs baseline scatter (is OFF back at baseline?)
-    ax = axes[1]
-    lim = float(max(wide["baseline_hz"].max(), wide["off_all_hz"].max())) * 1.1 + 0.1
-    ax.plot([0, lim], [0, lim], color="#d1495b", ls="--", lw=1, label="OFF = baseline")
-    ax.scatter(wide["baseline_hz"], wide["off_all_hz"], color="#264653", s=28, alpha=0.8)
-    ax.set_xlim(0, lim); ax.set_ylim(0, lim)
-    ax.set_xlabel("Baseline rate (Hz)"); ax.set_ylabel("OFF-window rate (Hz)")
-    ax.set_title(f"{name}: OFF vs true baseline")
-    ax.legend()
-    fig.tight_layout()
-    fig.savefig(out / f"{name}_state_rates.png", dpi=170)
-    plt.close(fig)
+def _ci_err(boot_df, dataset, quantity, condition="(all)"):
+    r = boot_df[(boot_df.dataset == dataset) & (boot_df.quantity == quantity)
+                & (boot_df.condition == condition)]
+    if r.empty:
+        return np.nan, 0.0, 0.0
+    m, lo, hi = float(r["mean"].iloc[0]), float(r.ci_lo.iloc[0]), float(r.ci_hi.iloc[0])
+    return m, m - lo, hi - m
 
 
-def _plot_overview_states(wide: pd.DataFrame, out: Path) -> None:
-    """One panel per dataset: mean+-sem unit rate in each state, baseline-referenced."""
-    datasets = ["dec3_dHPC", "dec4_dHPC", "dec4_LEC"]
-    states = ["baseline_hz", "on_all_hz", "off_all_hz", "post_hz"]
-    labels = ["baseline", "ON", "OFF", "post"]
-    colors = ["#6c757d", "#d1495b", "#e9c46a", "#457b9d"]
-    fig, axes = plt.subplots(1, 3, figsize=(15, 4.6))
-    for ax, ds in zip(axes, datasets):
-        g = wide[wide["dataset"] == ds]
-        means = [g[s].mean() for s in states]
-        sems = [stats.sem(g[s]) for s in states]
-        ax.bar(np.arange(4), means, yerr=sems, color=colors, alpha=0.92)
-        ax.axhline(means[0], color="#6c757d", ls="--", lw=1)
-        ax.set_xticks(np.arange(4)); ax.set_xticklabels(labels)
-        drift = 100 * (means[3] - means[0]) / means[0]
-        ax.set_title(f"{ds}  (n={len(g)})\nsession drift base→post {drift:+.0f}%")
+def _fig_states(fname, datasets, perunit, boot_df, out, suptitle):
+    states = [("baseline_hz", "baseline", GREY), ("on_hz", "ON", CARD),
+              ("off_hz", "OFF", GOLD), ("post_hz", "post", BLUE)]
+    fig, axes = plt.subplots(1, len(datasets), figsize=(6.4 * len(datasets), 4.8), squeeze=False)
+    for ax, ds in zip(axes[0], datasets):
+        means, errlo, errhi, cols = [], [], [], []
+        for q, _lab, col in states:
+            m, elo, ehi = _ci_err(boot_df, ds, q)
+            means.append(m); errlo.append(elo); errhi.append(ehi); cols.append(col)
+        x = np.arange(4)
+        ax.bar(x, means, yerr=[errlo, errhi], capsize=4, color=cols, alpha=0.92,
+               error_kw=dict(ecolor="#222", lw=1.4))
+        # overlay individual units (thin grey)
+        pu = perunit[ds]
+        for i, key in enumerate(["baseline", "on", "off", "post"]):
+            ax.scatter(np.full_like(pu[key], x[i], dtype=float) + RNG.uniform(-0.12, 0.12, len(pu[key])),
+                       pu[key], s=10, color="#999", alpha=0.5, zorder=3)
+        ax.axhline(means[0], color=GREY, ls="--", lw=1)
+        drift_m, _, _ = _ci_err(boot_df, ds, "post_minus_baseline_hz")
+        ax.set_xticks(x); ax.set_xticklabels([s[1] for s in states])
         ax.set_ylabel("Mean unit firing rate (Hz)")
-    fig.suptitle("Single-unit firing by state — ON/OFF referenced to true pre-experiment baseline & post-study",
-                 fontsize=13)
+        ax.set_title(f"{ds}  (n={len(pu['baseline'])})   drift base→post {100*drift_m/means[0]:+.0f}%")
+    fig.suptitle(suptitle, fontsize=12)
     fig.tight_layout()
-    fig.savefig(out / "overview_states_by_dataset.png", dpi=170)
+    fig.savefig(out / fname, dpi=170)
     plt.close(fig)
 
 
-def _plot_50hz_vs_baseline(ld: pd.DataFrame, out: Path) -> None:
-    """Dec4 dHPC & LEC: ON and OFF firing change FROM baseline at each 50 Hz amplitude."""
+def _fig_freq50(fname, datasets, boot_df, out):
     amps = ["amp100_freq50", "amp180_freq50", "amp250_freq50"]
-    fig, axes = plt.subplots(1, 2, figsize=(12, 4.6), sharey=True)
-    for ax, ds in zip(axes, ["dec4_dHPC", "dec4_LEC"]):
-        on_d, on_e, off_d, off_e = [], [], [], []
-        for a in amps:
-            on = ld[(ld.dataset == ds) & (ld.comparison == "ON_vs_baseline") & (ld.condition == a)]["delta_hz"]
-            off = ld[(ld.dataset == ds) & (ld.comparison == "OFF_vs_baseline") & (ld.condition == a)]["delta_hz"]
-            on_d.append(on.mean()); on_e.append(stats.sem(on))
-            off_d.append(off.mean()); off_e.append(stats.sem(off))
-        x = np.arange(3); w = 0.38
-        ax.bar(x - w / 2, on_d, w, yerr=on_e, label="ON − baseline", color="#d1495b")
-        ax.bar(x + w / 2, off_d, w, yerr=off_e, label="OFF − baseline", color="#e9c46a")
+    fig, axes = plt.subplots(1, len(datasets), figsize=(6.2 * len(datasets), 4.8),
+                             sharey=True, squeeze=False)
+    for ax, ds in zip(axes[0], datasets):
+        x = np.arange(len(amps)); w = 0.38
+        on_m = [_ci_err(boot_df, ds, "ON_minus_baseline_hz", a) for a in amps]
+        off_m = [_ci_err(boot_df, ds, "OFF_minus_baseline_hz", a) for a in amps]
+        ax.bar(x - w / 2, [m[0] for m in on_m], w,
+               yerr=[[m[1] for m in on_m], [m[2] for m in on_m]], capsize=3,
+               label="ON − baseline", color=CARD, error_kw=dict(ecolor="#222", lw=1.3))
+        ax.bar(x + w / 2, [m[0] for m in off_m], w,
+               yerr=[[m[1] for m in off_m], [m[2] for m in off_m]], capsize=3,
+               label="OFF − baseline", color=GOLD, error_kw=dict(ecolor="#222", lw=1.3))
         ax.axhline(0, color="black", lw=1)
         ax.set_xticks(x); ax.set_xticklabels(["amp100", "amp180", "amp250"])
-        ax.set_title(f"{ds}: 50 Hz drive vs true baseline")
-        ax.set_xlabel("amplitude")
+        ax.set_title(f"{ds}: 50 Hz drive vs true baseline"); ax.set_xlabel("amplitude")
         ax.legend()
-    axes[0].set_ylabel("Firing change from baseline (Hz)")
-    fig.suptitle("50 Hz single-unit response referenced to baseline — dHPC drives UP, LEC suppressed (carry-over into OFF)",
-                 fontsize=12)
+    axes[0][0].set_ylabel("Firing change from baseline (Hz)")
+    fig.suptitle("50 Hz single-unit response vs baseline (95% bootstrap CI) — "
+                 "dHPC drives UP, LEC suppressed (carry-over into OFF)", fontsize=11.5)
     fig.tight_layout()
-    fig.savefig(out / "freq50_vs_baseline_dec4.png", dpi=170)
+    fig.savefig(out / fname, dpi=170)
     plt.close(fig)
 
 

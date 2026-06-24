@@ -31,11 +31,21 @@ dHPC up-drive and exposes a session-long firing DRIFT (mild in dHPC, large in LE
 
 | dataset | baseline | ON (all) | OFF (all) | post | drift base→post |
 |---|---|---|---|---|---|
-| Dec 3 dHPC | 6.46 Hz | 6.01 | 6.15 | 6.08 | **−6 %** |
-| Dec 4 dHPC | 5.58 Hz | 5.78 | 5.74 | 5.39 | **−4 %** |
-| Dec 4 LEC | 3.99 Hz | 3.38 | 3.38 | 2.96 | **−26 %** |
+| dataset | baseline | ON | OFF | post | drift base→post (95% boot CI) |
+|---|---|---|---|---|---|
+| Dec 3 dHPC | 6.46 Hz | 6.01 | 6.15 | 6.08 | −0.38 Hz / **−6 %** ([−0.88, +0.10] — n.s.) |
+| Dec 4 dHPC | 5.58 Hz | 5.78 | 5.74 | 5.39 | −0.20 Hz / **−4 %** ([−0.68, +0.20] — n.s.) |
+| Dec 4 LEC | 3.99 Hz | 3.38 | 3.38 | 2.96 | −1.03 Hz / **−26 %** ([−2.04, −0.20] — **CI excludes 0**) |
 
-Figures: `overview_states_by_dataset.png`, `freq50_vs_baseline_dec4.png`.
+Population effects use **percentile bootstrap 95% CIs** over units (B=10 000); the
+per-unit Mann-Whitney counts below are inflated by the large epoch n, so the CIs are
+the honest population inference. The sharper read: **only LEC's drift (and its
+below-baseline OFF) is significant**; dHPC's mild drift CIs span zero.
+
+Figures (with bootstrap-CI error bars), copied to the results tree:
+`results/dec3/11_Spikes/dec3_states_vs_baseline.png`,
+`results/dec4/11_Spikes/dec4_states_vs_baseline.png`,
+`results/dec4/11_Spikes/dec4_freq50_vs_baseline.png`.
 
 ## What the baseline reference adds
 
@@ -77,12 +87,16 @@ At 50 Hz the LEC population is **suppressed below baseline in both ON and OFF**
   LEC, the **drift-immune local ON/OFF contrast remains the trustworthy measure**;
   the baseline analysis's value here is exposing the drift and the OFF contamination.
 
-## The OFF window is provably not neutral — but it tracks the drift
-With ~500–900 baseline epochs the test has high power, so OFF ≠ baseline in **most
-units** (Dec 3 dHPC 23/29; Dec 4 dHPC 13/15; Dec 4 LEC 13/15 at q<0.05). The
-**effect sizes are small** (−0.31 / +0.15 / −0.60 Hz) and **share the sign of the
-drift** (post − baseline) in 24/29, 11/15, 10/15 units — i.e., the OFF≠baseline gap
-is largely the **slow drift**, not buzz carry-over (LEC being the exception where
+## The OFF window is provably not neutral — but only LEC's gap is significant
+Two views agree. Per-unit (high-powered, ~500–900 epochs) Mann-Whitney finds OFF ≠
+baseline in **most units** (Dec 3 dHPC 23/29; Dec 4 dHPC 13/15; Dec 4 LEC 13/15 at
+q<0.05) — but those counts are inflated by epoch n. The **population bootstrap** is
+the honest test: OFF − baseline = **−0.31 Hz [−0.70, +0.06] (dHPC, n.s.)**,
+**+0.15 [−0.12, +0.40] (Dec 4 dHPC, n.s.)**, **−0.60 [−1.19, −0.13] (LEC, CI excludes
+0)**. So at the population level **only LEC's OFF sits significantly below baseline**.
+The per-unit gaps **share the sign of the drift** (post − baseline) in 24/29, 11/15,
+10/15 units — i.e., the OFF≠baseline gap is largely the **slow drift**, not buzz
+carry-over (LEC being the exception where
 sustained suppression and drift are entangled).
 
 ## Bottom line / what changes

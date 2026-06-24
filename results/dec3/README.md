@@ -124,6 +124,7 @@ _Kilosort cluster quality, drift, and ON-vs-OFF firing (PETH). Provisional until
 - [high_confidence_unit_condition_heatmap.png](11_Spikes/high_confidence_unit_condition_heatmap.png)
 - [peth_onset_high_confidence_units.png](11_Spikes/peth_onset_high_confidence_units.png)
 - [peth_offset_high_confidence_units.png](11_Spikes/peth_offset_high_confidence_units.png)
+- [dec3_states_vs_baseline.png](11_Spikes/dec3_states_vs_baseline.png)
 
 ### 12_ChannelQC_Traces
 _Per-channel noise QC plus raw/LFP trace-browsing pages._

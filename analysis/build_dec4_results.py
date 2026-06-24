@@ -166,6 +166,11 @@ MAP = {
         ("coordination_50hz/coordination_50hz.png", "coordination_50hz_pooled.png"),
         ("coordination_50hz_amp250/coordination_50hz.png", "coordination_50hz_amp250.png"),
         ("artifact_check_50hz/unit87_phy_view.png", "unit87_acg_artifact_screen.png"),
+        # single-unit firing vs TRUE pre-experiment baseline & post-study (bootstrap CIs)
+        ("../cross_dataset_spike_compare/baseline_poststudy/dec4_states_vs_baseline.png",
+         "dec4_states_vs_baseline.png"),
+        ("../cross_dataset_spike_compare/baseline_poststudy/dec4_freq50_vs_baseline.png",
+         "dec4_freq50_vs_baseline.png"),
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",

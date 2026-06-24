@@ -106,6 +106,8 @@ MAP = {
         "spike_peth_high_confidence/high_confidence_unit_condition_heatmap.png",
         "spike_peth_high_confidence/peth_onset_high_confidence_units.png",
         "spike_peth_high_confidence/peth_offset_high_confidence_units.png",
+        # single-unit firing vs TRUE pre-experiment baseline & post-study (bootstrap CIs)
+        "../cross_dataset_spike_compare/baseline_poststudy/dec3_states_vs_baseline.png",
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",
@@ -116,6 +118,7 @@ MAP = {
         "REPORT/LEARN_real_vs_dec3.png",
         "REPORT/LEARN_results_at_a_glance.png",
         "methods/margin_exclusion_test.png",
+        "methods/trial_window_diagram.png",
         "REPORT/supp_provisional_probe_map_H12_UNRESOLVED.png",
     ],
 }
