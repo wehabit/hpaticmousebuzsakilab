@@ -36,26 +36,53 @@ Presentation-safe interpretation:
 - True stimulus-phase entrainment was not directly testable because the delivered
   vibration phase was not recorded.
 
-For the final written story, start here:
+## Start Here
 
-- [`../CONCLUSIONS.md`](../CONCLUSIONS.md)
-- [`../docs/DEC3_SUPERVISOR_SUMMARY.md`](../docs/DEC3_SUPERVISOR_SUMMARY.md)
-- [`../docs/DEC4_SUPERVISOR_SUMMARY.md`](../docs/DEC4_SUPERVISOR_SUMMARY.md)
-- [`../results/dec3/README.md`](../results/dec3/README.md)
-- [`../results/dec4/README.md`](../results/dec4/README.md)
+These are not all the same kind of file, so keep them separate:
 
-## Main Outputs To Open
+### Final Interpretation Docs
 
-- Dec 3 dashboard: [`outputs/dec3/RESULTS_DASHBOARD.html`](outputs/dec3/RESULTS_DASHBOARD.html)
+- Overall conclusion: [`../CONCLUSIONS.md`](../CONCLUSIONS.md)
+- Dec 3 supervisor summary: [`../docs/DEC3_SUPERVISOR_SUMMARY.md`](../docs/DEC3_SUPERVISOR_SUMMARY.md)
+- Dec 4 supervisor summary: [`../docs/DEC4_SUPERVISOR_SUMMARY.md`](../docs/DEC4_SUPERVISOR_SUMMARY.md)
 - Dec 3 curated spike result: [`../docs/DEC3_CURATED_SPIKE_RESULT.md`](../docs/DEC3_CURATED_SPIKE_RESULT.md)
 - Dec 4 spike result: [`../docs/DEC4_SPIKE_ONOFF_RESULT.md`](../docs/DEC4_SPIKE_ONOFF_RESULT.md)
-- Dec 4 artifact check: [`../docs/DEC4_50HZ_ARTIFACT_CHECK.md`](../docs/DEC4_50HZ_ARTIFACT_CHECK.md)
-- Cross-dataset state analyses:
-  [`../docs/DEC_BASELINE_POSTSTUDY_STATES.md`](../docs/DEC_BASELINE_POSTSTUDY_STATES.md),
-  [`../docs/DEC_DRIFT_CORRECTED_MODEL.md`](../docs/DEC_DRIFT_CORRECTED_MODEL.md),
-  [`../docs/DEC_LFP_APERIODIC_STATES.md`](../docs/DEC_LFP_APERIODIC_STATES.md),
-  [`../docs/DEC_LFP_BANDPOWER_STATES.md`](../docs/DEC_LFP_BANDPOWER_STATES.md),
-  [`../docs/DEC_RIPPLE_STATES.md`](../docs/DEC_RIPPLE_STATES.md)
+- Dec 4 50 Hz artifact check: [`../docs/DEC4_50HZ_ARTIFACT_CHECK.md`](../docs/DEC4_50HZ_ARTIFACT_CHECK.md)
+
+### Curated Figure Indexes
+
+- Dec 3 curated figures: [`../results/dec3/README.md`](../results/dec3/README.md)
+- Dec 4 curated figures: [`../results/dec4/README.md`](../results/dec4/README.md)
+
+These are the best places to browse figures on GitHub because the curated
+`results/` folders are smaller and presentation-oriented.
+
+### Generated Analysis Dashboards
+
+- Dec 3 working dashboard: [`outputs/dec3/RESULTS_DASHBOARD.html`](outputs/dec3/RESULTS_DASHBOARD.html)
+- Dec 4 working dashboard: [`outputs/dec4/RESULTS_DASHBOARD.html`](outputs/dec4/RESULTS_DASHBOARD.html)
+
+These HTML dashboards are generated working reports. They are useful locally, but
+GitHub may show the HTML source instead of rendering an interactive dashboard.
+
+### Key Generated Figures
+
+- Dec 3 whole-story figure: [`../results/dec3/10_Biological_Summary/combined_explainer.png`](../results/dec3/10_Biological_Summary/combined_explainer.png)
+- Dec 4 whole-story figure: [`../results/dec4/10_Biological_Summary/combined_explainer.png`](../results/dec4/10_Biological_Summary/combined_explainer.png)
+- Cross-dataset spike ON/OFF figure: [`../results/dec4/11_Spikes/spike_onoff_cross_dataset.png`](../results/dec4/11_Spikes/spike_onoff_cross_dataset.png)
+- Dec 4 50 Hz artifact figure: [`../results/dec4/12_ChannelQC_Traces/50hz_artifact_check.png`](../results/dec4/12_ChannelQC_Traces/50hz_artifact_check.png)
+- Drift-corrected spike model: [`../results/dec4/11_Spikes/drift_corrected_model.png`](../results/dec4/11_Spikes/drift_corrected_model.png)
+
+### Supporting State Analyses
+
+These are important follow-up writeups, but they are not the main output entry
+points:
+
+- [`../docs/DEC_BASELINE_POSTSTUDY_STATES.md`](../docs/DEC_BASELINE_POSTSTUDY_STATES.md)
+- [`../docs/DEC_DRIFT_CORRECTED_MODEL.md`](../docs/DEC_DRIFT_CORRECTED_MODEL.md)
+- [`../docs/DEC_LFP_APERIODIC_STATES.md`](../docs/DEC_LFP_APERIODIC_STATES.md)
+- [`../docs/DEC_LFP_BANDPOWER_STATES.md`](../docs/DEC_LFP_BANDPOWER_STATES.md)
+- [`../docs/DEC_RIPPLE_STATES.md`](../docs/DEC_RIPPLE_STATES.md)
 
 ## Pipeline Map
 
