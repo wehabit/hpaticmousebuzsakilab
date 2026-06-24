@@ -161,100 +161,55 @@ recording above (see [docs/DEC3_EXTERNAL_BLOCKERS.md](docs/DEC3_EXTERNAL_BLOCKER
 - [Resources And Guidance](docs/RESOURCES_AND_GUIDANCE.md): links from Nick,
   Misi, Buzcode, CellExplorer, Pynapple, Kilosort, and related references.
 
-## Results — Every Figure
+## Results And Figures
 
-Result figures live in **[`results/`](results/)**, organized **one folder per
-recording session** (`results/dec3/`, `results/dec4/`, …). Each session folder
-holds the curated, **de-duplicated** figures grouped into 13 numbered categories
-(`01_Session_Timeline` … `13_Teaching_and_Methods`) plus a per-figure index. See
-**[`results/README.md`](results/README.md)** for the session list, and
-**[`results/dec3/README.md`](results/dec3/README.md)** for the Dec 3 per-figure
-index with descriptions.
+Curated figures live in **[`results/`](results/)**, with one folder per session:
+[`results/dec3/`](results/dec3/README.md) and
+[`results/dec4/`](results/dec4/README.md). Those per-session README files are the
+best way to browse figures on GitHub. The larger `analysis/outputs/` folders are
+working outputs used by the scripts; use `results/` for presentation figures.
 
-> **About "duplicate" images.** The per-step folders under
-> `analysis/outputs/<session>/<step>/` are the raw **working files** that scripts
-> read from and write to. `results/<session>/` holds the single **canonical copy**
-> of each figure for browsing. A figure can appear in both places by design — read
-> it in `results/`. Rebuild a session anytime with
-> `python analysis/build_results_folder.py --session dec3` (one figure per result,
-> no duplicates).
+**Dec 3 figures to start with:**
 
-**Headline figures (Dec 3 — start here):**
+- [Whole-story figure](results/dec3/10_Biological_Summary/combined_explainer.png) — LFP responds, especially around 26 Hz conditions, but not as clean frequency-following.
+- [Condition × channel LFP response](results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) — `amp180_freq26` is the clearest LFP condition.
+- [Spike firing around ON](results/dec3/11_Spikes/peth_onset_ks_good_units.png) — no Dec 3 single-unit ON/OFF effect after curation.
 
-- [The whole story in one figure](results/dec3/10_Biological_Summary/combined_explainer.png) — reacts to the buzz (yes, especially around 26 Hz) but does **not** show clean frequency-following evidence.
-- [Session timeline](results/dec3/01_Session_Timeline/session_timeline.png) — baseline / stimulation / post.
-- [Condition × channel response](results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) — `amp180_freq26` strongest.
-- [Broadband, not oscillation](results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png) — 1/f spectral-slope test.
-- [No clean onset-locked phase evidence](results/dec3/06_Phase_Locking/phase_locking_null_floor.png) — onset-aligned phase consistency sits near chance; true stimulus-phase entrainment was not testable.
-- [Spike firing flat ON vs OFF](results/dec3/11_Spikes/peth_onset_ks_good_units.png) — no single-unit effect (confirmed after curation; 29 good units).
+**Dec 4 figures to start with:**
 
-**Headline figures (Dec 4 — two probes, four frequencies):**
-
-- [Driven-power change by region](results/dec4/05_Frequency_Spectral/driven_power_change_by_analysis_group.png) — LEC's amplitude-graded **50 Hz** increase; dHPC flat at all frequencies.
-- [Spectral slope + ITPC](results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png) — the LEC 50 Hz power is a real narrowband peak during ON, but not a proven entrainment result.
-- [Phase locking by condition](results/dec4/06_Phase_Locking/plv_condition_summary.png) — onset-aligned ITPC is near the chance floor, including LEC 50 Hz.
-- [Full Dec 4 supervisor summary](docs/DEC4_SUPERVISOR_SUMMARY.md) and [Dec 4 figure index](results/dec4/README.md).
+- [Whole-story figure](results/dec4/10_Biological_Summary/combined_explainer.png) — dHPC stays non-following; LEC 50 Hz LFP is artifact-suspect; spikes carry the cleaner neural result.
+- [Cross-dataset spike ON/OFF](results/dec4/11_Spikes/spike_onoff_cross_dataset.png) — Dec 3 null at 5/26 Hz; Dec 4 50 Hz/high-amplitude responders in both dHPC and LEC.
+- [50 Hz artifact check](results/dec4/12_ChannelQC_Traces/50hz_artifact_check.png) — why the LEC 50 Hz LFP peak is not clean neural evidence.
+- [Unit 87 artifact screen](results/dec4/11_Spikes/unit87_acg_artifact_screen.png) — example spike-artifact control for a key up-going unit.
 
 ## Current Takeaway (Dec 3 + Dec 4)
 
-**Dec 3 (dHPC).** Clear stimulation-related LFP effects — a broadband and
-recovery-period response around `amp180_freq26` — but **no clean
-frequency-following evidence** (26 Hz-band power is not a sustained narrowband
-effect, and onset-aligned PLV sits near chance). After spike sorting **and
-curation** (29 good single units), there is **no ON-vs-OFF firing-rate effect**;
-that null now holds *post*-curation, not just provisionally.
+**Plain English.** The brain clearly noticed the haptic stimulation, but these
+recordings do **not** prove that brain rhythms synchronized to the vibration. The
+strongest neural finding is in Dec 4: high-amplitude **50 Hz** stimulation changes
+single-unit firing rates.
 
-**Dec 4 (dHPC + LEC).** On the same dHPC probe, the **no-clean-frequency-following
-result replicates** and extends to 10 and 50 Hz. The new region, **LEC**, shows a
-genuine **amplitude-graded 50 Hz power increase** during ON, but this LFP peak is
-artifact-suspect and is **not proof of entrainment**. Both probes are sorted and
-curated (dHPC 15, LEC 15 good units). And at the
-**single-unit** level, **50 Hz / high-amplitude** stimulation modulates a subset
-of units in **both** regions (absent at 5/26 Hz) — coherent with the 50 Hz LFP
-effect. This response is **active and region-specific** (not a passive echo), but
-a coordination test found the two regions do **not** demonstrably "work together"
-at 50 Hz (the cross-region LFP coherence rise is best explained by a shared signal,
-not neural coordination) ([details](docs/DEC4_COORDINATION_50HZ.md)).
+**Dec 3 (dHPC only).** The hippocampal LFP changed during stimulation, especially
+around the 26 Hz conditions. That signal looks more like a broad onset/offset and
+recovery response than a clean 26 Hz rhythm. After spike sorting and curation
+(`29` good units), single units did **not** show a reliable ON-vs-OFF firing-rate
+change. So Dec 3 is: **clear LFP/population response, no curated single-unit rate
+effect**.
 
-**Across both:** the brain *registers* the stimulus (broadband; and in LEC, 50 Hz
-power), but these recordings do **not** prove entrainment. The important caveat is
-that entrainment could not be properly tested because the delivered vibration was
-never recorded as an analog phase reference (fixed in the next round).
-Laminar/anatomical claims await probe-geometry confirmation.
+**Dec 4 (dHPC + LEC).** The same dHPC probe again shows no clean
+frequency-following evidence, even with 10 and 50 Hz added. LEC shows a strong
+50 Hz LFP peak during stimulation, but that LFP peak is contaminated by pickup and
+is **not** clean neural evidence. The cleaner result is spikes: curated units in
+both dHPC and LEC change firing rate most strongly at **50 Hz / high amplitude**
+(Dec 4 dHPC: `19/180` responsive unit-conditions; Dec 4 LEC: `13/180`), while Dec 3
+at 5/26 Hz stayed null (`0/174`).
 
-## Study Protocol & Recording Phases (Dec 3)
-
-How the session is set up. After setup, the recording runs a **15-minute
-baseline**, a **120-minute stimulation block** (1200 randomized trials, each a
-**3 s vibration ON** followed by **3 s OFF**), and a **30-minute
-post-experiment** period. The six conditions — amplitude `{100, 180, 250}` ×
-commanded frequency `{5, 26}` Hz, ~200 repeats each — are interleaved across the
-1200 trials. Trial labels and ON/OFF windows come from the randomized controller
-schedule in `analysis/outputs/dec3/dec3_condition_sequence.csv`. The
-**accelerometer TTL** (`digitalin` bit 7) fires while the device is physically
-vibrating and is audited as a delivery/timing QC signal, but it is not used as
-the sole trial enumerator.
-
-| Phase | Recording time (s) | Time (min) | Duration | What happens |
-|------|-------------------:|-----------:|---------:|--------------|
-| Setup / pre-recording | 0 – 640 | 0.0 – 10.7 | ~10.7 min | recording started before the protocol |
-| **Baseline** | 640 – 1540 | 10.7 – 25.7 | **15 min** | no stimulation |
-| **Stimulation** | 1540 – 8740 | 25.7 – 145.7 | **120 min** | 1200 trials × (3 s ON + 3 s OFF), 6 interleaved conditions |
-| **Post-experiment** | 8740 – 10540 | 145.7 – 175.7 | **30 min** | no stimulation |
-| Tail | 10540 – 10644 | 175.7 – 177.4 | ~1.7 min | recording stop |
-| **Total recording** | 0 – 10644 | 0 – 177.4 | **177.4 min** | |
-
-**Protocol = 15 + 120 + 30 = 165 min.** The 120-min stimulation block matches
-`1200 trials × 6 s` exactly. The stimulation window is derived from the command
-schedule mapped onto recording time; TTL edges are overlaid to check delivery
-and reveal missing/merged/pre/post activity.
-
-Generate the timeline and TTL-vs-LFP overview figures with
-[`analysis/plot_ttl_lfp_overview_dec3.py`](analysis/plot_ttl_lfp_overview_dec3.py).
-The figures land in `results/dec3/01_Session_Timeline/` and `results/dec3/02_TTL_Alignment/`
-([`session_timeline.png`](results/dec3/01_Session_Timeline/session_timeline.png),
-[`ttl_lfp_context_and_trials.png`](results/dec3/01_Session_Timeline/ttl_lfp_context_and_trials.png),
-[`ttl_on_alignment_per_trial.png`](results/dec3/02_TTL_Alignment/ttl_on_alignment_per_trial.png)).
+**What that means.** The 50 Hz response is probably not just a passive echo of the
+stimulus: dHPC and LEC transform the same input differently, with a driven-up
+subset in dHPC and net suppression in LEC. But the two regions do **not** show
+clear 50 Hz coordination, and true entrainment could not be tested because the
+delivered vibration phase was not recorded. Anatomy/layer claims still need the
+final probe map and histology.
 
 ## Repository Layout
 
@@ -284,55 +239,30 @@ Large raw/intermediate arrays are intentionally kept out of GitHub. The repo
 tracks code, Markdown summaries, CSV/JSON summaries, HTML reports, and
 normal-sized PNG/JPG figures.
 
-## Adding a New Session (e.g. Dec 4)
-
-Dec 4 uses the **same protocol and the same pipeline** as Dec 3 — only the input
-data and the output folder change. The scripts are session-agnostic (they take
-`--lfp` / `--sequence` / `--output-dir` arguments), so for a new session you:
-
-1. Keep the new recording in its own folder, e.g.
-   `~/Documents/Buzsaki Lab/Dec4_session_<date>/…`.
-2. Run the pipeline scripts pointed at that data, writing under
-   `analysis/outputs/dec4/<step>/` (mirror the `dec3` step folders).
-3. Build the curated figures: `python analysis/build_results_folder.py --session dec4`
-   → creates `results/dec4/` and updates the parent `results/README.md`.
-4. Add `DEC4_*.md` notes alongside the `DEC3_*.md` set.
-
-See [docs/RERUN_PIPELINE.md](docs/RERUN_PIPELINE.md) for the step-by-step checklist.
-`results/dec3/` and `results/dec4/` stay completely separate.
-
 ## Analysis Pipeline Overview
 
-1. Parse Intan metadata and digital TTL events for QC.
-2. Build the randomized condition schedule and authoritative 3 s ON / 3 s OFF
-   trial windows.
-3. Confirm/exclude bad channels.
-4. Extract LFP and compute event-aligned, broadband, frequency-specific,
-   time-frequency, trial-level, OFF-control, adaptation, and phase-locking
-   analyses.
-5. Prepare spike sorting metadata and run Kilosort/SpikeInterface checks.
-6. Export Pynapple-compatible intervals/spikes where useful.
-7. Run spike ON-vs-OFF analyses (per curated unit set).
-8. Detect over-split clusters, curate (good/mua/noise + merges), and confirm
-   spike claims against the curated set.
-9. Update supervisor summary, dashboard, and major-image guide.
-
-## Rerunning For A Future Study
-
-Use [docs/RERUN_PIPELINE.md](docs/RERUN_PIPELINE.md) as the checklist. The main
-inputs to change for a new recording are:
-
-- session directory containing Intan files
-- stimulus config/log file
-- recording start offset, if needed
-- channel count and channel map
-- confirmed bad-channel list
-- condition schedule and trial timing assumptions
-- output folder, for example `analysis/outputs/dec4`
-
-The goal is that future studies can produce a new folder like
-`analysis/outputs/<session_id>/` plus a matching supervisor summary and figure
-guide.
+1. Parse Intan metadata, controller logs/stimulus configs, and sync signals where
+   available (Dec 3 TTL QC; Dec 4 log-offset timing).
+2. Build the authoritative condition table: baseline, stimulation, post-study,
+   and every 3 s ON / 3 s OFF trial window.
+3. Run channel QC per probe; define disconnected/hot/bad channels and reference
+   schemes.
+4. Extract LFP and run core LFP analyses: event-aligned response, broadband and
+   OFF/recovery windows, driven-frequency/time-frequency power, 1/f residuals,
+   onset-aligned PLV/ITPC, reference sensitivity, movement/artifact controls,
+   and adaptation.
+5. Compare baseline / ON / OFF / post-study states and model session drift.
+6. Prepare spike-sorting metadata/channel maps, run SpikeInterface sanity checks,
+   and run Kilosort for each sorted probe.
+7. Run cluster-quality checks, detect over-splits, apply curation/merges, and keep
+   depth/layer claims provisional until the probe map/histology are confirmed.
+8. Export Pynapple-compatible intervals/spikes where useful, then run PETH,
+   ON-vs-OFF, baseline/post-study, and drift-corrected firing-rate analyses on
+   curated unit sets.
+9. Run targeted follow-ups: cell-type/ACG summaries, ripple-state summaries,
+   Dec 4 50 Hz artifact checks, and dHPC-LEC coordination checks.
+10. Build curated result folders and update dashboards, conclusions, supervisor
+   summaries, and figure indexes.
 
 ## GitHub Notes
 

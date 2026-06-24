@@ -19,16 +19,17 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
    amplitude-graded **broadband LFP** response, strongest at `amp180/250_freq26`.
    It is **transition-weighted** (onset/offset), statistically reliable on
    trial-level CIs at `amp250_freq26`. → broadband / transition-index figures.
-2. **It is not frequency-following.** dHPC shows **no narrowband peak and no phase
-   locking** at any tested frequency (5/10/26/50 Hz). This **replicates across Dec 3
-   and Dec 4 on the same probe**. The brain is responding to the *stimulus events*,
-   not oscillating at the drive frequency.
+2. **dHPC does not show clean frequency-following evidence.** dHPC shows no
+   sustained narrowband peak and no useful onset-aligned phase-locking evidence at
+   any tested frequency (5/10/26/50 Hz). This **replicates across Dec 3 and Dec 4
+   on the same probe**. The brain is responding to the *stimulus events*, but these
+   data do not prove oscillation at the drive frequency.
 3. **A 50 Hz LFP appears in LEC — but it is contaminated.** Dec 4's LEC probe shows
-   an amplitude-graded, *induced* (not phase-locked) 50 Hz LFP power increase. A
+   an amplitude-graded 50 Hz LFP power increase during stimulation. A
    **dedicated artifact check** ([DEC4_50HZ_ARTIFACT_CHECK.md](docs/DEC4_50HZ_ARTIFACT_CHECK.md))
    shows disconnected LEC electrodes pick up **~6× more** 50 Hz than tissue and the
    cross-region lag is **~0 ms** → a real **non-neural pickup component**. So the
-   LEC 50 Hz *LFP* is not clean neural evidence.
+   LEC 50 Hz *LFP* is not clean neural evidence and is not proof of entrainment.
 4. **The clean neural result is single-unit (Dec 4).** Sorted, curated units change
    their **firing rate** during 50 Hz / high-amplitude ON vs OFF, in **both** regions
    (dHPC 19/180 unit-conditions, LEC 13/180; concentrated at 50 Hz: 15/19 and 8/13).
@@ -64,13 +65,16 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
 
 ## What is genuinely supported
 - A real, amplitude-graded, **event-/transition-driven** haptic response (LFP).
-- **No frequency-following** (no entrainment by power *or* phase), replicated.
+- No clean dHPC frequency-following evidence, replicated across sessions.
+- No proven entrainment: stimulus phase was not recorded, so the decisive
+  phase-following test was not possible.
 - A genuine, frequency-specific (**50 Hz**), region-specific **single-unit rate**
   modulation at high amplitude — **driven-up subset in dHPC, net suppression in LEC**
   (same input, opposite transformations) — the headline neural finding.
 
 ## What is NOT supported / explicitly negative
-- The brain does **not** oscillate at the drive frequency.
+- These recordings do **not** show that brain rhythms oscillate at the drive
+  frequency.
 - The LEC **50 Hz LFP** is **not** clean neural signal (pickup-contaminated).
 - The two regions do **not** demonstrably **work together** at 50 Hz.
 

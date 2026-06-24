@@ -30,8 +30,9 @@ mean ON−OFF **+0.79 Hz**) — highest frequency × highest amplitude.
   frequencies there is essentially no single-unit ON/OFF modulation (0/174). Dec 4
   *added 10 and 50 Hz* — and the single-unit effect appears specifically at 50 Hz.
   So "no single-unit effect" was frequency-limited, not absolute.
-- **It is coherent across levels and regions.** The LFP analysis found an induced,
-  amplitude-graded **50 Hz** power increase in LEC; here the **single-unit** ON/OFF
+- **It is coherent across levels and regions.** The LFP analysis found an
+  amplitude-graded **50 Hz** power increase in LEC, although that LFP peak is
+  pickup-contaminated and not proof of entrainment. Here the **single-unit** ON/OFF
   responses also pile up at 50 Hz / high amplitude — in LEC *and* dHPC. Different
   measurement (spikes vs LFP), same frequency/amplitude regime.
 
