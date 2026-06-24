@@ -63,6 +63,8 @@ _Power at the driven 5/26 Hz frequency, frequency specificity, and the 1/f spect
 - [dec3_aperiodic_states.png](05_Frequency_Spectral/dec3_aperiodic_states.png)
 - [dec3_bump_vs_broadshift.png](05_Frequency_Spectral/dec3_bump_vs_broadshift.png)
 - [state_spectra_loglog.png](05_Frequency_Spectral/state_spectra_loglog.png)
+- [bandpower_general_states.png](05_Frequency_Spectral/bandpower_general_states.png)
+- [bandpower_driven_states.png](05_Frequency_Spectral/bandpower_driven_states.png)
 
 ### 06_Phase_Locking
 _Phase locking (PLV/ITPC) against chance, incl. the null-floor and onset-jitter checks._

@@ -123,6 +123,9 @@ MAP = {
         ("../cross_dataset_spike_compare/lfp_aperiodic_states/dec4_aperiodic_states.png", "dec4_aperiodic_states.png"),
         ("../cross_dataset_spike_compare/lfp_aperiodic_states/dec4_bump_vs_broadshift.png", "dec4_bump_vs_broadshift.png"),
         ("../cross_dataset_spike_compare/lfp_aperiodic_states/state_spectra_loglog.png", "state_spectra_loglog.png"),
+        # band power across states (broadband/theta/gamma + driven bands)
+        ("../cross_dataset_spike_compare/lfp_bandpower_states/bandpower_general_states.png", "bandpower_general_states.png"),
+        ("../cross_dataset_spike_compare/lfp_bandpower_states/bandpower_driven_states.png", "bandpower_driven_states.png"),
     ],
     "phase": [
         "phase_locking_lfp/plv_condition_summary.png",

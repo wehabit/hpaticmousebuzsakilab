@@ -42,6 +42,8 @@ _Power at the driven 5/10/26/50 Hz frequency, frequency specificity, time-freque
 - [dec4_aperiodic_states.png](05_Frequency_Spectral/dec4_aperiodic_states.png)
 - [dec4_bump_vs_broadshift.png](05_Frequency_Spectral/dec4_bump_vs_broadshift.png)
 - [state_spectra_loglog.png](05_Frequency_Spectral/state_spectra_loglog.png)
+- [bandpower_general_states.png](05_Frequency_Spectral/bandpower_general_states.png)
+- [bandpower_driven_states.png](05_Frequency_Spectral/bandpower_driven_states.png)
 
 ### 06_Phase_Locking
 _Phase locking (PLV/ITPC) per condition and probe vs the within-trial pre window._
