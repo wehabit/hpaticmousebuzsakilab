@@ -46,5 +46,6 @@ Haptic_Stim_*/
 resources/Cohen*.pdf
 
 # dropped asset folders / OS cruft
+presentation/
 presentation/SOM_horiz_Web_Color_and_White_PNG_logos/
 .DS_Store
