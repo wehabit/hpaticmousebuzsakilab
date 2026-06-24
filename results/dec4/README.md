@@ -110,6 +110,7 @@ _Kilosort4 + curation done (15 good units/probe). Single-unit ON/OFF (50 Hz/high
 - [celltype_acg_examples.png](11_Spikes/celltype_acg_examples.png)
 - [ripple_rate_by_state.png](11_Spikes/ripple_rate_by_state.png)
 - [ripple_participation_by_celltype.png](11_Spikes/ripple_participation_by_celltype.png)
+- [ripple_on_rate_by_stim_freq.png](11_Spikes/ripple_on_rate_by_stim_freq.png)
 - [ripple_examples.png](11_Spikes/ripple_examples.png)
 - [drift_corrected_model.png](11_Spikes/drift_corrected_model.png)
 

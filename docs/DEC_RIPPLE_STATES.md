@@ -38,6 +38,24 @@ strongly engaged in SWRs). This **independently cross-validates two analyses**: 
 ripple detection is finding real ripples, and the
 [cell-type labels](DEC_CELLTYPE_CLASSIFICATION.md) behave as their type predicts.
 
+## Stricter artifact control: ON ripples by stimulus frequency — the harmonic concern is refuted
+50 Hz stimulus harmonics (100/150/200/250 Hz) fall in the ripple band, so a genuine
+harmonic artifact would **inflate the 50 Hz-ON ripple rate specifically**. We split
+the ON ripple rate by stimulus frequency (`ripple_on_rate_by_stim_freq.png`):
+
+| Dec 4 dHPC | 5 Hz | 10 Hz | 26 Hz | **50 Hz** | ON excl. 50 | baseline |
+|---|---|---|---|---|---|---|
+| ON ripple rate (/s) | 0.61 | 0.64 | 0.56 | **0.37** | 0.60 | 0.45 |
+
+The **50 Hz-ON rate is the *lowest*, not the highest** — the opposite of what a
+harmonic artifact would produce. So the elevated ON ripple rate is **not** a 50 Hz
+harmonic artifact. Two readings of the 50 Hz dip, both honest: 50 Hz stimulation may
+**genuinely suppress ripples** (an active/aroused state suppresses SWRs), or the
+strong 50 Hz pickup during freq50 raises the envelope floor and lowers detection
+sensitivity. Either way, the harmonic-inflation concern is controlled — and the clean
+**ON-excluding-50 Hz** rate (0.60/s) is the value to compare with baseline. (Dec 3
+has no 50 Hz; its 5/26 Hz-ON rates both sit at baseline.)
+
 ## Ripple rate tracks session-long quiescence, not clearly stimulation
 Ripple rate is **lowest at baseline and rises through the session**, peaking post
 (Dec 3: 0.50 → 0.50 → 0.54 → **0.72**; Dec 4: 0.45 → 0.55 → 0.64 → 0.64 events/s,
@@ -51,10 +69,10 @@ amplitude (~6.3 z) and duration (~50 ms) are flat across states.
 - **CA1 pyramidal layer is provisional** (data-driven channel; the channel-map is a
   placeholder). Layer-specific SWR claims need the confirmed map.
 - **dHPC only** — ripples are a CA1 event; LEC is not the canonical ripple structure.
-- **ON-state 50 Hz-harmonic caveat:** 100/150/200/250 Hz harmonics of the 50 Hz
-  stimulus fall in the ripple band, so ON counts during freq50 trials may include
-  harmonic artifact (flagged on the figure). The clean comparisons are
-  baseline / OFF / post.
+- **ON-state 50 Hz-harmonic caveat — now controlled** (see "Stricter artifact
+  control" above): the 50 Hz-ON rate is the *lowest* of all frequencies, the opposite
+  of harmonic inflation, so ON-state counts are not harmonic-faked. Use the
+  ON-excluding-50 Hz rate for the clean ON comparison.
 - The baseline→post rate rise is **confounded with the session drift** — we do not
   claim a stimulation-specific ripple effect.
 

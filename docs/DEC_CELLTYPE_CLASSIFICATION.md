@@ -67,26 +67,21 @@ movement artifact is **not** manufacturing those spikes.
 classification** (τ_rise / bursty-vs-wide ACG classes used as a typing axis). So the
 ACG result is: *the 50 Hz spike-rate effect does not look like a simple 50 Hz
 artifact in the spike times* — **not** "we classified ACG cell types." The safest
-claim remains **50 Hz firing-rate modulation**, not ACG-type or ripple modulation.
+claim remains **50 Hz firing-rate modulation**, not ACG-type or stimulation-specific
+ripple modulation.
 
 ## Caveats (state plainly)
 - **Putative types only** — waveform + spiking, not molecularly or
   optogenetically validated.
 - **Small n**, especially **LEC interneurons (n = 2)** — that group's bootstrap CI
   is wide and not interpretable.
-- **Ripple participation is NOT done** (a standard CellExplorer feature). We cannot
-  yet say whether any unit participates in sharp-wave ripples, is ripple-modulated,
-  or changes ripple firing during stimulation — and we make **no** hippocampal-memory
-  or SWR claims. Doing it properly is a **separate** analysis, gated by the provisional
-  channel-map:
-  1. pick likely **CA1 ripple channels**;
-  2. detect ripple events (~100–250 Hz envelope threshold);
-  3. compare ripple **rate / amplitude / duration** across baseline / ON / OFF / post;
-  4. ask **which units fire during ripples**;
-  5. compare ripple participation **by cell type** (pyramidal- vs interneuron-like).
-
-  Until then it stays secondary. The safest current claim is **50 Hz firing-rate
-  modulation**, not ripple modulation.
+- **Ripple participation is now done as an exploratory follow-up**, not as a full
+  CellExplorer `cell_metrics` workflow. [DEC_RIPPLE_STATES.md](DEC_RIPPLE_STATES.md)
+  detects dHPC ripples on a data-driven channel and shows interneuron-like units
+  fire ~2.5x more during ripples than outside, which cross-validates the putative
+  cell-type labels. Because the CA1 layer/channel map is still provisional and ON
+  windows have a 50 Hz-harmonic caveat, this supports **real ripple detection and
+  type-consistent participation**, not a stimulation-specific SWR or memory claim.
 - The LEC 50 Hz pyramidal suppression carries the same **session-drift** caveat as
   the parent analysis (LEC drifts −26 %); the **local ON/OFF** contrast remains the
   drift-immune measure.

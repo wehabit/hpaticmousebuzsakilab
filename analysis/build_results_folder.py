@@ -124,6 +124,7 @@ MAP = {
         # sharp-wave ripples across states (exploratory, dHPC, CA1 provisional)
         "../cross_dataset_spike_compare/ripples/ripple_rate_by_state.png",
         "../cross_dataset_spike_compare/ripples/ripple_participation_by_celltype.png",
+        "../cross_dataset_spike_compare/ripples/ripple_on_rate_by_stim_freq.png",
         "../cross_dataset_spike_compare/ripples/ripple_examples.png",
     ],
     "channelqc": [

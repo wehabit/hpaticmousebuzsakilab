@@ -133,7 +133,7 @@ def state_of(t, base, post, ons, offs):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     ct = pd.read_csv(CELLTYPE)
-    rate_rows, ev_rows, part_rows, summary = [], [], [], []
+    rate_rows, ev_rows, part_rows, summary, onfreq_rows = [], [], [], [], []
     example = {}
 
     for name, cfg in SESS.items():
@@ -186,6 +186,20 @@ def main():
                                   rate_hz=round(rmean, 4), rate_ci=[round(rlo, 4), round(rhi, 4)],
                                   amp_z=round(amean, 3), amp_ci=[round(alo, 3), round(ahi, 3)],
                                   dur_ms=round(dmean, 1), dur_ci=[round(dlo, 1), round(dhi, 1)]))
+        # --- stricter artifact control: ON ripple rate split by stimulus frequency ---
+        # 50 Hz stimulus harmonics (100/150/200/250 Hz) fall in the ripple band, so a
+        # genuine harmonic artifact would inflate the 50 Hz-ON "ripple" rate specifically.
+        base_rate = float(rate_rows[-4]["rate_hz"])           # baseline rate for this session (first of the 4)
+        on_arr = tw[["on_start_s", "on_end_s", "freq"]].to_numpy()
+        stim_freqs = sorted(int(x) for x in tw["freq"].unique())
+        for fr in stim_freqs + ["ON_excl_50"]:
+            fw = (on_arr[on_arr[:, 2] != 50] if fr == "ON_excl_50" else on_arr[on_arr[:, 2] == fr])[:, :2]
+            counts = np.array([int(((peaks_t >= s) & (peaks_t < e)).sum()) for s, e in fw])
+            rmean, rlo, rhi = boot_ci(counts / WIN)
+            onfreq_rows.append(dict(session=name, stim_freq=fr, n_on_ripples=int(counts.sum()),
+                                    on_dur_s=round(float((fw[:, 1] - fw[:, 0]).sum()), 1),
+                                    rate_hz=round(rmean, 4), rate_ci=[round(rlo, 4), round(rhi, 4)],
+                                    baseline_rate_hz=round(base_rate, 4)))
         # save one example ripple (highest-amp baseline event)
         base_ev = [(s, p, e) for (s, p, e), st in zip(events, states) if st == "baseline"]
         if base_ev:
@@ -223,11 +237,13 @@ def main():
 
     pd.DataFrame(rate_rows).to_csv(OUT / "ripple_rate_by_state.csv", index=False)
     pd.DataFrame(part_rows).to_csv(OUT / "ripple_participation_by_unit.csv", index=False)
+    pd.DataFrame(onfreq_rows).to_csv(OUT / "ripple_on_rate_by_stim_freq.csv", index=False)
     (OUT / "ripple_summary.json").write_text(json.dumps(summary, indent=2) + "\n")
 
     _fig_rates(rate_rows, OUT)
     _fig_examples(example, OUT)
     _fig_participation(pd.DataFrame(part_rows), OUT)
+    _fig_onfreq(pd.DataFrame(onfreq_rows), OUT)
     print("\n=== ripple summary ===")
     print(json.dumps(summary, indent=2))
 
@@ -265,6 +281,29 @@ def _fig_examples(example, out):
         ax.set_title(f"{name}: example ripple (ch {d['ch']})"); ax.set_xlabel("time from peak (ms)")
         ax.legend(fontsize=8)
     fig.tight_layout(); fig.savefig(out / "ripple_examples.png", dpi=170); plt.close(fig)
+
+
+def _fig_onfreq(df, out):
+    """ON ripple rate split by stimulus frequency — isolates the 50 Hz-harmonic confound."""
+    if df.empty:
+        return
+    sess = df.session.unique()
+    fig, axes = plt.subplots(1, len(sess), figsize=(6 * len(sess), 4.6), squeeze=False, sharey=True)
+    for ax, sname in zip(axes[0], sess):
+        gs = df[df.session == sname]
+        order = sorted([x for x in gs.stim_freq.unique() if x != "ON_excl_50"], key=lambda v: int(v)) + ["ON_excl_50"]
+        g = gs.set_index("stim_freq").reindex(order)
+        x = np.arange(len(order))
+        cols = ["#d1495b" if str(f) == "50" else ("#457b9d" if f == "ON_excl_50" else "#adb5bd") for f in order]
+        lo = [g.rate_hz.iloc[k] - g.rate_ci.iloc[k][0] for k in range(len(order))]
+        hi = [g.rate_ci.iloc[k][1] - g.rate_hz.iloc[k] for k in range(len(order))]
+        ax.bar(x, g.rate_hz, yerr=[lo, hi], capsize=3, color=cols, error_kw=dict(ecolor="#222", lw=1.2))
+        ax.axhline(float(g.baseline_rate_hz.iloc[0]), color="#000", ls="--", lw=1.2, label="baseline rate")
+        ax.set_xticks(x); ax.set_xticklabels([f"{f} Hz" if str(f).isdigit() else f for f in order], rotation=20, ha="right")
+        ax.set_ylabel("ON ripple rate (events/s)"); ax.set_title(f"{sname}: ON ripples by stimulus freq"); ax.legend(fontsize=8)
+    fig.suptitle("Ripple artifact control: if 50 Hz harmonics faked ripples, the 50 Hz-ON bar would tower over "
+                 "the others & baseline", fontsize=10.5)
+    fig.tight_layout(); fig.savefig(out / "ripple_on_rate_by_stim_freq.png", dpi=170); plt.close(fig)
 
 
 def _fig_participation(df, out):
