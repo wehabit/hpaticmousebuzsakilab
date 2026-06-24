@@ -63,12 +63,16 @@ example ACGs (`celltype_acg_examples.png`); and the **50 Hz artifact screen** in
 show **no ON-specific 20 ms ACG comb**, so a 20 ms-periodic (50 Hz) electrical/
 movement artifact is **not** manufacturing those spikes.
 
-**What we did NOT do** — a full CellExplorer-style **autocorrelogram-type
-classification** (τ_rise / bursty-vs-wide ACG classes used as a typing axis). So the
-ACG result is: *the 50 Hz spike-rate effect does not look like a simple 50 Hz
-artifact in the spike times* — **not** "we classified ACG cell types." The safest
-claim remains **50 Hz firing-rate modulation**, not ACG-type or stimulation-specific
-ripple modulation.
+**Full ACG-type classification — now done** ([DEC_ACG_TYPE_CLASSIFICATION.md](DEC_ACG_TYPE_CLASSIFICATION.md)):
+the CellExplorer triple-exponential ACG fit (τ_rise) + the 3-way Narrow/Wide
+Interneuron / Pyramidal scheme. The honest result: it **does not cleanly improve on
+the width × rate 2-way here** — its "wide interneuron" bin is dominated by
+implausibly low-rate units (median 0.94 Hz), so τ_rise is ambiguous in this small,
+low-rate sample. The **width × rate 2-way remains the robust typing** (cross-validated
+by ripple participation). So the ACG result is still best stated as: *the 50 Hz
+spike-rate effect does not look like a simple 50 Hz artifact in the spike times* —
+and the safest cell-type claim is the **2-way pyr/interneuron split**, with the
+3-way available but its wide-interneuron category not trustworthy yet.
 
 ## Caveats (state plainly)
 - **Putative types only** — waveform + spiking, not molecularly or

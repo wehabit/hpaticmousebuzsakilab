@@ -140,6 +140,7 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
 - [DEC4_COORDINATION_50HZ.md](docs/DEC4_COORDINATION_50HZ.md) — do the regions coordinate?
 - [DEC_BASELINE_POSTSTUDY_STATES.md](docs/DEC_BASELINE_POSTSTUDY_STATES.md) — ON/OFF vs true baseline & post-study (drift)
 - [DEC_CELLTYPE_CLASSIFICATION.md](docs/DEC_CELLTYPE_CLASSIFICATION.md) — putative pyr/interneuron types; 50 Hz response by type
+- [DEC_ACG_TYPE_CLASSIFICATION.md](docs/DEC_ACG_TYPE_CLASSIFICATION.md) — full CellExplorer ACG-type fit (τ_rise); 2-way stays the robust typing
 - [DEC_LFP_APERIODIC_STATES.md](docs/DEC_LFP_APERIODIC_STATES.md) — 1/f slope across baseline/ON/OFF/post; real bump vs broad shift
 - [DEC_RIPPLE_STATES.md](docs/DEC_RIPPLE_STATES.md) — sharp-wave ripples across states; participation by cell type (exploratory)
 - [DEC_LFP_BANDPOWER_STATES.md](docs/DEC_LFP_BANDPOWER_STATES.md) — broadband/theta/gamma + driven-band power across states

@@ -1,0 +1,15 @@
+{
+  "n_units": 59,
+  "n_acg_fit_ok": 59,
+  "acg_min_counts": 200,
+  "n_reliable": 58,
+  "n_unreliable_lowcount": 1,
+  "counts_3way_reliable_only": {
+    "Wide Interneuron": 27,
+    "Narrow Interneuron": 16,
+    "Pyramidal Cell": 15
+  },
+  "ttp_cut_ms": 0.425,
+  "tau_rise_cut_ms": 6.0,
+  "agreement_int_vs_acgInt_reliable": 0.5344827586206896
+}
