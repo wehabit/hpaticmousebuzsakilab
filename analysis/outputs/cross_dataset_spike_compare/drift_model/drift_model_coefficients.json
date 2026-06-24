@@ -1,0 +1,202 @@
+[
+  {
+    "dataset": "dec4_dHPC",
+    "model": "no_drift",
+    "coef": "state[ON]",
+    "estimate": 0.0529,
+    "boot_mean": 0.0513,
+    "ci_lo": -0.008,
+    "ci_hi": 0.1177,
+    "model_r2": 0.0016
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "model": "no_drift",
+    "coef": "freq50",
+    "estimate": 0.1702,
+    "boot_mean": 0.1692,
+    "ci_lo": 0.0753,
+    "ci_hi": 0.2646,
+    "model_r2": 0.0016
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "model": "no_drift",
+    "coef": "state[ON]:freq50",
+    "estimate": 0.1699,
+    "boot_mean": 0.1616,
+    "ci_lo": -0.1235,
+    "ci_hi": 0.4952,
+    "model_r2": 0.0016
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "model": "no_drift",
+    "coef": "freq26",
+    "estimate": 0.0891,
+    "boot_mean": 0.0888,
+    "ci_lo": -0.0016,
+    "ci_hi": 0.1912,
+    "model_r2": 0.0016
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "model": "no_drift",
+    "coef": "state[ON]:freq26",
+    "estimate": -0.147,
+    "boot_mean": -0.1481,
+    "ci_lo": -0.2977,
+    "ci_hi": 0.0077,
+    "model_r2": 0.0016
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "model": "with_drift",
+    "coef": "state[ON]",
+    "estimate": 0.0529,
+    "boot_mean": 0.054,
+    "ci_lo": -0.0011,
+    "ci_hi": 0.1191,
+    "model_r2": 0.0048
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "model": "with_drift",
+    "coef": "freq50",
+    "estimate": 0.1642,
+    "boot_mean": 0.1633,
+    "ci_lo": 0.065,
+    "ci_hi": 0.2672,
+    "model_r2": 0.0048
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "model": "with_drift",
+    "coef": "state[ON]:freq50",
+    "estimate": 0.1699,
+    "boot_mean": 0.1652,
+    "ci_lo": -0.1158,
+    "ci_hi": 0.463,
+    "model_r2": 0.0048
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "model": "with_drift",
+    "coef": "freq26",
+    "estimate": 0.0898,
+    "boot_mean": 0.0908,
+    "ci_lo": -0.0039,
+    "ci_hi": 0.2094,
+    "model_r2": 0.0048
+  },
+  {
+    "dataset": "dec4_dHPC",
+    "model": "with_drift",
+    "coef": "state[ON]:freq26",
+    "estimate": -0.147,
+    "boot_mean": -0.1497,
+    "ci_lo": -0.2929,
+    "ci_hi": -0.0039,
+    "model_r2": 0.0048
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "no_drift",
+    "coef": "state[ON]",
+    "estimate": 0.1048,
+    "boot_mean": 0.1054,
+    "ci_lo": 0.0019,
+    "ci_hi": 0.2311,
+    "model_r2": 0.0004
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "no_drift",
+    "coef": "freq50",
+    "estimate": 0.043,
+    "boot_mean": 0.0435,
+    "ci_lo": -0.0026,
+    "ci_hi": 0.0936,
+    "model_r2": 0.0004
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "no_drift",
+    "coef": "state[ON]:freq50",
+    "estimate": -0.1823,
+    "boot_mean": -0.1816,
+    "ci_lo": -0.4644,
+    "ci_hi": 0.0796,
+    "model_r2": 0.0004
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "no_drift",
+    "coef": "freq26",
+    "estimate": 0.0827,
+    "boot_mean": 0.0822,
+    "ci_lo": 0.0109,
+    "ci_hi": 0.1967,
+    "model_r2": 0.0004
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "no_drift",
+    "coef": "state[ON]:freq26",
+    "estimate": -0.2191,
+    "boot_mean": -0.2184,
+    "ci_lo": -0.4881,
+    "ci_hi": -0.0514,
+    "model_r2": 0.0004
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "with_drift",
+    "coef": "state[ON]",
+    "estimate": 0.1048,
+    "boot_mean": 0.106,
+    "ci_lo": 0.0006,
+    "ci_hi": 0.2224,
+    "model_r2": 0.0067
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "with_drift",
+    "coef": "freq50",
+    "estimate": 0.0499,
+    "boot_mean": 0.0497,
+    "ci_lo": 0.0031,
+    "ci_hi": 0.1085,
+    "model_r2": 0.0067
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "with_drift",
+    "coef": "state[ON]:freq50",
+    "estimate": -0.1823,
+    "boot_mean": -0.174,
+    "ci_lo": -0.439,
+    "ci_hi": 0.0855,
+    "model_r2": 0.0067
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "with_drift",
+    "coef": "freq26",
+    "estimate": 0.0707,
+    "boot_mean": 0.0707,
+    "ci_lo": 0.0077,
+    "ci_hi": 0.1501,
+    "model_r2": 0.0067
+  },
+  {
+    "dataset": "dec4_LEC",
+    "model": "with_drift",
+    "coef": "state[ON]:freq26",
+    "estimate": -0.2191,
+    "boot_mean": -0.2159,
+    "ci_lo": -0.4622,
+    "ci_hi": -0.0519,
+    "model_r2": 0.0067
+  }
+]

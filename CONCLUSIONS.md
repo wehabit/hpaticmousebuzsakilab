@@ -144,5 +144,6 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
 - [DEC_RIPPLE_STATES.md](docs/DEC_RIPPLE_STATES.md) — sharp-wave ripples across states; participation by cell type (exploratory)
 - [DEC_LFP_BANDPOWER_STATES.md](docs/DEC_LFP_BANDPOWER_STATES.md) — broadband/theta/gamma + driven-band power across states
 - [DEC_ADAPTATION_STATES.md](docs/DEC_ADAPTATION_STATES.md) — early/middle/late: 50 Hz spike sustained, 26 Hz LFP habituates, OFF drifts
+- [DEC_DRIFT_CORRECTED_MODEL.md](docs/DEC_DRIFT_CORRECTED_MODEL.md) — 50 Hz effect survives removing the session drift (interleaved design)
 - [DEC4_SUPERVISOR_SUMMARY.md](docs/DEC4_SUPERVISOR_SUMMARY.md) /
   [DEC3_SUPERVISOR_SUMMARY.md](docs/DEC3_SUPERVISOR_SUMMARY.md)

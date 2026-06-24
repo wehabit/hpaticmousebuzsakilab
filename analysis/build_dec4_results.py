@@ -190,6 +190,8 @@ MAP = {
         ("../cross_dataset_spike_compare/ripples/ripple_rate_by_state.png", "ripple_rate_by_state.png"),
         ("../cross_dataset_spike_compare/ripples/ripple_participation_by_celltype.png", "ripple_participation_by_celltype.png"),
         ("../cross_dataset_spike_compare/ripples/ripple_examples.png", "ripple_examples.png"),
+        # drift-corrected condition model: 50 Hz effect survives removing the session drift
+        ("../cross_dataset_spike_compare/drift_model/drift_corrected_model.png", "drift_corrected_model.png"),
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",
