@@ -108,6 +108,10 @@ MAP = {
         "spike_peth_high_confidence/peth_offset_high_confidence_units.png",
         # single-unit firing vs TRUE pre-experiment baseline & post-study (bootstrap CIs)
         "../cross_dataset_spike_compare/baseline_poststudy/dec3_states_vs_baseline.png",
+        # putative cell-type classification (CellExplorer-style)
+        "../cross_dataset_spike_compare/celltype/dec3_celltype.png",
+        "../cross_dataset_spike_compare/celltype/celltype_classification.png",
+        "../cross_dataset_spike_compare/celltype/celltype_acg_examples.png",
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",

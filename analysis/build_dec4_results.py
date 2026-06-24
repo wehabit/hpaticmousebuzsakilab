@@ -171,6 +171,11 @@ MAP = {
          "dec4_states_vs_baseline.png"),
         ("../cross_dataset_spike_compare/baseline_poststudy/dec4_freq50_vs_baseline.png",
          "dec4_freq50_vs_baseline.png"),
+        # putative cell-type classification (CellExplorer-style) + 50 Hz response by type
+        ("../cross_dataset_spike_compare/celltype/dec4_celltype.png", "dec4_celltype.png"),
+        ("../cross_dataset_spike_compare/celltype/dec4_celltype_vs_50hz.png", "dec4_celltype_vs_50hz.png"),
+        ("../cross_dataset_spike_compare/celltype/celltype_classification.png", "celltype_classification_pooled.png"),
+        ("../cross_dataset_spike_compare/celltype/celltype_acg_examples.png", "celltype_acg_examples.png"),
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",

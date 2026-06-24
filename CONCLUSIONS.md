@@ -138,5 +138,7 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
 - [DEC4_SPIKE_ONOFF_RESULT.md](docs/DEC4_SPIKE_ONOFF_RESULT.md) — single-unit headline
 - [DEC4_50HZ_ARTIFACT_CHECK.md](docs/DEC4_50HZ_ARTIFACT_CHECK.md) — the LFP artifact test
 - [DEC4_COORDINATION_50HZ.md](docs/DEC4_COORDINATION_50HZ.md) — do the regions coordinate?
+- [DEC_BASELINE_POSTSTUDY_STATES.md](docs/DEC_BASELINE_POSTSTUDY_STATES.md) — ON/OFF vs true baseline & post-study (drift)
+- [DEC_CELLTYPE_CLASSIFICATION.md](docs/DEC_CELLTYPE_CLASSIFICATION.md) — putative pyr/interneuron types; 50 Hz response by type
 - [DEC4_SUPERVISOR_SUMMARY.md](docs/DEC4_SUPERVISOR_SUMMARY.md) /
   [DEC3_SUPERVISOR_SUMMARY.md](docs/DEC3_SUPERVISOR_SUMMARY.md)

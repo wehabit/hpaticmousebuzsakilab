@@ -1,0 +1,33 @@
+{
+  "lit_cut_ttp_ms": 0.5,
+  "n_units_total": 59,
+  "by_dataset": {
+    "dec3_dHPC": {
+      "n": 29,
+      "n_pyramidal_like": 19,
+      "n_interneuron_like": 10,
+      "median_ttp_ms_pyr": 0.75,
+      "median_ttp_ms_int": 0.3,
+      "median_rate_pyr": 1.28,
+      "median_rate_int": 11.33
+    },
+    "dec4_dHPC": {
+      "n": 15,
+      "n_pyramidal_like": 9,
+      "n_interneuron_like": 6,
+      "median_ttp_ms_pyr": 0.75,
+      "median_ttp_ms_int": 0.25,
+      "median_rate_pyr": 1.46,
+      "median_rate_int": 10.2
+    },
+    "dec4_LEC": {
+      "n": 15,
+      "n_pyramidal_like": 13,
+      "n_interneuron_like": 2,
+      "median_ttp_ms_pyr": 0.9,
+      "median_ttp_ms_int": 0.375,
+      "median_rate_pyr": 1.11,
+      "median_rate_int": 14.26
+    }
+  }
+}
