@@ -201,6 +201,9 @@ MAP = {
         # raster + PSTH for the MODULATED units (amp250_freq50) — Misi's request
         ("../cross_dataset_spike_compare/raster_psth/raster_psth_examples_dec4.png", "raster_psth_examples_dec4.png"),
         ("../cross_dataset_spike_compare/raster_psth/psth_population_modulated_dec4.png", "psth_population_modulated_dec4.png"),
+        # frequency-specificity: modulated units across 5/10/26/50 Hz (response only at 50)
+        ("../cross_dataset_spike_compare/raster_psth/psth_frequency_specific_dec4.png", "psth_frequency_specific_dec4.png"),
+        ("../cross_dataset_spike_compare/raster_psth/raster_frequency_specific_dec4.png", "raster_frequency_specific_dec4.png"),
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",
