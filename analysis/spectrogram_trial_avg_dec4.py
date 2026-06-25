@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 """Trial-averaged LFP spectrogram around ON onset (Dec 4), per amplitude.
 
-Misi's request: a trial-averaged spectrogram (1-100 Hz; 60 Hz line is minimal here)
-to (a) show the 50 Hz response directly and (b) examine why higher amplitude was not
-simply "more efficient". We align the region-mean LFP (group-referenced good
-channels) to ON onset, compute a per-trial spectrogram, average across the 200
+Misi's request: a trial-averaged spectrogram (1-100 Hz) to show the 50 Hz response
+directly and clarify amplitude effects. The 60 Hz line is minimal in this figure
+(checked separately: ~0.99-1.05x neighboring bins), so the 1-100 Hz version is kept
+rather than cropping to 1-40 Hz. We align the region-mean LFP (group-referenced
+good channels) to ON onset, compute a per-trial spectrogram, average across the 200
 trials, and express power as dB vs the pre-onset baseline. Shown for LEC freq50 at
 amp100/180/250 (the artifact-suspect 50 Hz band) and dHPC freq50/amp250 (contrast).
 
@@ -67,7 +68,8 @@ def main():
     tw = pd.read_csv(TW)
 
     panels = [("LEC", 100), ("LEC", 180), ("LEC", 250), ("dHPC", 250)]
-    fig, axes = plt.subplots(1, len(panels), figsize=(4.7 * len(panels), 5.0), sharey=True)
+    fig, axes = plt.subplots(1, len(panels), figsize=(4.7 * len(panels), 5.3), sharey=True,
+                             constrained_layout=True)
     for ax, (reg, amp) in zip(axes, panels):
         good = good_channels(reg)
         onsets = tw[(tw.amplitude == amp) & (tw.freq == 50)].on_start_s.to_numpy()
@@ -85,9 +87,10 @@ def main():
         ax.set_xlabel("time from ON onset (s)")
     axes[0].set_ylabel("frequency (Hz)")
     cbar = fig.colorbar(im, ax=axes, shrink=0.8, pad=0.01); cbar.set_label("power vs pre-onset (dB)")
-    fig.suptitle("Trial-averaged LFP spectrogram around ON onset — LEC 50 Hz grows with amplitude; "
-                 "dHPC shows no 50 Hz band  (50 Hz = dotted line; black = ON 0–3 s)", fontsize=11)
-    fig.savefig(OUT / "trial_avg_spectrogram_dec4.png", dpi=170, bbox_inches="tight"); plt.close(fig)
+    fig.suptitle("Trial-averaged LFP spectrogram around ON onset\n"
+                 "LEC 50 Hz grows with amplitude; dHPC shows no 50 Hz band   "
+                 "(50 Hz = dotted line · black lines = ON 0–3 s)", fontsize=11)
+    fig.savefig(OUT / "trial_avg_spectrogram_dec4.png", dpi=170); plt.close(fig)
     print("wrote trial_avg_spectrogram_dec4.png")
 
 
