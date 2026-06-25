@@ -125,8 +125,9 @@ next path is one of:
 - try a different local Phy/Qt/OpenGL stack;
 - continue with automated spike QC and treat Phy curation as pending.
 
-Until Phy curation is completed, spike results should remain labeled
-provisional.
+This local GUI note is historical. The current Dec 3 spike result now uses the
+curated/merged output set; use [DEC3_CURATED_SPIKE_RESULT.md](DEC3_CURATED_SPIKE_RESULT.md)
+for presentation claims.
 
 ## Legacy Local Environment Attempt
 

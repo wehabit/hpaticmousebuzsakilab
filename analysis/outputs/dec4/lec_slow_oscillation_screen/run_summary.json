@@ -1,0 +1,29 @@
+{
+  "purpose": "No-figure screen for V\u00f6r\u00f6slakos criterion: cortical slow oscillations / UP-DOWN-compatible slow deflections support LEC/cortex identity.",
+  "method_short": "Median LFP across good channels, quiet baseline and post-study windows only; Welch spectra plus 0.5-4 Hz slow-deflection counts.",
+  "lec_result": {
+    "slow_peak_hz_range": [
+      2.25,
+      2.375
+    ],
+    "slow_to_theta_ratio_range": [
+      24.31,
+      24.63
+    ],
+    "negative_slow_deflection_rate_hz_range": [
+      0.337,
+      0.455
+    ]
+  },
+  "dhpc_comparator": {
+    "slow_to_theta_ratio_range": [
+      1.15,
+      1.38
+    ]
+  },
+  "bottom_line": "LEC shows a stable quiet-window slow/delta-dominant LFP signature relative to theta, unlike the dHPC comparator. This supports the LEC/cortex functional placement criterion. It is not a formal sleep scoring or laminar UP/DOWN-state analysis.",
+  "outputs": [
+    "slow_oscillation_summary.csv",
+    "slow_deflection_events.csv"
+  ]
+}

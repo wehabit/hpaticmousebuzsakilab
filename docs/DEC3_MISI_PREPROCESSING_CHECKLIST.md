@@ -37,8 +37,10 @@ are absent.
   follow-ups, and ripple participation was run as an exploratory dHPC analysis.
   What is still missing is an official CellExplorer `cell_metrics` export and a
   monosynaptic connection workflow.
-- Anatomy/layer labels remain provisional because the exact Cambridge NeuroTech
-  site map/adapter wiring and histology are not yet confirmed.
+- Probe identity/channel-map metadata are no longer the main blocker: Dec 3 is the
+  dHPC `H12_2` Port A recording, and the Cambridge NeuroTech/`amplifier.xml`
+  metadata are now known. Fine laminar/subregion/site-order claims still need
+  orientation/histology or equivalent records.
 
 ## Checklist
 
@@ -52,17 +54,17 @@ are absent.
 | 6 | Artifact-aware handling | Done for LFP metrics; raw `.dat` not modified | `artifact_aware_lfp`, `broadband_transition`, `off_control_broadband`, `trial_level_stats_equal_spectral_windows` outputs | Transition windows are analyzed separately; raw artifact removal was not applied to preserve original data |
 | 7 | Median subtraction / referencing | Done for analysis pass | `analysis/final_preprocessing_dec3.json`, `reference_sensitivity_lfp` outputs | Main LFP pass uses analysis-group median reference; reference sensitivity checked |
 | 8 | Trial schedule and event alignment | Done | `dec3_condition_sequence.csv`, `spike_sorting_prep/trial_windows.csv`, `pynapple_intervals/*.npz` | 1200 trials, 6 conditions, 200 repeats each, 3 s ON / 3 s OFF |
-| 9 | Ripple detection | Done as exploratory follow-up; CA1 layer still provisional | `analysis/outputs/cross_dataset_spike_compare/ripples/`, [DEC_RIPPLE_STATES.md](DEC_RIPPLE_STATES.md) | Use as descriptive dHPC ripple/state physiology only; no SWR-memory or stimulation-specific ripple claim until channel map/state context are confirmed |
+| 9 | Ripple detection | Done; functionally supports CA1/dHPC placement by Vöröslakos criterion | `analysis/outputs/cross_dataset_spike_compare/ripples/`, [DEC_RIPPLE_STATES.md](DEC_RIPPLE_STATES.md) | Use as dHPC ripple/state physiology; no SWR-memory, dentate-spike, or layer-specific claim without orientation/histology |
 | 10 | Dentate spike detection | Not done; insufficient channel/anatomy decisions | No dentate-spike output is present | Needs dentate/hilus/granule-layer channel assignment and collaborator validation |
 | 11 | Up/down state detection | Not done; likely not appropriate from current awake haptic-only context | No state-output folder is present | Requires cortical channels and sleep/quiet-state intervals; skip unless matching data are supplied |
 | 12 | Automatic state scoring | Not done; required data absent | No sleep scoring files, EMG, video/tracking, or state annotations | Requires behavioral/sleep-state data |
 | 13 | Manual state scoring / TheStateEditor | Not done; required data absent | No manual state files | Requires state-scoring inputs and human review |
 | 14 | Spike sorting prep | Done | `spike_sorting_prep`, `spikeinterface_setup`, `spikeinterface_test_sort` outputs | SpikeInterface smoke test succeeds; Kilosort output is the final sorting input |
-| 15 | Kilosort sorting | Done for current analysis | `analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/spike_times.npy`, `spike_clusters.npy`, `templates.npy`; `modal_kilosort_run_summary.json` | Geometry/depth labels remain provisional until the exact probe map is confirmed |
+| 15 | Kilosort sorting | Done for current analysis | `analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/spike_times.npy`, `spike_clusters.npy`, `templates.npy`; `modal_kilosort_run_summary.json` | Sorting supports the ON/OFF result; fine depth/laminar labels remain conservative |
 | 16 | Phy-style curation / merge labels | Done for current analysis | `analysis/outputs/dec3/curated_merged/`, `analysis/outputs/dec3/spike_peth_curated/report.json`, `analysis/outputs/cross_dataset_spike_compare/overview.csv` | Current result: 29 curated good units; 0/174 responsive unit-conditions |
 | 17 | CellExplorer-style PYR/INT and ACG typing | Done in Python; no official `cell_metrics.mat` export | [DEC_CELLTYPE_CLASSIFICATION.md](DEC_CELLTYPE_CLASSIFICATION.md), [DEC_ACG_TYPE_CLASSIFICATION.md](DEC_ACG_TYPE_CLASSIFICATION.md), `analysis/outputs/cross_dataset_spike_compare/celltype/`, `acg_type/` | Use putative pyr/interneuron labels cautiously; full official CellExplorer export remains optional/future |
 | 18 | Monosynaptic connections | Not done | No CellExplorer monosynaptic output is present | Requires curated units and CellExplorer-compatible session files |
-| 19 | Region tagging / anatomical labels | Provisional only | `docs/STUDY_NOTES.md`, `docs/OPEN_QUESTIONS.md` | Need probe orientation/contact-order confirmation before assigning region-level claims |
+| 19 | Region tagging / anatomical labels | Region-level dHPC identity supported; fine labels conservative | `docs/STUDY_NOTES.md`, `docs/DEC_PROBE_METADATA_VOROSLAKOS.md` | Use dHPC/CA1 physiology at region level; need orientation/histology before assigning medial/lateral, depth, or subregion labels |
 | 20 | Behavioral analysis | Not done; behavior data absent | No tracking/video/behavior tables found | Requires behavioral files beyond Intan TTL and stimulus schedule |
 
 ## Kilosort Arrays

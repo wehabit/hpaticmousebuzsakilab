@@ -70,12 +70,13 @@ list at the end of this file.
   single-unit ON/OFF firing-rate effect at 5/26 Hz.
 
 ### Not assigned (needs external input — see blockers)
-- Subregion anatomy (CA1/DG/medial/lateral). Refer only to channel groups or
-  provisional physical shanks until orientation + histology are confirmed.
+- Fine subregion anatomy (CA1 layer vs DG/subiculum, medial/lateral). Ripple
+  physiology supports dHPC/CA1 placement at the region level, but fine labels
+  still need orientation + histology or equivalent records.
 
 ## What would change a grade
-- A confirmed `H12_2` site-order / shank-orientation map would enable shank- and
-  depth-resolved claims and any anatomical interpretation.
+- A confirmed `H12_2` site-order / shank-orientation record would enable shank-
+  and depth-resolved anatomical interpretation.
 - A recorded stimulus copy (absent in Dec 3/Dec 4) would let entrainment be
   tested directly rather than inferred from LFP band power.
 

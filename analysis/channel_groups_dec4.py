@@ -55,8 +55,8 @@ PHYSICAL_SHANKS = dict(PROBES)
 # Convenience for scripts that key off a SHANKS dict of ranges.
 SHANKS = {name: range(chs[0], chs[-1] + 1) for name, chs in ANALYSIS_GROUPS.items()}
 
-# Bad channels carried over from Dec 3 (same dHPC probe) for Port A.
-# Re-confirmed / extended for Port B by Dec 4 channel QC.
+# Historical Dec 3 Port A bad channels. Dec 4 QC showed these were improved and
+# they are not automatically carried over/excluded in the Dec 4 analysis.
 DEC3_PORT_A_BAD_CHANNELS = [5, 6, 7, 32, 33, 34, 43, 66, 67]
 
 # 12 conditions: amplitude {100,180,250} x frequency {5,10,26,50}.

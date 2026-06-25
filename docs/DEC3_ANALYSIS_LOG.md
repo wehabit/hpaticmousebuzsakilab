@@ -13,9 +13,10 @@ workspace-relative paths in `README.md`, `docs/RERUN_PIPELINE.md`, and
 - Config: `analysis/final_preprocessing_dec3.json`
 - Confirmed bad channels excluded for this pass: `5, 6, 7, 32, 33, 34, 43, 66, 67`
 - LFP reference: `analysis_group_median`
-- Caveat: anatomy labels remain provisional even though the bad-channel set is now fixed for this pass.
-- Anatomy labels remain channel/group-level only until probe orientation is
-  confirmed.
+- Caveat: fine anatomy labels remain conservative even though the bad-channel set
+  is now fixed for this pass.
+- Anatomy labels remain channel/group-level only until probe orientation or
+  histology supports finer claims.
 - Provisional final-pass outputs:
   `analysis/outputs/dec3/provisional_final_pass/index.html`
 
@@ -38,7 +39,8 @@ workspace-relative paths in `README.md`, `docs/RERUN_PIPELINE.md`, and
      - The four 32-channel XML groups should be treated as analysis/spike groups
        until the exact H12_2 contact ordering is confirmed.
    - Heechul's implant metadata says:
-     - LEC: AP `3.8 mm`, ML `3.8 mm`, depth as needed, `5 deg`, H15 probe.
+     - LEC: AP `3.8 mm`, ML `3.8 mm`, depth as needed, `10 deg`, H15 probe
+       (corrected from later Vöröslakos metadata).
      - dHPC: AP `1.8 mm`, ML `1.5 mm`, depth `1-1.8 mm`, H12_2 probe.
      - For Dec 3's 128-channel dHPC recording, the H12_2/H12 map is the relevant
        probe-family reference; the H7/64-electrode atlas screenshot is useful for
@@ -695,10 +697,10 @@ Status:
 - Connected/good channels: `119`.
 - The current Python environment does not have `kilosort`, `spikeinterface`,
   `probeinterface`, or `phylib` installed.
-- `kilosort_channel_map.mat` uses provisional two-shank geometry:
+- `kilosort_channel_map.mat` uses a working two-shank geometry:
   channels `0-63` = physical shank A, channels `64-127` = physical shank B.
-- Replace provisional geometry with the exact Cambridge NeuroTech `H12_2` map
-  before final spike-sorting claims if possible.
+- Use the Cambridge NeuroTech / `amplifier.xml` metadata as the map source, but
+  keep fine site order/orientation conservative before anatomical claims.
 
 ## SpikeInterface Setup
 
@@ -826,10 +828,10 @@ Runtime by Kilosort step:
 
 Caveat:
 
-- This is a first full-session Kilosort4 pass with provisional H12_2/two-shank
-  geometry and the current confirmed bad-channel exclusions. It is ready for
-  Phy inspection and downstream trial-aligned exploratory analysis, but not yet
-  final for anatomical claims.
+- This is a full-session Kilosort4 pass with working H12_2/two-shank geometry and
+  the current confirmed bad-channel exclusions. It is ready for Phy inspection
+  and downstream trial-aligned analysis, but not final for depth/laminar
+  anatomical claims.
 
 ## Provisional Kilosort Spike PETH / ON-vs-OFF Analysis
 

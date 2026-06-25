@@ -1,15 +1,16 @@
-# Dec 3 + Dec 4 — Sharp-Wave Ripples Across States (dHPC, exploratory)
+# Dec 3 + Dec 4 — Sharp-Wave Ripples Across States (dHPC)
 
-**Exploratory hippocampal physiology — secondary to the haptic 50 Hz result.** We
-make **no** sharp-wave-ripple (SWR) memory/consolidation claims; this is a
-descriptive characterization with explicit caveats. Script:
+**Hippocampal physiology — secondary to the haptic 50 Hz result.** We make **no**
+sharp-wave-ripple (SWR) memory/consolidation claims; this is a descriptive
+characterization with explicit caveats. Script:
 [ripple_states_dec.py](../analysis/ripple_states_dec.py); outputs in
 `analysis/outputs/cross_dataset_spike_compare/ripples/`.
 
 ## Method
-- **Data-driven ripple channel** (CA1 layer **provisional** — the channel-map is a
-  placeholder): the dHPC good channel with the highest 100–250 Hz RMS over the quiet
-  baseline (Dec 3 → ch 8; Dec 4 → ch 7).
+- **Data-driven ripple channel:** the dHPC good channel with the highest 100–250 Hz
+  RMS over the quiet baseline (Dec 3 → ch 8; Dec 4 → ch 7). The presence of real
+  ripples supports CA1/dHPC placement by Vöröslakos's criterion; exact laminar/site
+  order is still not assigned.
 - **Detection:** 100–250 Hz band-pass → Hilbert envelope → 8 ms smooth → robust z;
   peak > 5 SD, edges > 2 SD, 15–200 ms, merge < 30 ms apart.
 - Assign each event to **baseline / ON / OFF / post**; report **rate / amplitude /
@@ -66,8 +67,9 @@ not a stimulation effect. **ON is not suppressed** relative to baseline. Ripple
 amplitude (~6.3 z) and duration (~50 ms) are flat across states.
 
 ## Caveats (state plainly)
-- **CA1 pyramidal layer is provisional** (data-driven channel; the channel-map is a
-  placeholder). Layer-specific SWR claims need the confirmed map.
+- **CA1/dHPC placement is functionally supported** by ripple physiology, but exact
+  CA1 pyramidal layer/contact assignment remains conservative. Layer-specific SWR
+  claims need orientation/histology or equivalent site-order confirmation.
 - **dHPC only** — ripples are a CA1 event; LEC is not the canonical ripple structure.
 - **ON-state 50 Hz-harmonic caveat — now controlled** (see "Stricter artifact
   control" above): the 50 Hz-ON rate is the *lowest* of all frequencies, the opposite
@@ -77,7 +79,7 @@ amplitude (~6.3 z) and duration (~50 ms) are flat across states.
   claim a stimulation-specific ripple effect.
 
 ## Takeaway
-Real ripples are detected (interneuron recruitment confirms them); ripple **rate**
-follows the session-long quiescence drift rather than stimulation, and ripple
-**amplitude/duration** are state-stable. This is a descriptive exploratory result —
-**no SWR/memory claims** beyond it.
+Real ripples are detected (interneuron recruitment confirms them), supporting the
+dHPC/CA1 functional placement criterion; ripple **rate** follows the session-long
+quiescence drift rather than stimulation, and ripple **amplitude/duration** are
+state-stable. **No SWR/memory claims** beyond it.

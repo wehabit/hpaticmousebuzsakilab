@@ -161,7 +161,7 @@ Pynapple is useful for interval-based spike counts and PETH-style analyses.
 
 ## 8. Spike ON/OFF Analysis
 
-Run provisional Kilosort spike analysis:
+Run initial Kilosort spike analysis:
 
 ```bash
 python analysis/spike_peth_on_off_dec3.py

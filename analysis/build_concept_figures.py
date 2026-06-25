@@ -11,8 +11,21 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle, Rectangle, Arc, Polygon, Ellipse
 
 OUT = Path("presentation/concept_figs"); OUT.mkdir(parents=True, exist_ok=True)
-NAVY, TEAL, GOLD, RED, GREEN = "#2E2D29", "#007C92", "#E98300", "#8C1515", "#175E54"   # Stanford: Black, Bay, Poppy, Cardinal, Palo Alto
-GREY, LIGHT = "#53565A", "#F4F4F4"   # Stanford Cool Grey, Fog
+BLACK = "#2E2D29"
+CARDINAL = "#8C1515"
+COOL_GREY = "#53565A"
+FOG = "#DAD7CB"
+FOG_LIGHT = "#F4F4F4"
+STONE = "#7F7776"
+STONE_LIGHT = "#D4D1D1"
+STONE_DARK = "#544948"
+LAGUNITA = "#007C92"
+POPPY = "#E98300"
+PALO_ALTO = "#175E54"
+
+# Legacy variable names kept for the figure code; mapped to Stanford neutrals.
+NAVY, TEAL, GOLD, RED, GREEN = BLACK, STONE, STONE_DARK, CARDINAL, STONE_DARK
+GREY, LIGHT = COOL_GREY, FOG
 
 
 def box(ax, x, y, w, h, text, fc, tc="white", fs=12, ec=None, lw=1.5):
@@ -176,12 +189,14 @@ def fix():
 def vision_chain():
     fig, ax = plt.subplots(figsize=(12, 3.4)); ax.axis("off"); ax.set_xlim(0, 12); ax.set_ylim(0, 3.4)
     ax.text(6, 3.15, "The proposal — a mechanism hypothesis to test", ha="center", fontsize=14, weight="bold", color=NAVY)
-    boxes = [("Wearable\nvibrotactile\nstimulation", TEAL), ("Brain rhythms\n(entrainment)", NAVY),
-             ("Glymphatic\nclearance ↑", GREEN), ("Amyloid-β /\ntau cleared", GOLD)]
+    boxes = [("Wearable\nvibrotactile\nstimulation", RED, RED),
+             ("Brain rhythms\n(entrainment)", NAVY, NAVY),
+             ("Glymphatic\nclearance ↑", STONE_DARK, NAVY),
+             ("Amyloid-β /\ntau cleared", RED, RED)]
     w, gap, y, h = 2.4, 0.7, 1.05, 1.5
     xs = [0.15 + k * (w + gap) for k in range(4)]
-    for (lab, col), x in zip(boxes, xs):
-        box(ax, x, y, w, h, lab, col, fs=12)
+    for (lab, edge_col, text_col), x in zip(boxes, xs):
+        box(ax, x, y, w, h, lab, FOG_LIGHT, tc=text_col, ec=edge_col, lw=2.2, fs=12)
     for k in range(3):
         arrow(ax, (xs[k] + w, y + h / 2), (xs[k + 1], y + h / 2), color=GREY, lw=2.6)
     ax.text(6, 0.45, "a mechanism hypothesis — to be tested, not yet a treatment claim",
@@ -203,24 +218,56 @@ def whitespace():
 
 
 def landscape():
-    fig, ax = plt.subplots(figsize=(11.5, 3.6)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 3.6)
-    ax.text(5.75, 3.35, "Approaches to Alzheimer's — and the open frontier", ha="center", fontsize=14, weight="bold", color=NAVY)
-    items = [("Pharmacology", "limited efficacy so far", GREY),
-             ("Lifestyle / multidomain", "strongest non-drug evidence\n(FINGER, US POINTER)", GREEN),
-             ("Non-invasive\nneuromodulation", "largely unproven —\nthe open frontier  ← we are here", RED)]
-    w, gap, y, h = 3.4, 0.5, 1.2, 1.55
+    fig, ax = plt.subplots(figsize=(11.5, 4.25)); ax.axis("off"); ax.set_xlim(0, 11.75); ax.set_ylim(0, 4.25)
+    ax.text(5.75, 4.02, "Approaches to Alzheimer's and the open frontier",
+            ha="center", fontsize=14, weight="bold", color=NAVY)
+    items = [
+        ("Pharmacology",
+         [("method: anti-amyloid antibodies", True),
+          ("lecanemab: van Dyck NEJM 2023", False),
+          ("donanemab: Sims JAMA 2023", False),
+          ("impact: ~27-36% slower decline", True),
+          ("but BBB + ARIA/MRI burden", False)],
+         GREY),
+        ("Lifestyle / multidomain",
+         [("method: exercise/diet/cognitive/social", True),
+          ("FINGER: Ngandu Lancet 2015", False),
+          ("U.S. POINTER: Baker JAMA 2025", False),
+          ("Stanford CT: Gozdas/Hosseini", False),
+          ("Transl Psychiatry 2024", False),
+          ("impact: +0.029 SD/yr; CT d~0.7", True),
+          ("scope differs; MIND NEJM 2023 null", False)],
+         GREEN),
+        ("Non-invasive\nneuromodulation",
+         [("method: rTMS / gamma tACS / 40 Hz", True),
+          ("rTMS: Koch Alz Res Ther 2025", False),
+          ("tACS: Cantoni JAMA Netw Open 2025", False),
+          ("GENUS: Chan PLOS ONE 2022", False),
+          ("impact: early / small trials", True)],
+         RED),
+    ]
+    w, gap, y, h = 3.4, 0.5, 0.62, 2.85
     xs = [0.4 + k * (w + gap) for k in range(3)]
-    for (title, sub, col), x in zip(items, xs):
+    for (title, lines, col), x in zip(items, xs):
         box(ax, x, y, w, h, "", LIGHT, ec=col, lw=2.6 if col == RED else 1.5)
-        ax.text(x + w / 2, y + h - 0.38, title, ha="center", fontsize=12.5, weight="bold", color=col)
-        ax.text(x + w / 2, y + 0.55, sub, ha="center", va="center", fontsize=9.8, color=(NAVY if col != GREY else GREY))
+        title_y = y + h - (0.52 if "\n" in title else 0.42)
+        ax.text(x + w / 2, title_y, title, ha="center", va="center",
+                fontsize=12.3, weight="bold", color=col, linespacing=1.12)
+        body_top = y + h * 0.56
+        line_step = 0.175 if len(lines) > 5 else 0.19
+        for j, (line, is_bold) in enumerate(lines):
+            ax.text(x + w / 2, body_top - j * line_step, line, ha="center", va="center",
+                    fontsize=7.9, weight=("bold" if is_bold else "normal"),
+                    color=(NAVY if col != GREY else GREY))
+    ax.annotate("", xy=(xs[2] + w / 2, y + 0.03), xytext=(xs[2] + w / 2, 0.23),
+                arrowprops=dict(arrowstyle="-|>", color=RED, lw=2.2, shrinkA=2, shrinkB=4))
     save(fig, "landscape.png")
 
 
 # ---------------- glymphatic bridge figures (slide 3->4 story) ----------------
 def glymphatic():
     fig, ax = plt.subplots(figsize=(11.5, 4.9)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 4.9)
-    ax.text(5.75, 4.65, "The glymphatic system — the brain's waste-clearance pathway", ha="center", fontsize=14, weight="bold", color=NAVY)
+    ax.text(5.75, 4.65, "The glymphatic system: the brain's waste-clearance pathway", ha="center", fontsize=14, weight="bold", color=NAVY)
     ax.add_patch(Ellipse((5.6, 2.75), 4.4, 2.1, fc=LIGHT, ec=NAVY, lw=1.5))
     ax.text(5.6, 3.5, "brain", ha="center", fontsize=11, color=GREY)
     rng = np.random.default_rng(3)
@@ -238,16 +285,74 @@ def glymphatic():
     save(fig, "glymphatic.png")
 
 
+def csf_wave_evidence():
+    fig, ax = plt.subplots(figsize=(11.5, 4.55)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 4.55)
+    ax.text(5.75, 4.28, "Neural waves can organize CSF perfusion and clearance", ha="center",
+            fontsize=14, weight="bold", color=NAVY)
+    ax.text(5.75, 4.02, "Causal anchor plus converging sleep, vascular, and neuromodulator evidence",
+            ha="center", fontsize=9.6, color=GREY)
+
+    # Causal Jiang-Xie panel.
+    ax.add_patch(FancyBboxPatch((0.35, 0.78), 5.15, 2.95,
+                                boxstyle="round,pad=0.02,rounding_size=0.08",
+                                fc=FOG_LIGHT, ec=RED, lw=2.4))
+    ax.text(2.93, 3.48, "causal anchor: Jiang-Xie et al., Nature 2024",
+            ha="center", va="center", fontsize=10.6, weight="bold", color=RED)
+    t = np.linspace(0, 2 * np.pi, 220)
+    x = 0.85 + 1.05 * t / (2 * np.pi)
+    y = 2.55 + 0.18 * np.sin(3 * t)
+    for k in range(3):
+        ax.plot(x + k * 0.18, y - k * 0.32, color=NAVY, lw=1.8, alpha=0.9)
+    ax.text(1.35, 1.82, "synchronized\nneurons", ha="center", fontsize=9.2, color=NAVY)
+    arrow(ax, (2.1, 2.35), (2.82, 2.35), color=GREY, lw=2.1)
+    ax.plot([2.95, 3.25, 3.55, 3.85], [2.35, 2.70, 2.00, 2.35], color=POPPY, lw=2.4)
+    ax.text(3.4, 1.82, "ionic waves\nin tissue", ha="center", fontsize=9.2, color=NAVY)
+    arrow(ax, (3.98, 2.35), (4.75, 2.35), color=LAGUNITA, lw=2.4)
+    ax.text(4.73, 2.72, "CSF → ISF\nperfusion", ha="center", fontsize=9.2, weight="bold", color=LAGUNITA)
+    for yy in [1.22, 1.02, 0.82]:
+        ax.plot([0.7, 5.05], [yy, yy], color=LAGUNITA, lw=1.2, alpha=0.42)
+        ax.add_patch(FancyArrowPatch((4.65, yy), (5.05, yy), arrowstyle="-|>", mutation_scale=9,
+                                     color=LAGUNITA, lw=1.2, alpha=0.65))
+    ax.text(2.9, 1.28, "method: flatten waves (chemogenetic) ↓ clearance\nsynthesize waves (transcranial optogenetic) ↑ perfusion",
+            ha="center", va="bottom", fontsize=8.5, color=GREY)
+
+    # Converging evidence panel.
+    ax.add_patch(FancyBboxPatch((5.8, 0.78), 5.35, 2.95,
+                                boxstyle="round,pad=0.02,rounding_size=0.08",
+                                fc=FOG_LIGHT, ec=PALO_ALTO, lw=1.7))
+    ax.text(8.48, 3.48, "not alone: converging support",
+            ha="center", va="center", fontsize=10.6, weight="bold", color=PALO_ALTO)
+    rows = [
+        ("human sleep", "Fultz 2019, Science", "slow waves + BOLD + CSF oscillate together"),
+        ("sleep/glymphatic state", "Hablitz 2019; Hauglund 2025", "delta / norepinephrine / vasomotion link to influx"),
+        ("neurovascular control", "Chuang 2025; Broggini 2024", "cholinergic and vascular waves regulate flow/perfusion"),
+        ("external rhythm example", "Murdock 2024, Nature", "40 Hz light+sound drives glymphatic Aβ clearance in mice"),
+    ]
+    y0 = 3.12
+    for i, (label, cite, point) in enumerate(rows):
+        y = y0 - i * 0.62
+        ax.add_patch(Circle((6.18, y - 0.02), 0.08, fc=LAGUNITA if i < 3 else RED, ec="none"))
+        ax.text(6.38, y + 0.15, label, fontsize=8.5, weight="bold", color=NAVY, ha="left", va="center")
+        ax.text(6.38, y - 0.02, cite, fontsize=8.0, color=LAGUNITA if i < 3 else RED, ha="left", va="center")
+        ax.text(6.38, y - 0.20, point, fontsize=7.5, color=GREY, ha="left", va="center")
+
+    ax.text(5.75, 0.28,
+            "take-home: brain rhythms and state can gate clearance biology — motivating a vibrotactile rhythm test",
+            ha="center", fontsize=9.8, weight="bold", color=RED)
+    save(fig, "csf_wave_evidence.png")
+
+
 def driving_clearance():
     fig, ax = plt.subplots(figsize=(11.5, 3.9)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 3.9)
-    ax.text(5.75, 3.65, "Clearance can be driven non-invasively — in animals", ha="center", fontsize=14, weight="bold", color=NAVY)
-    box(ax, 0.4, 2.05, 3.0, 0.95, "40 Hz light + sound\n(GENUS)", NAVY, fs=11)
+    ax.text(5.75, 3.65, "Preclinical proof: clearance can be driven non-invasively", ha="center", fontsize=14, weight="bold", color=NAVY)
+    ax.text(5.75, 3.35, "External stimulation examples in animals — still not human clinical proof", ha="center", fontsize=9.3, color=GREY)
+    box(ax, 0.4, 2.05, 3.0, 0.95, "40 Hz light + sound\n(GENUS)", FOG_LIGHT, tc=NAVY, ec=NAVY, lw=2.1, fs=11)
     arrow(ax, (3.45, 2.525), (4.3, 2.525), color=GREY, lw=2.4)
-    box(ax, 4.35, 2.05, 6.75, 0.95, "~4× CSF influx · ~30% less amyloid · AQP4-dependent\n(Murdock 2024, Nature)", GREEN, fs=10.5)
-    box(ax, 0.4, 0.75, 3.0, 0.95, "Focused ultrasound\n(Stanford)", TEAL, fs=11)
+    box(ax, 4.35, 2.05, 6.75, 0.95, "mice: ~4× CSF influx · ~30% less amyloid · AQP4-dependent\n(Murdock 2024, Nature)", FOG_LIGHT, tc=STONE_DARK, ec=STONE_DARK, lw=2.1, fs=10.5)
+    box(ax, 0.4, 0.75, 3.0, 0.95, "Focused ultrasound\n(Stanford)", FOG_LIGHT, tc=STONE_DARK, ec=STONE, lw=2.1, fs=11)
     arrow(ax, (3.45, 1.225), (4.3, 1.225), color=GREY, lw=2.4)
-    box(ax, 4.35, 0.75, 6.75, 0.95, "↑ CSF influx · faster debris clearance\n(Aryal 2022 · Azadian 2025, Nat Biotech)", GOLD, fs=10.5)
-    ax.text(5.75, 0.25, "open question: can a WEARABLE modality do it?", ha="center", fontsize=11, weight="bold", color=RED)
+    box(ax, 4.35, 0.75, 6.75, 0.95, "rodents: ↑ CSF influx · faster debris clearance\n(Aryal 2022 · Azadian 2025, Nat Biotech)", FOG_LIGHT, tc=STONE_DARK, ec=STONE, lw=2.1, fs=10.5)
+    ax.text(5.75, 0.25, "open question: can VIBROTACTILE stimulation enhance glymphatic clearance?", ha="center", fontsize=10.7, weight="bold", color=RED)
     save(fig, "driving_clearance.png")
 
 
@@ -268,5 +373,5 @@ def mouse(col="white", name="mouse_white.png"):
 if __name__ == "__main__":
     stadium(); two_regions(); experiment(); entrainment(); trap(); fix()
     vision_chain(); whitespace(); landscape()
-    glymphatic(); driving_clearance()
+    glymphatic(); csf_wave_evidence(); driving_clearance()
     mouse("white", "mouse_white.png"); mouse("#53565A", "mouse_grey.png")

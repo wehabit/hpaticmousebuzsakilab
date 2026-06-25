@@ -35,7 +35,7 @@ Supervisor-facing summary:
 
 4. [Event-aligned LFP panels by shank](../analysis/outputs/dec3/event_aligned_lfp/better_plots/lfp_condition_panels_by_shank.png)
 
-   Event-aligned LFP traces split by provisional shank/channel group. Use for
+   Event-aligned LFP traces split by working shank/channel group. Use for
    visual inspection of the ON and OFF response shape.
 
 5. [LFP condition envelopes](../analysis/outputs/dec3/event_aligned_lfp/better_plots/lfp_condition_envelopes.png)

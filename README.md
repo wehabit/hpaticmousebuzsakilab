@@ -10,18 +10,22 @@ wideband / 1.25 kHz LFP) and recorded during controlled **vibrotactile
 - **Dec 3** — a single **128-channel probe in dorsal hippocampus** (**dHPC**,
   Cambridge NeuroTech `H12_2`, Intan Port A). 15-min baseline → **1,200 trials**
   (each **3 s ON / 3 s OFF**) over a 120-min block → 30-min post. Six interleaved
-  conditions: amplitude `{100, 180, 250}` × frequency `{5, 26}` Hz, ~200 each.
+  conditions: amplitude `{100, 180, 250}` × frequency `{5, 26}` Hz, 200 each.
 - **Dec 4** — the **same mouse and dHPC probe** plus a **second probe in lateral
   entorhinal cortex** (**LEC**, Port B) = **256 channels**, with two added drive
   frequencies. **2,400 trials** (12 conditions: amplitude `{100, 180, 250}` ×
-  frequency `{5, 10, 26, 50}` Hz, ~200 each) over a ~5-hour session. Port A is
-  the identical dHPC probe/channel map as Dec 3, so dHPC is **directly comparable
-  across sessions**.
+  frequency `{5, 10, 26, 50}` Hz, 200 each) over a ~5-hour session. Port A is
+  the identical dHPC probe/channel map as Dec 3, so dHPC is directly comparable
+  across sessions.
 
 The delivered vibration was logged only as crude QC (a 1-bit accelerometer TTL on
 Dec 3; no stimulus channel shared on Dec 4), and the actuator ran as a
 free-running oscillator — see the stimulus caveat below. Trial timing comes from
-the randomized controller schedule, validated against the recording-start offset.
+the randomized controller schedule aligned to recording time by
+`add_recording_times(...)`; for Dec 4 the offset is auto-derived with
+`derive_offset_from_log(...)`. The resulting `recording_start_time_s` /
+`recording_end_time_s` columns are the shared timing reference used by the LFP,
+spike, PETH, and state analyses.
 
 The central questions are whether neural activity (i) **responds** to the stimulus
 and (ii) shows evidence consistent with **frequency-following / entrainment**. The
@@ -74,8 +78,9 @@ trial-level bootstrap 95% confidence intervals.
    [writeup](docs/DEC4_SPIKE_ONOFF_RESULT.md),
    [Dec 3 onset PETH](results/dec3/11_Spikes/peth_onset_ks_good_units.png)
 5. **The 50 Hz response is active and region-specific — but the regions do *not*
-   demonstrably coordinate.** It is not a passive echo (dHPC shows a driven-up
-   subset, LEC mostly suppresses; an echo would look the same everywhere). But a
+   demonstrably coordinate.** It is not consistent with one identical passive
+   artifact/readout across both regions (dHPC shows a driven-up subset, LEC mostly
+   suppresses; a simple artifact would look the same everywhere). But a
    coordination test found **no clear cross-region "working together"**: the
    cross-region spike–field coupling (harder for pickup to fake than the LFP) does
    **not** rise with stimulation, so the parallel rise in LFP coherence is best
@@ -122,14 +127,16 @@ lines, making a genuine entrainment test (and stimulus-fidelity check) possible 
 [docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md](docs/HARDWARE_ENG_MESSAGE_NEXT_ROUND.md)).
 
 **Status.** Both Dec 3 and Dec 4 are fully processed through LFP analysis and
-**spike sorting + curation**. **Anatomical targeting is known** (surgeon's
-coordinates: dHPC = **H12_2** @ AP 1.8 / ML 1.5 / depth 1–1.8 mm, Port A; LEC =
-**H15** @ AP 3.8 / ML 3.8 / 5°, Port B). What remains is the exact **electrode
-channel-map** — the Cambridge NeuroTech site map (`.prb`) for H12_2 and H15 plus the
-adapter/headstage wiring — which is still **provisional** in the analysis (a linear
-placeholder). That gates only **depth / laminar / subregion** claims; the
-**region-level** findings (dHPC vs LEC) are unaffected. Plus the analog stimulus
-recording above (see [docs/DEC3_EXTERNAL_BLOCKERS.md](docs/DEC3_EXTERNAL_BLOCKERS.md)).
+**spike sorting + curation**. Probe metadata are now confirmed from Vöröslakos's
+reply: dHPC = **H12_2**, Port A / Intan `0-127`; LEC = **H15**, Port B / Intan
+`128-255`, AP 3.8 / ML 3.8 / **10 degrees**. The `amplifier.xml` `channelGroups`
+order is the verified map order, and the Cambridge NeuroTech ASSY-350 maps are the
+right probe-map references. Functional physiology supports the placement: dHPC
+ripples support CA1/dHPC; LEC quiet-state slow/delta physiology supports cortex/LEC
+([metadata note](docs/DEC_PROBE_METADATA_VOROSLAKOS.md)). What remains conservative
+is final manual bad-channel review and fine **depth / laminar / subregion /
+medial-lateral** interpretation. Plus the analog stimulus recording above (see
+[docs/DEC3_EXTERNAL_BLOCKERS.md](docs/DEC3_EXTERNAL_BLOCKERS.md)).
 
 ## Start Here
 
@@ -204,12 +211,12 @@ both dHPC and LEC change firing rate most strongly at **50 Hz / high amplitude**
 (Dec 4 dHPC: `19/180` responsive unit-conditions; Dec 4 LEC: `13/180`), while Dec 3
 at 5/26 Hz stayed null (`0/174`).
 
-**What that means.** The 50 Hz response is probably not just a passive echo of the
-stimulus: dHPC and LEC transform the same input differently, with a driven-up
-subset in dHPC and net suppression in LEC. But the two regions do **not** show
-clear 50 Hz coordination, and true entrainment could not be tested because the
-delivered vibration phase was not recorded. Anatomy/layer claims still need the
-final probe map and histology.
+**What that means.** The 50 Hz response is probably not just one identical passive
+artifact/readout: dHPC and LEC transform the same input differently, with a
+driven-up subset in dHPC and net suppression in LEC. But the two regions do **not**
+show clear 50 Hz coordination, and true entrainment could not be tested because the
+delivered vibration phase was not recorded. Region/probe identity is now supported
+by metadata and physiology; fine anatomy/layer claims remain conservative.
 
 ## Repository Layout
 
@@ -262,12 +269,14 @@ normal-sized PNG/JPG figures.
 6. Prepare spike-sorting metadata/channel maps, run SpikeInterface sanity checks,
    and run Kilosort for each sorted probe.
 7. Run cluster-quality checks, detect over-splits, apply curation/merges, and keep
-   depth/layer claims provisional until the probe map/histology are confirmed.
+   fine depth/layer/subregion claims conservative unless implant orientation or
+   histology supports them.
 8. Export Pynapple-compatible intervals/spikes where useful, then run PETH,
    ON-vs-OFF, baseline/post-study, and drift-corrected firing-rate analyses on
    curated unit sets.
 9. Run targeted follow-ups: cell-type/ACG summaries, ripple-state summaries,
-   Dec 4 50 Hz artifact checks, and dHPC-LEC coordination checks.
+   Dec 4 LEC slow-oscillation screen, Dec 4 50 Hz artifact checks, and dHPC-LEC
+   coordination checks.
 10. Build curated result folders and update dashboards, conclusions, supervisor
    summaries, and figure indexes.
 

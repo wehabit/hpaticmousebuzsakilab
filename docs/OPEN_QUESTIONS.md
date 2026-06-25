@@ -4,20 +4,21 @@ Questions to ask while continuing the analysis. These are not blockers for the
 next Python analyses, but they matter before making final anatomical or
 publication-style claims.
 
-> **Update (Dec 4 session analyzed):** several of these are now answered by the
-> Dec 4 two-probe recording — see `docs/DEC4_SUPERVISOR_SUMMARY.md`. In short:
-> both LEC and dHPC probes exist (Recording Metadata Q1); Port A = dHPC (the same
-> probe Dec 3 used alone), Port B = LEC (Q2); and the entrainment question is now
-> tested across 5/10/26/50 Hz in both regions. Items answered are tagged
-> **[Dec4: answered]** below.
+> **Update (Dec 4 session analyzed + Vöröslakos metadata received):** several of
+> these are now answered — see `docs/DEC4_SUPERVISOR_SUMMARY.md` and
+> `docs/DEC_PROBE_METADATA_VOROSLAKOS.md`. In short: both LEC and dHPC probes
+> exist; Port A = dHPC (the same probe Dec 3 used alone), Port B = LEC; LEC angle
+> is 10 degrees; `amplifier.xml` `channelGroups` order is verified; and the
+> entrainment question was tested across 5/10/26/50 Hz but still needs a recorded
+> stimulus waveform for a definitive phase test.
 
 ## Probe / Anatomy
 
 1. For the Dec 3 dHPC implant, was the probe definitely Cambridge NeuroTech
-   `H12_2`, and is there a specific channel map PDF or `.prb` file used by the
-   lab for this exact probe? **[Dec4: partially answered]** The Dec 4 two-probe
-   recording confirms the Dec 3 recording is the dHPC `H12_2` probe (Port A).
-   Still open: the lab's specific channel-map PDF/`.prb` for this exact probe.
+   `H12_2`, and what map source should be used? **[answered]** Dec 3 is the dHPC
+   `H12_2` probe (Port A); Cambridge NeuroTech / `amplifier.xml` metadata are the
+   map references. Still open only for fine anatomy: physical orientation and
+   site-order-to-brain-axis mapping.
 2. Which physical shank is medial vs lateral in the brain?
    - Current safe labels: channels `0-63` = physical Shank A, channels `64-127`
      = physical Shank B.
@@ -26,7 +27,9 @@ publication-style claims.
    - Example answer that would help: connector facing anterior/posterior,
      Shank A medial/lateral, or a surgery photo.
 4. Does the XML group order match the physical contact depth order, or is it
-   only a spike-sorting grouping?
+   only a spike-sorting grouping? **[mostly answered]** Vöröslakos says the
+   `amplifier.xml` `channelGroups` order is verified and each group is a shank;
+   fine contact depth/order remains conservative until orientation/histology.
 5. Which contacts are expected to be in CA1, DG, subiculum, cortex, or outside
    hippocampus at depth `1-1.8 mm`?
 6. Is there histology, post-hoc track reconstruction, or a final coordinate note
@@ -35,14 +38,20 @@ publication-style claims.
 ## Recording Metadata
 
 1. Were both LEC and dHPC probes recorded in this Dec 3 session, or only the
-   dHPC H12_2 probe? **[Dec4: answered]** Both probes exist on this mouse; the
-   Dec 3 128-ch recording was the dHPC probe (Port A) alone.
+   dHPC H12_2 probe? **[answered for current repo analysis]** Both probes exist
+   on this mouse; the current Dec 3 128-ch analysis uses the dHPC probe (Port A)
+   alone. If an alternate Dec 3 256-ch file exists outside this repo, it is not
+   the file analyzed here.
 2. If both were present physically, which Intan headstage/port corresponds to
    which probe? **[Dec4: answered]** Port A (ch 0–127) = dHPC (H12_2);
    Port B (ch 128–255) = LEC (H15).
 3. Were any amplifier channels known to be disconnected, shorted, reference
-   channels, ground, or intentionally unused?
-4. What reference scheme was used during acquisition?
+   channels, ground, or intentionally unused? **[partly answered]** automated QC
+   flags are in `analysis/bad_channels_dec3.json` and
+   `analysis/bad_channels_dec4.json`; final manual Neuroscope bad-channel review
+   remains useful.
+4. What reference scheme was used during acquisition? **[answered]** stainless
+   steel over cerebellum; ground and reference tied together.
 5. Did anyone save the final Neuroscope bad-channel list after visual review?
 
 ## Stimulation / Behavior
@@ -82,4 +91,3 @@ publication-style claims.
    to control for adaptation across the long stimulation block?
 6. Should results be summarized by physical shank A/B, 32-channel analysis group,
    depth/contact, or putative anatomical region?
-

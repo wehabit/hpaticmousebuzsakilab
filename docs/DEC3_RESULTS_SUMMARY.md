@@ -117,11 +117,11 @@ Current spike-sorting channel status:
 - connected/good channels: `119`
 - channels `128-255` are ignored phantom channels from the old XML issue
 
-Important: the Dec 4 two-probe recording confirmed this Dec 3 recording is the
-dHPC probe (Cambridge NeuroTech `H12_2`, Port A). The probe *identity* is
-therefore settled, but the generated Kilosort map still has provisional
-two-shank geometry: the exact `H12_2` site order and physical shank orientation
-should replace it before final spike-sorting claims.
+Important: the Dec 4 two-probe recording and Vöröslakos metadata confirmed this
+Dec 3 recording is the dHPC probe (Cambridge NeuroTech `H12_2`, Port A). The
+probe *identity* and map source are settled; the generated Kilosort map remains a
+working geometry for sorting, so exact site order and physical shank orientation
+are still needed before depth/laminar/spatial claims.
 
 ## Current Working Conclusion
 
@@ -451,9 +451,9 @@ shift interpretation rather than a purely immediate ON response.
      - `analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/drift_amount.png`
      - `analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/drift_scatter.png`
      - `analysis/outputs/dec3/modal_kilosort4_results/kilosort4_results/spike_positions.png`
-   - Caveat: this run used the provisional channel map and confirmed bad-channel
-     list. Treat it as a first full-session sort for inspection/curation, not
-     final anatomy or unit-depth evidence.
+   - Caveat: this run used the working Kilosort geometry and confirmed
+     bad-channel list. Treat it as a full-session sort for inspection/curation,
+     not final anatomy or unit-depth evidence.
 
 ## Kilosort4 Modal Run
 
@@ -475,7 +475,7 @@ Inputs:
   `5, 6, 7, 32, 33, 34, 43, 66, 67`
 - Probe map:
   `analysis/outputs/dec3/spike_sorting_prep/kilosort_channel_map.mat`
-  using provisional two-shank geometry.
+  using working two-shank geometry.
 
 Outputs:
 
@@ -568,8 +568,8 @@ What this does:
   - Kilosort contamination percent
   - Kilosort amplitude
   - short-ISI fraction using a 2 ms refractory threshold
-  - best template channel and provisional shank
-  - strongest provisional ON-minus-OFF spike response from the existing PETH
+  - best template channel and working shank/group
+  - strongest triage ON-minus-OFF spike response from the existing PETH
     analysis
 
 Current automated counts:
@@ -650,7 +650,7 @@ Interpretation:
 - This does not erase the LFP response; it means the Dec 3 5/26 Hz LFP effect did
   not translate into a detectable single-unit firing-rate change in the curated
   unit set.
-- Remaining spike-related caveats are anatomy/layer/probe-geometry claims, not the
+- Remaining spike-related caveats are fine anatomy/layer/spatial claims, not the
   ON/OFF firing-rate result itself.
 
 ## Historical Phy Setup Status

@@ -24,7 +24,8 @@ normal-sized figures.
 
 The current analysis is complete through LFP, spike sorting, curation/merges,
 baseline/post-study comparisons, drift checks, cell-type/ACG summaries, ripple
-state summaries, and Dec 4 50 Hz artifact/coordination controls.
+state summaries, the Dec 4 LEC slow-oscillation screen, and Dec 4 50 Hz
+artifact/coordination controls.
 
 Presentation-safe interpretation:
 
@@ -83,6 +84,7 @@ points:
 - [`../docs/DEC_LFP_APERIODIC_STATES.md`](../docs/DEC_LFP_APERIODIC_STATES.md)
 - [`../docs/DEC_LFP_BANDPOWER_STATES.md`](../docs/DEC_LFP_BANDPOWER_STATES.md)
 - [`../docs/DEC_RIPPLE_STATES.md`](../docs/DEC_RIPPLE_STATES.md)
+- [`../docs/DEC4_LEC_SLOW_OSCILLATION_SCREEN.md`](../docs/DEC4_LEC_SLOW_OSCILLATION_SCREEN.md)
 
 ## Pipeline Map
 
@@ -102,8 +104,11 @@ Important outputs:
 
 The schedule-derived condition sequence is the source of truth for ON/OFF trial
 windows. Dec 3 TTL files are QC for delivery/timing. Dec 4 has no shared TTL or
-stimulus waveform, so timing comes from the controller log and recording-start
-offset.
+stimulus waveform, so timing comes from `derive_offset_from_log(...)` in
+`intan_haptic_summary_dec4.py` plus `add_recording_times(...)` in
+`intan_haptic_summary.py`. Those functions write the shared
+`recording_start_time_s` / `recording_end_time_s` timing columns used by later
+LFP, spike, PETH, and state analyses.
 
 ### 2. Channel QC And LFP Extraction
 
@@ -137,6 +142,7 @@ Cross-session/state LFP scripts:
 - `lfp_bandpower_states_dec.py`
 - `adaptation_states_dec.py`
 - `drift_corrected_model_dec.py`
+- `lec_slow_oscillation_screen_dec4.py`
 
 Interpretation rule: broadband LFP response, driven-frequency power, 1/f residuals,
 and phase consistency are different evidence levels. Do not treat a broadband

@@ -51,9 +51,10 @@ Important lessons for us:
 
 How this applies to Dec 3:
 
-- Keep anatomical claims conservative until H12_2 geometry/channel order is
-  confirmed.
-- Treat shank-level LFP/spike analyses as provisional physiological groupings.
+- Keep fine anatomical claims conservative until site order/orientation or
+  histology supports them.
+- Treat shank-level LFP/spike analyses as working physiological groupings, not
+  final medial/lateral or laminar claims.
 - Use ON/OFF event-aligned responses first; consider CSD-like analyses only
   after geometry is fixed.
 - Compare response localization across shanks/channels rather than averaging
@@ -222,19 +223,19 @@ For the next analysis steps, we should follow this contract:
 4. Treat the 3-second OFF epoch after each stimulation as the matched control.
 5. Keep baseline as a separate state, not as the primary control for each trial.
 6. Keep bad-channel exclusions explicit and versioned.
-7. Keep shank/anatomy labels provisional until exact probe geometry is confirmed.
-8. Do not make final spike claims until Phy curation.
+7. Keep fine shank/anatomy labels conservative until orientation/histology supports them.
+8. Use curated/merged spike outputs for final spike claims.
 9. Do not make final entrainment claims without phase/frequency-specific support.
 10. Every figure should link back to the script and data files that produced it.
 
 ## Immediate Next Steps
 
-1. Inspect Kilosort output in Phy.
-2. Build `load_kilosort_to_pynapple_dec3.py`.
-3. Generate provisional spike PETHs:
+1. Inspect Kilosort output in Phy or curated/merged outputs.
+2. Use the exported Pynapple interval/spike objects where useful.
+3. Generate spike PETHs:
    - onset-aligned,
    - offset-aligned,
    - ON vs OFF firing-rate deltas,
    - condition-by-unit heatmaps.
 4. Compare spike condition effects with LFP condition effects.
-5. Revisit geometry/anatomy only after exact H12_2 channel order is confirmed.
+5. Revisit fine geometry/anatomy only after orientation/histology supports it.

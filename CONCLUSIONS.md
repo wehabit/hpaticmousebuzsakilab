@@ -46,9 +46,10 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
      was at 26 Hz / high amplitude — but that is the **contaminated, frequency-non-
      specific** measure (onset/offset broadband), not clean entrainment. The **clean
      single-unit** measure points to **50 Hz**.
-5. **The response is active & region-specific, not a passive echo** — the strongest
-   biological argument. A passive relay/echo would look **similar across regions**;
-   instead the two regions transform the 50 Hz input **in opposite directions**:
+5. **The response is active & region-specific, not one identical passive readout** —
+   the strongest biological argument. A simple passive artifact/readout would look
+   **similar across regions**; instead the two regions transform the 50 Hz input
+   **in opposite directions**:
    **dHPC shows a driven-up subset** — a few strong up-units carry a positive mean
    (**+0.79 Hz** at amp250_freq50); across all 50 Hz amplitudes the dHPC population is
    **mixed**, so this is a *subset*, **not a globally excited dHPC** — while **LEC
@@ -119,27 +120,30 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
   **indirect sensory-network effects** (direct 50 Hz circuit modulation vs an indirect
   sensory/state cascade), **not** 50 Hz pickup manufacturing spikes. See
   [DEC4_50HZ_ARTIFACT_CHECK.md](docs/DEC4_50HZ_ARTIFACT_CHECK.md).
-- **Anatomical targeting is known** (surgeon's coordinates: dHPC = H12_2 @
-  AP 1.8 / ML 1.5 / depth 1–1.8 mm, Port A; LEC = H15 @ AP 3.8 / ML 3.8 / 5°, Port B).
-  What's still **provisional** is the electrode **channel-map** — the Cambridge
-  NeuroTech site map (`.prb`) for H12_2 / H15 + adapter wiring; the analysis uses a
-  linear placeholder. This gates only **depth / laminar / subregion** claims; the
-  region-level (dHPC vs LEC) findings are unaffected.
+- **Anatomical/probe metadata are now confirmed at the region level.** dHPC =
+  `H12_2`, Port A / Intan `0-127`; LEC = `H15`, Port B / Intan `128-255`, AP 3.8 /
+  ML 3.8 / **10 degrees**. The `amplifier.xml` `channelGroups` order is verified,
+  and Cambridge NeuroTech ASSY-350 maps are the correct probe-map references.
+  Functional physiology supports the placements: dHPC ripples support CA1/dHPC
+  ([DEC_RIPPLE_STATES.md](docs/DEC_RIPPLE_STATES.md)); LEC slow/delta quiet-state
+  physiology supports cortex/LEC
+  ([DEC4_LEC_SLOW_OSCILLATION_SCREEN.md](docs/DEC4_LEC_SLOW_OSCILLATION_SCREEN.md)).
+  Remaining anatomy caveats are manual bad-channel review and fine
+  **depth / laminar / subregion / medial-lateral** claims.
 
-## What the next recording must add (external, can't be done on this data)
+## What still needs external/future work
 1. **Continuous analog copy of the delivered vibration** (thin PVDF force sensor in
    the tactor→skin path → Intan analog input on the shared 20 kHz clock). Enables a
    true **phase-entrainment** test *and* lets you **regress out the 50 Hz artifact**.
 2. **Per-cycle + per-trial digital sync lines** for exact stimulus timing. This is
    especially important for the Dec 4-style two-probe recording, where timing came
    from the controller log because no TTL/stimulus channel was shared.
-3. The electrode **channel-map + histology** — the Cambridge NeuroTech `.prb` for
-   H12_2 / H15 + adapter wiring, **and post-hoc histology** confirming site order and
-   layer (CA1 pyramidal / DG). Needed for any **depth / laminar / subregion** claim
-   and to move the **ripple / dentate-spike** work
-   ([DEC_RIPPLE_STATES.md](docs/DEC_RIPPLE_STATES.md)) from exploratory (data-driven
-   channel) to a confirmed CA1-layer analysis. Region-level (dHPC vs LEC) findings are
-   unaffected.
+3. **Manual bad-channel review + fine anatomy.** The region/probe/channel metadata
+   are now known, but manual Neuroscope bad-channel review is still useful, and
+   implant orientation/histology are still needed for **depth / laminar / subregion /
+   medial-lateral** claims. Ripple physiology now supports CA1/dHPC by the
+   Vöröslakos criterion, but we still do **not** make dentate-spike, memory, or
+   layer-specific SWR claims.
 4. **Replication in more animals / sessions.** Everything here is **one animal**
    (dHPC + LEC), so n = 1 at the subject level. The single-unit counts are also small
    (29 / 15 / 15 good units), which is why the **ACG-type cell classification**
@@ -163,7 +167,8 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
 - [DEC_CELLTYPE_CLASSIFICATION.md](docs/DEC_CELLTYPE_CLASSIFICATION.md) — putative pyr/interneuron types; 50 Hz response by type
 - [DEC_ACG_TYPE_CLASSIFICATION.md](docs/DEC_ACG_TYPE_CLASSIFICATION.md) — full CellExplorer ACG-type fit (τ_rise); 2-way stays the robust typing
 - [DEC_LFP_APERIODIC_STATES.md](docs/DEC_LFP_APERIODIC_STATES.md) — 1/f slope across baseline/ON/OFF/post; real bump vs broad shift
-- [DEC_RIPPLE_STATES.md](docs/DEC_RIPPLE_STATES.md) — sharp-wave ripples across states; participation by cell type (exploratory)
+- [DEC_RIPPLE_STATES.md](docs/DEC_RIPPLE_STATES.md) — sharp-wave ripples across states; participation by cell type
+- [DEC4_LEC_SLOW_OSCILLATION_SCREEN.md](docs/DEC4_LEC_SLOW_OSCILLATION_SCREEN.md) — LEC slow/delta quiet-state screen for cortex placement
 - [DEC_LFP_BANDPOWER_STATES.md](docs/DEC_LFP_BANDPOWER_STATES.md) — broadband/theta/gamma + driven-band power across states
 - [DEC_ADAPTATION_STATES.md](docs/DEC_ADAPTATION_STATES.md) — early/middle/late: 50 Hz spike sustained, 26 Hz LFP habituates, OFF drifts
 - [DEC_DRIFT_CORRECTED_MODEL.md](docs/DEC_DRIFT_CORRECTED_MODEL.md) — 50 Hz effect survives removing the session drift (interleaved design)

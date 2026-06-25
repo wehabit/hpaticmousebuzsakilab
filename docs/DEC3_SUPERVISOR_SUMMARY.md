@@ -37,6 +37,10 @@ LFP response, but no curated single-unit ON/OFF firing-rate effect at 5/26 Hz.
   power exactly at the stimulation frequency.
 - The effect persists into the 3 s OFF/recovery period, so it is not purely an
   ON-only response.
+- This does **not** mean amp180 is a general "best dose." Dec 3 is nonlinear:
+  `amp250_freq26` is more offset-heavy and adapts downward, and the missing
+  delivered-vibration waveform prevents us from separating neural nonlinearity
+  from actuator/skin-delivery nonlinearity.
 
 Key figures:
 
@@ -103,8 +107,8 @@ Key figures:
   BH-corrected ON-vs-OFF unit/condition firing-rate effects.
 - Therefore, there is no clean Dec 3 evidence that stimulation changes
   single-unit firing during ON at 5/26 Hz.
-- The remaining spike caveat is not the ON/OFF result; it is anatomy/layer
-  interpretation, which still needs confirmed probe geometry/histology.
+- The remaining spike caveat is not the ON/OFF result; it is fine anatomy/layer
+  interpretation, which still needs orientation/histology or equivalent records.
 
 Key figures:
 
@@ -238,19 +242,18 @@ Reports:
   q<0.05. The remaining spike caveat is anatomical interpretation, not whether
   the Dec 3 ON/OFF null has been checked.
 
-- Probe *identity* is now confirmed: the Dec 4 two-probe recording established
-  that this Dec 3 128-ch recording is the dHPC probe (Cambridge NeuroTech
-  H12_2) on Port A. What still needs final confirmation is probe *geometry* --
-  the exact site order within H12_2 and the physical shank orientation
-  (which shank is medial/lateral/anterior/posterior). This matters most for
-  spike sorting, shank-level summaries, and any spatial interpretation across
-  the probe.
+- Probe *identity* and channel-map source are now confirmed: this Dec 3 128-ch
+  recording is the dHPC probe (Cambridge NeuroTech H12_2) on Port A, and the
+  Cambridge NeuroTech / `amplifier.xml` metadata are the correct map references.
+  What still needs final confirmation is fine site order and physical shank
+  orientation (which shank is medial/lateral/anterior/posterior). This matters
+  most for shank-level summaries and any spatial interpretation across the probe.
 
-- Anatomy labels should remain conservative; no CA1/DG/medial/lateral claims
-  are made yet. At this stage we can refer to channel groups or provisional
-  physical shanks, but we should not say that a response comes from a specific
-  hippocampal subregion until the implant orientation, histology/surgery notes,
-  and probe map are confirmed.
+- Anatomy labels should remain conservative. Ripple physiology supports the
+  dHPC/CA1 placement criterion, but we should not say that a response comes from
+  a specific hippocampal layer, DG/subiculum contact, or medial/lateral shank
+  until implant orientation, histology/surgery notes, or equivalent records
+  support it.
 
 - Frequency-specific 26 Hz power and PLV do not yet support a strong final
   entrainment claim. The LFP response around `amp180_freq26` is strong in

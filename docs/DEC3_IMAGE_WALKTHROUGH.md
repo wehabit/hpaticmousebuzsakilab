@@ -143,8 +143,8 @@ amplitude change by condition?
 
 - [better_plots/lfp_by_shank_conditions.png](../analysis/outputs/dec3/event_aligned_lfp/better_plots/lfp_by_shank_conditions.png)
 
-  **How it was generated:** event-aligned LFP averages are grouped by
-  provisional shank/channel group and condition.
+  **How it was generated:** event-aligned LFP averages are grouped by working
+  shank/channel group and condition.
 
   **Takeaway:** easier than the collapsed plot because it separates channel
   groups. Use this to see whether the response pattern is similar across
@@ -232,10 +232,10 @@ specific commanded stimulation frequency, such as 5 Hz or 26 Hz?
 - [frequency_lfp/driven_power_change_by_physical_shank.png](../analysis/outputs/dec3/frequency_lfp/driven_power_change_by_physical_shank.png)
 
   **How it was generated:** the same driven-frequency metric is grouped by the
-  current provisional physical shank assignments.
+  current working physical shank assignments.
 
-  **Takeaway:** useful for spatial organization, but anatomy claims remain
-  conservative until probe geometry and channel order are confirmed.
+  **Takeaway:** useful for spatial organization, but fine anatomy claims remain
+  conservative until orientation/histology supports them.
 
 - [frequency_lfp/frequency_specificity_by_group.png](../analysis/outputs/dec3/frequency_lfp/frequency_specificity_by_group.png)
 
@@ -596,7 +596,7 @@ These are mostly sanity/QC figures, not final biological claims.
   [s4 1540s](../analysis/outputs/dec3/channel_trace_pages/shank4_ch0_31_start1540s.png),
   [s4 2000s](../analysis/outputs/dec3/channel_trace_pages/shank4_ch0_31_start2000s.png)
 
-  **How it was generated:** raw/high-rate traces are shown by provisional shank
+  **How it was generated:** raw/high-rate traces are shown by working shank
   and time point.
 
   **Takeaway:** these are the Python analogue of looking in Neuroscope. Use
@@ -613,7 +613,7 @@ These are mostly sanity/QC figures, not final biological claims.
   [s4 1540s](../analysis/outputs/dec3/lfp_trace_pages/shank4_ch0_31_start1540s.png)
 
   **How it was generated:** downsampled/filtered LFP traces are plotted by
-  provisional shank and time point.
+  working shank and time point.
 
   **Takeaway:** these show the signal used for LFP analyses after filtering and
   downsampling.
@@ -645,12 +645,12 @@ These are mostly sanity/QC figures, not final biological claims.
 
 - [REPORT/supp_provisional_probe_map_H12_UNRESOLVED.png](../analysis/outputs/dec3/REPORT/supp_provisional_probe_map_H12_UNRESOLVED.png)
 
-  **How it was generated:** provisional probe/shank geometry is drawn from the
-  current best guess.
+  **How it was generated:** historical working probe/shank geometry is drawn
+  from the then-current best guess.
 
-  **Takeaway:** use only to explain uncertainty. Do not make CA1/DG or
-  medial/lateral claims until probe model, channel order, and anatomy are
-  confirmed.
+  **Takeaway:** use only to explain why fine spatial labels remain conservative.
+  Do not make CA1/DG/subiculum, laminar, or medial/lateral claims from this
+  figure alone.
 
 ## Best Order For Learning The Results
 

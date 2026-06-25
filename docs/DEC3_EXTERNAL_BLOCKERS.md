@@ -9,10 +9,15 @@ Dec 4 recording already resolved are noted so they are not re-asked.
 ## Resolved by Dec 4 (no longer blockers)
 - Probe identity: Dec 3 = dHPC probe (Cambridge NeuroTech H12_2), Port A.
 - Both LEC and dHPC probes exist on this mouse; Dec 3 recorded the dHPC alone.
+- Vöröslakos metadata identifies the Dec 4 probe/channel ranges and confirms the
+  LEC angle is 10 degrees; `amplifier.xml` `channelGroups` are the verified group
+  order.
 
-## 1. Probe geometry & anatomy — needs lab records / surgeon / histology
-- [ ] The lab's specific **channel-map PDF or `.prb`** for this exact H12_2
-      probe (site order). *Owner: lab / probe records.*
+## 1. Fine probe geometry & anatomy — needs lab records / surgeon / histology
+- [ ] Exact **site order / orientation** needed for unit-depth and laminar claims.
+      The Cambridge NeuroTech / `amplifier.xml` map source is now known, but the
+      physical orientation in the brain is still a separate question. *Owner: lab /
+      surgeon / probe records.*
 - [ ] Which physical shank is **medial vs lateral / anterior vs posterior**.
       Current safe labels: ch `0–63` = Shank A, ch `64–127` = Shank B; the
       mapping to brain axes is unknown. *Owner: surgeon / surgery notes.*
@@ -29,7 +34,8 @@ Dec 4 recording already resolved are noted so they are not re-asked.
 ## 2. Recording metadata — needs acquisition records
 - [ ] Any channels known to be **disconnected, shorted, reference, ground, or
       intentionally unused**. *Owner: lab / acquisition notes.*
-- [ ] The **reference scheme used during acquisition**. *Owner: lab.*
+- [x] The **reference scheme used during acquisition**: stainless steel over
+      cerebellum; ground and reference tied together. *Answered by Vöröslakos.*
 - [ ] The **final Neuroscope bad-channel list** after visual review, if saved.
       *Owner: lab.*
 
@@ -60,7 +66,7 @@ Dec 4 recording already resolved are noted so they are not re-asked.
 > following. This is why Dec 3 results say "LFP response at a 26 Hz condition"
 > rather than "26 Hz entrainment."
 
-## Analysis-side item (NOT external — your call, infra ready)
-- [ ] **Phy manual curation** of the 194 Kilosort clusters before final
-      single-unit claims. Not blocked on anyone else; the Modal noVNC desktop is
-      set up and ready — see [PHY_DEC3_SETUP.md](PHY_DEC3_SETUP.md).
+## Analysis-side item (closed for the current dataset)
+- [x] **Phy/curated merge pass** for the current Dec 3 spike result. The final
+      presentation-safe Dec 3 result is 29 curated good units and 0/174
+      ON/OFF-responsive unit-conditions at q<0.05.

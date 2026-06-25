@@ -9,6 +9,11 @@ Misi's ephys workshop:
 
 - https://github.com/misiVoroslakos/Ephys_workshop
 
+## Probe Maps
+
+- Cambridge NeuroTech ASSY-350 H15 map:
+  https://www.cambridgeneurotech.com/assets/files/ASSY-350-H15-map.pdf
+
 ## Nick's Suggestions
 
 - Frontiers article:

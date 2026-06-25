@@ -8,8 +8,8 @@
 
 ## What is different from Dec 3
 
-Same mouse, same headstage settings, same probes — Dec 4 simply records a
-**second probe** and **two extra drive frequencies**:
+Same mouse, same headstage settings, same dHPC probe — Dec 4 records the
+**second probe** plus **two extra drive frequencies**:
 
 | | Dec 3 | Dec 4 |
 |---|---|---|
@@ -22,6 +22,12 @@ Same mouse, same headstage settings, same probes — Dec 4 simply records a
 
 Port A is the **identical dHPC probe and channel map as Dec 3**, so dHPC results
 are directly comparable channel-for-channel between the two sessions.
+
+Probe metadata are now explicit: dHPC = Cambridge NeuroTech `H12_2`; LEC =
+Cambridge NeuroTech `H15`, AP 3.8 / ML 3.8 / **10 degrees**. Vöröslakos confirmed
+that the `amplifier.xml` `channelGroups` order is the verified group order. Fine
+depth/layer claims still need orientation/histology, but region/probe identity is
+not the blocker anymore. See [DEC_PROBE_METADATA_VOROSLAKOS.md](DEC_PROBE_METADATA_VOROSLAKOS.md).
 
 ## Data / timing provenance
 
@@ -104,12 +110,16 @@ the precise framing keeps it separate (live, not disconnected).
 
 **One-figure version:** `results/dec4/10_Biological_Summary/combined_explainer.png`.
 **1/f + onset-ITPC check:** `results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png`.
+**Misi figure-question answer:** [MISI_FIGURE_RESPONSE_NOTES.md](MISI_FIGURE_RESPONSE_NOTES.md).
 
 ## How Dec 4 answers Dec 3 open questions (`docs/OPEN_QUESTIONS.md`)
 
 - **Recording Metadata Q1–Q2 (were both probes present; which port = which probe?)**
   → **Answered.** Both probes exist; Port A = dHPC (H12_2), Port B = LEC (H15).
   Dec 3's 128-ch recording was the dHPC probe (Port A) alone.
+- **Probe metadata / functional placement** → **Answered at region level.** Ripples
+  support dHPC/CA1 placement; the no-figure LEC slow-oscillation screen supports
+  cortex/LEC placement. Fine layer/contact labels remain conservative.
 - **The README's central caveat (was Dec 3's lack of frequency-following evidence
   neural or a stimulus-delivery limitation at 5/26 Hz?)** → **Partially answered.**
   With four frequencies and a second region we *do* find a frequency-specific
@@ -173,14 +183,15 @@ check**, a **per-probe condition-interpretation table**
 (`condition_interpretation/`), **Pynapple ON/OFF/baseline intervals**, and
 **spike-sorting prep + a SpikeInterface recording/trace-sanity** check. The later
 spike pass adds curated ON/OFF firing-rate results, PETHs, cell-type/ACG typing,
-baseline/post-study drift checks, and 50 Hz coordination/artifact controls.
+baseline/post-study drift checks, the no-figure LEC slow-oscillation screen, and
+50 Hz coordination/artifact controls.
 
 Dec 3 steps that are **not applicable** to Dec 4: the TTL audits, the session/TTL
 timeline, and the onset-jitter ("cohen-corrected") analysis — all require the
 accelerometer TTL, which was not shared this session. Full **Kilosort/curated
 spike PETH / cluster-quality** outputs are now present; the remaining caveats are
 n=1, no recorded stimulus phase, LEC 50 Hz LFP pickup, stimulus-fidelity limits,
-and provisional probe geometry for depth/layer claims.
+and conservative fine anatomy/depth/layer claims.
 
 ## Stimulus is FREE-RUNNING (firmware) — this confounds onset-ITPC entrainment tests
 
@@ -280,5 +291,5 @@ PYTHONPATH=analysis python analysis/build_dec4_results.py
 2. **Keep the current LEC 50 Hz LFP caveat explicit:** it is a real measured
    narrowband ON-state peak, but pickup/artifact controls prevent a clean neural-LFP
    claim.
-3. Confirm Port A = dHPC / Port B = LEC anatomy from surgery notes/probe orientation
-   before making layer/depth claims.
+3. Use the confirmed Port A = dHPC / Port B = LEC metadata, but keep layer/depth
+   claims conservative until surgery orientation and/or histology support them.

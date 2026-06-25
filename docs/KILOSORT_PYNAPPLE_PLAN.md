@@ -98,7 +98,8 @@ Notes:
 - The `check` step builds/verifies the GPU image and confirms CUDA plus file
   visibility.
 - The `run` step launches the full Kilosort4 job on an `A10G` GPU.
-- This remains provisional until exact H12_2 geometry/channel order is confirmed.
+- This supports sorting/inspection; fine unit-depth claims still need
+  site-order/orientation confirmation.
 
 The shell script follows the official Kilosort4 install sequence:
 
@@ -107,10 +108,10 @@ The shell script follows the official Kilosort4 install sequence:
 3. install CUDA PyTorch for an NVIDIA GPU workstation
 4. verify Python, Kilosort, Torch, and CUDA visibility
 
-The full 51 GB Dec 3 sort has now been run once on Modal with the provisional
-geometry/channel order. Use this run for inspection and exploratory spike/LFP
-alignment, but keep exact Cambridge NeuroTech H12_2 geometry/channel order as a
-required correction before final unit-depth or anatomical claims.
+The full 51 GB Dec 3 sort has now been run once on Modal with the working
+geometry/channel order. Use this run for inspection and curated spike/LFP
+alignment, but keep exact site order/orientation as a required input before final
+unit-depth or anatomical claims.
 
 ## Dec 3 Kilosort Inputs Already Prepared
 
@@ -120,7 +121,7 @@ Existing prep folder:
 
 Important files:
 
-- `kilosort_channel_map.mat`: provisional channel map
+- `kilosort_channel_map.mat`: working Kilosort channel map
 - `channel_metadata.csv`: good/bad channel status
 - `good_channels.txt`: 119 connected channels
 - `bad_channels.txt`: confirmed excluded channels for this pass
@@ -130,8 +131,8 @@ Important files:
 
 Caveat:
 
-The current Kilosort map uses provisional geometry. It is enough for setup
-testing, but not enough for final anatomical or unit-depth claims.
+The current Kilosort map is enough for sorting/curation, but not enough for
+final anatomical or unit-depth claims.
 
 ## Pynapple Decision
 
@@ -228,9 +229,8 @@ Consequence:
 The next scientific step is not to claim final units yet. It is:
 
 1. inspect the Modal Kilosort4 output in Phy
-2. confirm/fix H12_2 channel geometry and rerun if the corrected geometry
-   changes the interpretation
-3. inspect the exported provisional Pynapple `TsGroup` objects
+2. confirm fine H12_2 site order/orientation before unit-depth interpretation
+3. inspect the exported Pynapple `TsGroup` objects
 4. after Phy curation, repeat the same analysis on curated units
 5. relate spike responses back to the LFP findings:
    - `amp180_freq26`: strong broadband/recovery LFP

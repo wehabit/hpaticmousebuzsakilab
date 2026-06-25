@@ -23,7 +23,7 @@ Implant locations:
 
 Coordinates:
 
-- LEC: AP `3.8 mm`, ML `3.8 mm`, depth as needed, angle `5 degrees`;
+- LEC: AP `3.8 mm`, ML `3.8 mm`, depth as needed, angle `10 degrees`;
   H15 probe from Cambridge NeuroTech.
 - dHPC: AP `1.8`, ML `1.5`, depth `1 to 1.8 mm`; H12_2 probe from Cambridge
   NeuroTech.
@@ -107,5 +107,7 @@ The current confirmed bad channels for the Dec 3 analysis pass are:
 5, 6, 7, 32, 33, 34, 43, 66, 67
 ```
 
-The current anatomy stance is conservative: use channel groups/provisional
-physical shanks, but do not make CA1/DG/medial/lateral claims yet.
+Current stance: region/probe identity is supported by Vöröslakos metadata and
+physiology (dHPC ripples; LEC slow/delta quiet-state screen). Keep fine
+CA1/DG/subiculum, laminar, medial/lateral, and per-contact depth claims
+conservative until orientation/histology or equivalent records support them.

@@ -69,8 +69,8 @@ mean ON−OFF **+0.79 Hz**) — highest frequency × highest amplitude.
 ## Interpretation: what the 50 Hz response actually means
 Figure: `analysis/outputs/cross_dataset_spike_compare/spike_50hz_interpretation.png`.
 
-The question is whether the 50 Hz "response" is just the stimulus being **passively
-relayed/echoed** into the brain, or whether the brain is **actively responding**.
+The question is whether the 50 Hz "response" is just one identical passive
+artifact/readout of the stimulus, or whether the brain is **actively responding**.
 Walking the inference ladder:
 
 1. **Not (simply) electrical/mechanical artifact.** Sorted single units change their
@@ -79,8 +79,9 @@ Walking the inference ladder:
    harder for pickup to fake; the ACG / ISI / waveform screens (see
    [DEC4_50HZ_ARTIFACT_CHECK.md](DEC4_50HZ_ARTIFACT_CHECK.md)) argue against
    pickup-manufactured spikes. So there is a genuine neural response.
-2. **Not a simple passive echo.** A passive relay would look the **same everywhere**.
-   Instead the two regions respond with **different distributions** — at 50 Hz,
+2. **Not one identical passive readout across regions.** A simple passive artifact
+   would look the **same everywhere**. Instead the two regions respond with
+   **different distributions** — at 50 Hz,
    **LEC units are predominantly suppressed** (~67% fire less; mean −0.08 Hz) while
    **dHPC shows a driven-up subset** (mean +0.22 Hz, a few units strongly increased).
    The LFP 50 Hz peak is a stimulus-state power increase rather than proof of
@@ -106,8 +107,8 @@ round).
 controls argue against pure arousal, but a state component can't be fully excluded.
 
 ## One-line takeaway
-High-frequency (50 Hz), high-amplitude haptic stimulation drives an **active,
-region-specific** single-unit response (dHPC driven-up subset; LEC suppressed) —
-**not a passive echo** — in a frequency regime Dec 3 never tested, matching the
-50 Hz LFP effect. Whether the regions *coordinate* ("work together") is the next
-test, not yet answered.
+High-frequency (50 Hz), high-amplitude haptic stimulation drives a
+**region-specific** single-unit response (dHPC driven-up subset; LEC suppressed)
+in a frequency regime Dec 3 never tested. The response is not consistent with one
+identical passive readout across regions, and the separate coordination test found
+no clear evidence that dHPC and LEC work together at 50 Hz.

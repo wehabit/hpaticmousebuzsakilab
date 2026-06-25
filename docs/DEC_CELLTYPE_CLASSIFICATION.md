@@ -1,9 +1,9 @@
 # Dec 3 + Dec 4 — Putative Cell-Type Classification (CellExplorer-style)
 
 A waveform + spike-timing classification of the curated good units into
-**putative pyramidal-like vs interneuron-like** cells. This needs **no anatomy /
-channel-map** — the features are template-waveform shape and spike statistics — so
-it is not gated by the provisional electrode map. Script:
+**putative pyramidal-like vs interneuron-like** cells. This needs **no fine anatomy /
+laminar map** — the features are template-waveform shape and spike statistics — so
+it is not gated by per-contact anatomical assignment. Script:
 [spike_celltype_classify_dec.py](../analysis/spike_celltype_classify_dec.py);
 outputs in `analysis/outputs/cross_dataset_spike_compare/celltype/`.
 
@@ -83,9 +83,10 @@ and the safest cell-type claim is the **2-way pyr/interneuron split**, with the
   CellExplorer `cell_metrics` workflow. [DEC_RIPPLE_STATES.md](DEC_RIPPLE_STATES.md)
   detects dHPC ripples on a data-driven channel and shows interneuron-like units
   fire ~2.5x more during ripples than outside, which cross-validates the putative
-  cell-type labels. Because the CA1 layer/channel map is still provisional and ON
-  windows have a 50 Hz-harmonic caveat, this supports **real ripple detection and
-  type-consistent participation**, not a stimulation-specific SWR or memory claim.
+  cell-type labels. Because exact CA1 layer/contact assignment remains conservative
+  and ON windows have a 50 Hz-harmonic caveat, this supports **real ripple
+  detection and type-consistent participation**, not a stimulation-specific SWR or
+  memory claim.
 - The LEC 50 Hz pyramidal suppression carries the same **session-drift** caveat as
   the parent analysis (LEC drifts −26 %); the **local ON/OFF** contrast remains the
   drift-immune measure.
