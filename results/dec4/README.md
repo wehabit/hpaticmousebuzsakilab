@@ -127,6 +127,7 @@ _Per-channel noise QC (pooled view; per-probe bad lists in analysis/bad_channels
 - [channel_qc_metrics.png](12_ChannelQC_Traces/channel_qc_metrics.png)
 - [50hz_artifact_check.png](12_ChannelQC_Traces/50hz_artifact_check.png)
 - [50hz_pickup_gradient_dhpc_vs_lec.png](12_ChannelQC_Traces/50hz_pickup_gradient_dhpc_vs_lec.png)
+- [lec_updown_states_dec4.png](12_ChannelQC_Traces/lec_updown_states_dec4.png)
 
 ### 13_Teaching_and_Methods
 _Artifact-margin robustness test, plus the 50 Hz 'is it pickup or neural?' explainers (contamination + evidence). See docs/DEC4_50HZ_ARTIFACT_CHECK.md._

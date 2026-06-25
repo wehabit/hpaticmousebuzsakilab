@@ -1,0 +1,16 @@
+{
+  "LEC": {
+    "n_units_pop": 21,
+    "n_down_states": 437,
+    "down_rate_hz": 0.162,
+    "median_down_dur_ms": 60.0,
+    "slow_osc_peak_hz": 2.0
+  },
+  "dHPC": {
+    "n_units_pop": 31,
+    "n_down_states": 591,
+    "down_rate_hz": 0.219,
+    "median_down_dur_ms": 60.0,
+    "slow_osc_peak_hz": 1.8
+  }
+}

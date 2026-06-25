@@ -210,6 +210,8 @@ MAP = {
         # 50 Hz LFP artifact check (dead-channel pickup) + dHPC-vs-LEC gradient
         ("artifact_check_50hz/artifact_check_50hz.png", "50hz_artifact_check.png"),
         ("artifact_check_50hz/gradient_dhpc_vs_lec.png", "50hz_pickup_gradient_dhpc_vs_lec.png"),
+        # anatomy confirmation: LEC UP/DOWN test (honest negative on awake data)
+        ("../cross_dataset_spike_compare/updown/lec_updown_states_dec4.png", "lec_updown_states_dec4.png"),
     ],
     "teaching": [
         "methods/dHPC_amp180_freq26/margin_exclusion_test.png",
