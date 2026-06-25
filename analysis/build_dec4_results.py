@@ -204,6 +204,8 @@ MAP = {
         # frequency-specificity: modulated units across 5/10/26/50 Hz (response only at 50)
         ("../cross_dataset_spike_compare/raster_psth/psth_frequency_specific_dec4.png", "psth_frequency_specific_dec4.png"),
         ("../cross_dataset_spike_compare/raster_psth/raster_frequency_specific_dec4.png", "raster_frequency_specific_dec4.png"),
+        # 50 Hz steady-state-following test: do modulated units fire every 20 ms? (no comb -> no)
+        ("../cross_dataset_spike_compare/acg_following/acg_50hz_following_dec4.png", "acg_50hz_following_dec4.png"),
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",

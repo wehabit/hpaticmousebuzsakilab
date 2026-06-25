@@ -120,6 +120,7 @@ _Kilosort4 + curation done (15 good units/probe). Single-unit ON/OFF (50 Hz/high
 - [psth_population_modulated_dec4.png](11_Spikes/psth_population_modulated_dec4.png)
 - [psth_frequency_specific_dec4.png](11_Spikes/psth_frequency_specific_dec4.png)
 - [raster_frequency_specific_dec4.png](11_Spikes/raster_frequency_specific_dec4.png)
+- [acg_50hz_following_dec4.png](11_Spikes/acg_50hz_following_dec4.png)
 
 ### 12_ChannelQC_Traces
 _Per-channel noise QC (pooled view; per-probe bad lists in analysis/bad_channels_dec4.json). Plus the 50 Hz LFP artifact check: disconnected LEC electrodes pick up ~6x more 50 Hz than tissue; dHPC is much cleaner (LEC: 82 good / 45 disconnected-dead / 1 hot-excluded ch142)._

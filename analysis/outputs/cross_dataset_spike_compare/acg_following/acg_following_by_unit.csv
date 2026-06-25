@@ -1,0 +1,8 @@
+region,cluster_id,comb_index_ON,comb_index_OFF
+dHPC,86,0.759,0.726
+dHPC,104,1.084,0.971
+dHPC,126,0.975,0.948
+dHPC,137,1.024,0.982
+dHPC,139,1.168,1.12
+dHPC,149,0.959,0.972
+LEC,87,1.135,1.137
