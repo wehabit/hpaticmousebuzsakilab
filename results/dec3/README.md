@@ -10,8 +10,8 @@ Rebuild with `python analysis/build_results_folder.py --session dec3`.
 - [session_timeline.png](01_Session_Timeline/session_timeline.png) - the session at a glance: baseline / stimulation / post
 - [condition_by_channel_lfp_response_heatmap.png](04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png) - which condition & channels respond (26 Hz / 180 strongest)
 - [spectral_slope_decomposition.png](05_Frequency_Spectral/spectral_slope_decomposition.png) - the response is a broadband shift, not a 5/26 Hz oscillation
-- [phase_locking_null_floor.png](06_Phase_Locking/phase_locking_null_floor.png) - onset-aligned phase consistency stays near the finite-trial floor; true stimulus-phase entrainment was not testable without a recorded vibration phase
-- [peth_onset_ks_good_units.png](11_Spikes/peth_onset_ks_good_units.png) - firing is flat around ON, and the curated comparison confirms no Dec 3 single-unit ON/OFF effect at 5/26 Hz
+- [phase_locking_null_floor.png](06_Phase_Locking/phase_locking_null_floor.png) - phase locking stays near the finite-trial floor, so this pass does not support strong entrainment
+- [peth_onset_ks_good_units.png](11_Spikes/peth_onset_ks_good_units.png) - firing is flat ON vs OFF (provisional, pre-curation)
 
 ## All figures by category
 
@@ -67,7 +67,7 @@ _Power at the driven 5/26 Hz frequency, frequency specificity, and the 1/f spect
 - [bandpower_driven_states.png](05_Frequency_Spectral/bandpower_driven_states.png)
 
 ### 06_Phase_Locking
-_Onset-aligned phase consistency (PLV/ITPC) against chance, incl. the null-floor and onset-jitter checks. This does not replace a true stimulus-phase test, because the delivered vibration phase was not recorded._
+_Phase locking (PLV/ITPC) against chance, incl. the null-floor and onset-jitter checks._
 
 - [plv_condition_summary.png](06_Phase_Locking/plv_condition_summary.png)
 - [plv_sustained_minus_pre.png](06_Phase_Locking/plv_sustained_minus_pre.png)
@@ -112,7 +112,7 @@ _Plain-language summary: does the brain react, and does it follow the buzz frequ
 - [sustained_vs_offset_explained.png](10_Biological_Summary/sustained_vs_offset_explained.png)
 
 ### 11_Spikes
-_Kilosort/curated spike outputs, ON-vs-OFF firing (PETH), baseline/drift checks, cell-type classification, and ripple follow-ups. Final Dec 3 spike conclusion: no curated single-unit ON/OFF effect at 5/26 Hz; anatomy/layer labels remain provisional until the probe map/histology are confirmed._
+_Kilosort cluster quality, drift, and ON-vs-OFF firing (PETH). Provisional until Phy curation._
 
 - [cluster_quality_label_counts.png](11_Spikes/cluster_quality_label_counts.png)
 - [cluster_quality_scatter.png](11_Spikes/cluster_quality_scatter.png)
@@ -130,6 +130,7 @@ _Kilosort/curated spike outputs, ON-vs-OFF firing (PETH), baseline/drift checks,
 - [high_confidence_unit_condition_heatmap.png](11_Spikes/high_confidence_unit_condition_heatmap.png)
 - [peth_onset_high_confidence_units.png](11_Spikes/peth_onset_high_confidence_units.png)
 - [peth_offset_high_confidence_units.png](11_Spikes/peth_offset_high_confidence_units.png)
+- [psth_dec3_null_control.png](11_Spikes/psth_dec3_null_control.png)
 - [dec3_states_vs_baseline.png](11_Spikes/dec3_states_vs_baseline.png)
 - [dec3_celltype.png](11_Spikes/dec3_celltype.png)
 - [celltype_classification.png](11_Spikes/celltype_classification.png)

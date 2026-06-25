@@ -115,6 +115,8 @@ MAP = {
         "spike_peth_high_confidence/high_confidence_unit_condition_heatmap.png",
         "spike_peth_high_confidence/peth_onset_high_confidence_units.png",
         "spike_peth_high_confidence/peth_offset_high_confidence_units.png",
+        # Dec 3 single-unit PSTH negative control: no modulation at 5/26 Hz (0/174)
+        "../cross_dataset_spike_compare/raster_psth/psth_dec3_null_control.png",
         # single-unit firing vs TRUE pre-experiment baseline & post-study (bootstrap CIs)
         "../cross_dataset_spike_compare/baseline_poststudy/dec3_states_vs_baseline.png",
         # putative cell-type classification (CellExplorer-style)
