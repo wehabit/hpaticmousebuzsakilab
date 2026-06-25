@@ -5,11 +5,11 @@ frequencies. Curated, de-duplicated figures grouped by analysis type. Rebuild wi
 `python analysis/build_dec4_results.py`.
 
 ## Headline figures (start here)
-- [combined_explainer.png](10_Biological_Summary/combined_explainer.png) - the whole Dec 4 story: dHPC shows no clean frequency-following evidence (same probe as Dec 3); LEC shows 50 Hz power that grows with amplitude, but the LFP peak is artifact-suspect and not proof of entrainment
+- [combined_explainer.png](10_Biological_Summary/combined_explainer.png) - the whole Dec 4 story: dHPC follows no frequency (same probe as Dec 3); LEC shows induced 50 Hz power that grows with amplitude but is not phase-locked
 - [spike_onoff_cross_dataset.png](11_Spikes/spike_onoff_cross_dataset.png) - the cleanest neural result: single-unit ON/OFF firing — Dec 3 null at 5/26 Hz, Dec 4 50 Hz/high-amp responders in BOTH dHPC and LEC
 - [unit87_acg_artifact_screen.png](11_Spikes/unit87_acg_artifact_screen.png) - the soft-spot unit 87 passes the ACG + ISI artifact screens: its 50 Hz rate increase is a real neuron, not pickup
 - [explainer_2_evidence.png](13_Teaching_and_Methods/explainer_2_evidence.png) - how we know the 50 Hz spike result is neural, not artifact: direction test + dose-response + the ACG resolution + the trust hierarchy
-- [spectral_slope_itpc_dec4.png](05_Frequency_Spectral/spectral_slope_itpc_dec4.png) - 1/f + onset-ITPC check: a real narrowband 50 Hz peak above 1/f in LEC (amplitude-graded), but not a proven entrainment result
+- [spectral_slope_itpc_dec4.png](05_Frequency_Spectral/spectral_slope_itpc_dec4.png) - entrainment test: a real narrowband 50 Hz peak above 1/f in LEC (amplitude-graded), but ITPC at chance
 - [driven_power_change_by_analysis_group.png](05_Frequency_Spectral/driven_power_change_by_analysis_group.png) - driven-frequency power by probe-group across all 12 conditions
 - [reference_condition_summary.png](09_Reference_Sensitivity/reference_condition_summary.png) - the 50 Hz LEC effect survives every reference scheme
 
@@ -30,7 +30,7 @@ _Event-aligned broadband LFP per condition, by channel and by probe (Port A dHPC
 - [sustained_response_by_shank.png](04_EventAligned_LFP/sustained_response_by_shank.png)
 
 ### 05_Frequency_Spectral
-_Power at the driven 5/10/26/50 Hz frequency, frequency specificity, time-frequency, and the 1/f + onset-ITPC check. True stimulus-phase entrainment was not testable because the delivered vibration phase was not recorded._
+_Power at the driven 5/10/26/50 Hz frequency, frequency specificity, time-frequency, and the 1/f + ITPC entrainment test._
 
 - [driven_power_change_by_analysis_group.png](05_Frequency_Spectral/driven_power_change_by_analysis_group.png)
 - [driven_power_change_by_channel.png](05_Frequency_Spectral/driven_power_change_by_channel.png)
@@ -44,9 +44,10 @@ _Power at the driven 5/10/26/50 Hz frequency, frequency specificity, time-freque
 - [state_spectra_loglog.png](05_Frequency_Spectral/state_spectra_loglog.png)
 - [bandpower_general_states.png](05_Frequency_Spectral/bandpower_general_states.png)
 - [bandpower_driven_states.png](05_Frequency_Spectral/bandpower_driven_states.png)
+- [trial_avg_spectrogram_dec4.png](05_Frequency_Spectral/trial_avg_spectrogram_dec4.png)
 
 ### 06_Phase_Locking
-_Onset-aligned phase consistency (PLV/ITPC) per condition and probe vs the within-trial pre window._
+_Phase locking (PLV/ITPC) per condition and probe vs the within-trial pre window._
 
 - [plv_condition_summary.png](06_Phase_Locking/plv_condition_summary.png)
 - [plv_sustained_minus_pre.png](06_Phase_Locking/plv_sustained_minus_pre.png)
@@ -80,7 +81,7 @@ _Robustness of the driven-power result to the referencing scheme (raw / probe / 
 - [reference_group_heatmaps.png](09_Reference_Sensitivity/reference_group_heatmaps.png)
 
 ### 10_Biological_Summary
-_Dec 4 in one figure: dHPC no clean frequency-following evidence; LEC amplitude-graded 50 Hz LFP power that is artifact-suspect and not proof of entrainment._
+_Dec 4 in one figure: dHPC null at all frequencies; LEC induced, amplitude-graded 50 Hz power without phase locking._
 
 - [combined_explainer.png](10_Biological_Summary/combined_explainer.png)
 - [broadband_perchannel_ci.png](10_Biological_Summary/broadband_perchannel_ci.png)
@@ -115,6 +116,8 @@ _Kilosort4 + curation done (15 good units/probe). Single-unit ON/OFF (50 Hz/high
 - [ripple_on_rate_by_stim_freq.png](11_Spikes/ripple_on_rate_by_stim_freq.png)
 - [ripple_examples.png](11_Spikes/ripple_examples.png)
 - [drift_corrected_model.png](11_Spikes/drift_corrected_model.png)
+- [raster_psth_examples_dec4.png](11_Spikes/raster_psth_examples_dec4.png)
+- [psth_population_modulated_dec4.png](11_Spikes/psth_population_modulated_dec4.png)
 
 ### 12_ChannelQC_Traces
 _Per-channel noise QC (pooled view; per-probe bad lists in analysis/bad_channels_dec4.json). Plus the 50 Hz LFP artifact check: disconnected LEC electrodes pick up ~6x more 50 Hz than tissue; dHPC is much cleaner (LEC: 82 good / 45 disconnected-dead / 1 hot-excluded ch142)._

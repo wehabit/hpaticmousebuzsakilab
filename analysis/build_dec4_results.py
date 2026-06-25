@@ -126,6 +126,8 @@ MAP = {
         # band power across states (broadband/theta/gamma + driven bands)
         ("../cross_dataset_spike_compare/lfp_bandpower_states/bandpower_general_states.png", "bandpower_general_states.png"),
         ("../cross_dataset_spike_compare/lfp_bandpower_states/bandpower_driven_states.png", "bandpower_driven_states.png"),
+        # trial-averaged spectrogram around ON onset (per amplitude) — Misi's request
+        ("../cross_dataset_spike_compare/spectrogram/trial_avg_spectrogram_dec4.png", "trial_avg_spectrogram_dec4.png"),
     ],
     "phase": [
         "phase_locking_lfp/plv_condition_summary.png",
@@ -196,6 +198,9 @@ MAP = {
         ("../cross_dataset_spike_compare/ripples/ripple_examples.png", "ripple_examples.png"),
         # drift-corrected condition model: 50 Hz effect survives removing the session drift
         ("../cross_dataset_spike_compare/drift_model/drift_corrected_model.png", "drift_corrected_model.png"),
+        # raster + PSTH for the MODULATED units (amp250_freq50) — Misi's request
+        ("../cross_dataset_spike_compare/raster_psth/raster_psth_examples_dec4.png", "raster_psth_examples_dec4.png"),
+        ("../cross_dataset_spike_compare/raster_psth/psth_population_modulated_dec4.png", "psth_population_modulated_dec4.png"),
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",
