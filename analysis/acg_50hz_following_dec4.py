@@ -67,17 +67,17 @@ def comb_index(h):
 
 
 def sim_follower():
-    """Simulated 50 Hz-following unit: spikes near each 20 ms cycle -> ACG comb (reference)."""
+    """Realistic simulated 50 Hz follower: a phase-locked component on top of a Poisson
+    background (so off-cycle bins are NOT empty), matching ~the up-units' firing rate."""
     rng = np.random.default_rng(0)
     starts = np.arange(0, 200) * 6.0
     spk = []
     for t0 in starts:
-        ncyc = int(3.0 / 0.02)
-        for k in range(ncyc):
-            if rng.random() < 0.25:                       # fire ~25% of cycles, phase-locked
+        for k in range(int(3.0 / 0.02)):                  # 50 Hz cycles in the 3 s window
+            if rng.random() < 0.55:                       # fire ~55% of cycles, phase-locked (jitter 2 ms)
                 spk.append(t0 + k * 0.02 + rng.normal(0, 0.002))
-    spk = np.sort(np.array(spk))
-    return norm(window_acg(spk, starts, 3.0))
+        spk.extend(t0 + rng.uniform(0, 3, rng.poisson(9)))    # ~3 Hz unlocked background
+    return norm(window_acg(np.sort(np.array(spk)), starts, 3.0))
 
 
 def main():
@@ -106,23 +106,40 @@ def main():
                 "n_up_units": len(units)}
     (OUT / "acg_following_summary.json").write_text(json.dumps(pop_comb, indent=2) + "\n")
 
-    # ---- figure ----
-    fig, ax = plt.subplots(1, 2, figsize=(13, 4.8))
+    # ---- figure: per-unit ACGs, grouped by region (dHPC then LEC), + a reference ----
+    order = sorted(range(len(units)), key=lambda i: (units[i][0] != "dHPC", units[i][1]))
+    npan = len(order) + 1
+    ncol = 4; nrow = int(np.ceil(npan / ncol))
+    fig, axes = plt.subplots(nrow, ncol, figsize=(3.5 * ncol, 2.9 * nrow), sharex=True)
+    axes = np.atleast_1d(axes).ravel()
+    for a in axes:
+        a.axis("off")
+    ymax = max(float(a.max()) for a in on_acgs) * 1.15
+    for p, i in enumerate(order):
+        a = axes[p]; a.axis("on")
+        reg, cid = units[i]
+        for k in (20, 40, 60, 80):
+            a.axvline(k, color="#ccc", lw=0.8, ls=":")
+        a.plot(CTR, off_acgs[i], color="#bbb", lw=1.1, label="OFF")
+        a.plot(CTR, on_acgs[i], color="#8C1515", lw=1.9, label="ON (50 Hz)")
+        a.set_xlim(0, 100); a.set_ylim(0, ymax)
+        a.set_title(f"{reg} unit {cid}   comb={rows[i]['comb_index_ON']:.1f}", fontsize=9.5,
+                    color=("#8C1515" if reg == "dHPC" else "#175E54"))
+        if p == 0:
+            a.legend(fontsize=7, loc="lower right"); a.set_ylabel("norm. ACG")
+        if p >= ncol * (nrow - 1):
+            a.set_xlabel("lag (ms)")
+    # reference panel (its own y-scale — a real comb is much taller)
+    ar = axes[len(order)]; ar.axis("on")
     for k in (20, 40, 60, 80):
-        ax[0].axvline(k, color="#bbb", lw=0.8, ls=":")
-    ax[0].plot(CTR, on_m.mean(0), color="#8C1515", lw=2.2, label="ON (50 Hz)")
-    ax[0].plot(CTR, off_m.mean(0), color="#53565A", lw=1.6, label="OFF")
-    ax[0].set_title(f"Modulated up-units (n={len(units)}): ON-window ACG\n"
-                    f"no 20/40/60/80 ms comb  (comb index {pop_comb['pop_comb_index_ON']} ≈ 1)")
-    ax[0].set_xlabel("lag (ms)"); ax[0].set_ylabel("norm. ACG"); ax[0].legend(); ax[0].set_xlim(0, 100)
-    for k in (20, 40, 60, 80):
-        ax[1].axvline(k, color="#bbb", lw=0.8, ls=":")
-    ax[1].plot(CTR, ref, color="#175E54", lw=2.2)
-    ax[1].set_title(f"Reference: a perfect 50 Hz follower\n"
-                    f"clear 20 ms comb  (comb index {pop_comb['reference_follower_comb_index']:.1f})")
-    ax[1].set_xlabel("lag (ms)"); ax[1].set_ylabel("norm. ACG"); ax[1].set_xlim(0, 100)
-    fig.suptitle("50 Hz steady-state-following test: the modulated units change RATE but do NOT fire every 20 ms "
-                 "(no frequency-following)", fontsize=12)
+        ar.axvline(k, color="#ccc", lw=0.8, ls=":")
+    ar.plot(CTR, ref, color="#457b9d", lw=2.0)
+    ar.set_xlim(0, 100); ar.set_xlabel("lag (ms)")
+    ar.set_title(f"REFERENCE: 50 Hz follower\ncomb={pop_comb['reference_follower_comb_index']:.1f}",
+                 fontsize=9.5, color="#457b9d")
+    fig.suptitle("Per-unit ACG of each modulated up-unit (dHPC ×6, LEC ×1) — ON (red) vs OFF (grey).\n"
+                 "A 50 Hz follower would peak at 20/40/60/80 ms (blue reference, comb ≫ 1); every real unit is "
+                 "smooth there (comb ≈ 1) → rate change, not 50 Hz following.", fontsize=10.5)
     fig.tight_layout(); fig.savefig(OUT / "acg_50hz_following_dec4.png", dpi=170); plt.close(fig)
     print(json.dumps(pop_comb, indent=2))
 
