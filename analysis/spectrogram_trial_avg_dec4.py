@@ -67,31 +67,38 @@ def main():
                     shape=(LFP.stat().st_size // 2 // NCH, NCH))
     tw = pd.read_csv(TW)
 
-    panels = [("LEC", 100), ("LEC", 180), ("LEC", 250), ("dHPC", 250)]
-    fig, axes = plt.subplots(1, len(panels), figsize=(4.7 * len(panels), 5.3), sharey=True,
-                             constrained_layout=True)
-    for ax, (reg, amp) in zip(axes, panels):
+    # full matrix: rows = region (LEC top, dHPC bottom), cols = amplitude (100/180/250)
+    regions, amps = ["LEC", "dHPC"], [100, 180, 250]
+    fig, axes = plt.subplots(len(regions), len(amps), figsize=(4.6 * len(amps), 4.3 * len(regions)),
+                             sharex=True, sharey=True, constrained_layout=True)
+    im = None
+    for i, reg in enumerate(regions):
         good = good_channels(reg)
-        onsets = tw[(tw.amplitude == amp) & (tw.freq == 50)].on_start_s.to_numpy()
-        f, t, S = trial_avg_spec(lfp, good, onsets)
-        fm = f <= FMAX
-        base = S[:, t < 0].mean(1, keepdims=True)              # pre-onset baseline per freq
-        db = 10 * np.log10(S[fm] / base[fm])
-        im = ax.pcolormesh(t, f[fm], db, cmap="RdBu_r", vmin=-4, vmax=4, shading="gouraud")
-        ax.axvline(0, color="k", lw=1.2); ax.axvline(3, color="k", lw=1.2, ls="--")
-        ax.axhline(50, color="#175E54", lw=1.0, ls=":")
-        # annotate the LEC 50 Hz amp250 band
-        if reg == "LEC" and amp == 250:
-            ax.text(1.5, 56, "← 50 Hz", color="#175E54", fontsize=10, weight="bold", ha="center")
-        ax.set_title(f"{reg} freq50 / amp{amp}\n(n={len(onsets)} trials)")
-        ax.set_xlabel("time from ON onset (s)")
-    axes[0].set_ylabel("frequency (Hz)")
-    cbar = fig.colorbar(im, ax=axes, shrink=0.8, pad=0.01); cbar.set_label("power vs pre-onset (dB)")
-    fig.suptitle("Trial-averaged LFP spectrogram around ON onset\n"
-                 "LEC 50 Hz grows with amplitude; dHPC shows no 50 Hz band   "
-                 "(50 Hz = dotted line · black lines = ON 0–3 s)", fontsize=11)
+        for j, amp in enumerate(amps):
+            ax = axes[i][j]
+            onsets = tw[(tw.amplitude == amp) & (tw.freq == 50)].on_start_s.to_numpy()
+            f, t, S = trial_avg_spec(lfp, good, onsets)
+            fm = f <= FMAX
+            base = S[:, t < 0].mean(1, keepdims=True)          # pre-onset baseline per freq
+            db = 10 * np.log10(S[fm] / base[fm])
+            im = ax.pcolormesh(t, f[fm], db, cmap="RdBu_r", vmin=-4, vmax=4, shading="gouraud")
+            ax.axvline(0, color="k", lw=1.2); ax.axvline(3, color="k", lw=1.2, ls="--")
+            ax.axhline(50, color="#175E54", lw=1.0, ls=":")
+            if reg == "LEC" and amp == 250:
+                ax.annotate("50 Hz", xy=(1.5, 50), xytext=(1.5, 68), ha="center", va="bottom",
+                            color="#175E54", fontsize=10, weight="bold",
+                            arrowprops=dict(arrowstyle="->", color="#175E54", lw=1.5))
+            ax.set_title(f"{reg} freq50 / amp{amp}  (n={len(onsets)})")
+            if i == len(regions) - 1:
+                ax.set_xlabel("time from ON onset (s)")
+            if j == 0:
+                ax.set_ylabel("frequency (Hz)")
+    cbar = fig.colorbar(im, ax=axes, shrink=0.85, pad=0.01); cbar.set_label("power vs pre-onset (dB)")
+    fig.suptitle("Trial-averaged LFP spectrogram around ON onset — all amplitudes\n"
+                 "LEC 50 Hz band grows with amplitude (top row); dHPC shows no 50 Hz band, only broadband "
+                 "suppression (bottom row)   (50 Hz = dotted · black = ON 0–3 s)", fontsize=11)
     fig.savefig(OUT / "trial_avg_spectrogram_dec4.png", dpi=170); plt.close(fig)
-    print("wrote trial_avg_spectrogram_dec4.png")
+    print("wrote trial_avg_spectrogram_dec4.png (2x3: LEC/dHPC x amp100/180/250)")
 
 
 if __name__ == "__main__":
