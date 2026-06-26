@@ -1,0 +1,35 @@
+{
+  "Dec 3 dHPC": {
+    "n_good_channels": 119,
+    "conditions": {
+      "amp100_freq5": 200,
+      "amp180_freq5": 200,
+      "amp250_freq5": 200,
+      "amp100_freq26": 200,
+      "amp180_freq26": 200,
+      "amp250_freq26": 200
+    }
+  },
+  "Dec 4 dHPC": {
+    "n_good_channels": 127,
+    "conditions": {
+      "amp100_freq5": 200,
+      "amp180_freq5": 200,
+      "amp250_freq5": 200,
+      "amp100_freq26": 200,
+      "amp180_freq26": 200,
+      "amp250_freq26": 200
+    }
+  },
+  "Dec 4 LEC": {
+    "n_good_channels": 82,
+    "conditions": {
+      "amp100_freq5": 200,
+      "amp180_freq5": 200,
+      "amp250_freq5": 200,
+      "amp100_freq26": 200,
+      "amp180_freq26": 200,
+      "amp250_freq26": 200
+    }
+  }
+}

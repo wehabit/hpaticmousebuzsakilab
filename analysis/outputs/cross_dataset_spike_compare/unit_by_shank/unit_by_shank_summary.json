@@ -1,0 +1,30 @@
+{
+  "dHPC": {
+    "n_units": 15,
+    "n_responsive": 9,
+    "responders_by_section": {
+      "1": 1,
+      "2": 1,
+      "3": 2,
+      "4": 5
+    },
+    "units_by_section": {
+      "1": 2,
+      "2": 1,
+      "3": 2,
+      "4": 10
+    }
+  },
+  "LEC": {
+    "n_units": 15,
+    "n_responsive": 3,
+    "responders_by_section": {
+      "5": 3,
+      "6": 0
+    },
+    "units_by_section": {
+      "5": 14,
+      "6": 1
+    }
+  }
+}

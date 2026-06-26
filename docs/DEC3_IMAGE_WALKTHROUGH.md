@@ -645,12 +645,14 @@ These are mostly sanity/QC figures, not final biological claims.
 
 - [REPORT/supp_provisional_probe_map_H12_UNRESOLVED.png](../analysis/outputs/dec3/REPORT/supp_provisional_probe_map_H12_UNRESOLVED.png)
 
-  **How it was generated:** historical working probe/shank geometry is drawn
-  from the then-current best guess.
+  **How it was generated:** historical working probe/shank geometry from the
+  then-current best guess. **Superseded for map/shank identity:** the channel map
+  and shank order are now verified (Cambridge NeuroTech H12_2, `amplifier.xml`
+  channelGroups) — see [DEC_PROBE_METADATA_VOROSLAKOS.md](DEC_PROBE_METADATA_VOROSLAKOS.md).
 
-  **Takeaway:** use only to explain why fine spatial labels remain conservative.
-  Do not make CA1/DG/subiculum, laminar, or medial/lateral claims from this
-  figure alone.
+  **Takeaway:** region and shank identity are settled; this figure is kept only as
+  history. Keep the conservative stance for the *fine* spatial labels — do not make
+  CA1/DG/subiculum, laminar, or medial/lateral claims from this figure alone.
 
 ## Best Order For Learning The Results
 

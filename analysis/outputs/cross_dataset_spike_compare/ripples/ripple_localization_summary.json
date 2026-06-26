@@ -1,0 +1,24 @@
+{
+  "dec3_dHPC": {
+    "detection_channel": 8,
+    "peak_channel": 8,
+    "peak_section": 1,
+    "peak_depth_um": 160.0,
+    "det_on_peak": true,
+    "baseline_window_s": [
+      60.0,
+      240.0
+    ]
+  },
+  "dec4_dHPC": {
+    "detection_channel": 7,
+    "peak_channel": 7,
+    "peak_section": 1,
+    "peak_depth_um": 140.0,
+    "det_on_peak": true,
+    "baseline_window_s": [
+      60.0,
+      240.0
+    ]
+  }
+}

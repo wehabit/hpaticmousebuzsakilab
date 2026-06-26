@@ -1,0 +1,50 @@
+{
+  "group1": {
+    "region": "dHPC",
+    "n": 32,
+    "n_dead": 0,
+    "pct_dead": 0.0,
+    "good_50hz_mean": -1.22,
+    "dead_50hz_mean": NaN
+  },
+  "group2": {
+    "region": "dHPC",
+    "n": 32,
+    "n_dead": 0,
+    "pct_dead": 0.0,
+    "good_50hz_mean": -1.89,
+    "dead_50hz_mean": NaN
+  },
+  "group3": {
+    "region": "dHPC",
+    "n": 32,
+    "n_dead": 0,
+    "pct_dead": 0.0,
+    "good_50hz_mean": -1.02,
+    "dead_50hz_mean": NaN
+  },
+  "group4": {
+    "region": "dHPC",
+    "n": 32,
+    "n_dead": 1,
+    "pct_dead": 3.1,
+    "good_50hz_mean": 0.22,
+    "dead_50hz_mean": 1.89
+  },
+  "group5": {
+    "region": "LEC",
+    "n": 64,
+    "n_dead": 13,
+    "pct_dead": 20.3,
+    "good_50hz_mean": 3.19,
+    "dead_50hz_mean": 4.9
+  },
+  "group6": {
+    "region": "LEC",
+    "n": 64,
+    "n_dead": 32,
+    "pct_dead": 50.0,
+    "good_50hz_mean": 7.64,
+    "dead_50hz_mean": 37.94
+  }
+}

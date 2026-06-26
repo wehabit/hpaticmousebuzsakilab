@@ -99,9 +99,10 @@ dependent, hence "~30"), rising toward both dead blocks. So even the LEC
 *good-channel* 50 Hz region-mean is dominated by near-dead-block pickup — reinforcing
 that the LEC 50 Hz **LFP** should not be read as neural.
 
-**Caveat 2 — all 15 curated good LEC units sit in that pickup zone** (peak channels
-173–214; **zero** in the clean shallow region 136–172). We cannot spatially separate
-"where the LEC units are" from "where the 50 Hz pickup is." This does **not**
+**Caveat 2 — all 15 curated good LEC units sit on tissue-good contacts within the
+elevated-pickup LEC zone** (global peak channels 173–214; **zero** in the cleaner shallow
+region 136–172). We cannot spatially separate "where the LEC units are" from "where the
+50 Hz pickup is" within LEC. This does **not**
 invalidate the single-unit rate result, for three reasons: (i) the ~300 Hz high-pass
 removes the slow 50 Hz before detection; (ii) the LEC population **leans down** at
 50 Hz (10 of 15 units, mean −0.08 Hz) — additive pickup *adds*, not removes, apparent

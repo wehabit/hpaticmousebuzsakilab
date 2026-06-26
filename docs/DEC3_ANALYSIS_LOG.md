@@ -197,7 +197,7 @@ Interpretation from these plots:
 
 - 26 Hz responses are larger than 5 Hz responses on most shanks/amplitudes.
 - The 26 Hz minus 5 Hz difference is largest at amplitude `180`.
-- Shank 4 (`0-31`) shows the strongest frequency effect in this metric.
+- Section 4 (`0-31`) shows the strongest frequency effect in this metric.
 - These plots use the same exploratory `stim mean |LFP| - pre mean |LFP|`
   metric, so artifact handling still needs to be addressed before final claims.
 

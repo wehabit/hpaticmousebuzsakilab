@@ -45,6 +45,7 @@ _Power at the driven 5/10/26/50 Hz frequency, frequency specificity, time-freque
 - [bandpower_general_states.png](05_Frequency_Spectral/bandpower_general_states.png)
 - [bandpower_driven_states.png](05_Frequency_Spectral/bandpower_driven_states.png)
 - [trial_avg_spectrogram_dec4.png](05_Frequency_Spectral/trial_avg_spectrogram_dec4.png)
+- [trial_avg_spectrogram_dec3_dec4_freq5_26.png](05_Frequency_Spectral/trial_avg_spectrogram_dec3_dec4_freq5_26.png)
 
 ### 06_Phase_Locking
 _Phase locking (PLV/ITPC) per condition and probe vs the within-trial pre window._
@@ -115,6 +116,7 @@ _Kilosort4 + curation done (15 good units/probe). Single-unit ON/OFF (50 Hz/high
 - [ripple_participation_by_celltype.png](11_Spikes/ripple_participation_by_celltype.png)
 - [ripple_on_rate_by_stim_freq.png](11_Spikes/ripple_on_rate_by_stim_freq.png)
 - [ripple_examples.png](11_Spikes/ripple_examples.png)
+- [ripple_localization_by_shank.png](11_Spikes/ripple_localization_by_shank.png)
 - [drift_corrected_model.png](11_Spikes/drift_corrected_model.png)
 - [raster_psth_examples_dec4.png](11_Spikes/raster_psth_examples_dec4.png)
 - [raster_psth_all_good_units_dec4.png](11_Spikes/raster_psth_all_good_units_dec4.png)
@@ -123,6 +125,7 @@ _Kilosort4 + curation done (15 good units/probe). Single-unit ON/OFF (50 Hz/high
 - [psth_frequency_specific_dec4.png](11_Spikes/psth_frequency_specific_dec4.png)
 - [raster_frequency_specific_dec4.png](11_Spikes/raster_frequency_specific_dec4.png)
 - [acg_50hz_following_dec4.png](11_Spikes/acg_50hz_following_dec4.png)
+- [unit_by_shank_dec4.png](11_Spikes/unit_by_shank_dec4.png)
 
 ### 12_ChannelQC_Traces
 _Per-channel noise QC (pooled view; per-probe bad lists in analysis/bad_channels_dec4.json). Plus the 50 Hz LFP artifact check: disconnected LEC electrodes pick up ~6x more 50 Hz than tissue; dHPC is much cleaner (LEC: 82 good / 45 disconnected-dead / 1 hot-excluded ch142)._
@@ -130,7 +133,9 @@ _Per-channel noise QC (pooled view; per-probe bad lists in analysis/bad_channels
 - [channel_qc_metrics.png](12_ChannelQC_Traces/channel_qc_metrics.png)
 - [50hz_artifact_check.png](12_ChannelQC_Traces/50hz_artifact_check.png)
 - [50hz_pickup_gradient_dhpc_vs_lec.png](12_ChannelQC_Traces/50hz_pickup_gradient_dhpc_vs_lec.png)
+- [fiftyhz_by_shank_dec4.png](12_ChannelQC_Traces/fiftyhz_by_shank_dec4.png)
 - [lec_updown_states_dec4.png](12_ChannelQC_Traces/lec_updown_states_dec4.png)
+- [lec_slow_oscillation_screen_dec4.png](12_ChannelQC_Traces/lec_slow_oscillation_screen_dec4.png)
 
 ### 13_Teaching_and_Methods
 _Artifact-margin robustness test, plus the 50 Hz 'is it pickup or neural?' explainers (contamination + evidence). See docs/DEC4_50HZ_ARTIFACT_CHECK.md._

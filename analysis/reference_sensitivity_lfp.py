@@ -29,6 +29,17 @@ PHYSICAL_SHANKS = {
 REFERENCE_MODES = ("raw", "physical_shank_median", "analysis_group_median")
 
 
+def reference_mode_label(mode: str) -> str:
+    if mode != "physical_shank_median":
+        return mode
+    labels = list(PHYSICAL_SHANKS)
+    if labels and all(label.startswith("Physical Shank") for label in labels):
+        return "physical_shank_median"
+    if labels and all(label.startswith(("A_", "B_")) for label in labels):
+        return "probe_median"
+    return "physical_or_probe_group_median"
+
+
 def load_lfp(path: Path, n_channels: int) -> np.memmap:
     samples = path.stat().st_size // np.dtype("<i2").itemsize // n_channels
     return np.memmap(path, dtype="<i2", mode="r", shape=(samples, n_channels))
@@ -125,7 +136,7 @@ def plot_reference_condition_summary(summary: pd.DataFrame, output: Path) -> Non
     fig, ax = plt.subplots(figsize=(12, 5))
     for i, mode in enumerate(REFERENCE_MODES):
         rows = condition_summary[condition_summary["reference_mode"] == mode].set_index("condition").reindex(conditions)
-        ax.bar(x + (i - 1) * width, rows["driven"], width=width, color=colors[mode], label=mode)
+        ax.bar(x + (i - 1) * width, rows["driven"], width=width, color=colors[mode], label=reference_mode_label(mode))
     ax.axhline(0, color="black", linewidth=0.8)
     ax.set_xticks(x)
     ax.set_xticklabels(conditions, rotation=30, ha="right")
@@ -163,7 +174,7 @@ def plot_reference_group_heatmaps(summary: pd.DataFrame, output: Path) -> None:
             .reindex(conditions)[groups]
         )
         image = ax.imshow(pivot.to_numpy(), aspect="auto", cmap="coolwarm", vmin=-vmax, vmax=vmax)
-        ax.set_title(mode)
+        ax.set_title(reference_mode_label(mode))
         ax.set_xticks(np.arange(len(groups)))
         ax.set_xticklabels(groups, rotation=35, ha="right")
         ax.set_yticks(np.arange(len(conditions)))

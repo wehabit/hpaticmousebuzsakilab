@@ -128,6 +128,9 @@ MAP = {
         ("../cross_dataset_spike_compare/lfp_bandpower_states/bandpower_driven_states.png", "bandpower_driven_states.png"),
         # trial-averaged spectrogram around ON onset (per amplitude) — Misi's request
         ("../cross_dataset_spike_compare/spectrogram/trial_avg_spectrogram_dec4.png", "trial_avg_spectrogram_dec4.png"),
+        # matched shared-frequency comparison: Dec 3 dHPC vs Dec 4 dHPC/LEC at 5 and 26 Hz
+        ("../cross_dataset_spike_compare/spectrogram/trial_avg_spectrogram_dec3_dec4_freq5_26.png",
+         "trial_avg_spectrogram_dec3_dec4_freq5_26.png"),
     ],
     "phase": [
         "phase_locking_lfp/plv_condition_summary.png",
@@ -191,11 +194,13 @@ MAP = {
         # full CellExplorer ACG-type classification (tau_rise; 3-way) + honest caveat
         ("../cross_dataset_spike_compare/acg_type/acg_type_classification_plane.png", "acg_type_classification_plane.png"),
         ("../cross_dataset_spike_compare/acg_type/acg_type_fits.png", "acg_type_fits.png"),
-        # sharp-wave ripples across states (exploratory, dHPC, CA1 provisional)
+        # sharp-wave ripples across states (exploratory, dHPC/CA1-like; no fine layer claim)
         ("../cross_dataset_spike_compare/ripples/ripple_rate_by_state.png", "ripple_rate_by_state.png"),
         ("../cross_dataset_spike_compare/ripples/ripple_participation_by_celltype.png", "ripple_participation_by_celltype.png"),
         ("../cross_dataset_spike_compare/ripples/ripple_on_rate_by_stim_freq.png", "ripple_on_rate_by_stim_freq.png"),
         ("../cross_dataset_spike_compare/ripples/ripple_examples.png", "ripple_examples.png"),
+        # ripple power localized by dHPC section/depth: detection ch sits on focal section-1 peak
+        ("../cross_dataset_spike_compare/ripples/ripple_localization_by_shank.png", "ripple_localization_by_shank.png"),
         # drift-corrected condition model: 50 Hz effect survives removing the session drift
         ("../cross_dataset_spike_compare/drift_model/drift_corrected_model.png", "drift_corrected_model.png"),
         # raster + PSTH for the MODULATED units (amp250_freq50) — Misi's request
@@ -211,14 +216,20 @@ MAP = {
         ("../cross_dataset_spike_compare/raster_psth/raster_frequency_specific_dec4.png", "raster_frequency_specific_dec4.png"),
         # 50 Hz steady-state-following test: do modulated units fire every 20 ms? (no comb -> no)
         ("../cross_dataset_spike_compare/acg_following/acg_50hz_following_dec4.png", "acg_50hz_following_dec4.png"),
+        # unit response by section/depth: dHPC 50 Hz responders are not confined to one section
+        ("../cross_dataset_spike_compare/unit_by_shank/unit_by_shank_dec4.png", "unit_by_shank_dec4.png"),
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",
         # 50 Hz LFP artifact check (dead-channel pickup) + dHPC-vs-LEC gradient
         ("artifact_check_50hz/artifact_check_50hz.png", "50hz_artifact_check.png"),
         ("artifact_check_50hz/gradient_dhpc_vs_lec.png", "50hz_pickup_gradient_dhpc_vs_lec.png"),
+        # 50 Hz pickup resolved by verified XML group / shank section
+        ("../cross_dataset_spike_compare/lfp_50hz_by_shank/fiftyhz_by_shank_dec4.png", "fiftyhz_by_shank_dec4.png"),
         # anatomy confirmation: LEC UP/DOWN test (honest negative on awake data)
         ("../cross_dataset_spike_compare/updown/lec_updown_states_dec4.png", "lec_updown_states_dec4.png"),
+        # anatomy support: soft slow/delta screen for cortex-like LEC physiology
+        ("lec_slow_oscillation_screen/lec_slow_oscillation_screen_dec4.png", "lec_slow_oscillation_screen_dec4.png"),
     ],
     "teaching": [
         "methods/dHPC_amp180_freq26/margin_exclusion_test.png",

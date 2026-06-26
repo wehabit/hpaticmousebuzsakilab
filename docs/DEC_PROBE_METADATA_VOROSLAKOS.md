@@ -10,11 +10,18 @@ This note records the collaborator metadata update that supersedes the older
 | dHPC probe | Cambridge NeuroTech `H12_2` |
 | LEC probe | Cambridge NeuroTech `H15` |
 | Dec 4 channel ranges | dHPC = Intan `0-127` (`1-128` in 1-indexed lab notation); LEC = Intan `128-255` (`129-256`) |
-| Dec 4 XML grouping | `amplifier.xml` `channelGroups` order is the verified order; each group is a shank/group |
+| Dec 4 XML grouping | `amplifier.xml` `channelGroups` order is the verified order; use these as analysis shank-groups/sections, not as six independent physical shanks |
 | LEC coordinate | AP `3.8 mm`, ML `3.8 mm`, depth as needed, angle `10 degrees` |
 | dHPC coordinate | AP `1.8 mm`, ML `1.5 mm`, depth `1-1.8 mm` |
 | reference / ground | stainless steel over cerebellum; ground and reference tied together |
 | probe maps | Cambridge NeuroTech ASSY-350 maps for `H15` and `H12/L13`; H15 PDF: https://www.cambridgeneurotech.com/assets/files/ASSY-350-H15-map.pdf |
+
+Important shank-count clarification: Dec 4 has **six XML channel groups**:
+four 32-channel dHPC groups plus two 64-channel LEC groups. The Cambridge H12/L13
+map indicates the dHPC H12_2 layout is best treated as **two physical shanks**
+split into upper/lower 32-channel sections. The H15 LEC map has **two physical
+shanks**. So the safest presentation wording is: **four physical shanks total,
+represented in the analysis as six verified channel groups / shank sections**.
 
 The current Dec 3 analysis uses the corrected 128-channel dHPC/Port A recording.
 If an alternate Dec 3 256-channel file exists outside this repository, it is not

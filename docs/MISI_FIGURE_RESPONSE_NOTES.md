@@ -57,7 +57,14 @@ Dec 3 figures show the same style of readout for the 5/26 Hz null-control sessio
 ## Spectrogram Answer
 
 Use [trial_avg_spectrogram_dec4.png](../results/dec4/05_Frequency_Spectral/trial_avg_spectrogram_dec4.png).
-It is a **1–100 Hz** trial-averaged spectrogram around ON onset.
+It is a **1–100 Hz** trial-averaged spectrogram around ON onset. For the Dec 3
+comparison, use
+[trial_avg_spectrogram_dec3.png](../results/dec3/05_Frequency_Spectral/trial_avg_spectrogram_dec3.png),
+which uses the same color scale and time/frequency window for the Dec 3 dHPC
+`5` and `26` Hz conditions.
+For the direct shared-frequency comparison across sessions/regions, use
+[trial_avg_spectrogram_dec3_dec4_freq5_26.png](../results/dec4/05_Frequency_Spectral/trial_avg_spectrogram_dec3_dec4_freq5_26.png):
+Dec 3 dHPC, Dec 4 dHPC, and Dec 4 LEC at `5` and `26` Hz on one shared scale.
 
 The 60 Hz line is minimal in this figure, so there is no need to crop to 1–40 Hz.
 Sanity check from the same spectrogram method:
@@ -73,6 +80,11 @@ What the spectrogram shows:
 
 - LEC has a 50 Hz band that grows from amp100 to amp250.
 - dHPC does not show a comparable induced 50 Hz band.
+- The matched Dec 3 dHPC spectrogram does not show a clean sustained
+  commanded-frequency band at `26` Hz; it looks more broadband/state-like than
+  frequency-following.
+- The shared `5`/`26` Hz Dec 3-vs-Dec 4 comparison similarly does not reveal a
+  clean, sustained commanded-frequency band like the Dec 4 LEC `50` Hz panel.
 - The figure supports "measured 50 Hz LFP power grows with amplitude in LEC,"
   not "proven entrainment."
 

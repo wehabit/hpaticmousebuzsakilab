@@ -1,6 +1,6 @@
 # Dec 4 — LEC Slow-Oscillation / UP-DOWN-Compatible Screen
 
-This is a **no-figure** physiology check added after Vöröslakos's metadata reply.
+This is a **figure + table** physiology check added after Vöröslakos's metadata reply.
 His practical criterion was: dHPC ripples support CA1/dHPC placement; cortical
 UP/DOWN states and slow oscillations support cortex/LEC placement.
 
@@ -15,6 +15,8 @@ UP/DOWN states and slow oscillations support cortex/LEC placement.
 - Method: median LFP across good channels, Welch spectra, and 0.5-4 Hz
   slow-deflection counts. Script:
   [lec_slow_oscillation_screen_dec4.py](../analysis/lec_slow_oscillation_screen_dec4.py).
+- Figure:
+  [lec_slow_oscillation_screen_dec4.png](../results/dec4/12_ChannelQC_Traces/lec_slow_oscillation_screen_dec4.png).
 
 ## Result
 
@@ -28,6 +30,13 @@ UP/DOWN states and slow oscillations support cortex/LEC placement.
 Plain English: the LEC quiet-window LFP is strongly slow/delta-dominant relative
 to theta, and this is stable in both baseline and post-study. The dHPC comparator
 does not have that cortex-like slow/delta dominance because theta remains strong.
+
+This is the **soft** LEC/cortex support test. It asks whether LEC quiet-state LFP
+has cortex-like slow/delta dominance compared with dHPC. The stricter test asks
+whether we can see stereotyped UP/DOWN-state alternation in awake baseline/post
+data; that stricter image is
+[lec_updown_states_dec4.png](../results/dec4/12_ChannelQC_Traces/lec_updown_states_dec4.png)
+and should be described as negative/limited.
 
 ## Interpretation
 
@@ -43,5 +52,7 @@ medial/lateral, or subregion claims.
 ## Outputs
 
 - `analysis/outputs/dec4/lec_slow_oscillation_screen/slow_oscillation_summary.csv`
+- `analysis/outputs/dec4/lec_slow_oscillation_screen/slow_oscillation_spectra.csv`
 - `analysis/outputs/dec4/lec_slow_oscillation_screen/slow_deflection_events.csv`
+- `analysis/outputs/dec4/lec_slow_oscillation_screen/lec_slow_oscillation_screen_dec4.png`
 - `analysis/outputs/dec4/lec_slow_oscillation_screen/run_summary.json`

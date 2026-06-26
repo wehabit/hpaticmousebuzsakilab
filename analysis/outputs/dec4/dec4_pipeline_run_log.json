@@ -1,38 +1,20 @@
 [
   {
-    "step": "time_frequency_lfp",
-    "module": "time_frequency_lfp",
+    "step": "frequency_lfp",
+    "module": "frequency_lfp",
     "status": "ok",
-    "seconds": 50.7
-  },
-  {
-    "step": "phase_locking_lfp",
-    "module": "phase_locking_lfp",
-    "status": "ok",
-    "seconds": 56.2
-  },
-  {
-    "step": "trial_level_stats",
-    "module": "trial_level_stats_dec3",
-    "status": "ok",
-    "seconds": 117.6
-  },
-  {
-    "step": "broadband_transition",
-    "module": "broadband_transition_stats_dec3",
-    "status": "ok",
-    "seconds": 308.8
-  },
-  {
-    "step": "off_control_broadband",
-    "module": "off_control_broadband_dec3",
-    "status": "ok",
-    "seconds": 70.1
+    "seconds": 59.7
   },
   {
     "step": "reference_sensitivity",
     "module": "reference_sensitivity_lfp",
     "status": "ok",
-    "seconds": 158.1
+    "seconds": 167.0
+  },
+  {
+    "step": "artifact_aware_lfp",
+    "module": "artifact_aware_lfp",
+    "status": "ok",
+    "seconds": 8.6
   }
 ]

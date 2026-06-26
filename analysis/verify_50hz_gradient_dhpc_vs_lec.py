@@ -5,7 +5,7 @@ Uses the per-channel 50 Hz ON-OFF envelope from the artifact check
 (artifact_check_arrays.npz). For each probe separately, reports:
   - good-channel 50 Hz ON-OFF (mean/median/max) and dead-channel pickup
   - count of channels with extreme 50 Hz power (robust-z > 4) = "hot" channels
-  - per-shank breakdown (dHPC is 4-shank; LEC is one long linear probe)
+  - per-group breakdown (dHPC is four XML sections; LEC is two H15 shanks)
   - gradient test: does 50 Hz rise with proximity to a disconnected channel?
 and writes a side-by-side figure.
 """

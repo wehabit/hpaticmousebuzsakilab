@@ -3,9 +3,12 @@
 
 EXPLORATORY hippocampal physiology — secondary to the haptic 50 Hz result, and
 explicitly caveated:
-  * The CA1 pyramidal layer is NOT confirmed (provisional channel-map). The ripple
-    channel is chosen DATA-DRIVEN (max ripple-band power in the quiet baseline); its
-    layer identity is provisional.
+  * The channel map / shank order is verified (Cambridge NeuroTech H12_2; see
+    docs/DEC_PROBE_METADATA_VOROSLAKOS.md). The CA1 pyramidal LAYER is identified by
+    inference, not histology: the ripple channel is chosen DATA-DRIVEN (max ripple-band
+    power), and that channel sits on the probe's ripple-band power peak (shank 1 ~150 µm,
+    see docs/DEC_RIPPLE_LOCALIZATION_BY_SHANK.md) — consistent with CA1 pyramidale, but a
+    precise laminar boundary still needs histology / CSD.
   * Ripples are a hippocampal (CA1) event, so this runs on the dHPC probe only.
   * 50 Hz stimulus HARMONICS (100/150/200/250 Hz) fall inside the 100-250 Hz ripple
     band, so ON-state counts during freq50 trials may include harmonic artifact.
@@ -231,7 +234,7 @@ def main():
         summary.append(dict(session=name, ripple_channel=int(rip_ch), n_ripples=len(events),
                             median_amp_z=round(float(np.median(amps)), 2),
                             median_dur_ms=round(float(np.median(durs)), 1),
-                            note="data-driven channel; CA1 layer provisional; ON has 50 Hz-harmonic caveat"))
+                            note="data-driven channel = ripple-band power peak (CA1 layer by localization, not histology); ON has 50 Hz-harmonic caveat"))
         print(f"{name}: ripple ch={rip_ch}  n_ripples={len(events)}  "
               f"rates/s " + " ".join(f"{r['state']}={r['rate_hz']:.3f}" for r in rate_rows if r['session'] == name))
 
@@ -266,7 +269,7 @@ def _fig_rates(rows, out):
             if j == 1:
                 ax.text(0.5, 0.97, "ON: 50 Hz-harmonic caveat", transform=ax.transAxes,
                         ha="center", va="top", fontsize=8, color="#b00")
-    fig.suptitle("Sharp-wave ripples by state (95% bootstrap CI) — dHPC, data-driven channel (CA1 provisional)",
+    fig.suptitle("Sharp-wave ripples by state (95% bootstrap CI) — dHPC, data-driven channel (CA1 by ripple-band localization; layer not histology-confirmed)",
                  fontsize=12)
     fig.tight_layout(); fig.savefig(out / "ripple_rate_by_state.png", dpi=170); plt.close(fig)
 

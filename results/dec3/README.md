@@ -37,7 +37,7 @@ _Movement proxy (EMG-from-LFP) and the data-cleaning sensitivity check._
 - [movement_sensitivity.png](03_Movement_DataCleaning/movement_sensitivity.png)
 
 ### 04_EventAligned_LFP
-_Event-aligned broadband LFP per condition, by channel and by shank (200 trials)._
+_Event-aligned broadband LFP per condition, by channel and by shank/channel group (200 trials)._
 
 - [condition_average_lfp_collapsed.png](04_EventAligned_LFP/condition_average_lfp_collapsed.png)
 - [condition_by_channel_lfp_response_heatmap.png](04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png)
@@ -65,6 +65,8 @@ _Power at the driven 5/26 Hz frequency, frequency specificity, and the 1/f spect
 - [state_spectra_loglog.png](05_Frequency_Spectral/state_spectra_loglog.png)
 - [bandpower_general_states.png](05_Frequency_Spectral/bandpower_general_states.png)
 - [bandpower_driven_states.png](05_Frequency_Spectral/bandpower_driven_states.png)
+- [trial_avg_spectrogram_dec3.png](05_Frequency_Spectral/trial_avg_spectrogram_dec3.png)
+- [trial_avg_spectrogram_dec3_dec4_freq5_26.png](05_Frequency_Spectral/trial_avg_spectrogram_dec3_dec4_freq5_26.png)
 
 ### 06_Phase_Locking
 _Phase locking (PLV/ITPC) against chance, incl. the null-floor and onset-jitter checks._
@@ -144,6 +146,7 @@ _Kilosort cluster quality, drift, and ON-vs-OFF firing (PETH). Provisional until
 - [ripple_participation_by_celltype.png](11_Spikes/ripple_participation_by_celltype.png)
 - [ripple_on_rate_by_stim_freq.png](11_Spikes/ripple_on_rate_by_stim_freq.png)
 - [ripple_examples.png](11_Spikes/ripple_examples.png)
+- [ripple_localization_by_shank.png](11_Spikes/ripple_localization_by_shank.png)
 
 ### 12_ChannelQC_Traces
 _Per-channel noise QC plus raw/LFP trace-browsing pages._

@@ -14,10 +14,10 @@ import pandas as pd
 
 
 SHANK_MAP = {
-    "Shank 1 (96-127)": range(96, 128),
-    "Shank 2 (64-95)": range(64, 96),
-    "Shank 3 (32-63)": range(32, 64),
-    "Shank 4 (0-31)": range(0, 32),
+    "Section 1 (96-127)": range(96, 128),
+    "Section 2 (64-95)": range(64, 96),
+    "Section 3 (32-63)": range(32, 64),
+    "Section 4 (0-31)": range(0, 32),
 }
 
 
@@ -72,7 +72,7 @@ def plot_grouped_bars(frame: pd.DataFrame, output: Path) -> None:
     axes[2].set_ylabel("Stim - pre mean |LFP|")
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=2)
-    fig.suptitle("LFP Response by Shank, Amplitude, and Frequency")
+    fig.suptitle("LFP Response by 32-Channel Section, Amplitude, and Frequency")
     fig.tight_layout(rect=(0, 0.07, 1, 0.95))
     fig.savefig(output, dpi=180)
     plt.close(fig)
@@ -95,7 +95,7 @@ def plot_frequency_difference(frame: pd.DataFrame, output: Path) -> None:
     ax.set_xticks(amps)
     ax.set_xlabel("Amplitude")
     ax.set_ylabel("26 Hz response - 5 Hz response")
-    ax.set_title("Frequency Effect by Shank")
+    ax.set_title("Frequency Effect by 32-Channel Section")
     ax.grid(alpha=0.25)
     ax.legend()
     fig.tight_layout()
@@ -118,7 +118,7 @@ def plot_condition_heatmap_by_shank(frame: pd.DataFrame, output: Path) -> None:
     ax.set_yticklabels(pivot.index)
     ax.set_xticks(np.arange(len(pivot.columns)))
     ax.set_xticklabels(pivot.columns, rotation=30, ha="right")
-    ax.set_title("Mean LFP Response by Condition and Shank")
+    ax.set_title("Mean LFP Response by Condition and Section")
     for i in range(pivot.shape[0]):
         for j in range(pivot.shape[1]):
             value = pivot.iloc[i, j]

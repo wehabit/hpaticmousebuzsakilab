@@ -15,10 +15,10 @@ import pandas as pd
 
 
 SHANKS = {
-    "Shank 1 (96-127)": range(96, 128),
-    "Shank 2 (64-95)": range(64, 96),
-    "Shank 3 (32-63)": range(32, 64),
-    "Shank 4 (0-31)": range(0, 32),
+    "Section 1 (96-127)": range(96, 128),
+    "Section 2 (64-95)": range(64, 96),
+    "Section 3 (32-63)": range(32, 64),
+    "Section 4 (0-31)": range(0, 32),
 }
 
 
@@ -83,8 +83,11 @@ def plot_sustained_by_shank(summary: pd.DataFrame, output: Path) -> None:
             sem=("sustained_minus_pre_abs_lfp", lambda x: x.std(ddof=1) / np.sqrt(len(x))),
         )
     )
-    fig, axes = plt.subplots(2, 2, figsize=(14, 9), sharey=True)
-    axes = axes.ravel()
+    n_groups = len(SHANKS)
+    n_cols = 2 if n_groups <= 4 else 3
+    n_rows = int(np.ceil(n_groups / n_cols))
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(7 * n_cols, 4.5 * n_rows), sharey=True)
+    axes = np.atleast_1d(axes).ravel()
     amps = [100, 180, 250]
     x = np.arange(len(amps))
     width = 0.35
@@ -110,11 +113,13 @@ def plot_sustained_by_shank(summary: pd.DataFrame, output: Path) -> None:
         ax.set_title(shank)
         ax.set_xlabel("Amplitude")
         ax.grid(axis="y", alpha=0.25)
-    axes[0].set_ylabel("Sustained stim - pre mean |LFP|")
-    axes[2].set_ylabel("Sustained stim - pre mean |LFP|")
+    for ax in axes[len(SHANKS):]:
+        ax.axis("off")
+    for row in range(n_rows):
+        axes[row * n_cols].set_ylabel("Sustained stim - pre mean |LFP|")
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=2)
-    fig.suptitle("Sustained LFP Response, Onset/Offset Excluded")
+    fig.suptitle("Sustained LFP Response by Section/Group, Onset/Offset Excluded")
     fig.tight_layout(rect=(0, 0.07, 1, 0.95))
     fig.savefig(output, dpi=180)
     plt.close(fig)

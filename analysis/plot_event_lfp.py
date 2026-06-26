@@ -13,10 +13,10 @@ import numpy as np
 
 
 SHANKS = {
-    "Shank 1 (96-127)": np.arange(96, 128),
-    "Shank 2 (64-95)": np.arange(64, 96),
-    "Shank 3 (32-63)": np.arange(32, 64),
-    "Shank 4 (0-31)": np.arange(0, 32),
+    "Section 1 (96-127)": np.arange(96, 128),
+    "Section 2 (64-95)": np.arange(64, 96),
+    "Section 3 (32-63)": np.arange(32, 64),
+    "Section 4 (0-31)": np.arange(0, 32),
 }
 
 
@@ -81,7 +81,7 @@ def plot_shank_small_multiples(conditions: dict[str, dict[str, np.ndarray]], out
     fig.legend(handles, labels, loc="lower center", ncol=6, frameon=True)
     fig.supxlabel("Time from trial onset (s)")
     fig.supylabel("Median channel LFP, baseline-corrected")
-    fig.suptitle("Event-Aligned LFP by Shank")
+    fig.suptitle("Event-Aligned LFP by 32-Channel Section")
     fig.tight_layout(rect=(0, 0.08, 1, 0.95))
     fig.savefig(output, dpi=180)
     plt.close(fig)
@@ -110,7 +110,7 @@ def plot_freq_panels(conditions: dict[str, dict[str, np.ndarray]], output: Path)
     handles, labels = axes[0, 0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=4, frameon=True)
     fig.supxlabel("Time from trial onset (s)")
-    fig.supylabel("Median shank LFP, baseline-corrected")
+    fig.supylabel("Median section/group LFP, baseline-corrected")
     fig.suptitle("Event-Aligned LFP: One Panel Per Condition")
     fig.tight_layout(rect=(0, 0.08, 1, 0.95))
     fig.savefig(output, dpi=180)

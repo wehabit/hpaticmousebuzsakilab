@@ -13,10 +13,10 @@ import numpy as np
 
 
 SHANK_GROUPS = {
-    "shank1_ch96_127": list(range(96, 128)),
-    "shank2_ch64_95": list(range(64, 96)),
-    "shank3_ch32_63": list(range(32, 64)),
-    "shank4_ch0_31": list(range(0, 32)),
+    "shank1_ch96_127": ("Section 1 (96-127)", list(range(96, 128))),
+    "shank2_ch64_95": ("Section 2 (64-95)", list(range(64, 96))),
+    "shank3_ch32_63": ("Section 3 (32-63)", list(range(32, 64))),
+    "shank4_ch0_31": ("Section 4 (0-31)", list(range(0, 32))),
 }
 
 
@@ -27,6 +27,7 @@ def plot_group(
     start_s: float,
     duration_s: float,
     output_path: Path,
+    display_label: str,
 ) -> None:
     start = int(round(start_s * sample_rate_hz))
     n_samples = int(round(duration_s * sample_rate_hz))
@@ -45,7 +46,7 @@ def plot_group(
         ax.plot(time, chunk[:, row] + row * spacing, linewidth=0.45, color="black")
         ax.text(time[0], row * spacing, f"{channel}", ha="right", va="center", fontsize=8)
 
-    ax.set_title(f"{output_path.stem}: {start_s:.1f}-{start_s + duration_s:.1f} s")
+    ax.set_title(f"{display_label}: {start_s:.1f}-{start_s + duration_s:.1f} s")
     ax.set_xlabel("Recording time (s)")
     ax.set_yticks([])
     ax.grid(axis="x", alpha=0.2)
@@ -69,9 +70,9 @@ def main() -> None:
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
     for start_s in args.start_s:
-        for group_name, channels in SHANK_GROUPS.items():
+        for group_name, (display_label, channels) in SHANK_GROUPS.items():
             output = args.output_dir / f"{group_name}_start{int(round(start_s))}s.png"
-            plot_group(data, channels, args.sample_rate_hz, start_s, args.duration_s, output)
+            plot_group(data, channels, args.sample_rate_hz, start_s, args.duration_s, output, display_label)
             print(output)
 
 

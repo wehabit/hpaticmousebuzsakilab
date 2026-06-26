@@ -108,9 +108,10 @@ yet show **entrainment** (no stimulus phase was recorded), and we do **not** sho
   under-reports it) but is partly entangled with that drift — a state-stability caveat
   for any non-local comparison, and another reason the **local** ON/OFF and the
   recorded-stimulus next round are the right measures.
-- All 15 curated good **LEC** units sit in the 50 Hz **pickup zone** (peak channels
-  173–214; none in the clean shallow region), so unit location and pickup location
-  can't be spatially separated. The rate result still holds: ≈300 Hz high-pass
+- All 15 curated good **LEC** units sit on tissue-good contacts in the LEC probe zone
+  where 50 Hz pickup is elevated (global peak channels 173–214; none in the cleaner
+  shallow region), so unit location and pickup location can't be spatially separated
+  within LEC. The rate result still holds: ≈300 Hz high-pass
   removes 50 Hz pre-detection; the LEC population *leans down* during ON (10/15 units —
   additive pickup adds, not removes, apparent spikes); and two spike-artifact screens clear **0/8 up-going
   units** — no ON 50 Hz ACG comb, and no ON rise in ISI<2ms violations (unit 87 incl.;

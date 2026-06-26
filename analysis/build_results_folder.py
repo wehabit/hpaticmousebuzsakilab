@@ -61,6 +61,10 @@ MAP = {
         # band power across states (broadband/theta/gamma + driven bands)
         "../cross_dataset_spike_compare/lfp_bandpower_states/bandpower_general_states.png",
         "../cross_dataset_spike_compare/lfp_bandpower_states/bandpower_driven_states.png",
+        # trial-averaged spectrogram around ON onset, matched to Dec 4's Misi-requested figure
+        "../cross_dataset_spike_compare/spectrogram/trial_avg_spectrogram_dec3.png",
+        # shared-frequency comparison across Dec 3 dHPC, Dec 4 dHPC, and Dec 4 LEC
+        "../cross_dataset_spike_compare/spectrogram/trial_avg_spectrogram_dec3_dec4_freq5_26.png",
     ],
     "phase": [
         "phase_locking_lfp/plv_condition_summary.png",
@@ -131,11 +135,13 @@ MAP = {
         # full CellExplorer ACG-type classification (tau_rise; 3-way) + honest caveat
         "../cross_dataset_spike_compare/acg_type/acg_type_classification_plane.png",
         "../cross_dataset_spike_compare/acg_type/acg_type_fits.png",
-        # sharp-wave ripples across states (exploratory, dHPC, CA1 provisional)
+        # sharp-wave ripples across states (exploratory, dHPC/CA1-like; no fine layer claim)
         "../cross_dataset_spike_compare/ripples/ripple_rate_by_state.png",
         "../cross_dataset_spike_compare/ripples/ripple_participation_by_celltype.png",
         "../cross_dataset_spike_compare/ripples/ripple_on_rate_by_stim_freq.png",
         "../cross_dataset_spike_compare/ripples/ripple_examples.png",
+        # ripple power localized by dHPC section/depth: detection ch sits on focal section-1 peak
+        "../cross_dataset_spike_compare/ripples/ripple_localization_by_shank.png",
     ],
     "channelqc": [
         "channel_qc/channel_qc_metrics.png",
@@ -223,7 +229,7 @@ def main(session="dec3"):
         "timeline": "Session at a glance: baseline -> stimulation -> post, with the accelerometer TTL and LFP.",
         "ttl": "Accelerometer-TTL vs commanded ON time: alignment, per-trial onset, and ON/OFF edge counts.",
         "movement": "Movement proxy (EMG-from-LFP) and the data-cleaning sensitivity check.",
-        "event_lfp": "Event-aligned broadband LFP per condition, by channel and by shank (200 trials).",
+        "event_lfp": "Event-aligned broadband LFP per condition, by channel and by shank/channel group (200 trials).",
         "frequency": "Power at the driven 5/26 Hz frequency, frequency specificity, and the 1/f spectral-slope test.",
         "phase": "Phase locking (PLV/ITPC) against chance, incl. the null-floor and onset-jitter checks.",
         "broadband": "Onset / sustained / offset broadband windows, OFF-control, and trial-level bootstrap CIs.",

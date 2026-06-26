@@ -84,6 +84,14 @@ SLIDES = [
     dict(kind="content", title="Design: parametric vibrotactile stimulation with simultaneous electrophysiology", fig=TRIAL,
          take="3 s ON / 3 s OFF blocks across four carrier frequencies (5/10/26/50 Hz) and three amplitudes; ~200 repeats/condition; dual-region linear-probe recording (hippocampus + entorhinal cortex).",
          notes="A tactor delivers a sinusoidal vibration in 3 s ON / 3 s OFF blocks (figure: trial structure + analysis windows). We vary carrier frequency (5, 10, 26, 50 Hz) and amplitude, ~200 trials/condition, recording extracellularly with linear silicon probes in two connected regions at once: hippocampus (spatial/memory) and entorhinal cortex (its principal cortical input). Each window is referenced to the 1 s pre-stimulus baseline; 100 ms margins isolate onset/offset transients."),
+    dict(kind="side_by_side", kicker="the recording",
+         title="The setup, and the silicon probes that went into the brain",
+         figs=[
+             (f"{CF}/experiment.png", "Vibrotactile recording setup"),
+             (f"{CF}/probes_composite.png", "Implanted probes — Cambridge NeuroTech ASSY-350"),
+         ],
+         take="Vibrotactile stimulation on the body during simultaneous dual-region recording. Probes (128 ch each): dHPC = H12/L13 (2 shanks × 2 columns, AP 1.8 / ML 1.5), LEC = H15 (2 shanks, AP 3.8 / ML 3.8 at 10°).",
+         notes="The physical recording. A vibrotactile tactor delivers the buzz to the body (left), while two Cambridge NeuroTech silicon probes record extracellularly from the two target regions at the same time. Right: the actual probe maps — the dorsal-hippocampus probe (H12/L13) is two shanks each carrying two columns of 32 electrodes (128 channels), implanted at AP 1.8 / ML 1.5, depth 1–1.8 mm; the entorhinal-cortex probe (H15) is two single-column shanks (128 channels), implanted at AP 3.8 / ML 3.8 at a 10° angle. The tapered shanks shown are the part inserted into the brain — each blue square is one recording site. NOTE: replace the left panel with the live experiment-setup video in the .pptx (PowerPoint plays embedded video; the .pdf keeps this still). The earlier shank-resolved analyses label dHPC by 32-channel column-group (1–4) = these 2 physical shanks × 2 columns."),
     dict(kind="content", kicker="key methodological distinction", title="One electrode yields two readouts: LFP and single-unit activity", fig=f"{CF}/stadium.png",
          take="LFP = low-frequency aggregate field (many cells). A single unit = one individual neuron's firing (spikes), isolated by spike sorting. They differ in what can fake them — spikes are the conservative readout.",
          notes="The crux of the whole study. An extracellular electrode captures two regimes. The local field potential (LFP) is the low-frequency aggregate of synaptic/transmembrane currents from many neurons — large, but non-specific and susceptible to volume-conducted or instrumental noise. A 'single unit' is one individual neuron's spiking, isolated by spike sorting (clustering spikes by waveform). Stadium intuition: the crowd's roar (LFP) versus one identified shout (a single unit). The asymmetry that matters: an electrical artifact can add power to the LFP, but it cannot make a sorted neuron fire — so single-unit rate changes are the conservative, artifact-resistant evidence."),
@@ -98,6 +106,14 @@ SLIDES = [
          fig=f"{F}/05_Frequency_Spectral/spectral_slope_itpc_dec4.png",
          take="No narrowband spectral peak above the 1/f background, and inter-trial phase consistency at chance — across 5/10/26/50 Hz, replicated across sessions.",
          notes="The entrainment test (recall Part 2's definition). Frequency-following predicts a narrowband peak at the carrier above the 1/f background plus above-chance inter-trial phase consistency. We see neither, at any carrier, replicated across two sessions — no power- or phase-based frequency-following in hippocampus."),
+    dict(kind="content", title="Matched spectrograms at 5 and 26 Hz: no clean shared-frequency following",
+         fig=f"{F}/05_Frequency_Spectral/trial_avg_spectrogram_dec3_dec4_freq5_26.png",
+         take="Dec 3 dHPC, Dec 4 dHPC, and Dec 4 LEC do not show a clean sustained band at the commanded 5 or 26 Hz carrier.",
+         notes="This is the rawer time-frequency comparison Misi asked for. Rows are Dec 3 hippocampus, Dec 4 hippocampus, and Dec 4 entorhinal cortex. Columns are the shared carrier frequencies — 5 and 26 Hz — at all three amplitudes. Same method, same time window, same color scale. The dotted line is the commanded carrier; black vertical lines mark the 3 s ON window. Takeaway: the shared 5/26 Hz conditions do not show a clean sustained commanded-frequency band. This supports the interpretation that Dec 3's 26 Hz LFP effect was broad/transient or state-like, not clean frequency-following."),
+    dict(kind="content", title="Dec 4 spectrogram: the narrowband LFP effect appears at 50 Hz, mainly in LEC",
+         fig=f"{F}/05_Frequency_Spectral/trial_avg_spectrogram_dec4.png",
+         take="At 50 Hz, LEC shows an amplitude-graded narrowband line; dHPC does not. This is a measured LFP effect, but artifact-suspect.",
+         notes="This is the matched Dec 4 spectrogram. Top row is LEC, bottom row is dHPC; columns are amp100, amp180, amp250 at 50 Hz. The LEC 50 Hz band grows with amplitude, while dHPC lacks a comparable 50 Hz band. Be disciplined in wording: this is a real measured LFP spectral line, but the artifact check later shows LEC 50 Hz pickup on disconnected/dead channels, so it is not clean neural entrainment evidence. It is useful because it localizes where the LFP effect appears and contrasts it with the cleaner single-unit result."),
     dict(kind="content", kicker="finding 3", title="Entorhinal cortex shows an amplitude-graded 50 Hz LFP increase",
          fig=f"{F}/05_Frequency_Spectral/driven_power_change_by_analysis_group.png",
          take="A narrowband 50 Hz LFP power increase, scaling with amplitude — the candidate entrainment signal. But the LFP is exactly the readout most vulnerable to artifact.",
@@ -117,10 +133,13 @@ SLIDES = [
          fig=f"{F}/11_Spikes/raster_psth_examples_dec4.png",
          take="Four example single units (hippocampus & entorhinal, up- and down-modulated): each tick is one spike, each row one of 200 trials; the PSTH below averages them. Firing shifts during the 3 s ON window (red) and returns during OFF (blue), measured against a never-stimulated pre-study baseline (orange).",
          notes="The per-unit picture behind the population result. Top of each column is a spike raster — one row per trial (200 trials), each vertical tick a single spike from that sorted neuron; below it the trial-averaged firing rate (PSTH). Red shade is the 3 s ON window, blue the 3 s OFF window. The orange dashed line is each unit's own firing rate during the 30 minutes of quiet recording before the study ever started — the never-stimulated reference — so you can see not just the ON-vs-OFF change but where the firing sits relative to baseline. Two units drive up (↑) during 50 Hz and two are suppressed (↓); all return toward baseline in OFF. This is the readout pickup cannot fake: an electrical artifact can add power to the field, but it cannot place or remove a sorted neuron's spikes."),
-    dict(kind="content", kicker="finding 4 · all units + control", title="Every curated unit in one view — and the Dec 3 negative control",
-         fig=f"{F}/11_Spikes/raster_psth_all_good_units_combined.png",
-         take="All Dec 4 units (hippocampus + entorhinal at 50 Hz) stacked over all Dec 3 units (26 Hz, separate session) on one shared scale. Dec 4 shows an ON-window response — 9/15 hippocampal units significant; Dec 3 is flat — 0/29. The effect is present at 50 Hz and absent in the control session.",
-         notes="The whole dataset on one shared scale, each row a unit's ON/OFF firing relative to its pre-onset baseline (red = rises during ON, black = falls), with the side bar giving each unit's ON−OFF change in Hz. Top block — Dec 4 hippocampus — shows a clear red column through the 3 s ON window (9 of 15 units significant; the strongest, u126, +3.98 Hz). Middle — Dec 4 entorhinal — is mixed and net-suppressed (3 of 15). Bottom — Dec 3 hippocampus at 26 Hz, recorded on a different day — is a flat speckle with no ON column (0 of 29 units responsive). That bottom block is an internal negative control: same probes, same pipeline, same analysis, a non-50 Hz carrier — and the effect vanishes. So the 50 Hz single-unit modulation is neither a sorting artifact nor a generic response to any vibration; it is specific to the condition where the population effect appears."),
+    dict(kind="side_by_side", kicker="finding 4 · all units + control", title="Every curated unit in one view — Dec 3 left, Dec 4 right",
+         figs=[
+             (f"results/dec3/11_Spikes/raster_psth_all_good_units_dec3.png", "Dec 3 dHPC · 26 Hz control"),
+             (f"{F}/11_Spikes/raster_psth_all_good_units_dec4.png", "Dec 4 dHPC + LEC · 50 Hz"),
+         ],
+         take="Left: Dec 3 is flat after curation — 0/29 responsive units. Right: Dec 4 shows the 50 Hz effect — strongest in dHPC, mixed/suppressive in LEC. Same readout: sorted single units, not LFP pickup.",
+         notes="Read this left to right. Left panel: Dec 3 hippocampus at 26 Hz, all 29 curated good units, same analysis logic, no responsive unit-conditions after curation. That is the negative control: the pipeline does not invent an ON response. Right panel: Dec 4 all curated good units at 50 Hz — hippocampus and entorhinal cortex. Dec 4 shows a clear ON-window rate modulation, especially in dHPC, with LEC mixed and partly suppressive. Each row is one sorted unit's trial-averaged firing around ON onset; red means firing above that unit's baseline, black means below. This is the cleaner evidence than the LFP because a stimulator artifact can add a 50 Hz line to the field, but it cannot make Kilosort place real spikes into one neuron's cluster."),
     dict(kind="content", kicker="controls", title="Controls: high-pass separation + autocorrelogram / ISI screens",
          fig=f"{F}/11_Spikes/unit87_acg_artifact_screen.png",
          take="Spikes are detected >~300 Hz (50 Hz pickup is removed pre-detection); units show no stimulus-locked 50 Hz periodicity and no ON-rise in refractory violations.",
@@ -432,6 +451,17 @@ def build_pptx(slides, out):
             ih, iw = maxh, maxh * ar
         s.shapes.add_picture(str(path), Inches((SW - iw) / 2), Inches(top), width=Inches(iw), height=Inches(ih))
 
+    def pic_box(s, path, x, y, maxw, maxh):
+        if not Path(path).exists():
+            txt(s, x, y + maxh / 2 - 0.25, maxw, 0.5, f"[missing: {path}]", 12, color=GR, align=PP_ALIGN.CENTER)
+            return
+        w, h = Image.open(path).size; ar = w / h
+        iw, ih = maxw, maxw / ar
+        if ih > maxh:
+            ih, iw = maxh, maxh * ar
+        s.shapes.add_picture(str(path), Inches(x + (maxw - iw) / 2), Inches(y + (maxh - ih) / 2),
+                             width=Inches(iw), height=Inches(ih))
+
     for i, sl in enumerate(slides):
         s = prs.slides.add_slide(BL); k = sl["kind"]
         if k in ("title", "closing"):
@@ -454,6 +484,19 @@ def build_pptx(slides, out):
             if sl.get("refs"):
                 txt(s, 1, sl.get("refs_y", sl.get("sub_y", 4.1) + 0.55), SW - 2, 0.5,
                     sl["refs"], 10.5, color=rgb("#D7D2CB"))
+        elif k == "side_by_side":
+            bar(s, 0, 0, SW, 0.18, TL); y = 0.45
+            if sl.get("kicker"):
+                txt(s, 0.6, y, SW - 1.2, 0.4, sl["kicker"].upper(), 14, bold=True, color=TL); y += 0.45
+            txt(s, 0.6, y, SW - 1.2, 0.72, sl["title"], 23, bold=True, color=NV)
+            left_x, right_x = 0.45, 6.85
+            panel_y, panel_w, panel_h = 1.95, 5.95, 4.42
+            for x, (path, label) in zip((left_x, right_x), sl["figs"]):
+                txt(s, x, 1.55, panel_w, 0.32, label, 12.5, bold=True, color=TL, align=PP_ALIGN.CENTER)
+                pic_box(s, path, x, panel_y, panel_w, panel_h)
+            if sl.get("take"):
+                bar(s, 0, SH - 0.9, SW, 0.9, PN)
+                txt(s, 0.6, SH - 0.87, SW - 1.2, 0.85, sl["take"], 14.5, bold=True, color=TL, anchor=MSO_ANCHOR.MIDDLE)
         elif sl.get("full_fig"):
             if Path(sl["fig"]).exists():
                 s.shapes.add_picture(str(sl["fig"]), Inches(0.15), Inches(0.10), width=Inches(SW - 0.30))
@@ -486,8 +529,13 @@ def build_pdf(slides, out):
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     import matplotlib.image as mpimg
-    from matplotlib.backends.backend_pdf import PdfPages
+    from PIL import Image
+    from tempfile import TemporaryDirectory
     slide_h = 7.5
+    # Render full slides to high-resolution page images before assembling the PDF.
+    # Matplotlib's native PDF backend can look soft in some viewers for this deck's
+    # dense raster figures, even when the source PNGs are high resolution.
+    pdf_dpi = 300
 
     def wrap(t, w):
         return "\n".join(textwrap.fill(line, w) for line in t.split("\n"))
@@ -501,18 +549,19 @@ def build_pdf(slides, out):
         dw_in = min(bw_in, bh_in * ar); dh_in = dw_in / ar
         wf, hf = dw_in / fw, dh_in / fh
         ax = fig.add_axes([box[0] + (box[2] - wf) / 2, box[1] + (box[3] - hf) / 2, wf, hf])
-        ax.imshow(im); ax.axis("off")
+        ax.imshow(im, interpolation="none"); ax.axis("off")
 
     def imgbox(fig, path, x, top, w):
         if not Path(path).exists():
             return
         im = mpimg.imread(path); ar = im.shape[1] / im.shape[0]
         fw, fh = fig.get_size_inches(); hf = (w * fw / ar) / fh
-        ax = fig.add_axes([x, top - hf, w, hf]); ax.imshow(im); ax.axis("off")
+        ax = fig.add_axes([x, top - hf, w, hf]); ax.imshow(im, interpolation="none"); ax.axis("off")
 
-    with PdfPages(out) as pdf:
+    page_paths = []
+    with TemporaryDirectory() as tmpdir:
         for i, sl in enumerate(slides):
-            fig = plt.figure(figsize=(13.333, 7.5)); k = sl["kind"]
+            fig = plt.figure(figsize=(13.333, 7.5), dpi=pdf_dpi); k = sl["kind"]
             if k in ("title", "closing"):
                 fig.patch.set_facecolor(NAVY); imgbox(fig, LOGO_W, 0.05, 0.93, 0.30)
                 if k == "title":
@@ -533,6 +582,20 @@ def build_pdf(slides, out):
                 if sl.get("refs"):
                     refs_y = max(0.08, 1.0 - (sl.get("refs_y", sl.get("sub_y", 4.1) + 0.55) / slide_h))
                     fig.text(0.08, refs_y, wrap(sl["refs"], 102), fontsize=9.2, color="#D7D2CB")
+            elif k == "side_by_side":
+                fig.patch.set_facecolor("white")
+                fig.add_artist(plt.Rectangle((0, 0.975), 1, 0.025, color=TEAL, transform=fig.transFigure))
+                yt = 0.93
+                if sl.get("kicker"):
+                    fig.text(0.05, 0.945, sl["kicker"].upper(), fontsize=12, color=TEAL, weight="bold"); yt = 0.90
+                fig.text(0.05, yt, wrap(sl["title"], 70), fontsize=21, color=NAVY, weight="bold", va="top")
+                boxes = [(0.035, 0.17, 0.445, 0.62), (0.520, 0.17, 0.445, 0.62)]
+                for (path, label), box in zip(sl["figs"], boxes):
+                    fig.text(box[0] + box[2] / 2, 0.805, label, fontsize=11.5, color=TEAL, weight="bold", ha="center")
+                    place(fig, path, box)
+                if sl.get("take"):
+                    fig.add_artist(plt.Rectangle((0, 0), 1, 0.12, color=PANEL, transform=fig.transFigure))
+                    fig.text(0.05, 0.06, wrap(sl["take"], 120), fontsize=12.5, color=TEAL, weight="bold", va="center")
             elif sl.get("full_fig"):
                 fig.patch.set_facecolor("white")
                 place(fig, sl["fig"], (0.01, 0.01, 0.98, 0.98))
@@ -554,7 +617,19 @@ def build_pdf(slides, out):
             if k != "title" and not sl.get("full_fig"):
                 fig.text(0.955, 0.955, f"{i + 1} / {len(slides)}", ha="right", va="top", fontsize=11,
                          color=("white" if k in ("section", "closing") else GREY))
-            pdf.savefig(fig, facecolor=fig.get_facecolor()); plt.close(fig)
+            page_path = Path(tmpdir) / f"slide_{i + 1:02d}.jpg"
+            fig.savefig(page_path, format="jpg", facecolor=fig.get_facecolor(), dpi=pdf_dpi,
+                        pil_kwargs={"quality": 96, "subsampling": 0})
+            plt.close(fig)
+            page_paths.append(page_path)
+
+        page_images = [Image.open(p).convert("RGB") for p in page_paths]
+        try:
+            page_images[0].save(out, save_all=True, append_images=page_images[1:],
+                                resolution=pdf_dpi, quality=96, subsampling=0)
+        finally:
+            for im in page_images:
+                im.close()
 
 
 def main():

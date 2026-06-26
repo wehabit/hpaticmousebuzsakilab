@@ -27,6 +27,16 @@ PHYSICAL_SHANKS = {
 }
 
 
+def physical_group_label() -> str:
+    """Display label for PHYSICAL_SHANKS, which Dec 4 monkeypatches to probe groups."""
+    labels = list(PHYSICAL_SHANKS)
+    if labels and all(label.startswith("Physical Shank") for label in labels):
+        return "Physical Shank"
+    if labels and all(label.startswith(("A_", "B_")) for label in labels):
+        return "Probe-Level Group"
+    return "Physical/Probe Group"
+
+
 def load_lfp(path: Path, n_channels: int) -> np.memmap:
     samples = path.stat().st_size // np.dtype("<i2").itemsize // n_channels
     return np.memmap(path, dtype="<i2", mode="r", shape=(samples, n_channels))
@@ -289,8 +299,9 @@ def main() -> None:
     )
     shank_summary.to_csv(args.output_dir / "frequency_lfp_physical_shank_summary.csv", index=False)
 
+    physical_label = physical_group_label()
     plot_group_power(summary, args.output_dir / "driven_power_change_by_analysis_group.png", "analysis_group", "Driven-Frequency LFP Power by Analysis Group")
-    plot_group_power(summary, args.output_dir / "driven_power_change_by_physical_shank.png", "physical_shank", "Driven-Frequency LFP Power by Physical Shank")
+    plot_group_power(summary, args.output_dir / "driven_power_change_by_physical_shank.png", "physical_shank", f"Driven-Frequency LFP Power by {physical_label}")
     plot_channel_heatmap(summary, args.output_dir / "driven_power_change_by_channel.png")
     plot_frequency_specificity(summary, args.output_dir / "frequency_specificity_by_group.png")
 
@@ -301,7 +312,7 @@ def main() -> None:
         f"<p>Pre and stim windows are each {args.window_duration_s:g} s. Stim window starts {args.artifact_margin_s:g} s after onset to avoid onset artifact.</p>",
         "<p>Values are log2(stim power / pre power). Positive values mean power increased during stimulation.</p>",
         "<h2>Driven Power by Analysis Group</h2><img src='driven_power_change_by_analysis_group.png'>",
-        "<h2>Driven Power by Physical Shank</h2><img src='driven_power_change_by_physical_shank.png'>",
+        f"<h2>Driven Power by {physical_label}</h2><img src='driven_power_change_by_physical_shank.png'>",
         "<h2>Driven Power by Channel</h2><img src='driven_power_change_by_channel.png'>",
         "<h2>5 Hz and 26 Hz Specificity</h2><img src='frequency_specificity_by_group.png'>",
         "</body></html>",

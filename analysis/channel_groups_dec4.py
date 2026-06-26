@@ -10,7 +10,8 @@ open questions (docs/OPEN_QUESTIONS.md, "Recording Metadata" Q1/Q2):
 
 - Port A  -> amplifier.dat columns 0-127   -> dHPC, H12_2 probe
              *** identical probe & channel map to the Dec 3 recording ***
-             (4 x 32-channel groups)
+             (4 x 32-channel XML groups; Cambridge H12/L13 map indicates
+              two physical shanks split into upper/lower sections)
 - Port B  -> amplifier.dat columns 128-255 -> LEC, H15 probe  (NEW on Dec 4)
              (2 x 64-channel shanks)
 
@@ -37,9 +38,10 @@ PROBES = {
     "B_LEC_128-255": PROBE_B_LEC,
 }
 
-# Fine analysis groups for local median referencing, matching amplifier.xml:
-#   Port A (dHPC): four 32-channel groups  (same split as Dec 3)
-#   Port B (LEC):  two 64-channel shanks
+# Fine analysis groups for local median referencing, matching amplifier.xml.
+# These are six verified XML groups / shank sections, not six independent
+# physical shanks. Port A dHPC is likely two physical shanks split into four
+# upper/lower sections; Port B LEC contributes two 64-channel physical shanks.
 ANALYSIS_GROUPS = {
     "A_dHPC_0-31": list(range(0, 32)),
     "A_dHPC_32-63": list(range(32, 64)),
@@ -49,7 +51,8 @@ ANALYSIS_GROUPS = {
     "B_LEC_192-255": list(range(192, 256)),
 }
 
-# Coarser "physical shank" grouping = the two probes.
+# Historical compatibility name used by the Dec 4 pipeline as a coarse
+# probe-level reference grouping, not a literal physical-shank map.
 PHYSICAL_SHANKS = dict(PROBES)
 
 # Convenience for scripts that key off a SHANKS dict of ranges.
