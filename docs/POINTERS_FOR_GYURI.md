@@ -68,20 +68,37 @@ dHPC has none. *A real measured line, but artifact-suspect — see the pickup co
 
 ## …and a battery of other analyses
 
-We also ran the following (links open each figure at full resolution):
+### The LFP 50 Hz is largely pickup (not entrainment)
+
+**50hz_pickup_gradient_dhpc_vs_lec.png** — disconnected channels carry the 50 Hz ~6×.
+
+[![50hz_pickup_gradient_dhpc_vs_lec](https://raw.githubusercontent.com/wehabit/hpaticmousebuzsakilab/main/results/dec4/12_ChannelQC_Traces/50hz_pickup_gradient_dhpc_vs_lec.png)](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/12_ChannelQC_Traces/50hz_pickup_gradient_dhpc_vs_lec.png)
+
+**fiftyhz_tissue_contamination_dec4.png** — it reaches ~1/3 of the *good* LEC tissue channels too; dHPC tissue is clean.
+
+[![fiftyhz_tissue_contamination_dec4](https://raw.githubusercontent.com/wehabit/hpaticmousebuzsakilab/main/results/dec4/12_ChannelQC_Traces/fiftyhz_tissue_contamination_dec4.png)](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/12_ChannelQC_Traces/fiftyhz_tissue_contamination_dec4.png)
+
+**spectral_slope_itpc_dec4.png** — narrowband 50 Hz above 1/f in LEC, but **ITPC at chance** = induced, not entrained.
+
+[![spectral_slope_itpc_dec4](https://raw.githubusercontent.com/wehabit/hpaticmousebuzsakilab/main/results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png)](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png)
+
+### The spikes are real (and summarized)
+
+**unit87_acg_artifact_screen.png** — high-pass detection (>300 Hz) + ACG/ISI screens; load-bearing because all LEC units sit on contaminated channels.
+
+[![unit87_acg_artifact_screen](https://raw.githubusercontent.com/wehabit/hpaticmousebuzsakilab/main/results/dec4/11_Spikes/unit87_acg_artifact_screen.png)](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/unit87_acg_artifact_screen.png)
+
+**spike_onoff_cross_dataset.png** — the ON/OFF summary: Dec 3 null vs Dec 4 50 Hz responders, both regions.
+
+[![spike_onoff_cross_dataset](https://raw.githubusercontent.com/wehabit/hpaticmousebuzsakilab/main/results/dec4/11_Spikes/spike_onoff_cross_dataset.png)](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/spike_onoff_cross_dataset.png)
+
+---
+
+The rest (links open each figure at full resolution):
 
 **It's genuine CA1.**
 - [ripple_examples.png](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/ripple_examples.png) — real sharp-wave ripples.
 - [ripple_localization_by_shank.png](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/ripple_localization_by_shank.png) — ripple-band power peaks at the data-driven detection channel, both sessions = CA1 pyramidal layer.
-
-**The LFP 50 Hz is largely pickup (not entrainment).**
-- [50hz_pickup_gradient_dhpc_vs_lec.png](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/12_ChannelQC_Traces/50hz_pickup_gradient_dhpc_vs_lec.png) — disconnected channels carry the 50 Hz ~6×.
-- [fiftyhz_tissue_contamination_dec4.png](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/12_ChannelQC_Traces/fiftyhz_tissue_contamination_dec4.png) — it reaches ~1/3 of the *good* LEC tissue channels too; dHPC tissue is clean.
-- [spectral_slope_itpc_dec4.png](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png) — narrowband 50 Hz above 1/f in LEC, but **ITPC at chance** = induced, not entrained.
-
-**The spikes are real (and summarized).**
-- [unit87_acg_artifact_screen.png](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/unit87_acg_artifact_screen.png) — high-pass detection (>300 Hz) + ACG/ISI screens; load-bearing because all LEC units sit on contaminated channels.
-- [spike_onoff_cross_dataset.png](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/spike_onoff_cross_dataset.png) — the ON/OFF summary: Dec 3 null vs Dec 4 50 Hz responders, both regions.
 
 **Where on the probe, and what cell types.**
 - [unit_by_shank_dec4.png](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/unit_by_shank_dec4.png) — responders span sections (not a one-shank quirk).
