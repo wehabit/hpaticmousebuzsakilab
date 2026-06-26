@@ -106,6 +106,7 @@ MAP = {
         "movement/movement_sensitivity.png",
     ],
     "event_lfp": [
+        "event_aligned_lfp/raw_lfp_time_domain_examples_dec4.png",
         "event_aligned_lfp/condition_average_lfp_collapsed.png",
         "event_aligned_lfp/condition_by_channel_lfp_response_heatmap.png",
         "artifact_aware_lfp/artifact_window_comparison.png",
@@ -170,13 +171,14 @@ MAP = {
         # single-unit ON/OFF result (curated good units), cross-dataset (paths via ../)
         ("../cross_dataset_spike_compare/spike_onoff_cross_dataset.png", None),
         ("../cross_dataset_spike_compare/spike_50hz_interpretation.png", None),
-        # per-probe ON/OFF PETH + heatmaps
+        # Per-probe ON/OFF summaries and heatmaps.
+        # The older initial Kilosort-label onset PETHs stay audit-only in
+        # analysis/outputs/dec4/spike_peth_on_off_*; curated raster/PSTH figures
+        # below are the presentation-safe time-course views.
         ("spike_peth_on_off_dhpc/condition_mean_on_minus_off.png", "dHPC_condition_mean_on_minus_off.png"),
         ("spike_peth_on_off_dhpc/unit_condition_on_minus_off_heatmap_ks_good.png", "dHPC_unit_condition_heatmap.png"),
-        ("spike_peth_on_off_dhpc/peth_onset_ks_good_units.png", "dHPC_peth_onset_good_units.png"),
         ("spike_peth_on_off_lec/condition_mean_on_minus_off.png", "LEC_condition_mean_on_minus_off.png"),
         ("spike_peth_on_off_lec/unit_condition_on_minus_off_heatmap_ks_good.png", "LEC_unit_condition_heatmap.png"),
-        ("spike_peth_on_off_lec/peth_onset_ks_good_units.png", "LEC_peth_onset_good_units.png"),
         # cross-region 50 Hz coordination + the soft-spot ACG/ISI artifact screen
         ("coordination_50hz/coordination_50hz.png", "coordination_50hz_pooled.png"),
         ("coordination_50hz_amp250/coordination_50hz.png", "coordination_50hz_amp250.png"),
@@ -226,6 +228,9 @@ MAP = {
         ("artifact_check_50hz/gradient_dhpc_vs_lec.png", "50hz_pickup_gradient_dhpc_vs_lec.png"),
         # 50 Hz pickup resolved by verified XML group / shank section
         ("../cross_dataset_spike_compare/lfp_50hz_by_shank/fiftyhz_by_shank_dec4.png", "fiftyhz_by_shank_dec4.png"),
+        # 50 Hz pickup reaches GOOD LEC tissue channels too (not only dead); units still high-pass clean
+        ("../cross_dataset_spike_compare/lfp_50hz_by_shank/fiftyhz_tissue_contamination_dec4.png",
+         "fiftyhz_tissue_contamination_dec4.png"),
         # anatomy confirmation: LEC UP/DOWN test (honest negative on awake data)
         ("../cross_dataset_spike_compare/updown/lec_updown_states_dec4.png", "lec_updown_states_dec4.png"),
         # anatomy support: soft slow/delta screen for cortex-like LEC physiology

@@ -54,6 +54,28 @@ Dec 3 figures show the same style of readout for the 5/26 Hz null-control sessio
 | Frequency-specificity | [`psth_frequency_specific_dec4.png`](../results/dec4/11_Spikes/psth_frequency_specific_dec4.png) and [`raster_frequency_specific_dec4.png`](../results/dec4/11_Spikes/raster_frequency_specific_dec4.png) | Same Dec 3 null-control PSTH/raster above; Dec 3 only had `5`/`26` Hz. | Dec 4 modulation is concentrated at `50` Hz; lower-frequency conditions do not show the same effect. |
 | 50 Hz cycle-following check | [`acg_50hz_following_dec4.png`](../results/dec4/11_Spikes/acg_50hz_following_dec4.png) | Not applicable; Dec 3 did not include 50 Hz. | Tests whether 50 Hz-responsive units fire in a 20 ms comb. Current result supports firing-rate modulation, not proven spike frequency-following. |
 
+## Raw-ish LFP Example Answer
+
+If the question is "can you show a more raw LFP example?", do **not** use the
+spectrogram or driven-power bar plot as the first answer. Those are useful
+summaries, but they are not raw-looking LFP.
+
+Use
+[raw_lfp_time_domain_examples_dec4.png](../results/dec4/04_EventAligned_LFP/raw_lfp_time_domain_examples_dec4.png).
+It shows representative Dec 4 dHPC and LEC time-domain LFP traces before the
+spectral summaries: single-trial `amp250_freq50` examples on top, and
+trial-averaged high-amplitude LFP traces across `5`/`10`/`26`/`50` Hz underneath.
+These traces are baseline-subtracted and scaled to microvolts. They are still LFP
+examples, not proof of entrainment, and the LEC 50 Hz LFP remains artifact-suspect.
+
+Email-safe wording:
+
+> You are right that the old channel heatmap is not an intuitive figure. I would
+> not lead with it. I added a time-domain LFP example panel showing actual
+> baseline-subtracted LFP traces around vibration onset, plus trial-averaged LFP
+> traces across the high-amplitude conditions. Then I would use the spectrogram
+> as the spectral summary, not as the raw example.
+
 ## Spectrogram Answer
 
 Use [trial_avg_spectrogram_dec4.png](../results/dec4/05_Frequency_Spectral/trial_avg_spectrogram_dec4.png).
