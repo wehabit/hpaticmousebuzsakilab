@@ -1,11 +1,23 @@
 # Dec 4 figures — pointer set for Gyuri
 
-**Read this first:** the robust result is the **single-unit** firing change. The **LFP
-50 Hz is largely instrumental pickup**, and we do **not** claim entrainment — no
-stimulus-phase reference was recorded, so phase-following is untestable here (a
-measurement gap, not a null). Probes: dHPC = Cambridge NeuroTech H12/L13 (2 shanks,
-recorded as 4 verified 32-channel sections); LEC = H15 (2 shanks). CA1 layer is by
-ripple-band localization, not histology.
+**Read this first:**
+
+- **The robust result is the single-unit firing change.**
+- **Stimulus quality — important.** Only the **50 Hz** drive was a clean sine wave at the
+  tactor. The **5, 10, and 26 Hz** drives were degraded — not true sine waves on the
+  actuator — so we **do not take those conditions into account**. 50 Hz is the one
+  well-delivered stimulus, and it is the one that drove the units.
+- **The LFP 50 Hz is largely instrumental pickup** (controls below), so we lean on the
+  single-unit readout, not the LFP.
+- **No entrainment claim.** No stimulus-phase reference was recorded, so phase-locking /
+  entrainment is untestable here — a measurement gap, not a null.
+- **The next-generation hardware removes both limits:** it records the *delivered* waveform
+  (a clean sine plus a transduced copy of the actual vibration) and a per-cycle phase
+  reference on the acquisition clock — making frequency specificity *and* phase-locking /
+  entrainment directly testable.
+- **Probes / anatomy.** dHPC = Cambridge NeuroTech H12/L13 (2 shanks, recorded as 4 verified
+  32-channel sections); LEC = H15 (2 shanks). CA1 layer is by ripple-band localization, not
+  histology.
 
 Figures in the first section are embedded — **click any image to open it at full
 resolution**. The rest are grouped below as links.
@@ -30,12 +42,15 @@ never-stimulated pre-study baseline.
 
 [![raster_psth_all_good_units_combined](https://raw.githubusercontent.com/wehabit/hpaticmousebuzsakilab/main/results/dec4/11_Spikes/raster_psth_all_good_units_combined.png)](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/raster_psth_all_good_units_combined.png)
 
-**4. Frequency specificity — PSTH.** The single-unit response concentrates at 50 Hz vs the
-other carriers.
+**4. Frequency specificity — PSTH.** The single-unit response concentrates at 50 Hz.
+*Caveat: the 5/10/26 Hz drives were not clean sine waves (degraded delivered waveform), so
+their weaker response is partly a stimulus-quality artifact — the solid claim is that 50 Hz,
+the one well-delivered condition, drove the units. The next rig records the waveform to
+settle this.*
 
 [![psth_frequency_specific_dec4](https://raw.githubusercontent.com/wehabit/hpaticmousebuzsakilab/main/results/dec4/11_Spikes/psth_frequency_specific_dec4.png)](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/psth_frequency_specific_dec4.png)
 
-**5. Frequency specificity — raster** version of the same.
+**5. Frequency specificity — raster** version of the same (same stimulus-quality caveat as #4).
 
 [![raster_frequency_specific_dec4](https://raw.githubusercontent.com/wehabit/hpaticmousebuzsakilab/main/results/dec4/11_Spikes/raster_frequency_specific_dec4.png)](https://github.com/wehabit/hpaticmousebuzsakilab/blob/main/results/dec4/11_Spikes/raster_frequency_specific_dec4.png)
 
