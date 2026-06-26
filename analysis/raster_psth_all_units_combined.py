@@ -106,19 +106,18 @@ def main():
         if r == len(panels) - 1:
             ax.set_xlabel("time from ON onset (s)")
 
-        vals = s.mean_delta_hz.to_numpy(); colors = np.where(vals >= 0, UP, DOWN)
-        bx.barh(np.arange(len(vals)), vals, color=colors, alpha=0.88)
+        vals = s.mean_delta_hz.to_numpy()
+        bx.barh(np.arange(len(vals)), vals, color="#53565A", alpha=0.9)   # single neutral color; sign read by direction
         bx.axvline(0, color="#777", lw=0.9)
         bx.tick_params(axis="y", left=False, labelleft=False)
         bx.set_ylim(pp["n"] - 0.5, -0.5); bx.set_xlim(-bar_lim, bar_lim)
         bx.grid(axis="x", alpha=0.18)
-        # label the largest |ON-OFF| change in this panel, on its row, on the side it points
+        # label the largest |ON-OFF| change in this panel, always on the right side of the bar axis
         imax = int(np.nanargmax(np.abs(vals))); vmx = float(vals[imax]); cidmx = int(s.cluster_id.iloc[imax])
-        bx.text(0.97 if vmx >= 0 else 0.03, imax, f"u{cidmx}: {vmx:+.2f} Hz",
-                transform=bx.get_yaxis_transform(), va="center",
-                ha="right" if vmx >= 0 else "left", fontsize=7.6, fontweight="bold",
-                color=(UP if vmx >= 0 else DOWN), zorder=6,
-                bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.72))
+        bx.text(0.98, imax, f"u{cidmx}: {vmx:+.2f} Hz",
+                transform=bx.get_yaxis_transform(), va="center", ha="right",
+                fontsize=7.6, fontweight="bold", color="#2E2D29", zorder=6,
+                bbox=dict(boxstyle="round,pad=0.15", fc="white", ec="none", alpha=0.82))
         if r == 0:
             bx.set_title("ON-OFF\nHz", fontsize=9)
         if r == len(panels) - 1:
