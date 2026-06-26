@@ -1,5 +1,10 @@
 # Dec 4 figures — pointer set for Gyuri
 
+**Design (Dec 4).** A skin-mounted tactor delivered vibration in **3 s ON / 3 s OFF** blocks
+across **4 carrier frequencies (5, 10, 26, 50 Hz) × 3 amplitudes (100 / 180 / 250)**,
+~200 trials per condition. A quiet **baseline** was recorded before the first trial and a
+quiet period **after** the last; both probes (dHPC + LEC) recorded continuously throughout.
+
 **Read this first:**
 
 - **The robust result is the single-unit firing change.**
