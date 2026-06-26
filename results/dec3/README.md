@@ -132,6 +132,8 @@ _Kilosort cluster quality, drift, and ON-vs-OFF firing (PETH). Provisional until
 - [peth_offset_high_confidence_units.png](11_Spikes/peth_offset_high_confidence_units.png)
 - [psth_dec3_null_control.png](11_Spikes/psth_dec3_null_control.png)
 - [raster_psth_dec3_null.png](11_Spikes/raster_psth_dec3_null.png)
+- [raster_psth_all_good_units_dec3.png](11_Spikes/raster_psth_all_good_units_dec3.png)
+- [raster_psth_all_good_units_combined.png](11_Spikes/raster_psth_all_good_units_combined.png)
 - [dec3_states_vs_baseline.png](11_Spikes/dec3_states_vs_baseline.png)
 - [dec3_celltype.png](11_Spikes/dec3_celltype.png)
 - [celltype_classification.png](11_Spikes/celltype_classification.png)

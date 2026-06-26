@@ -200,6 +200,11 @@ MAP = {
         ("../cross_dataset_spike_compare/drift_model/drift_corrected_model.png", "drift_corrected_model.png"),
         # raster + PSTH for the MODULATED units (amp250_freq50) — Misi's request
         ("../cross_dataset_spike_compare/raster_psth/raster_psth_examples_dec4.png", "raster_psth_examples_dec4.png"),
+        ("../cross_dataset_spike_compare/raster_psth/raster_psth_all_good_units_dec4.png",
+         "raster_psth_all_good_units_dec4.png"),
+        # combined all-units heatmap: Dec 4 dHPC+LEC (50 Hz) vs Dec 3 dHPC null (26 Hz), 3 rows
+        ("../cross_dataset_spike_compare/raster_psth/raster_psth_all_good_units_combined.png",
+         "raster_psth_all_good_units_combined.png"),
         ("../cross_dataset_spike_compare/raster_psth/psth_population_modulated_dec4.png", "psth_population_modulated_dec4.png"),
         # frequency-specificity: modulated units across 5/10/26/50 Hz (response only at 50)
         ("../cross_dataset_spike_compare/raster_psth/psth_frequency_specific_dec4.png", "psth_frequency_specific_dec4.png"),

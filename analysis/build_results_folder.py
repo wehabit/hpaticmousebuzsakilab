@@ -118,6 +118,10 @@ MAP = {
         # Dec 3 single-unit negative control: no modulation at 5/26 Hz (0/174) — PSTH + raster
         "../cross_dataset_spike_compare/raster_psth/psth_dec3_null_control.png",
         "../cross_dataset_spike_compare/raster_psth/raster_psth_dec3_null.png",
+        # all 29 curated good units in one heatmap (matches the Dec 4 all-units figure)
+        "../cross_dataset_spike_compare/raster_psth/raster_psth_all_good_units_dec3.png",
+        # combined 3-row heatmap: Dec 4 dHPC+LEC (50 Hz) vs Dec 3 dHPC null (26 Hz)
+        "../cross_dataset_spike_compare/raster_psth/raster_psth_all_good_units_combined.png",
         # single-unit firing vs TRUE pre-experiment baseline & post-study (bootstrap CIs)
         "../cross_dataset_spike_compare/baseline_poststudy/dec3_states_vs_baseline.png",
         # putative cell-type classification (CellExplorer-style)

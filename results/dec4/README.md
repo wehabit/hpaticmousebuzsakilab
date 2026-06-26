@@ -117,6 +117,8 @@ _Kilosort4 + curation done (15 good units/probe). Single-unit ON/OFF (50 Hz/high
 - [ripple_examples.png](11_Spikes/ripple_examples.png)
 - [drift_corrected_model.png](11_Spikes/drift_corrected_model.png)
 - [raster_psth_examples_dec4.png](11_Spikes/raster_psth_examples_dec4.png)
+- [raster_psth_all_good_units_dec4.png](11_Spikes/raster_psth_all_good_units_dec4.png)
+- [raster_psth_all_good_units_combined.png](11_Spikes/raster_psth_all_good_units_combined.png)
 - [psth_population_modulated_dec4.png](11_Spikes/psth_population_modulated_dec4.png)
 - [psth_frequency_specific_dec4.png](11_Spikes/psth_frequency_specific_dec4.png)
 - [raster_frequency_specific_dec4.png](11_Spikes/raster_frequency_specific_dec4.png)

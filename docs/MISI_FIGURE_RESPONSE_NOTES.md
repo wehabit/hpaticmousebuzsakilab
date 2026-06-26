@@ -40,6 +40,20 @@ line, but artifact-suspect. It should not be presented as clean neural
 entrainment. The cleaner Dec 4 neural readout is the curated single-unit
 firing-rate effect.
 
+## Spike Figure Set: Dec 4 Effect vs Dec 3 Null
+
+Use these as the matched figure set when answering "show a raster or PSTH for the
+modulated neurons." The Dec 4 figures show the 50 Hz/high-amplitude effect; the
+Dec 3 figures show the same style of readout for the 5/26 Hz null-control session.
+
+| purpose | Dec 4 effect | Dec 3 null control | what it shows |
+|---|---|---|---|
+| Example raster + PSTH | [`raster_psth_examples_dec4.png`](../results/dec4/11_Spikes/raster_psth_examples_dec4.png) | [`raster_psth_dec3_null.png`](../results/dec3/11_Spikes/raster_psth_dec3_null.png) | A few individual units, with trial-by-trial spike rasters above the averaged PSTH. |
+| All curated units (combined 3-row heatmap) | [`raster_psth_all_good_units_combined.png`](../results/dec4/11_Spikes/raster_psth_all_good_units_combined.png) — top 2 rows = Dec 4 dHPC + LEC @ 50 Hz | bottom row = Dec 3 dHPC @ 26 Hz, **same figure** | One shared color/bar-scale heatmap of every curated good unit across both sessions: Dec 4 dHPC 9/15 responsive (clear 50 Hz ON column), Dec 4 LEC 3/15 (principal-cell suppression), Dec 3 dHPC 0/29 at `amp250_freq26` (0/174 across all conditions) — a flat null with no ON-driven column. Per-session versions: [`raster_psth_all_good_units_dec4.png`](../results/dec4/11_Spikes/raster_psth_all_good_units_dec4.png) · [`raster_psth_all_good_units_dec3.png`](../results/dec3/11_Spikes/raster_psth_all_good_units_dec3.png). Full statistics in [`DEC3_CURATED_SPIKE_RESULT.md`](DEC3_CURATED_SPIKE_RESULT.md). |
+| Population PSTH | [`psth_population_modulated_dec4.png`](../results/dec4/11_Spikes/psth_population_modulated_dec4.png) | [`psth_dec3_null_control.png`](../results/dec3/11_Spikes/psth_dec3_null_control.png) | Average time-course across the modulated/strongest-condition units: Dec 4 changes during ON, Dec 3 stays flat. |
+| Frequency-specificity | [`psth_frequency_specific_dec4.png`](../results/dec4/11_Spikes/psth_frequency_specific_dec4.png) and [`raster_frequency_specific_dec4.png`](../results/dec4/11_Spikes/raster_frequency_specific_dec4.png) | Same Dec 3 null-control PSTH/raster above; Dec 3 only had `5`/`26` Hz. | Dec 4 modulation is concentrated at `50` Hz; lower-frequency conditions do not show the same effect. |
+| 50 Hz cycle-following check | [`acg_50hz_following_dec4.png`](../results/dec4/11_Spikes/acg_50hz_following_dec4.png) | Not applicable; Dec 3 did not include 50 Hz. | Tests whether 50 Hz-responsive units fire in a 20 ms comb. Current result supports firing-rate modulation, not proven spike frequency-following. |
+
 ## Spectrogram Answer
 
 Use [trial_avg_spectrogram_dec4.png](../results/dec4/05_Frequency_Spectral/trial_avg_spectrogram_dec4.png).
