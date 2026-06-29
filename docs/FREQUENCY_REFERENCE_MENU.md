@@ -13,6 +13,9 @@ Important distinction:
   much faster pulses inside each burst.
 - These are related but not interchangeable.
 
+For the Jiang-Xie/Kipnis glymphatic details behind the slow/theta comparison,
+see `docs/JIANG_XIE_KIPNIS_GLYMPHATIC_SPEAKER_NOTES.md`.
+
 ## Short Recommendation
 
 For the next haptic mouse experiment, the strongest practical panel is:

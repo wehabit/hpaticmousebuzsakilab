@@ -49,3 +49,7 @@ resources/Cohen*.pdf
 presentation/
 presentation/SOM_horiz_Web_Color_and_White_PNG_logos/
 .DS_Store
+
+# Oversized generated spectrogram SVGs; keep PNG versions in GitHub.
+analysis/outputs/cross_dataset_spike_compare/spectrogram/trial_avg_spectrogram_dec3_dec4_freq5_26.svg
+analysis/outputs/cross_dataset_spike_compare/spectrogram/trial_avg_spectrogram_dec4.svg

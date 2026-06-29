@@ -204,16 +204,128 @@ def vision_chain():
     save(fig, "vision_chain.png")
 
 
+def genus_evidence_chain():
+    fig, ax = plt.subplots(figsize=(11.5, 4.2)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 4.2)
+    ax.text(5.75, 3.95, "What each 40 Hz anchor adds", ha="center", fontsize=14, weight="bold", color=NAVY)
+    ax.text(5.75, 3.65, "mouse target/pathology -> glymphatic mechanism -> synthesis -> early human extension",
+            ha="center", fontsize=8.6, color=GREY)
+    cards = [
+        ("Tsai / GENUS\n2016-2019",
+         "40 Hz light/sound\ndrives gamma activity;\nreduces Aβ/tau pathology;\nengages microglia + circuits",
+         "mouse pathology"),
+        ("Murdock\nNature 2024",
+         "40 Hz audiovisual\nincreases CSF influx\nand ISF efflux;\nAQP4-dependent\namyloid clearance",
+         "glymphatic bridge"),
+        ("Park & Tsai\nPLOS Biol 2025",
+         "Review synthesizes\npreclinical mechanisms\nand early clinical evidence;\nflags open questions",
+         "field synthesis"),
+        ("Chan et al.\nAlz Dement 2025",
+         "Small mild-AD\nopen-label extension:\nfeasible/safe;\nsuggestive longer-term\nsignals, no blinded control",
+         "early human"),
+    ]
+    w, h, gap, y = 2.45, 2.25, 0.28, 1.05
+    xs = [0.35 + i * (w + gap) for i in range(4)]
+    for i, ((head, body, tag), x) in enumerate(zip(cards, xs), start=1):
+        edge = RED if i in (1, 2) else GREY
+        box(ax, x, y, w, h, "", FOG_LIGHT, ec=edge, lw=2.0)
+        ax.text(x + 0.20, y + h - 0.22, str(i), ha="left", va="center",
+                fontsize=8.2, weight="bold", color=RED)
+        ax.text(x + w / 2, y + h - 0.46, head, ha="center", va="center",
+                fontsize=8.7, weight="bold", color=RED if i == 2 else NAVY, linespacing=1.05)
+        ax.text(x + w / 2, y + 1.13, body, ha="center", va="center",
+                fontsize=6.55, weight="bold", color=STONE_DARK, linespacing=1.08)
+        ax.text(x + w / 2, y + 0.24, tag, ha="center", va="center",
+                fontsize=7.0, weight="bold", color=RED)
+    for i in range(3):
+        arrow(ax, (xs[i] + w + 0.05, y + h / 2), (xs[i + 1] - 0.05, y + h / 2),
+              color=GREY, lw=2.1)
+    ax.text(5.75, 0.38,
+            "takeaway: strong mouse mechanism; human efficacy remains an active controlled-trial question",
+            ha="center", va="center", fontsize=9.0, weight="bold", color=RED)
+    save(fig, "genus_evidence_chain.png")
+
+
+def response_entrainment_guardrail():
+    fig, ax = plt.subplots(figsize=(11.5, 4.2)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 4.2)
+    ax.text(5.75, 3.95, "A 40 Hz response can be real without proving native gamma entrainment",
+            ha="center", fontsize=13.4, weight="bold", color=NAVY)
+    ax.text(5.75, 3.64, "Buzsáki/Soula guardrail: separate sensory following from capture of an endogenous oscillator",
+            ha="center", fontsize=8.4, color=GREY)
+
+    cards = [
+        ("1. Steady-state response\n≠ entrainment",
+         "A 40 Hz line can be\nsensory following.\nFlicker resonance +\nattention can amplify it.\nRefs: Herrmann 2001;\nTiitinen et al. 1993",
+         "not native-gamma capture"),
+        ("2. Soula/Buzsáki 2023",
+         "40 Hz visual flicker:\ntrain-onset response\nV1 20.1% (92/458)\nEC 1.9%; CA1 0.2%\ncycle-locking\nV1 28.8%; CA1 6.7%; EC 3.3%",
+         "visual cortex ≫ hippocampus / EC"),
+        ("3. Independent caution",
+         "Human MEG: rapid flicker\nproduced a strong visual\nresponse, but endogenous\ngamma and flicker response\ncoexisted rather than locking.",
+         "independent caution"),
+        ("4. What haptics must prove",
+         "Record vibration phase;\nshow spikes + LFP lock;\nshow native rhythm is\npulled to the drive;\nrule out pickup; test\nspecificity + carryover.",
+         "our next-study bar"),
+    ]
+    w, h, gap, y = 2.55, 2.35, 0.22, 0.82
+    xs = [0.27 + i * (w + gap) for i in range(4)]
+    for i, ((head, body, tag), x) in enumerate(zip(cards, xs), start=1):
+        edge = RED if i in (2, 4) else GREY
+        box(ax, x, y, w, h, "", FOG_LIGHT, ec=edge, lw=2.0)
+        ax.text(x + w / 2, y + h - 0.34, head, ha="center", va="center",
+                fontsize=8.8, weight="bold", color=RED if i == 2 else NAVY, linespacing=1.05)
+        ax.text(x + w / 2, y + 1.18, body, ha="center", va="center",
+                fontsize=6.65, weight="bold", color=STONE_DARK, linespacing=1.08)
+        ax.text(x + w / 2, y + 0.24, tag, ha="center", va="center",
+                fontsize=6.65, weight="bold", color=RED)
+    for i in range(3):
+        arrow(ax, (xs[i] + w + 0.02, y + h / 2), (xs[i + 1] - 0.02, y + h / 2),
+              color=GREY, lw=1.8)
+    ax.text(5.75, 0.28,
+            "language discipline: response / target engagement first; entrainment only with native-rhythm phase evidence",
+            ha="center", va="center", fontsize=8.9, weight="bold", color=RED)
+    save(fig, "response_entrainment_guardrail.png")
+
+
 def whitespace():
     fig, ax = plt.subplots(figsize=(11, 4.2)); ax.axis("off"); ax.set_xlim(0, 11); ax.set_ylim(0, 4.2)
-    ax.text(5.5, 3.95, "Vibrotactile is the open frontier — next to light & sound", ha="center", fontsize=14, weight="bold", color=NAVY)
-    box(ax, 0.5, 1.0, 4.4, 2.3, "", LIGHT, ec=GREY, lw=1.5)
-    ax.text(2.7, 2.95, "Audiovisual 40 Hz (GENUS)", ha="center", fontsize=13, weight="bold", color=GREY)
-    ax.text(2.7, 1.85, "developed, evidence base —\nbut lab-bound, hard to wear\ndaily, not sleep-friendly", ha="center", va="center", fontsize=10.5, color=GREY)
-    box(ax, 6.1, 1.0, 4.4, 2.3, "", LIGHT, ec=RED, lw=2.6)
-    ax.text(8.3, 2.95, "Vibrotactile (this program)", ha="center", fontsize=13, weight="bold", color=RED)
-    ax.text(8.3, 1.85, "wearable · sleep-compatible\n· pairs with sensing", ha="center", va="center", fontsize=10.5, color=NAVY)
-    ax.text(8.3, 0.55, "← the white space", ha="center", fontsize=11.5, weight="bold", color=RED)
+    ax.text(5.5, 3.95, "GENUS clinical context and our wearable haptic path", ha="center", fontsize=14, weight="bold", color=NAVY)
+    box(ax, 0.35, 0.30, 4.95, 3.00, "", LIGHT, ec=GREY, lw=1.5)
+    ax.text(2.825, 3.00, "Audiovisual 40 Hz (GENUS)", ha="center", fontsize=12.7, weight="bold", color=GREY)
+    ax.text(2.825, 2.62, "Cognito Spectris / GammaSense device", ha="center", va="center", fontsize=8.9, weight="bold", color=GREY)
+    ax.text(2.825, 2.40, "Alzheimer's disease trials (mostly mild-to-moderate AD)",
+            ha="center", va="center", fontsize=6.9, color=GREY)
+    ax.text(0.70, 2.05,
+            "OVERTURE (n=76): safe/tolerable;\nprimary endpoint did not separate;\nexploratory ADCS-ADL/MMSE/MRI signals",
+            ha="left", va="center", fontsize=6.0, color=GREY, linespacing=1.08)
+    ax.text(4.35, 2.05, "feasibility\npublished",
+            ha="center", va="center", fontsize=5.7, weight="bold", color=RED, linespacing=1.05)
+    ax.text(0.70, 1.38,
+            "HOPE (n=670): testing 12-mo ADCS-ADL/MMSE slowing\nOLE (n=402): all-active extension",
+            ha="left", va="center", fontsize=6.0, color=GREY, linespacing=1.08)
+    ax.text(4.35, 1.38, "pivotal +\nextension",
+            ha="center", va="center", fontsize=5.7, weight="bold", color=RED, linespacing=1.05)
+    ax.text(0.70, 0.93,
+            "ETUDE (n=20): dosing/safety/amyloid PET;\nno posted results",
+            ha="left", va="center", fontsize=6.0, color=GREY, linespacing=1.08)
+    ax.text(4.35, 0.93, "dose-\nranging",
+            ha="center", va="center", fontsize=5.7, weight="bold", color=RED, linespacing=1.05)
+    ax.text(0.70, 0.52,
+            "Mlinarič 2025: human iEEG target engagement\n(n=11 epilepsy; 490 contacts; independent)",
+            ha="left", va="center", fontsize=5.8, color=GREY, linespacing=1.05)
+    ax.text(4.35, 0.52, "hippocampus\nengagement",
+            ha="center", va="center", fontsize=5.7, weight="bold", color=RED, linespacing=1.05)
+    box(ax, 6.1, 0.62, 4.4, 2.68, "", LIGHT, ec=RED, lw=2.6)
+    ax.text(8.3, 2.95, "Haptics (us)", ha="center", fontsize=13, weight="bold", color=RED)
+    ax.text(8.3, 2.64, "Vibrotactile device applied to fingertips",
+            ha="center", va="center", fontsize=8.9, weight="bold", color=NAVY)
+    ax.text(8.3, 2.23,
+            "Benefits: wearable for long sessions;\nsleep-compatible; pairs with sensing",
+            ha="center", va="center", fontsize=7.4, weight="bold", color=RED, linespacing=1.08)
+    ax.text(8.3, 1.73, "2-finger glove:\nindex + middle finger",
+            ha="center", va="center", fontsize=8.5, color=NAVY, linespacing=1.12)
+    ax.text(8.3, 1.12,
+            "Potential human testing:\nStanford Hospital iEEG,\nstroke, or AD patients\n(resource/funding-driven)",
+            ha="center", va="center", fontsize=6.4, color=NAVY, linespacing=1.10)
     save(fig, "whitespace.png")
 
 
@@ -266,23 +378,87 @@ def landscape():
 
 # ---------------- glymphatic bridge figures (slide 3->4 story) ----------------
 def glymphatic():
-    fig, ax = plt.subplots(figsize=(11.5, 4.9)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 4.9)
-    ax.text(5.75, 4.65, "The glymphatic system: the brain's waste-clearance pathway", ha="center", fontsize=14, weight="bold", color=NAVY)
-    ax.add_patch(Ellipse((5.6, 2.75), 4.4, 2.1, fc=LIGHT, ec=NAVY, lw=1.5))
-    ax.text(5.6, 3.5, "brain", ha="center", fontsize=11, color=GREY)
-    rng = np.random.default_rng(3)
-    for _ in range(15):
-        ax.add_patch(Circle((5.6 + rng.uniform(-1.7, 1.7), 2.65 + rng.uniform(-0.6, 0.45)), 0.07, fc=RED, ec="none"))
-    ax.text(8.05, 2.0, "amyloid-β / tau", fontsize=9.5, color=RED)
-    for x in (4.6, 5.6, 6.6):                       # CSF in (top)
-        arrow(ax, (x, 4.3), (x, 3.7), color=TEAL, lw=2.4)
-    ax.text(8.45, 4.05, "CSF in\n(along vessels)", fontsize=10, color=TEAL, va="center")
-    arrow(ax, (5.6, 1.6), (5.6, 1.0), color=GREEN, lw=2.8)   # waste out -> lymph
-    box(ax, 4.2, 0.35, 2.8, 0.6, "cervical lymph nodes", GREEN, fs=10)
-    ax.text(7.45, 1.25, "waste out →", fontsize=10, color=GREEN)
-    ax.text(0.25, 2.75, "boosted by\nsleep &\nvascular\npulsation\n(AQP4)", fontsize=9.5, color=GREY, va="center")
-    ax.text(5.75, 0.05, "impaired clearance → Aβ/tau accumulate — an active but still-unsettled AD hypothesis", ha="center", fontsize=9.5, style="italic", color=GREY)
-    save(fig, "glymphatic.png")
+    fig, ax = plt.subplots(figsize=(11.5, 4.1))
+    ax.axis("off")
+    ax.set_xlim(0, 11.5)
+    ax.set_ylim(0, 4.1)
+
+    def flow(p0, p1, *, lw=2.4, ms=18, rad=0.0, alpha=1.0, color=STONE_DARK, zorder=8):
+        ax.add_patch(FancyArrowPatch(
+            p0, p1, arrowstyle="-|>", mutation_scale=ms, color=color, lw=lw,
+            alpha=alpha, connectionstyle=f"arc3,rad={rad}", zorder=zorder
+        ))
+
+    def text(x, y, s, *, fs=9.5, color=NAVY, weight=None, ha="center", va="center", style=None, zorder=20):
+        ax.text(x, y, s, ha=ha, va=va, fontsize=fs, color=color, weight=weight, style=style, zorder=zorder)
+
+    # One large faint brain, split into sleep vs awake halves.
+    brain_clip = Ellipse((5.75, 2.55), 9.70, 3.05, fc="#FAF9F5", ec="none", zorder=1)
+    ax.add_patch(brain_clip)
+    left_bg = Rectangle((0.90, 1.03), 4.85, 3.08, fc="#F0EAE0", ec="none", alpha=0.78, zorder=2)
+    right_bg = Rectangle((5.75, 1.03), 4.85, 3.08, fc="#FFFFFF", ec="none", alpha=0.96, zorder=2)
+    for patch in (left_bg, right_bg):
+        patch.set_clip_path(brain_clip)
+        ax.add_patch(patch)
+    ax.add_patch(Ellipse((5.75, 2.55), 9.70, 3.05, fc="none", ec=STONE_LIGHT, lw=1.9, zorder=4))
+    ax.plot([5.75, 5.75], [1.10, 4.00], color=STONE_LIGHT, lw=1.6, ls="--", zorder=5)
+
+    # Mouse-brain overlay: small and central, so the slide says "mouse model" without clutter.
+    mouse_clip = Ellipse((5.75, 2.48), 4.40, 1.22, fc="#FFFFFF", ec="none", alpha=0.92, zorder=6)
+    ax.add_patch(mouse_clip)
+    mouse_sleep = Rectangle((3.55, 1.87), 2.20, 1.25, fc="#F8EFE8", ec="none", alpha=0.95, zorder=6)
+    mouse_awake = Rectangle((5.75, 1.87), 2.20, 1.25, fc="#FFFFFF", ec="none", alpha=0.96, zorder=6)
+    for patch in (mouse_sleep, mouse_awake):
+        patch.set_clip_path(mouse_clip)
+        ax.add_patch(patch)
+    ax.add_patch(Ellipse((5.75, 2.48), 4.40, 1.22, fc="none", ec=CARDINAL, lw=2.4, alpha=0.9, zorder=9))
+    ax.add_patch(Ellipse((3.42, 2.56), 0.68, 0.46, fc="#FFFFFF", ec=CARDINAL, lw=1.8, alpha=0.9, zorder=9))
+    ax.add_patch(Ellipse((7.88, 2.39), 0.55, 0.62, fc="#FFFFFF", ec=CARDINAL, lw=1.8, alpha=0.9, zorder=9))
+    ax.plot([5.75, 5.75], [1.88, 3.09], color=CARDINAL, lw=1.0, ls="--", alpha=0.45, zorder=10)
+
+    # Left half: big simple "more" story.
+    text(3.25, 3.72, "NREM sleep", fs=15.5, weight="bold")
+    text(3.25, 3.40, "more CSF flow", fs=10.3, color=GREY)
+    flow((1.95, 3.28), (3.12, 2.82), lw=4.8, ms=25, rad=-0.14)
+    flow((4.80, 3.22), (3.86, 2.82), lw=4.2, ms=23, rad=0.12)
+    flow((3.80, 2.18), (2.95, 1.22), lw=5.0, ms=25, rad=-0.04)
+    text(2.15, 1.30, "more\nwaste out", fs=10.0, color=CARDINAL, weight="bold")
+    text(3.16, 1.03, "toward cervical\nlymph nodes", fs=7.6, color=GREY)
+
+    # Right half: small simple "less" story.
+    text(8.25, 3.72, "Awake", fs=15.5, weight="bold")
+    text(8.25, 3.40, "less CSF flow", fs=10.3, color=GREY)
+    flow((9.70, 3.25), (8.58, 2.82), lw=2.2, ms=17, rad=0.14, alpha=0.55, color=STONE)
+    flow((8.28, 2.15), (8.78, 1.35), lw=2.1, ms=16, alpha=0.55, color=STONE)
+    text(9.30, 1.32, "clearance\ncontinues", fs=8.9, color=GREY)
+
+    # A few solute dots: enough to explain, not enough to distract.
+    rng = np.random.default_rng(11)
+    for _ in range(8):
+        ax.add_patch(Circle((rng.uniform(2.70, 4.55), rng.uniform(2.10, 2.85)),
+                            0.045, fc=CARDINAL, ec="none", alpha=0.78, zorder=11))
+    for _ in range(18):
+        ax.add_patch(Circle((rng.uniform(6.85, 9.20), rng.uniform(2.05, 2.95)),
+                            0.045, fc=CARDINAL, ec="none", alpha=0.82, zorder=11))
+    text(9.18, 2.70, "amyloid-β / tau", fs=9.4, color=CARDINAL, ha="left")
+
+    text(5.75, 0.46,
+         "Direct tracer evidence is strongest in mice/rodents; human studies show coupled sleep, blood-flow, and CSF rhythms.",
+         fs=7.9, color=GREY)
+    text(5.75, 0.22,
+         "Refs: Xie 2013; Hablitz 2019; Fultz 2019; Hauglund 2025.",
+         fs=7.3, color=GREY)
+
+    svg_out = Path("presentation/svg")
+    svg_out.mkdir(parents=True, exist_ok=True)
+    for name in ("glymphatic.png", "glymphatic_species_overlay.png"):
+        fig.savefig(OUT / name, dpi=180, bbox_inches="tight", facecolor="white")
+    for name in ("glymphatic.svg", "glymphatic_species_overlay.svg"):
+        fig.savefig(OUT / name, bbox_inches="tight", facecolor="white")
+    fig.savefig(svg_out / "glymphatic.svg", bbox_inches="tight", facecolor="white")
+    fig.savefig(svg_out / "glymphatic_species_overlay.svg", bbox_inches="tight", facecolor="white")
+    plt.close(fig)
+    print("wrote", OUT / "glymphatic.png")
 
 
 def csf_wave_evidence():
@@ -303,25 +479,21 @@ def csf_wave_evidence():
     y = 2.55 + 0.18 * np.sin(3 * t)
     for k in range(3):
         ax.plot(x + k * 0.18, y - k * 0.32, color=NAVY, lw=1.8, alpha=0.9)
-    ax.text(1.35, 1.82, "synchronized\nneurons", ha="center", fontsize=9.2, color=NAVY)
+    ax.text(1.45, 2.92, "synchronized neurons", ha="center", va="bottom", fontsize=9.4, weight="bold", color=NAVY)
     arrow(ax, (2.1, 2.35), (2.82, 2.35), color=GREY, lw=2.1)
     ax.plot([2.95, 3.25, 3.55, 3.85], [2.35, 2.70, 2.00, 2.35], color=POPPY, lw=2.4)
     ax.text(3.4, 1.82, "ionic waves\nin tissue", ha="center", fontsize=9.2, color=NAVY)
-    arrow(ax, (3.98, 2.35), (4.75, 2.35), color=LAGUNITA, lw=2.4)
-    ax.text(4.73, 2.72, "CSF → ISF\nperfusion", ha="center", fontsize=9.2, weight="bold", color=LAGUNITA)
-    for yy in [1.22, 1.02, 0.82]:
-        ax.plot([0.7, 5.05], [yy, yy], color=LAGUNITA, lw=1.2, alpha=0.42)
-        ax.add_patch(FancyArrowPatch((4.65, yy), (5.05, yy), arrowstyle="-|>", mutation_scale=9,
-                                     color=LAGUNITA, lw=1.2, alpha=0.65))
+    arrow(ax, (3.98, 2.35), (4.75, 2.35), color=POPPY, lw=2.4)
+    ax.text(4.73, 2.72, "CSF → ISF\nperfusion", ha="center", fontsize=9.2, weight="bold", color=POPPY)
     ax.text(2.9, 1.28, "method: flatten waves (chemogenetic) ↓ clearance\nsynthesize waves (transcranial optogenetic) ↑ perfusion",
             ha="center", va="bottom", fontsize=8.5, color=GREY)
 
     # Converging evidence panel.
     ax.add_patch(FancyBboxPatch((5.8, 0.78), 5.35, 2.95,
                                 boxstyle="round,pad=0.02,rounding_size=0.08",
-                                fc=FOG_LIGHT, ec=PALO_ALTO, lw=1.7))
+                                fc=FOG_LIGHT, ec=NAVY, lw=1.7))
     ax.text(8.48, 3.48, "not alone: converging support",
-            ha="center", va="center", fontsize=10.6, weight="bold", color=PALO_ALTO)
+            ha="center", va="center", fontsize=10.6, weight="bold", color=NAVY)
     rows = [
         ("human sleep", "Fultz 2019, Science", "slow waves + BOLD + CSF oscillate together"),
         ("sleep/glymphatic state", "Hablitz 2019; Hauglund 2025", "delta / norepinephrine / vasomotion link to influx"),
@@ -331,15 +503,203 @@ def csf_wave_evidence():
     y0 = 3.12
     for i, (label, cite, point) in enumerate(rows):
         y = y0 - i * 0.62
-        ax.add_patch(Circle((6.18, y - 0.02), 0.08, fc=LAGUNITA if i < 3 else RED, ec="none"))
-        ax.text(6.38, y + 0.15, label, fontsize=8.5, weight="bold", color=NAVY, ha="left", va="center")
-        ax.text(6.38, y - 0.02, cite, fontsize=8.0, color=LAGUNITA if i < 3 else RED, ha="left", va="center")
-        ax.text(6.38, y - 0.20, point, fontsize=7.5, color=GREY, ha="left", va="center")
+        ax.text(6.1, y + 0.15, label, fontsize=8.5, weight="bold", color=NAVY, ha="left", va="center")
+        ax.text(6.1, y - 0.02, cite, fontsize=8.0, color=POPPY if i < 3 else RED, ha="left", va="center")
+        ax.text(6.1, y - 0.20, point, fontsize=7.5, color=GREY, ha="left", va="center")
 
     ax.text(5.75, 0.28,
             "take-home: brain rhythms and state can gate clearance biology — motivating a vibrotactile rhythm test",
             ha="center", fontsize=9.8, weight="bold", color=RED)
     save(fig, "csf_wave_evidence.png")
+
+
+def glymphatic_measurement_methods():
+    fig, ax = plt.subplots(figsize=(11.5, 4.55)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 4.55)
+    ax.text(5.75, 4.22,
+            "Measurement strength: human CSF motion -> direct mouse tracer flow -> causal 40 Hz clearance test",
+            ha="center", fontsize=9.7, weight="bold", color=GREY)
+
+    cards = [
+        ("Human CSF motion",
+         "Fultz 2019 Science;\nWilliams 2023 PLOS Biol",
+         "EFFECT:\nFultz +5.5 dB CSF power;\nWilliams +6-10% evoked CSF signal",
+         "MEASURED:\nfast EEG/fMRI; BOLD and\nventricular CSF inflow waves",
+         "TAKEAWAY:\nbrain state / sensory-evoked\nhemodynamics can move CSF",
+         "LIMIT:\nnoninvasive but indirect;\nCSF motion ≠ solute clearance",
+         LAGUNITA),
+        ("Neural waves drive flow",
+         "Jiang-Xie / Kipnis\nNature 2024",
+         "EFFECT:\ntracer flow sleep/wake ~1.5-2x;\nsilencing impairs entry/clearance",
+         "MEASURED:\nionic waves + CSF tracers;\nflatten waves ↓ clearance;\nsynthetic waves ↑ perfusion",
+         "TAKEAWAY:\nneuronal dynamics can direct\nCSF-to-ISF perfusion",
+         "LIMIT:\nmouse/preclinical;\nnot AD-specific or 40 Hz-specific",
+         PALO_ALTO),
+        ("40 Hz amyloid clearance",
+         "Murdock / Tsai\nNature 2024",
+         "EFFECT:\nCSF influx ~4x; ISF efflux ~1.5x;\ncortical Aβ ↓~30%",
+         "MEASURED:\ncisterna magna tracer influx,\nISF efflux, Aβ in cervical nodes,\nAQP4 blockade",
+         "TAKEAWAY:\n40 Hz light+sound increased\nglymphatic flow and Aβ clearance",
+         "LIMIT:\nclosest to our story, but still\nmouse; audiovisual not haptic",
+         RED),
+    ]
+
+    x0s = [0.35, 4.10, 7.85]
+    w, h, y = 3.30, 3.22, 0.78
+    for i, (head, cite, effect, measured, takeaway, limit, col) in enumerate(cards):
+        x = x0s[i]
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.018,rounding_size=0.08",
+                                    fc=FOG_LIGHT, ec=col, lw=2.1 if i == 2 else 1.7))
+        ax.text(x + w / 2, y + h - 0.26, head, ha="center", va="center",
+                fontsize=10.0, weight="bold", color=col)
+        ax.text(x + w / 2, y + h - 0.62, cite, ha="center", va="center",
+                fontsize=7.5, weight="bold", color=NAVY, linespacing=1.05)
+        ax.text(x + 0.24, y + h - 0.87, effect, ha="left", va="top",
+                fontsize=5.95, weight="bold", color=col, linespacing=1.05)
+        ax.plot([x + 0.22, x + w - 0.22], [y + h - 1.34, y + h - 1.34],
+                color=STONE_LIGHT, lw=1.0)
+        ax.text(x + 0.24, y + h - 1.48, measured, ha="left", va="top",
+                fontsize=6.55, color=STONE_DARK, linespacing=1.05)
+        ax.text(x + 0.24, y + h - 2.17, takeaway, ha="left", va="top",
+                fontsize=6.55, weight="bold", color=NAVY, linespacing=1.05)
+        ax.text(x + 0.24, y + 0.47, limit, ha="left", va="top",
+                fontsize=6.05, color=GREY, linespacing=1.05)
+
+    for i in range(2):
+        arrow(ax, (x0s[i] + w + 0.06, y + h / 2), (x0s[i + 1] - 0.06, y + h / 2),
+              color=STONE, lw=1.7)
+
+    ax.add_patch(FancyBboxPatch((0.80, 0.04), 9.90, 0.42,
+                                boxstyle="round,pad=0.02,rounding_size=0.06",
+                                fc="#FFF7F4", ec=RED, lw=1.2))
+    ax.text(5.75, 0.27,
+            "Program payoff: evaluate haptics with flow / clearance biomarkers, not entrainment language alone.",
+            ha="center", va="center", fontsize=8.5, weight="bold", color=RED)
+    save(fig, "glymphatic_measurement_methods.png")
+
+
+def vibrotactile_anchor_suk():
+    fig, ax = plt.subplots(figsize=(11.5, 4.25)); ax.axis("off"); ax.set_xlim(0, 11.5); ax.set_ylim(0, 4.25)
+    ax.text(5.75, 4.02, "Suk 2023 is the haptic precedent — and it defines the missing measurement",
+            ha="center", fontsize=13.4, weight="bold", color=NAVY)
+    ax.text(5.75, 3.74, "whole-body 40 Hz vibration in AD-model mice; activity/pathology readouts, not direct electrophysiology",
+            ha="center", fontsize=8.6, color=GREY)
+
+    cards = [
+        ("1. Stimulus route",
+         "40 Hz whole-body\nvibration using a\nlarge speaker / platform",
+         "not a wearable\nfingertip device",
+         GREY),
+        ("2. Brain readout",
+         "immunostaining:\nincreased c-Fos activity\nmarkers in superficial\nSSp + MOp cortex",
+         "activity marker,\nnot phase timing",
+         PALO_ALTO),
+        ("3. What was not tested",
+         "no probes; no LFP phase-locking;\nno single-unit entrainment;\nno hippocampus or entorhinal\nrecordings",
+         "the gap our study targets",
+         RED),
+    ]
+    x0s = [0.35, 4.10, 7.85]
+    w, h, y = 3.30, 2.55, 0.80
+    for i, (head, body, tag, col) in enumerate(cards):
+        x = x0s[i]
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.018,rounding_size=0.08",
+                                    fc=FOG_LIGHT, ec=col, lw=2.2 if i == 2 else 1.7))
+        ax.text(x + w / 2, y + h - 0.30, head, ha="center", va="center",
+                fontsize=9.7, weight="bold", color=col if i else NAVY)
+        ax.text(x + w / 2, y + 1.33, body, ha="center", va="center",
+                fontsize=8.1, weight="bold", color=NAVY, linespacing=1.08)
+        ax.text(x + w / 2, y + 0.30, tag, ha="center", va="center",
+                fontsize=7.4, weight="bold", color=RED if i == 2 else GREY, linespacing=1.05)
+
+    for i in range(2):
+        arrow(ax, (x0s[i] + w + 0.06, y + h / 2), (x0s[i + 1] - 0.06, y + h / 2),
+              color=STONE, lw=1.8)
+
+    ax.add_patch(FancyBboxPatch((0.86, 0.18), 9.78, 0.42,
+                                boxstyle="round,pad=0.02,rounding_size=0.06",
+                                fc="#FFF7F4", ec=RED, lw=1.2))
+    ax.text(5.75, 0.39,
+            "Bridge to us: keep the haptic promise, but prove direct medial-temporal target engagement with spikes + LFP.",
+            ha="center", va="center", fontsize=8.5, weight="bold", color=RED)
+    save(fig, "vibrotactile_anchor_suk.png")
+
+
+def frequency_menu():
+    fig, ax = plt.subplots(figsize=(13.3, 5.0)); ax.axis("off"); ax.set_xlim(0, 13.3); ax.set_ylim(0, 5.0)
+    ax.text(6.65, 4.74, "Frequency menu: each condition answers a different question",
+            ha="center", fontsize=14.5, weight="bold", color=NAVY)
+    ax.text(6.65, 4.44, "Not one magic number: test literature anchor, our strongest response, and controls",
+            ha="center", fontsize=9.2, color=GREY)
+
+    rows = [
+        ("~0.05-1 Hz\nslow / sleep-state",
+         "Fultz 2019;\nJiang-Xie/Kipnis 2024",
+         "CSF waves during sleep; synthetic 1 Hz neural waves\npotentiate CSF-to-ISF perfusion",
+         "clearance biology may be slow-state, not gamma-only",
+         PALO_ALTO),
+        ("5 / 10 Hz\nlow flutter controls",
+         "Mountcastle/Romo;\nHayashi 2018",
+         "classic tactile flutter range; mouse S1 responds\nfrequency-selectively to vibration",
+         "asks whether any periodic touch drives the brain",
+         GREY),
+        ("20 / 26 Hz\nmid controls",
+         "Romo/Hayashi;\nour Dec 3/4",
+         "mid-flutter / beta comparator; 26 Hz gave large\nLFP transients but not the clean unit peak",
+         "protects against cherry-picking 40/50 Hz",
+         STONE_DARK),
+        ("40 Hz\nAD anchor",
+         "Tsai/GENUS;\nMurdock 2024; Suk 2023",
+         "AD-model pathology/glymphatic anchor; whole-body\nvibration precedent, but no direct entrainment test",
+         "required literature comparator",
+         RED),
+        ("50 Hz\nour candidate",
+         "Romo/Hayashi;\nour Dec 4 spikes",
+         "upper flutter; strongest clean single-unit firing-rate\nmodulation in dHPC + LEC",
+         "test with phase reference + artifact controls",
+         LAGUNITA),
+        ("250 Hz pattern\noptional CR",
+         "Tass 2017;\nPfeifer/Tass 2021",
+         "fingertip vibrotactile coordinated-reset uses high-frequency\nbursts with a slow multi-site pattern",
+         "patterning idea; not AD-gamma evidence",
+         POPPY),
+    ]
+
+    x0, y0 = 0.35, 3.95
+    widths = [1.7, 2.15, 4.65, 4.3]
+    row_h = 0.56
+    headers = ["Frequency", "Reference paper(s)", "Finding / prompt", "Why include it"]
+    xs = [x0]
+    for w in widths[:-1]:
+        xs.append(xs[-1] + w)
+    total_w = sum(widths)
+    ax.add_patch(Rectangle((x0, y0), total_w, 0.40, fc=FOG_LIGHT, ec=STONE_LIGHT, lw=1.0))
+    for label, x, w in zip(headers, xs, widths):
+        ax.text(x + 0.10, y0 + 0.20, label, ha="left", va="center",
+                fontsize=7.8, weight="bold", color=NAVY)
+    y = y0 - row_h
+    for idx, (freq, refs, finding, why, col) in enumerate(rows):
+        bg = "#FFFFFF" if idx % 2 else "#FAFAFA"
+        ax.add_patch(Rectangle((x0, y), total_w, row_h, fc=bg, ec=STONE_LIGHT, lw=0.7))
+        ax.add_patch(Rectangle((x0, y), 0.10, row_h, fc=col, ec=col, lw=0))
+        ax.text(xs[0] + 0.18, y + row_h / 2, freq, ha="left", va="center",
+                fontsize=7.0, weight="bold", color=col, linespacing=1.05)
+        ax.text(xs[1] + 0.10, y + row_h / 2, refs, ha="left", va="center",
+                fontsize=6.5, weight="bold", color=NAVY, linespacing=1.05)
+        ax.text(xs[2] + 0.10, y + row_h / 2, finding, ha="left", va="center",
+                fontsize=6.2, color=STONE_DARK, linespacing=1.08)
+        ax.text(xs[3] + 0.10, y + row_h / 2, why, ha="left", va="center",
+                fontsize=6.2, weight="bold", color=NAVY, linespacing=1.05)
+        y -= row_h
+    for x in xs[1:]:
+        ax.plot([x, x], [y0 + 0.40, y0 - row_h * len(rows)], color=STONE_LIGHT, lw=0.8)
+
+    ax.add_patch(FancyBboxPatch((0.55, 0.10), 12.25, 0.40,
+                                boxstyle="round,pad=0.02,rounding_size=0.06",
+                                fc="#FFF7F4", ec=RED, lw=1.2))
+    ax.text(6.65, 0.30,
+            "Core panel: 5, 10, 20, 26, 40, 50 Hz; slow/patterned = optional clearance or CR extensions.",
+            ha="center", va="center", fontsize=8.2, weight="bold", color=RED)
+    save(fig, "frequency_menu.png")
 
 
 def driving_clearance():
@@ -372,6 +732,6 @@ def mouse(col="white", name="mouse_white.png"):
 
 if __name__ == "__main__":
     stadium(); two_regions(); experiment(); entrainment(); trap(); fix()
-    vision_chain(); whitespace(); landscape()
-    glymphatic(); csf_wave_evidence(); driving_clearance()
+    vision_chain(); genus_evidence_chain(); response_entrainment_guardrail(); whitespace(); landscape()
+    glymphatic(); csf_wave_evidence(); glymphatic_measurement_methods(); vibrotactile_anchor_suk(); frequency_menu(); driving_clearance()
     mouse("white", "mouse_white.png"); mouse("#53565A", "mouse_grey.png")

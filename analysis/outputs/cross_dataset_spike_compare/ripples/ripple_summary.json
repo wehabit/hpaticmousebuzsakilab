@@ -5,7 +5,7 @@
     "n_ripples": 5854,
     "median_amp_z": 6.28,
     "median_dur_ms": 49.6,
-    "note": "data-driven channel; CA1 layer provisional; ON has 50 Hz-harmonic caveat"
+    "note": "data-driven channel = ripple-band power peak (CA1 layer by localization, not histology); ON has 50 Hz-harmonic caveat"
   },
   {
     "session": "dec4_dHPC",
@@ -13,6 +13,6 @@
     "n_ripples": 10393,
     "median_amp_z": 6.29,
     "median_dur_ms": 50.4,
-    "note": "data-driven channel; CA1 layer provisional; ON has 50 Hz-harmonic caveat"
+    "note": "data-driven channel = ripple-band power peak (CA1 layer by localization, not histology); ON has 50 Hz-harmonic caveat"
   }
 ]

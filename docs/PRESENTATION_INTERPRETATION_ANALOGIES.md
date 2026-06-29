@@ -170,6 +170,10 @@ The key paper here is Jiang-Xie et al. 2024, *Nature*:
 
 > Neuronal dynamics direct cerebrospinal fluid perfusion and brain clearance.
 
+Detailed speaker-note reference:
+
+- `docs/JIANG_XIE_KIPNIS_GLYMPHATIC_SPEAKER_NOTES.md`
+
 Their "ionic waves" are not literal waves of CSF sloshing back and forth. They
 are large, rhythmic extracellular field-potential waves measured in the
 interstitial fluid around neurons.
