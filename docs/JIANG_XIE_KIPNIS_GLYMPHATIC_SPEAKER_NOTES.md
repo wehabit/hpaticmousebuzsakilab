@@ -52,13 +52,13 @@ Method details:
 - Viral injection target: hippocampus.
 - Coordinates: AP -2.7, ML 2.5, depth 1.5 mm below brain surface.
 - Viral vectors for optogenetic activation: CaMKIIa-ChRmine-mScarlet or CaMKIIa-mScarlet control.
-- Light delivery: 635 nm red light through a 400 micrometer optical fiber anchored on top of the cranium, over the parietal skull/hippocampal target side.
+- Light delivery: 635 nm red light through a 400 micrometer optical fiber anchored on top of the cranium, over the same side as the hippocampal viral target. In stereotaxic terms, this is the skull/cortical surface above the hippocampal coordinate, around AP -2.7 and ML 2.5: posterior to bregma and lateral from the midline.
 - The optical fiber was not inserted into the hippocampus for the main glymphatic perfusion experiment; they call this transcranial optogenetics.
 - So the light was applied at the skull surface, not directly on the exposed brain surface. The activated neurons were the ChRmine-expressing hippocampal neurons underneath.
 
 Speaker-note wording:
 
-> The 1 Hz and 8 Hz patterns were delivered through an optical fiber sitting on the skull over the parietal/hippocampal target side. Because ChRmine was expressed in one hippocampus, the functional target was the ChRmine-expressing hippocampal neurons underneath, not surface cortex and not a specified CA1/CA3/dentate subfield.
+> The 1 Hz and 8 Hz patterns were delivered through an optical fiber sitting on the skull above the hippocampal injection coordinate, around AP -2.7 and ML 2.5. Because ChRmine was expressed in one hippocampus, the functional target was the ChRmine-expressing hippocampal neurons underneath, not surface cortex and not a specified CA1/CA3/dentate subfield.
 
 The stimulated side showed more CSF-to-ISF tracer perfusion than the contralateral side in ChRmine animals. That asymmetry was not present in control RFP animals.
 
