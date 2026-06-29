@@ -20,7 +20,7 @@ see `docs/JIANG_XIE_KIPNIS_GLYMPHATIC_SPEAKER_NOTES.md`.
 
 For the next haptic mouse experiment, the strongest practical panel is:
 
-**5, 10, 20, 26, 40, 50 Hz**
+**1, 5, 8, 10, 20, 26, 40, 50 Hz**
 
 If there is room for more, add:
 
@@ -32,13 +32,20 @@ The central comparison should be:
 **50 Hz**, because that is the strongest clean single-unit effect in our current
 Dec 4 data.
 
+The glymphatic-mechanism comparison should include:
+
+**1 Hz** and **8 Hz**, because Jiang-Xie/Kipnis used transcranial optogenetic
+patterns at these frequencies to impose slow-wave-like and theta-like activity
+in ChRmine-expressing hippocampus. These are not gamma frequencies.
+
 ## Clear Frequency Table With Links
 
 | Frequency | Why choose it? | Paper link(s) | What was shown or studied at/around this frequency | How to use it in our project |
 |---|---|---|---|---|
-| **1 Hz** | Very-low-frequency stimulation control. It is mainly useful as a contrast against higher-frequency stimulation. | [Keller et al. 2018](https://doi.org/10.1523/JNEUROSCI.1088-17.2018); [Mohan et al. 2020](https://doi.org/10.1016/j.brs.2020.05.009) | Keller frames low-frequency stimulation as a regime that can decrease excitability, in contrast to higher-frequency protocols. Mohan shows human direct electrical stimulation effects depend on frequency, amplitude, and white/gray matter proximity. | Optional. Not a core haptic frequency. Use only if we want a very slow control or a stimulation-literature comparison. |
+| **1 Hz** | Jiang-Xie/Kipnis slow-wave-like glymphatic comparator, plus very-low-frequency control. | [Jiang-Xie/Kipnis et al. 2024](https://doi.org/10.1038/s41586-024-07108-6); [Keller et al. 2018](https://doi.org/10.1523/JNEUROSCI.1088-17.2018); [Mohan et al. 2020](https://doi.org/10.1016/j.brs.2020.05.009) | Jiang-Xie/Kipnis used 1 Hz transcranial optogenetic stimulation over the skull to impose slow-wave-like activity in ChRmine-expressing hippocampus, entraining hippocampal 0.5-4 Hz field-potential power and increasing CSF-to-ISF perfusion. Keller/Mohan provide broader low-frequency stimulation context. | Add as the main slow-wave glymphatic comparator. For haptic work, treat it as a mechanistic probe of slow rhythmic body stimulation, not as a gamma/GENUS condition. |
 | **2 Hz** | Slow mechanical/tactile control below the main flutter range. Helps ask whether any periodic touch changes the brain. | [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109) | Mouse hind-limb S1 was tested with 2, 5, 10, 20, 50, 100, and sometimes 200 Hz vibration. The paper showed cell-type-specific, frequency-selective responses in mouse S1. | Optional low mechanical-frequency control, especially if we record somatosensory cortex in the future. |
 | **3-8 Hz** | Theta-burst timing range. Important because hippocampal/entorhinal memory circuits are theta-linked, and human iEEG theta-burst studies show frequency-specific responses. | [Solomon et al. 2021](https://doi.org/10.1016/j.brs.2021.08.014); [Huang/Keller/Paulk et al. 2024](https://doi.org/10.1038/s41467-024-51443-1) | Solomon delivered intracranial theta-burst stimulation with bursts repeated at 3-8 Hz and found frequency-specific theta responses. Huang/Keller used human iEEG theta-burst direct electrical stimulation and found distributed responses and short-term plasticity shaped by baseline connectivity. | Do not treat this as simple 6 Hz vibration. Use it as a patterned-stimulation idea: bursts repeated in the theta range. |
+| **8 Hz** | Jiang-Xie/Kipnis theta-like glymphatic comparator and hippocampal theta-range condition. | [Jiang-Xie/Kipnis et al. 2024](https://doi.org/10.1038/s41586-024-07108-6); [Solomon et al. 2021](https://doi.org/10.1016/j.brs.2021.08.014); [Huang/Keller/Paulk et al. 2024](https://doi.org/10.1038/s41467-024-51443-1) | Jiang-Xie/Kipnis used 8 Hz transcranial optogenetic stimulation over the skull to impose theta-like activity in ChRmine-expressing hippocampus, entraining hippocampal 6-10 Hz field-potential power and increasing CSF-to-ISF perfusion. Human iEEG studies support theta-range patterned stimulation as biologically meaningful but not equivalent to simple haptic vibration. | Add as the theta glymphatic comparator. Use it to ask whether slow/theta body vibration shifts hippocampal state or CSF/ISF-relevant markers, not as evidence of gamma entrainment. |
 | **5 Hz** | Lower edge of classic tactile flutter and already used in our Dec 3/Dec 4 experiments. | [Salinas/Romo et al. 2000](https://doi.org/10.1523/JNEUROSCI.20-14-05503.2000); [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109) | Salinas/Romo describe flutter as mechanical skin vibration in the 5-50 Hz range and studied primate somatosensory coding of vibrotactile frequency. Hayashi tested mouse S1 responses including 5 Hz. | Keep. It tells us whether the brain responds broadly to vibration or preferentially to higher frequencies. |
 | **10 Hz** | Low/flutter and theta/alpha-adjacent comparator. Also important because 10 Hz appears in human direct-stimulation/plasticity work. | [Mountcastle/Romo et al. 1990](https://doi.org/10.1523/JNEUROSCI.10-09-03032.1990); [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109); [Keller et al. 2018](https://doi.org/10.1523/JNEUROSCI.1088-17.2018); [Ezzyat et al. 2019](https://doi.org/10.1523/JNEUROSCI.3553-18.2019) | Mountcastle/Romo trained monkeys on tactile flutter discrimination and used examples including 10, 30, and 50 Hz. Hayashi tested 10 Hz mouse S1 vibration. Keller used 10 Hz direct electrical stimulation and found lasting excitability changes in connected human cortical regions. Ezzyat used 10 Hz stimulation to study connectivity changes predicted by intracortical dynamics. | Keep. It is a bridge frequency across tactile coding, theta/alpha-adjacent biology, and human iEEG stimulation. |
 | **20 Hz** | Mid-flutter / beta-range comparator. Critical because AD sensory papers compare 20 Hz against 40 Hz. | [Salinas/Romo et al. 2000](https://doi.org/10.1523/JNEUROSCI.20-14-05503.2000); [Mountcastle/Romo et al. 1990](https://doi.org/10.1523/JNEUROSCI.10-09-03032.1990); [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109); [Singer group 5xFAD flicker paper](https://doi.org/10.1063/5.0249833) | Tactile papers place 20 Hz inside the flutter range. Hayashi tested mouse S1 at 20 Hz. The 5xFAD flicker paper studied frequency/duration effects, including 20 vs 40 Hz audiovisual flicker, and reported frequency-dependent transcriptional programs. | Add. It helps us avoid only testing "gamma" and asks whether mid-frequency stimulation has its own biological effect. |
@@ -63,8 +70,14 @@ Use this if time or animal tolerance is limited:
 
 **10, 20, 40, 50 Hz**
 
+If the slide or experiment is explicitly about glymphatic mechanism, use:
+
+**1, 8, 10, 20, 40, 50 Hz**
+
 This gives:
 
+- **1 Hz**: Jiang-Xie/Kipnis slow-wave-like comparator
+- **8 Hz**: Jiang-Xie/Kipnis theta-like comparator
 - **10 Hz**: low/theta-alpha comparator
 - **20 Hz**: mid-frequency/beta comparator
 - **40 Hz**: AD/GENUS claim frequency
@@ -74,10 +87,11 @@ This gives:
 
 Use this if we can run more conditions:
 
-**5, 10, 20, 26, 40, 50 Hz**
+**1, 5, 8, 10, 20, 26, 40, 50 Hz**
 
 This gives:
 
+- Jiang-Xie/Kipnis slow/theta glymphatic comparators
 - continuity with Dec 3/Dec 4
 - direct 40 vs 50 comparison
 - low/mid/high controls
@@ -88,7 +102,7 @@ This gives:
 Use only if we have enough trials, clean stimulus measurement, and preferably S1
 recording:
 
-**2, 5, 10, 20, 26, 32, 40, 50, 64, 80, 100, 128, 200/250 Hz**
+**1, 2, 5, 8, 10, 20, 26, 32, 40, 50, 64, 80, 100, 128, 200/250 Hz**
 
 This asks a broader question:
 
@@ -98,6 +112,8 @@ This asks a broader question:
 
 ## Guardrails For Interpretation
 
+- **1 Hz** tests a Jiang-Xie/Kipnis-inspired slow-wave-like comparator, not gamma.
+- **8 Hz** tests a Jiang-Xie/Kipnis-inspired theta-like comparator, not gamma.
 - **40 Hz** tests the AD/GENUS literature claim.
 - **50 Hz** tests our strongest current mouse haptic finding.
 - **20/26 Hz** protect against cherry-picking 50 Hz and help explain the Dec 3 LFP
