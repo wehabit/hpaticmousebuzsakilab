@@ -39,67 +39,38 @@ controls, an LFP-based movement proxy, and **Kilosort spike sorting with
 over-split/merge detection, curation, and peri-event time histograms** — all with
 trial-level bootstrap 95% confidence intervals.
 
-**Key findings.** (each links to the figure(s) that show it)
-1. A **real, amplitude-graded broadband LFP response**, strongest for the
-   `amp180_freq26` condition (Dec 3). The response is **transition-weighted
-   (onset/offset) rather than a sustained lift** — though, on the trial-level
-   bootstrap CIs, that offset-heavy asymmetry is statistically reliable only at
-   `amp250_freq26` (CI excludes 0) and marginal at `amp180_freq26`.
-   → [condition × channel heatmap](results/dec3/04_EventAligned_LFP/condition_by_channel_lfp_response_heatmap.png),
-   [transition index](results/dec3/07_Broadband_OFFcontrol_TrialStats/transition_index_condition.png)
-2. **No clean frequency-following evidence in dHPC at any tested frequency**
-   (5/10/26/50 Hz): no sustained narrowband peak above the 1/f background, and
-   onset-aligned phase consistency sits near chance. This **replicates across
-   Dec 3 and Dec 4 on the identical probe** and extends to the two new
-   frequencies. True stimulus-phase locking remains untestable without a recorded
-   vibration phase reference.
-   → [Dec 3 spectral-slope decomposition](results/dec3/05_Frequency_Spectral/spectral_slope_decomposition.png),
-   [Dec 3 phase-locking null floor](results/dec3/06_Phase_Locking/phase_locking_null_floor.png),
-   [Dec 4 spectral slope + ITPC](results/dec4/05_Frequency_Spectral/spectral_slope_itpc_dec4.png)
-3. **LEC (Dec 4) shows an amplitude-graded narrowband 50 Hz LFP power increase**
-   with no comparable effect at 5/10/26 Hz or in dHPC. Onset-aligned ITPC sits near
-   chance, so this is a stimulus-state power peak, **not a proven entrainment
-   result**. **But a dedicated artifact check shows this LFP effect is contaminated
-   by non-neural pickup:** disconnected LEC electrodes (which can't record neurons)
-   pick up **~6× more** 50 Hz during ON than tissue, and the cross-region 50 Hz lag
-   is ~0 ms (a shared signal). So the LEC 50 Hz *LFP* is not clean neural evidence
-   — the single-unit rate change (finding 4) is.
-   → [driven-power change by region](results/dec4/05_Frequency_Spectral/driven_power_change_by_analysis_group.png),
-   [50 Hz artifact check](analysis/outputs/dec4/artifact_check_50hz/artifact_check_50hz.png),
-   [writeup](docs/DEC4_50HZ_ARTIFACT_CHECK.md)
-4. **Single-unit ON/OFF firing is frequency-specific.** At **5/26 Hz there is no
-   effect** (Dec 3: 0/174 unit-conditions responsive, post-curation). But Dec 4
-   added 10/50 Hz, and at **50 Hz / high amplitude a subset of single units *are*
-   modulated** — in **both** dHPC (19/180 responsive) and LEC (13/180),
-   concentrated at 50 Hz (15/19 and 8/13). This matches the LEC 50 Hz LFP effect
-   and turns "no single-unit effect" into "none *at 5/26 Hz*." Curated units:
-   Dec 3 dHPC 29, Dec 4 dHPC 15, LEC 15.
-   → [cross-dataset spike ON/OFF figure](analysis/outputs/cross_dataset_spike_compare/spike_onoff_cross_dataset.png),
-   [writeup](docs/DEC4_SPIKE_ONOFF_RESULT.md),
-   [Dec 3 onset PETH](results/dec3/11_Spikes/peth_onset_ks_good_units.png)
-5. **The 50 Hz response is active and region-specific — but the regions do *not*
-   demonstrably coordinate.** It is not consistent with one identical passive
-   artifact/readout across both regions (dHPC shows a driven-up subset, LEC mostly
-   suppresses; a simple artifact would look the same everywhere). But a
-   coordination test found **no clear cross-region "working together"**: the
-   cross-region spike–field coupling (harder for pickup to fake than the LFP) does
-   **not** rise with stimulation, so the parallel rise in LFP coherence is best
-   explained by a
-   **shared 50 Hz signal** — and a **dedicated artifact check then confirmed a real
-   non-neural 50 Hz pickup** (disconnected electrodes pick up ~6× more than tissue,
-   ~0 ms cross-region lag), making the single-unit *rate* change the cleanest
-   neural evidence.
-   → [interpretation figure](analysis/outputs/cross_dataset_spike_compare/spike_50hz_interpretation.png),
-   [coordination test figure](analysis/outputs/dec4/coordination_50hz/coordination_50hz.png),
-   [writeup](docs/DEC4_COORDINATION_50HZ.md)
-6. Conclusions are **robust** to referencing scheme and to excluding
-   movement-contaminated trials. Hardware note: the dHPC probe was improved before
-   Dec 4 (the nine Dec-3 bad channels are clean on Dec 4); the LEC probe is
-   noisier (LEC: 82 good / 45 disconnected-dead incl. the dead block 224–255 / 1
-   hot-excluded ch142). Methods follow Buzsáki-lab
-   tooling (buzcode / CellExplorer / Kilosort) and Cohen (2014).
-   → [reference-scheme sensitivity](results/dec3/09_Reference_Sensitivity/reference_condition_summary.png),
-   [movement: excluded vs kept trials](results/dec3/03_Movement_DataCleaning/excluded_vs_kept_examples.png)
+**Key findings: Dec 4 / 50 Hz.** (each links to the figure(s) that show it)
+1. **High-amplitude 50 Hz produced the clearest single-unit modulation.** In Dec 4,
+   a subset of curated units changed firing during stimulation in both
+   **dHPC** (dorsal hippocampus) and **LEC** (lateral entorhinal cortex). This is
+   the cleanest evidence that the 50 Hz condition engaged neural activity.
+   -> [Dec 4 frequency-specific PSTH](results/dec4/11_Spikes/psth_frequency_specific_dec4.png),
+   [spike ON/OFF writeup](docs/DEC4_SPIKE_ONOFF_RESULT.md)
+2. **The exact 50 Hz LFP line is artifact-limited, especially in LEC.** Disconnected
+   LEC electrodes pick up a stronger 50 Hz signal than tissue channels, and the
+   cross-region 50 Hz lag is near 0 ms. So the LFP peak is not the main neural
+   claim; the spike-rate change is.
+   -> [50 Hz artifact check](results/dec4/12_ChannelQC_Traces/50hz_artifact_check.png),
+   [pickup gradient](results/dec4/12_ChannelQC_Traces/50hz_pickup_gradient_dhpc_vs_lec.png),
+   [artifact writeup](docs/DEC4_50HZ_ARTIFACT_CHECK.md)
+3. **Across all curated dHPC units, 50 Hz strengthened theta spike-field
+   coordination.** During ON, spikes were more aligned with theta-scale hippocampal
+   field waves than during baseline/OFF. This population result uses all curated
+   dHPC units, not only one example unit.
+   -> [all-dHPC coordination summary](results/dec4/06_Phase_Locking/all_dhpc_kipnis_coordination_amp250.png),
+   [population spike-triggered waveforms](results/dec4/06_Phase_Locking/all_dhpc_kipnis_waveforms_amp250.png)
+4. **50 Hz did not reproduce the Kipnis-like NREM slow-wave pattern.** The
+   Kipnis-relevant native sleep signal is slow-wave coordination around
+   0.5-4 Hz. In our Dec 4 50 Hz data, the stronger effect is theta-scale
+   coordination, not slow-wave coordination.
+   -> [all-dHPC coordination summary](results/dec4/06_Phase_Locking/all_dhpc_kipnis_coordination_amp250.png),
+   [Kipnis speaker notes](docs/JIANG_XIE_KIPNIS_GLYMPHATIC_SPEAKER_NOTES.md)
+5. **Next-study interpretation:** use 50 Hz as a target-engagement anchor, then
+   test frequencies that map more directly onto the glymphatic literature:
+   8-10 Hz for theta-like hippocampal coordination and 1-2 Hz for slow-wave-like
+   NREM coordination, with a recorded analog vibration phase and a clearance
+   readout.
+   -> [frequency reference menu](docs/FREQUENCY_REFERENCE_MENU.md)
 
 **Caveat — our hardware was not equipped to test entrainment.** Neither session
 recorded a usable **analog copy of the delivered vibration**, the actuator ran

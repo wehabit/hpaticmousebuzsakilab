@@ -32,6 +32,11 @@ The central comparison should be:
 **50 Hz**, because that is the strongest clean single-unit effect in our current
 Dec 4 data.
 
+Current-data guardrail: ignore the Dec 3/Dec 4 **5, 10, and 26 Hz** results for
+biological interpretation. Those delivered signals were not good enough, so they
+should not be used as evidence that those frequencies are ineffective. They remain
+candidate frequencies only if the next hardware round verifies clean delivery.
+
 The glymphatic-mechanism comparison should include:
 
 **1 Hz** and **8 Hz**, because Jiang-Xie/Kipnis used transcranial optogenetic
@@ -46,10 +51,10 @@ in ChRmine-expressing hippocampus. These are not gamma frequencies.
 | **2 Hz** | Slow mechanical/tactile control below the main flutter range. Helps ask whether any periodic touch changes the brain. | [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109) | Mouse hind-limb S1 was tested with 2, 5, 10, 20, 50, 100, and sometimes 200 Hz vibration. The paper showed cell-type-specific, frequency-selective responses in mouse S1. | Optional low mechanical-frequency control, especially if we record somatosensory cortex in the future. |
 | **3-8 Hz** | Theta-burst timing range. Important because hippocampal/entorhinal memory circuits are theta-linked, and human iEEG theta-burst studies show frequency-specific responses. | [Solomon et al. 2021](https://doi.org/10.1016/j.brs.2021.08.014); [Huang/Keller/Paulk et al. 2024](https://doi.org/10.1038/s41467-024-51443-1) | Solomon delivered intracranial theta-burst stimulation with bursts repeated at 3-8 Hz and found frequency-specific theta responses. Huang/Keller used human iEEG theta-burst direct electrical stimulation and found distributed responses and short-term plasticity shaped by baseline connectivity. | Do not treat this as simple 6 Hz vibration. Use it as a patterned-stimulation idea: bursts repeated in the theta range. |
 | **8 Hz** | Jiang-Xie/Kipnis theta-like glymphatic comparator and hippocampal theta-range condition. | [Jiang-Xie/Kipnis et al. 2024](https://doi.org/10.1038/s41586-024-07108-6); [Solomon et al. 2021](https://doi.org/10.1016/j.brs.2021.08.014); [Huang/Keller/Paulk et al. 2024](https://doi.org/10.1038/s41467-024-51443-1) | Jiang-Xie/Kipnis used 8 Hz transcranial optogenetic stimulation over the skull to impose theta-like activity in ChRmine-expressing hippocampus, entraining hippocampal 6-10 Hz field-potential power and increasing CSF-to-ISF perfusion. Human iEEG studies support theta-range patterned stimulation as biologically meaningful but not equivalent to simple haptic vibration. | Add as the theta glymphatic comparator. Use it to ask whether slow/theta body vibration shifts hippocampal state or CSF/ISF-relevant markers, not as evidence of gamma entrainment. |
-| **5 Hz** | Lower edge of classic tactile flutter and already used in our Dec 3/Dec 4 experiments. | [Salinas/Romo et al. 2000](https://doi.org/10.1523/JNEUROSCI.20-14-05503.2000); [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109) | Salinas/Romo describe flutter as mechanical skin vibration in the 5-50 Hz range and studied primate somatosensory coding of vibrotactile frequency. Hayashi tested mouse S1 responses including 5 Hz. | Keep. It tells us whether the brain responds broadly to vibration or preferentially to higher frequencies. |
-| **10 Hz** | Low/flutter and theta/alpha-adjacent comparator. Also important because 10 Hz appears in human direct-stimulation/plasticity work. | [Mountcastle/Romo et al. 1990](https://doi.org/10.1523/JNEUROSCI.10-09-03032.1990); [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109); [Keller et al. 2018](https://doi.org/10.1523/JNEUROSCI.1088-17.2018); [Ezzyat et al. 2019](https://doi.org/10.1523/JNEUROSCI.3553-18.2019) | Mountcastle/Romo trained monkeys on tactile flutter discrimination and used examples including 10, 30, and 50 Hz. Hayashi tested 10 Hz mouse S1 vibration. Keller used 10 Hz direct electrical stimulation and found lasting excitability changes in connected human cortical regions. Ezzyat used 10 Hz stimulation to study connectivity changes predicted by intracortical dynamics. | Keep. It is a bridge frequency across tactile coding, theta/alpha-adjacent biology, and human iEEG stimulation. |
+| **5 Hz** | Lower edge of classic tactile flutter. | [Salinas/Romo et al. 2000](https://doi.org/10.1523/JNEUROSCI.20-14-05503.2000); [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109) | Salinas/Romo describe flutter as mechanical skin vibration in the 5-50 Hz range and studied primate somatosensory coding of vibrotactile frequency. Hayashi tested mouse S1 responses including 5 Hz. | Candidate control only if delivery is verified clean. Do **not** interpret our current Dec 3/Dec 4 5 Hz results. |
+| **10 Hz** | Low/flutter and theta/alpha-adjacent comparator. Also important because 10 Hz appears in human direct-stimulation/plasticity work. | [Mountcastle/Romo et al. 1990](https://doi.org/10.1523/JNEUROSCI.10-09-03032.1990); [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109); [Keller et al. 2018](https://doi.org/10.1523/JNEUROSCI.1088-17.2018); [Ezzyat et al. 2019](https://doi.org/10.1523/JNEUROSCI.3553-18.2019) | Mountcastle/Romo trained monkeys on tactile flutter discrimination and used examples including 10, 30, and 50 Hz. Hayashi tested 10 Hz mouse S1 vibration. Keller used 10 Hz direct electrical stimulation and found lasting excitability changes in connected human cortical regions. Ezzyat used 10 Hz stimulation to study connectivity changes predicted by intracortical dynamics. | Candidate control only if delivery is verified clean. Do **not** interpret our current Dec 4 10 Hz result as a biological null. |
 | **20 Hz** | Mid-flutter / beta-range comparator. Critical because AD sensory papers compare 20 Hz against 40 Hz. | [Salinas/Romo et al. 2000](https://doi.org/10.1523/JNEUROSCI.20-14-05503.2000); [Mountcastle/Romo et al. 1990](https://doi.org/10.1523/JNEUROSCI.10-09-03032.1990); [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109); [Singer group 5xFAD flicker paper](https://doi.org/10.1063/5.0249833) | Tactile papers place 20 Hz inside the flutter range. Hayashi tested mouse S1 at 20 Hz. The 5xFAD flicker paper studied frequency/duration effects, including 20 vs 40 Hz audiovisual flicker, and reported frequency-dependent transcriptional programs. | Add. It helps us avoid only testing "gamma" and asks whether mid-frequency stimulation has its own biological effect. |
-| **25/26 Hz** | Continuity with our data. 26 Hz was used in Dec 3/Dec 4 and Dec 3 had a large gross LFP transient here. Also near beta/high-flutter. | [Mountcastle/Romo et al. 1990](https://doi.org/10.1523/JNEUROSCI.10-09-03032.1990); [Mohan et al. 2020](https://doi.org/10.1016/j.brs.2020.05.009); [Papasavvas et al. 2020](https://doi.org/10.1088/1741-2552/abbecf); our Dec 3/Dec 4 data | Mountcastle/Romo included nearby flutter comparisons. Mohan and Papasavvas used parameter sweeps including 25 Hz direct electrical stimulation. Our data show 26 Hz can produce strong LFP transients, but not the strongest clean single-unit effect. | Keep. It protects us from cherry-picking 50 Hz and helps explain why the Dec 3 26 Hz LFP result differs from the Dec 4 50 Hz spike result. |
+| **25/26 Hz** | Near beta/high-flutter comparator; historically included in Dec 3/Dec 4. | [Mountcastle/Romo et al. 1990](https://doi.org/10.1523/JNEUROSCI.10-09-03032.1990); [Mohan et al. 2020](https://doi.org/10.1016/j.brs.2020.05.009); [Papasavvas et al. 2020](https://doi.org/10.1088/1741-2552/abbecf) | Mountcastle/Romo included nearby flutter comparisons. Mohan and Papasavvas used parameter sweeps including 25 Hz direct electrical stimulation. | Candidate comparator only if delivery is verified clean. Do **not** interpret current Dec 3/Dec 4 26 Hz results; the signal quality was not good enough for biological conclusions. |
 | **30/32 Hz** | Upper flutter / low-gamma boundary. Also relevant to fast-adapting tactile afferent stimulation and Tass coordinated-reset design. | [Mountcastle/Romo et al. 1990](https://doi.org/10.1523/JNEUROSCI.10-09-03032.1990); [Tass 2017](https://doi.org/10.7759/cureus.1535) | Mountcastle/Romo studied discrimination around 30 Hz. Tass discusses 30-60 Hz vibration as effective for FA-I tactile afferents and notes 32 Hz in mechanoreceptor/thalamic-response contexts. | Optional. Useful if we want a smoother frequency-response curve between 26 and 40 Hz. |
 | **40 Hz** | Required. This is the central AD/GENUS/gamma-stimulation claim frequency. | [Iaccarino/Singer/Tsai et al. 2016](https://doi.org/10.1038/nature20587); [Martorell/Tsai et al. 2019](https://doi.org/10.1016/j.cell.2019.02.014); [Suk et al. 2023 tactile 40 Hz](https://doi.org/10.3389/fnagi.2023.1129510); [Mlinaric et al. 2025 human iEEG 40 Hz](https://doi.org/10.1038/s42003-025-08766-6); [Soula/Voroslakos/Buzsaki et al. 2023 counterpaper](https://doi.org/10.1101/2023.03.14.532608) | Iaccarino/Tsai launched the 40 Hz sensory stimulation AD claim. Martorell extended to multisensory 40 Hz. Suk tested 40 Hz whole-body vibrotactile stimulation in mouse neurodegeneration models. Mlinaric studied human iEEG target engagement with visual 40 Hz. Soula/Buzsaki argues 40 Hz sensory responses do not prove native gamma entrainment. | Must include. But phrase carefully: 40 Hz can test sensory target engagement and neural response, not automatically native gamma entrainment. |
 | **50 Hz** | Required because our Dec 4 clean single-unit result is strongest at 50 Hz. Also upper classic flutter and common human direct-stimulation frequency. | [Salinas/Romo et al. 2000](https://doi.org/10.1523/JNEUROSCI.20-14-05503.2000); [Mountcastle/Romo et al. 1990](https://doi.org/10.1523/JNEUROSCI.10-09-03032.1990); [Hayashi et al. 2018](https://doi.org/10.3389/fncir.2018.00109); [Kucewicz/Kahana et al. 2018](https://doi.org/10.1523/ENEURO.0369-17.2018); [Jacobs et al. 2016](https://doi.org/10.1016/j.neuron.2016.07.032); [Mohan et al. 2020](https://doi.org/10.1016/j.brs.2020.05.009); [Papasavvas et al. 2020](https://doi.org/10.1088/1741-2552/abbecf); our Dec 4 data | Tactile papers place 50 Hz at/near the upper flutter range; Hayashi tested mouse S1 at 50 Hz. Kahana/Jacobs/Mohan/Papasavvas show 50 Hz direct electrical stimulation can modulate high-gamma, memory, and band power, often depending on target/state. Our Dec 4 data show strongest frequency-specific single-unit firing-rate modulation at 50 Hz. | Must include. This is our strongest current candidate, but 50 Hz LFP needs strict artifact controls. |
@@ -66,7 +71,8 @@ in ChRmine-expressing hippocampus. These are not gamma frequencies.
 
 ### Minimum defensible haptic panel
 
-Use this if time or animal tolerance is limited:
+Use this if time or animal tolerance is limited and the actuator/sensor verifies
+clean delivery:
 
 **10, 20, 40, 50 Hz**
 
@@ -85,14 +91,14 @@ This gives:
 
 ### Better haptic panel for this project
 
-Use this if we can run more conditions:
+Use this if we can run more conditions and have direct stimulus measurement:
 
 **1, 5, 8, 10, 20, 26, 40, 50 Hz**
 
 This gives:
 
 - Jiang-Xie/Kipnis slow/theta glymphatic comparators
-- continuity with Dec 3/Dec 4
+- a clean retest of frequencies that were not interpretable in Dec 3/Dec 4
 - direct 40 vs 50 comparison
 - low/mid/high controls
 - ability to argue frequency specificity instead of intensity/arousal alone
@@ -116,9 +122,10 @@ This asks a broader question:
 - **8 Hz** tests a Jiang-Xie/Kipnis-inspired theta-like comparator, not gamma.
 - **40 Hz** tests the AD/GENUS literature claim.
 - **50 Hz** tests our strongest current mouse haptic finding.
-- **20/26 Hz** protect against cherry-picking 50 Hz and help explain the Dec 3 LFP
-  result.
-- **5/10 Hz** are low-frequency controls.
+- **5/10/26 Hz** are not interpretable in the current Dec 3/Dec 4 dataset because
+  delivery was poor. Only use them in future work after direct stimulus measurement
+  confirms clean delivery.
+- **20 Hz** protects against cherry-picking 40/50 Hz if delivery is clean.
 - **100/128/200/250 Hz** are not primary AD-gamma frequencies; they test high-frequency
   tactile receptor recruitment, hardware behavior, or Tass-style coordinated reset.
 - Human iEEG/direct stimulation papers show that stimulation effects are causal but

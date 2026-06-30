@@ -9,12 +9,14 @@ compared per condition (paired t over the 200 trials/condition; BH-corrected
 outputs in `analysis/outputs/cross_dataset_spike_compare/`.
 
 ## Headline
-**Dec 3 showed no single-unit ON/OFF effect; Dec 4 does — and it concentrates at
-50 Hz and high amplitude, in BOTH regions.**
+**Dec 4 shows the interpretable single-unit effect at 50 Hz and high amplitude,
+in BOTH regions.** Do not treat the 5, 10, or 26 Hz conditions as biological
+negatives in this dataset; those delivered signals were not clean enough for
+frequency-specific interpretation.
 
 | dataset | curated good units | unit×condition tests | responsive (q<0.05) | where they concentrate |
 |---|---|---|---|---|
-| Dec 3 dHPC | 29 | 174 (6 cond) | **0** | — (only 5/26 Hz tested) |
+| Dec 3 dHPC | 29 | 174 (6 cond) | **0** | — (only poor-delivery 5/26 Hz tested; do not interpret as biological null) |
 | Dec 4 dHPC | 15 | 180 (12 cond) | **19** | **15/19 at 50 Hz** (peak amp250_freq50: 9 units) |
 | Dec 4 LEC | 15 | 180 (12 cond) | **13** | **8/13 at 50 Hz** (amp180/amp250_freq50) |
 
@@ -22,14 +24,18 @@ Responsive counts by drive frequency:
 - **dHPC** — 5 Hz: 0, 10 Hz: 0, 26 Hz: 4, **50 Hz: 15**
 - **LEC** — 5 Hz: 1, 10 Hz: 0, 26 Hz: 4, **50 Hz: 8**
 
+Important: the 5, 10, and 26 Hz count rows are bookkeeping only. Because the
+delivered signals at those frequencies were not good, they should not be used to
+argue that the brain "did not respond" at 5/10/26 Hz.
+
 The strongest single condition is **dHPC amp250_freq50** (9 responsive units,
 mean ON−OFF **+0.79 Hz**) — highest frequency × highest amplitude.
 
 ## Why this matters
-- **It explains the Dec 3 null:** Dec 3 only delivered 5 and 26 Hz, and at those
-  frequencies there is essentially no single-unit ON/OFF modulation (0/174). Dec 4
-  *added 10 and 50 Hz* — and the single-unit effect appears specifically at 50 Hz.
-  So "no single-unit effect" was frequency-limited, not absolute.
+- **It reframes the Dec 3/low-frequency result:** Dec 3 only delivered 5 and 26 Hz,
+  and Dec 4's 5/10/26 delivery quality was poor. These conditions are therefore not
+  valid biological nulls. The defensible positive statement is narrower: the cleanest
+  interpretable response in the current dataset is at **50 Hz / high amplitude**.
 - **It is coherent across levels and regions.** The LFP analysis found an
   amplitude-graded **50 Hz** power increase in LEC, although that LFP peak is
   pickup-contaminated and not proof of entrainment. Here the **single-unit** ON/OFF
@@ -43,11 +49,10 @@ mean ON−OFF **+0.79 Hz**) — highest frequency × highest amplitude.
   is real even if individual units aren't all real.
 - **Stimulus-fidelity confound (low frequencies).** The delivered vibration was
   **not a clean sine wave at 5 / 10 / 26 Hz** (the actuator did not produce clean
-  low-frequency sinusoids; 50 Hz was delivered more cleanly). So the concentration at
-  50 Hz is **partly confounded with stimulus quality** — we cannot fully separate "the
-  brain prefers 50 Hz" from "50 Hz was the best-delivered stimulus." (All four
-  frequencies have data — 600 trials each at 5 / 10 / 26 / 50 Hz; **10 Hz, like 5 Hz,
-  was null** — 0 responsive single units.)
+  low-frequency sinusoids; 50 Hz was delivered more cleanly). So we should not claim
+  that the brain prefers 50 Hz over 5/10/26 Hz from this dataset alone. The current
+  result supports 50 Hz target engagement; it does **not** establish a clean
+  frequency-response curve across 5, 10, 26, and 50 Hz.
 - **Direction is mixed** (a subset of units go up, a subset down; e.g. amp250_freq50
   dHPC = 8 up / 7 down with a few strong up-units dominating the mean). This is
   *selective modulation of a subset*, not a uniform population drive.
